@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "JuliusSansOne";
+  src: url("../fonts/JuliusSansOne-Regular.ttf");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "PoppinsBold";
+  src: url("../fonts/Poppins-ExtraBold.ttf");
+}
+
 html,
 body {
   padding: 0;
