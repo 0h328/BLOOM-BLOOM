@@ -15,7 +15,12 @@ interface ImgDataProps {
 function FlowerImgList({ imgList, top, page }: ImgDataProps) {
   return (
     <Box
-      sx={{ position: "absolute", display: "flex", top: { top }, left: "15px" }}
+      sx={{
+        position: "absolute",
+        display: "flex",
+        top: { top },
+        left: page === "madelist" ? "10px" : "15px",
+      }}
     >
       {page == "madelist" ? (
         <Grid
@@ -24,7 +29,7 @@ function FlowerImgList({ imgList, top, page }: ImgDataProps) {
           direction="row"
           alignItems="center"
           justifyItems="center"
-          sx={{ width: 420 }}
+          sx={{ width: 410 }}
         >
           {imgList.map((img, index) => {
             return (
@@ -32,7 +37,7 @@ function FlowerImgList({ imgList, top, page }: ImgDataProps) {
                 <Image
                   src={img.src}
                   alt="꽃다발"
-                  width={115}
+                  width={130}
                   height={190}
                 ></Image>
               </Grid>

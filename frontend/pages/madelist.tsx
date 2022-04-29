@@ -14,6 +14,15 @@ function MadeList() {
     { src: "/img/bouquet1.png" },
     { src: "/img/bouquet2.png" },
     { src: "/img/bouquet3.png" },
+    { src: "/img/bouquet1.png" },
+    { src: "/img/bouquet2.png" },
+    { src: "/img/bouquet3.png" },
+    { src: "/img/bouquet1.png" },
+    { src: "/img/bouquet2.png" },
+    { src: "/img/bouquet3.png" },
+    { src: "/img/bouquet1.png" },
+    { src: "/img/bouquet2.png" },
+    { src: "/img/bouquet3.png" },
   ];
 
   // const [imgList, setImgList] = useState<Array<{}>>([]);
@@ -37,11 +46,23 @@ function MadeList() {
         최근 제작한 꽃다발
       </Typography>
 
-      <FlowerImgList
-        imgList={imgList}
-        top="145px"
-        page="madelist"
-      ></FlowerImgList>
+      <Box
+        sx={{
+          position: "absolute",
+          backgroundColor: "#FFE0E0",
+          width: "420px",
+          height: "700px",
+          top: "150px",
+          borderRadius: "10px",
+          overflow: "scroll",
+        }}
+      >
+        <FlowerImgList
+          imgList={imgList}
+          top="15px"
+          page="madelist"
+        ></FlowerImgList>
+      </Box>
     </Box>
   );
 }
