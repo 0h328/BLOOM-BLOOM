@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Button, Typography, Link } from "@mui/material";
 import { useRecoilState } from "recoil";
 import Image from "next/image";
 import { detailModalState, bouquetInfoState } from "../../states/states";
 import CloseIcon from "@mui/icons-material/Close";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
+import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
 
 interface ModalProps {
   open: boolean;
@@ -82,7 +83,7 @@ function BouquetDetailModal() {
             sx={{
               position: "absolute",
               width: "90%",
-              height: "636px",
+              height: "75%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -105,7 +106,7 @@ function BouquetDetailModal() {
             <Box
               sx={{
                 position: "absolute",
-                top: "55%",
+                top: "50%",
                 left: "2%",
                 width: "95%",
                 height: "40%",
@@ -117,10 +118,14 @@ function BouquetDetailModal() {
             >
               <FlowerInfoList flowerInfoList={flowerinfoList} />
             </Box>
+            <Box sx={{ position: "absolute", top: "90%", left: "15%" }}>
+              <BouquetDetailModalBtn />
+            </Box>
           </Box>
         </Box>
       ) : null}
     </>
   );
 }
+
 export default BouquetDetailModal;
