@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+
 function MakeButton() {
   return (
     <Link href="/make" passHref>
@@ -13,8 +15,6 @@ function MakeButton() {
             backgroundColor: "#FFFFFF",
             color: "#000000",
             fontFamily: "JuliusSansOne",
-            fontWeight: "500",
-            fontSize: "20px",
             borderRadius: "16px",
             width: 266,
             height: 52,
@@ -22,7 +22,12 @@ function MakeButton() {
             left: "77px",
           }}
         >
-          <Typography>꽃다발 만들기</Typography>
+          <Typography sx={{ fontSize: "18px", fontWeight: "Regular" }}>
+            꽃다발 만들기
+          </Typography>
+          <ArrowRightAltIcon
+            sx={{ position: "absolute", left: "220px", color: "#FFC0D0" }}
+          />
         </Button>
       </Box>
     </Link>

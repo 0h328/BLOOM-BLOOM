@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import MakeButton from "../components/main/MakeButton";
 import FlowerImgListTitle from "../components/main/FloweImgListTitle";
 import FlowerImgList from "../components/main/FlowerImgList";
-
 function Main() {
   const imgList = [
     { src: "/img/bouquet1.png" },

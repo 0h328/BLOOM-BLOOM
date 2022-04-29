@@ -21,7 +21,9 @@ function FlowerImgListTitle({ title, link, top }: ListProps) {
         sx={{ width: 420 }}
       >
         <Grid item xs={9}>
-          <Typography sx={{ ...textStyle }}>{title}</Typography>
+          <Typography sx={{ ...textStyle, fontWeight: "bold", left: "10px" }}>
+            {title}
+          </Typography>
         </Grid>
         <Grid item xs={3}>
           <Link href={`${link}`} passHref>
@@ -29,6 +31,7 @@ function FlowerImgListTitle({ title, link, top }: ListProps) {
               sx={{
                 ...textStyle,
                 fontSize: "12px",
+                fontWeight: "bold",
                 "&:hover": { cursor: "pointer" },
               }}
             >
@@ -49,7 +52,7 @@ export const textStyle = {
   fontFamily: "Julius Sans One",
   fontStyle: "normal",
   fontWeight: 400,
-  fontSize: "15px",
+  fontSize: "14px",
   lineHeight: "17px",
   color: "rgba(0, 0, 0, 0.5)",
 };
