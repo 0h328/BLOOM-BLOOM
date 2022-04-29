@@ -50,11 +50,12 @@ function MadeList() {
         sx={{
           position: "absolute",
           backgroundColor: "#FFE0E0",
-          width: "420px",
-          height: "700px",
-          top: "150px",
+          width: "410px",
+          height: "710px",
+          top: "140px",
           borderRadius: "10px",
-          overflow: "scroll",
+          overflowX: "hidden",
+          overflowY: "scroll",
         }}
       >
         <FlowerImgList
@@ -71,10 +72,10 @@ export const textStyle = {
   position: "absolute",
   fontFamily: "Julius Sans One",
   fontStyle: "normal",
-  fontWeight: "100",
-  fontSize: "17px",
+  fontWeight: "bold",
+  fontSize: "15px",
   lineHeight: "17px",
-  top: "100px",
+  top: "110px",
   left: "18px",
   color: "rgba(0, 0, 0, 0.8)",
 };

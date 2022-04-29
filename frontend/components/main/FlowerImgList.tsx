@@ -19,7 +19,7 @@ function FlowerImgList({ imgList, top, page }: ImgDataProps) {
         position: "absolute",
         display: "flex",
         top: { top },
-        left: page === "madelist" ? "10px" : "15px",
+        left: page === "madelist" ? "5px" : "15px",
       }}
     >
       {page == "madelist" ? (
@@ -37,7 +37,7 @@ function FlowerImgList({ imgList, top, page }: ImgDataProps) {
                 <Image
                   src={img.src}
                   alt="꽃다발"
-                  width={130}
+                  width={115}
                   height={190}
                 ></Image>
               </Grid>
