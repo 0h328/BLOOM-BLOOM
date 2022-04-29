@@ -1,15 +1,17 @@
 import React from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, IconButton } from "@mui/material";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Link from "next/link";
 
 type ListProps = {
   title: string;
   link: string;
+  top: string;
 };
 
-function FlowerImgListTitle({ title, link }: ListProps) {
+function FlowerImgListTitle({ title, link, top }: ListProps) {
   return (
-    <>
+    <Box sx={{ position: "absolute", top: { top }, left: "15px" }}>
       <Grid
         container
         spacing={0}
@@ -22,11 +24,23 @@ function FlowerImgListTitle({ title, link }: ListProps) {
           <Typography sx={{ ...textStyle }}>{title}</Typography>
         </Grid>
         <Grid item xs={3}>
-          <Link href={`/${link}`}></Link>
-          <Typography sx={{ ...textStyle }}>더보기</Typography>
+          <Link href={`${link}`} passHref>
+            <Typography
+              sx={{
+                ...textStyle,
+                fontSize: "12px",
+                "&:hover": { cursor: "pointer" },
+              }}
+            >
+              더보기
+              <ArrowForwardIosIcon
+                sx={{ fontSize: "10px", color: "#FFC0D0" }}
+              />
+            </Typography>
+          </Link>
         </Grid>
       </Grid>
-    </>
+    </Box>
   );
 }
 
