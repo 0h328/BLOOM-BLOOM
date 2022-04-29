@@ -3,7 +3,7 @@ import { Box, Typography, Grid } from "@mui/material";
 import Link from "next/link";
 
 type PageIdetifierProps = {
-  page: string;
+  page?: string;
 };
 
 function Header({ page }: PageIdetifierProps) {
