@@ -5,10 +5,10 @@ import MakeButton from "../components/main/MakeButton";
 import FlowerImgListTitle from "../components/main/FloweImgListTitle";
 import FlowerImgList from "../components/main/FlowerImgList";
 function Main() {
-  const imgList = [
-    { src: "/img/bouquet1.png" },
-    { src: "/img/bouquet2.png" },
-    { src: "/img/bouquet3.png" },
+  const bouquetList = [
+    { bouquetSeq: 1, bouquetImage: "/img/bouquet1.png" },
+    { bouquetSeq: 2, bouquetImage: "/img/bouquet2.png" },
+    { bouquetSeq: 3, bouquetImage: "/img/bouquet3.png" },
   ];
   return (
     <>
@@ -42,13 +42,13 @@ function Main() {
             top="25px"
           ></FlowerImgListTitle>
 
-          <FlowerImgList imgList={imgList} top="65px"></FlowerImgList>
+          <FlowerImgList bouquetList={bouquetList} top="65px"></FlowerImgList>
           <FlowerImgListTitle
             title="최근 주문한 꽃다발"
             link="/orderlist"
             top="280px"
           ></FlowerImgListTitle>
-          <FlowerImgList imgList={imgList} top="315px"></FlowerImgList>
+          <FlowerImgList bouquetList={bouquetList} top="315px"></FlowerImgList>
         </Box>
       </Box>
     </>

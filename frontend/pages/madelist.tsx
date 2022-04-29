@@ -2,30 +2,34 @@ import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Header from "../components/Header";
 import FlowerImgList from "../components/main/FlowerImgList";
+import BouquetDetailModal from "../components/modal/BouquetDetailModal";
 
 function MadeList() {
-  const imgList = [
-    { src: "/img/bouquet1.png" },
-    { src: "/img/bouquet2.png" },
-    { src: "/img/bouquet3.png" },
-    { src: "/img/bouquet1.png" },
-    { src: "/img/bouquet2.png" },
-    { src: "/img/bouquet3.png" },
-    { src: "/img/bouquet1.png" },
-    { src: "/img/bouquet2.png" },
-    { src: "/img/bouquet3.png" },
-    { src: "/img/bouquet1.png" },
-    { src: "/img/bouquet2.png" },
-    { src: "/img/bouquet3.png" },
-    { src: "/img/bouquet1.png" },
-    { src: "/img/bouquet2.png" },
-    { src: "/img/bouquet3.png" },
-    { src: "/img/bouquet1.png" },
-    { src: "/img/bouquet2.png" },
-    { src: "/img/bouquet3.png" },
+  //test용 dummy data
+  const bouquetList = [
+    { bouquetSeq: 1, bouquetImage: "/img/bouquet1.png" },
+    { bouquetSeq: 2, bouquetImage: "/img/bouquet2.png" },
+    { bouquetSeq: 3, bouquetImage: "/img/bouquet3.png" },
+    { bouquetSeq: 4, bouquetImage: "/img/bouquet1.png" },
+    { bouquetSeq: 5, bouquetImage: "/img/bouquet2.png" },
+    { bouquetSeq: 6, bouquetImage: "/img/bouquet3.png" },
+    { bouquetSeq: 7, bouquetImage: "/img/bouquet1.png" },
+    { bouquetSeq: 8, bouquetImage: "/img/bouquet2.png" },
+    { bouquetSeq: 9, bouquetImage: "/img/bouquet3.png" },
+    { bouquetSeq: 10, bouquetImage: "/img/bouquet1.png" },
+    { bouquetSeq: 11, bouquetImage: "/img/bouquet2.png" },
+    { bouquetSeq: 12, bouquetImage: "/img/bouquet3.png" },
+    { bouquetSeq: 13, bouquetImage: "/img/bouquet1.png" },
+    { bouquetSeq: 14, bouquetImage: "/img/bouquet2.png" },
+    { bouquetSeq: 15, bouquetImage: "/img/bouquet3.png" },
+    { bouquetSeq: 16, bouquetImage: "/img/bouquet1.png" },
+    { bouquetSeq: 17, bouquetImage: "/img/bouquet2.png" },
+    { bouquetSeq: 18, bouquetImage: "/img/bouquet3.png" },
   ];
 
+  //api 연동후 data set
   // const [imgList, setImgList] = useState<Array<{}>>([]);
+
   return (
     <Box
       sx={{
@@ -38,6 +42,7 @@ function MadeList() {
       }}
     >
       <Header page="madelist"></Header>
+      <BouquetDetailModal></BouquetDetailModal>
       <Typography
         sx={{
           ...textStyle,
@@ -59,7 +64,7 @@ function MadeList() {
         }}
       >
         <FlowerImgList
-          imgList={imgList}
+          bouquetList={bouquetList}
           top="15px"
           page="madelist"
         ></FlowerImgList>
