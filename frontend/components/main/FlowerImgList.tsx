@@ -9,13 +9,13 @@ interface bouquet {
   bouquetImage: string;
 }
 
-interface DataProps {
+interface dataProps {
   bouquetList: bouquet[];
   top: string;
   page?: string;
 }
 
-function FlowerImgList({ bouquetList, top, page }: DataProps) {
+function FlowerImgList({ bouquetList, top, page }: dataProps) {
   const [detailModal, setDetailModal] = useRecoilState(detailModalState);
   const [bouquetInfo, setBouquetInfo] = useRecoilState(bouquetInfoState);
 

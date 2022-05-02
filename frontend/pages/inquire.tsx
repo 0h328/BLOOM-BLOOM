@@ -81,7 +81,8 @@ function Inquire() {
         >
           <Box
             sx={{
-              height: "15%",
+              display: "flex",
+              height: "30px",
               textAlign: "center",
               alignItems: "center",
               borderTopLeftRadius: "5px",

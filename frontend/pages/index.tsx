@@ -1,9 +1,10 @@
 import React from "react";
 import { Box } from "@mui/material";
-import KakaoLogin from "../components/login/KakaoLogin";
+import KakaoBtn from "../components/login/KakaoBtn";
 import Title from "../components/login/Title";
 import FlowerImg from "../components/login/FlowerImg";
 function Login() {
+  const handleLogin = () => {};
   return (
     <>
       <Box
@@ -18,11 +19,18 @@ function Login() {
             backgroundColor: "#FFFAFA",
             height: "100vh",
             minHeight: "100vh",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
           <Title />
           <FlowerImg />
-          <KakaoLogin />
+          <Box sx={{ position: "absolute", top: "700px", left: "70px" }}>
+            <KakaoBtn
+              handleBtn={handleLogin}
+              title="카카오톡으로 시작하기"
+            ></KakaoBtn>
+          </Box>
         </Box>
       </Box>
     </>

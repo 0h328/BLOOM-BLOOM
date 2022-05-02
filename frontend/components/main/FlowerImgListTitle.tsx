@@ -3,13 +3,13 @@ import { Box, Typography, Grid, IconButton } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Link from "next/link";
 
-type ListProps = {
+type listProps = {
   title: string;
   link: string;
   top: string;
 };
 
-function FlowerImgListTitle({ title, link, top }: ListProps) {
+function FlowerImgListTitle({ title, link, top }: listProps) {
   return (
     <Box sx={{ position: "absolute", top: { top }, left: "15px" }}>
       <Grid

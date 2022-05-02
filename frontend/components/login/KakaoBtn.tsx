@@ -2,8 +2,11 @@ import React from "react";
 import { Box, Button, Typography, Grid } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-
-function KakaoLogin() {
+interface btnProps {
+  handleBtn: () => void;
+  title: string;
+}
+function KakaoBtn({ handleBtn, title }: btnProps) {
   const handleLogin = () => {};
   return (
     <Link href="/main" passHref>
@@ -16,12 +19,10 @@ function KakaoLogin() {
           color: "#3A1D1D",
           fontFamily: "JuliusSansOne",
           borderRadius: "5",
-          width: 300,
-          height: 50,
-          top: "700px",
-          left: "50px",
+          width: 280,
+          height: 45,
         }}
-        onClick={handleLogin}
+        onClick={handleBtn}
       >
         <Grid
           container
@@ -34,27 +35,30 @@ function KakaoLogin() {
             {" "}
             <Box
               sx={{
+                position: "absolute",
                 alignItems: "center",
                 justifyItems: "center",
+                top: "8px",
+                left: "30px",
               }}
             >
               <Image
                 src="/img/kakaoLogo.png"
                 alt="KakaoLogo"
-                width={33}
-                height={35}
+                width={30}
+                height={33}
               ></Image>
             </Box>
           </Grid>
           <Grid item xs={9}>
             <Typography
               style={{
-                fontWeight: "700",
-                fontFamily: "Poppins",
-                fontSize: "17px",
+                fontWeight: "600",
+                fontFamily: "JuliusSansOne",
+                fontSize: "15px",
               }}
             >
-              카카오톡으로 시작하기
+              {title}
             </Typography>
           </Grid>
         </Grid>
@@ -63,4 +67,4 @@ function KakaoLogin() {
   );
 }
 
-export default KakaoLogin;
+export default KakaoBtn;

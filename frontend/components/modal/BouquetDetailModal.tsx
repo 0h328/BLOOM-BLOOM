@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Button, Typography, Link } from "@mui/material";
+import { Box } from "@mui/material";
 import { useRecoilState } from "recoil";
 import Image from "next/image";
 import { detailModalState, bouquetInfoState } from "../../states/states";
@@ -7,7 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
 import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
 
-interface ModalProps {
+interface modalProps {
   open: boolean;
 }
 function BouquetDetailModal() {

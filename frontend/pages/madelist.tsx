@@ -56,7 +56,7 @@ function MadeList() {
           position: "absolute",
           backgroundColor: "#FFE0E0",
           width: "410px",
-          height: "710px",
+          height: "730px",
           top: "140px",
           borderRadius: "10px",
           overflowX: "hidden",
@@ -75,7 +75,7 @@ function MadeList() {
 
 export const textStyle = {
   position: "absolute",
-  fontFamily: "Julius Sans One",
+  fontFamily: "JuliusSans",
   fontStyle: "normal",
   fontWeight: "bold",
   fontSize: "15px",

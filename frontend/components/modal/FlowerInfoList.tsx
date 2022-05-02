@@ -1,35 +1,36 @@
 import React, { useState } from "react";
-import { Box, Typography, List, ListItem, Grid } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import Image from "next/image";
+import { textStyle } from "../main/FlowerImgListTitle";
 
 interface flowerInfo {
   flowerName: string;
   flowerImage: string;
   flowerCount: number;
 }
-interface FlowerInfoProps {
+interface flowerInfoProps {
   flowerInfoList: flowerInfo[];
 }
-function FlowerInfoList({ flowerInfoList }: FlowerInfoProps) {
+function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
   return (
     <>
       <Box
         sx={{
           ...boxStyle,
-          height: "15%",
+          height: "30px",
           backgroundColor: "#FFE0E0",
           display: "flex",
         }}
       >
         <Grid container>
           <Grid item xs={4}>
-            <Typography>꽃이름</Typography>
+            <Typography sx={{ ...titleStyle }}>꽃이름</Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography>꽃</Typography>
+            <Typography sx={{ ...titleStyle }}>꽃</Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography>개수</Typography>
+            <Typography sx={{ ...titleStyle }}>개수</Typography>
           </Grid>
         </Grid>
       </Box>
@@ -77,6 +78,11 @@ export const boxStyle = {
   textAlign: "center",
   fontSize: "14px",
   alignItems: "center",
+};
+
+export const titleStyle = {
+  fontWeight: "bold",
+  fontFamily: "JuliusSansOne",
 };
 
 export default FlowerInfoList;

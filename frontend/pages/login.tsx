@@ -1,9 +1,13 @@
 import React from "react";
 import { Box, Button, Typography, Grid } from "@mui/material";
 import Image from "next/image";
-import KakaoLogin from "../components/login/KakaoLogin";
+import KakaoBtn from "../components/login/KakaoBtn";
 import Title from "../components/login/Title";
 const Login = () => {
+  const handleBtn = () => {
+    handleLogin();
+  };
+  const handleLogin = () => {};
   return (
     <Box>
       <Title></Title>
@@ -21,9 +25,7 @@ const Login = () => {
           height={288}
         ></Image>
       </Box>
-      <Box>
-        <KakaoLogin></KakaoLogin>
-      </Box>
+      <Box></Box>
     </Box>
   );
 };
