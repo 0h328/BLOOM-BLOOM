@@ -7,12 +7,12 @@ import React from "react";
 
 function Storecard() {
   return(
-    <Box sx={{width:420,height:163,mt:3,backgroundColor: "#FFE0E0"}}>
-      <Box sx={{width:420,height:120,mt:1,mb:1,display: 'flex'}}>
+    <Box sx={{width:400,height:163,mt:3,backgroundColor: "#FFE0E0",mx:'auto'}}>
+      <Box sx={{width:400,height:120,mt:1,mb:1,display: 'flex'}}>
       <Box sx={{width:171.86,height:120,m:2}}>
       <Image src="/test.png" alt="test" width={171.86} height={120}></Image>
       </Box>
-      <Box sx={{width:215,height:120, mt:1, ml:2}}>
+      <Box sx={{width:215,height:120, mt:1, ml:1.5}}>
         <Box sx={{display:'flex',height:35, mt:1, alignItems:'baseline'}}>
           <Typography sx={{fontFamily: "Julius Sans One", fontSize:'25px',fontWeight: "bold"}}>꽃집 이름</Typography>
           <Box sx={{display:'flex', width:35, justifyContent:'space-between', ml:0.5}}>
