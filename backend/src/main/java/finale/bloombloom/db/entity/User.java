@@ -18,8 +18,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userSeq;
-
     private String userName;
-    private String userPhone;
     private String userId;
 }
