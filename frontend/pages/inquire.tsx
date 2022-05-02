@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import FlowerInfoList from "../components/modal/FlowerInfoList";
 import Image from "next/image";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 
 function Inquire() {
   //test용 dummy data

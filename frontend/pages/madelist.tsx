@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 import FlowerImgList from "../components/main/FlowerImgList";
 import BouquetDetailModal from "../components/modal/BouquetDetailModal";
 

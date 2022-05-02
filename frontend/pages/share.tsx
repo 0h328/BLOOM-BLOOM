@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import MessageInputModal from "../components/modal/MessageInputModal";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 function Share() {
   return (
     <Box

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import MessageCard from "../components/present/MessageCard";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 import ImgDownloadBtn from "../components/present/ImgDownloadBtn";
 import html2canvas from "html2canvas";
 import BouquetImg from "../components/present/BouquetImg";

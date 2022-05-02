@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 import MakeButton from "../components/main/MakeButton";
 import FlowerImgListTitle from "../components/main/FlowerImgListTitle";
 import FlowerImgList from "../components/main/FlowerImgList";

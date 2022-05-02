@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import Header from "../components/Header";
+import Header from "../components/common/Header";
 import { useRouter } from "next/router";
 import BouquetImg from "../components/present/BouquetImg";
 import ConfirmBtn from "../components/Button/ConfirmPageBtn";
