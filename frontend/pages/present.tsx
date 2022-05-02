@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
 import MessageCard from "../components/present/MessageCard";
 import Header from "../components/common/Header";
 import ImgDownloadBtn from "../components/present/ImgDownloadBtn";

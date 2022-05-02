@@ -10,7 +10,7 @@ function Header({ page }: PageIdetifierProps) {
   const handleLogout = () => {};
   return (
     <>
-      <Box sx={{ position: "absolute", top: "30px" }}>
+      <Box sx={{ position: "relative" }}>
         <Grid
           container
           spacing={0}
