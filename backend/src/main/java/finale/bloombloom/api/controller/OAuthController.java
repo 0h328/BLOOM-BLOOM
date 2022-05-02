@@ -32,7 +32,7 @@ import java.util.Objects;
 @RequestMapping("/api/v1/oauth")
 public class OAuthController {
 
-
+    public final static String BASE_URI = "http://localhost:8080";
     private final UserService userService;
 
     /**
@@ -47,7 +47,7 @@ public class OAuthController {
         String reqUrl =
                 "https://kauth.kakao.com/oauth/authorize"
                         + "?client_id=df2b93fe31185203897eca6511064994"
-                        + "&redirect_uri=http://localhost:8080/api/v1/oauth/kakao/callback"
+                        + "&redirect_uri="+BASE_URI+"/api/v1/oauth/kakao/callback"
                         + "&response_type=code";
         return reqUrl;
     }
