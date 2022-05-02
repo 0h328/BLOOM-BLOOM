@@ -66,7 +66,9 @@ function Present() {
           >
             from . {presentData.presentSender}
           </Typography>
-          <Header></Header>
+          <Box sx={{ position: "absolute", top: "30px" }}>
+            <Header></Header>
+          </Box>
           <Box sx={{ position: "absolute", top: "150px", left: "30px" }}>
             <BouquetImg bouquetImage={presentData.bouquetImage}></BouquetImg>
             <MessageCard message={presentData.presentDesc}></MessageCard>

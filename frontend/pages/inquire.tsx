@@ -66,7 +66,9 @@ function Inquire() {
         minHeight: "100vh",
       }}
     >
-      <Header></Header>
+      <Box sx={{ position: "absolute", top: "30px" }}>
+        <Header></Header>
+      </Box>
       <Box sx={{ position: "absolute", top: "10%", left: "10%" }}>
         <Image src={bouquetImage} alt="꽃다발" width={335} height={390}></Image>
         <Box

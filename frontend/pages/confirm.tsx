@@ -34,7 +34,9 @@ function Confirm() {
         minHeight: "100vh",
       }}
     >
-      <Header></Header>
+      <Box sx={{ position: "absolute", top: "30px" }}>
+        <Header></Header>
+      </Box>
       <MessageInputModal
         openMessageModal={openMessageModal}
         closeMessageModal={closeMessageModal}
