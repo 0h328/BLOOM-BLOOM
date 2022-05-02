@@ -19,6 +19,10 @@ import java.util.List;
 public class FlowerController {
     private final FlowerService flowerService;
 
+    /**
+     * 기능: 유저가 보유한 꽃다발 리스트 조회
+     * 작성자: 문준호
+     */
     @GetMapping
     public ResponseEntity<Result> findBouquet(Authentication authentication) {
         if (authentication == null)
@@ -30,6 +34,10 @@ public class FlowerController {
         return ResponseEntity.ok(Result.builder().data(bouquets).message("꽃다발 리스트 조회에 성공했습니다.").build());
     }
 
+    /**
+     * 기능: 꽃 메타데이터 조회
+     * 작성자: 문준호
+     */
     @GetMapping("/main")
     public ResponseEntity<Result> findAllMainFlower(Authentication authentication) {
         if (authentication == null)
@@ -39,6 +47,10 @@ public class FlowerController {
         return ResponseEntity.ok(Result.builder().data(mainFlowers).message("꽃 조회에 성공했습니다.").build());
     }
 
+    /**
+     * 기능: 부속꽃 메타데이터 조회
+     * 작성자: 문준호
+     */
     @GetMapping("/sub")
     public ResponseEntity<Result> findAllSubFlower(Authentication authentication) {
         if (authentication == null)
@@ -48,6 +60,10 @@ public class FlowerController {
         return ResponseEntity.ok(Result.builder().data(subFlowers).message("부속꽃 조회에 성공했습니다.").build());
     }
 
+    /**
+     * 기능: 포장지 메타데이터 조회
+     * 작성자: 문준호
+     */
     @GetMapping("/wrap")
     public ResponseEntity<Result> findAllWrap(Authentication authentication) {
         if (authentication == null)
@@ -57,6 +73,10 @@ public class FlowerController {
         return ResponseEntity.ok(Result.builder().data(wraps).message("포장지 조회에 성공했습니다.").build());
     }
 
+    /**
+     * 기능: 장식 메타데이터 조회
+     * 작성자: 문준호
+     */
     @GetMapping("/deco")
     public ResponseEntity<Result> findAllDeco(Authentication authentication) {
         if (authentication == null)
