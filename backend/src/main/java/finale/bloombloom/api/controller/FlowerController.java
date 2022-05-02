@@ -4,11 +4,11 @@ import finale.bloombloom.api.response.*;
 import finale.bloombloom.api.service.FlowerService;
 import finale.bloombloom.common.auth.BloomUserDetails;
 import finale.bloombloom.common.model.response.Result;
-import finale.bloombloom.db.entity.Bouquet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +33,19 @@ public class FlowerController {
 
         List<BouquetResponse> bouquets = flowerService.findBouquet(userSeq);
         return ResponseEntity.ok(Result.builder().data(bouquets).message("꽃다발 리스트 조회에 성공했습니다.").build());
+    }
+
+    /**
+     * 기능: 꽃다발 상세 조회
+     * 작성자: 문준호
+     */
+    @GetMapping("/{bouquetSeq}")
+    public ResponseEntity<Result> findBouquetDetail(Authentication authentication, @PathVariable Long bouquetSeq) {
+        if (authentication == null)
+            return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
+
+        BouquetResponse bouquetDetail = flowerService.findBouquetDetail(bouquetSeq);
+        return ResponseEntity.ok(Result.builder().data(bouquetDetail).message("꽃다발 상세조회에 성공했습니다.").build());
     }
 
     /**

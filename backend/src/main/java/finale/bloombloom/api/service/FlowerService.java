@@ -1,11 +1,14 @@
 package finale.bloombloom.api.service;
 
 import finale.bloombloom.api.response.*;
+import finale.bloombloom.common.exception.BloomBloomNotFoundException;
+import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,5 +48,14 @@ public class FlowerService {
         return bouquetRepository.findAllByUser_UserSeq(userSeq).stream()
                 .map(BouquetResponse::from)
                 .collect(Collectors.toList());
+    }
+
+    public BouquetResponse findBouquetDetail(Long bouquetSeq) {
+        return BouquetResponse.from(findBouquetDetailByBouquetSeq(bouquetSeq));
+    }
+
+    private Bouquet findBouquetDetailByBouquetSeq(Long bouquetSeq) {
+        return bouquetRepository.findByBouquetSeq(bouquetSeq)
+                .orElseThrow(() -> new BloomBloomNotFoundException(String.format("해당 꽃다발이 존재하지 않습니다. ID : %d", bouquetSeq)));
     }
 }
