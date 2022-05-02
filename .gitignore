@@ -697,3 +697,4 @@ gradle-app.setting
 backend/src/generated
 *.gz
 backend/src/main/generated
+backend/src/main/resources/application-mysql.properties
