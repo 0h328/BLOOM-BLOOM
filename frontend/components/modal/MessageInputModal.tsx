@@ -22,7 +22,7 @@ function MessageInputModal({
   const handleInput = () => {};
   const handleShare = () => {};
   const handleRoute = () => {
-    router.push("/madelist");
+    router.back();
   };
   const bouquetImage = "/img/bouquet3.png";
   return (
@@ -61,7 +61,13 @@ function MessageInputModal({
               메세지 내용을 입력해주세요
             </Typography>
             <CloseIcon
-              sx={{ position: "absolute", top: "20px", left: "90%", color: "" }}
+              sx={{
+                position: "absolute",
+                top: "20px",
+                left: "90%",
+                color: "",
+                "&:hover": { cursor: "pointer" },
+              }}
               onClick={share ? handleRoute : closeMessageModal}
             />
             <Box
@@ -91,7 +97,7 @@ function MessageInputModal({
                 width: "254px",
                 height: "185px",
                 backgroundColor: "#FFFAFA",
-                border: "none",
+                border: "1px solid rgba(109, 107, 107, 0.4)",
                 resize: "none",
                 marginBottom: "-1rem",
                 marginLeft: "0.6rem",

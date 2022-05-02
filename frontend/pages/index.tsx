@@ -27,7 +27,7 @@ function Login() {
         >
           <Title />
           <FlowerImg />
-          <Box
+          {/* <Box
             sx={{
               position: "absolute",
               top: "680px",
@@ -67,7 +67,7 @@ function Login() {
             >
               카카오톡으로 시작하기
             </Typography>
-          </Box>
+          </Box> */}
           <Box sx={{ position: "absolute", top: "730px", left: "70px" }}>
             <KakaoBtn
               handleBtn={handleLogin}
