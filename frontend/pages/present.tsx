@@ -8,7 +8,6 @@ import html2canvas from "html2canvas";
 import BouquetImg from "../components/present/BouquetImg";
 
 function Present() {
-  console.log(document.getElementById("img"));
   const presentData = {
     bouquetImage: "/img/bouquet1.png",
     presentSender: "김정혁",
@@ -53,14 +52,14 @@ function Present() {
         }}
       >
         <Box
-          // id="img"
+          id="img"
           sx={{ width: 420, backgroundColor: "#FFFAFA", height: "840px" }}
         >
           <Typography
             // id="img"
             sx={{
               position: "absolute",
-              top: "110px",
+              top: "115px",
               left: "35px",
               fontFamily: "JuliusSansOne",
               fontSize: "18px",

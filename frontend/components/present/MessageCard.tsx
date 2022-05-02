@@ -21,11 +21,12 @@ function MessageCard({ message }: messageProps) {
       >
         <Typography
           sx={{
+            marginTop: "15px",
             fontFamily: "JuliusSansOne",
-            fontSize: "15px",
+            fontSize: "14px",
             textAlign: "center",
             whiteSpace: "pre-line",
-            lineHeight: "30px",
+            lineHeight: "25px",
           }}
         >
           {message}

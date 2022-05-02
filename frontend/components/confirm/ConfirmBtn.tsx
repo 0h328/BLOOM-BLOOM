@@ -19,6 +19,8 @@ function ConfirmBtn({ click, title, text }: btnProps) {
           backgroundColor: "#FFE0E0",
           color: "#000",
           fontFamily: "JuliusSansOne",
+          fontWeight: "bold",
+          fontSize: "15px",
           borderRadius: "20",
           width: 340,
           height: 45,

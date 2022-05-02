@@ -47,7 +47,7 @@ function Confirm() {
         <Box
           sx={{
             position: "absolute",
-            bottom: "300px",
+            bottom: "310px",
             left: "45px",
             alignItems: "center",
           }}
