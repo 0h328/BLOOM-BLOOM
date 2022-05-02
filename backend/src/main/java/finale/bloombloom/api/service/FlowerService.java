@@ -42,7 +42,7 @@ public class FlowerService {
     }
 
     public List<BouquetResponse> findBouquet(Long userSeq) {
-        return bouquetRepository.findAllByUserSeq(userSeq).stream()
+        return bouquetRepository.findAllByUser_UserSeq(userSeq).stream()
                 .map(BouquetResponse::from)
                 .collect(Collectors.toList());
     }
