@@ -41,7 +41,9 @@ function MadeList() {
         minHeight: "100vh",
       }}
     >
-      <Header page="madelist"></Header>
+      <Box sx={{ position: "absolute", top: "30px" }}>
+        <Header page="madelist"></Header>
+      </Box>
       <BouquetDetailModal></BouquetDetailModal>
       <Typography
         sx={{

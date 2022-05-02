@@ -22,7 +22,9 @@ function Main() {
           minHeight: "100vh",
         }}
       >
-        <Header page="main"></Header>
+        <Box sx={{ position: "absolute", top: "30px" }}>
+          <Header page="main"></Header>
+        </Box>
         <MakeButton />
         <Box
           sx={{
