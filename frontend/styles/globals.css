@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "JuliusSansOne";
+  src: url("../fonts/JuliusSansOne-Regular.ttf");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "PoppinsBold";
+  src: url("../fonts/Poppins-ExtraBold.ttf");
+}
+
 html,
 body {
   padding: 0;
@@ -13,4 +26,26 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 50%;
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #efdfbf;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffc0d0;
 }
