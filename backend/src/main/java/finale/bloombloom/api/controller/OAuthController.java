@@ -32,7 +32,7 @@ import java.util.Objects;
 @RequestMapping("/api/v1/oauth")
 public class OAuthController {
 
-    public final static String BASE_URI = "http://localhost:8080";
+    public final static String BASE_URI = "http://bloombloom.kro.kr:8080";
     private final UserService userService;
 
     /**
