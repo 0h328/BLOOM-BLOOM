@@ -18,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Optional;
 
+import static finale.bloombloom.api.controller.OAuthController.BASE_URI;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -55,7 +57,7 @@ public class UserServiceImpl implements UserService {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code"); // 고정값
         params.add("client_id", "df2b93fe31185203897eca6511064994");
-        params.add("redirect_uri", "http://localhost:8080/api/v1/oauth/kakao/callback");
+        params.add("redirect_uri", BASE_URI+"/api/v1/oauth/kakao/callback");
         params.add("code", code);
 
         // HttpHeader 오브젝트 생성
