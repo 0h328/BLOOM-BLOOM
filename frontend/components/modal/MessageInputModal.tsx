@@ -2,21 +2,28 @@ import React, { useState } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
-import KakaoBtn from "../login/KakaoBtn";
+import KakaoBtn from "../Button/KakaoBtn";
+import { useRouter } from "next/router";
 
 interface meesageModalProps {
-  openMessageModal: () => void;
-  closeMessageModal: () => void;
-  messageModal: boolean;
+  openMessageModal?: () => void;
+  closeMessageModal?: () => void;
+  messageModal?: boolean;
+  share?: boolean;
 }
 function MessageInputModal({
   openMessageModal,
   closeMessageModal,
   messageModal,
+  share,
 }: meesageModalProps) {
+  const router = useRouter();
   const [content, setContent] = useState<string>();
   const handleInput = () => {};
   const handleShare = () => {};
+  const handleRoute = () => {
+    router.push("/madelist");
+  };
   const bouquetImage = "/img/bouquet3.png";
   return (
     <>
@@ -55,7 +62,7 @@ function MessageInputModal({
             </Typography>
             <CloseIcon
               sx={{ position: "absolute", top: "20px", left: "90%", color: "" }}
-              onClick={closeMessageModal}
+              onClick={share ? handleRoute : closeMessageModal}
             />
             <Box
               sx={{

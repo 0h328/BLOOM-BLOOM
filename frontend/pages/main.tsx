@@ -46,9 +46,9 @@ function Main() {
           <FlowerImgListTitle
             title="최근 주문한 꽃다발"
             link="/orderlist"
-            top="300px"
+            top="315px"
           ></FlowerImgListTitle>
-          <FlowerImgList bouquetList={bouquetList} top="345px"></FlowerImgList>
+          <FlowerImgList bouquetList={bouquetList} top="360px"></FlowerImgList>
         </Box>
       </Box>
     </>

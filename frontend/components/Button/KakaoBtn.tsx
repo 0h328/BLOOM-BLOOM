@@ -56,6 +56,7 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
                 fontWeight: "600",
                 fontFamily: "JuliusSansOne",
                 fontSize: "15px",
+                color: "#3A1D1D",
               }}
             >
               {title}
