@@ -1,12 +1,12 @@
 import { AppProps } from "next/app";
-
+import { RecoilRoot } from "recoil";
+import "../styles/globals.css";
 function App({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <RecoilRoot>
       <Component {...pageProps} />
-    </div>
-    
-  )
+    </RecoilRoot>
+  );
 }
 
 export default App;
