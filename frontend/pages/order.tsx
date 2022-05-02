@@ -2,6 +2,7 @@ import { Box, Button } from '@mui/material';
 import Storecardsmall from '../components/order/storecard_small'
 import OrderFlower from '../components/order/order_flower'
 import Request from '../components/order/request'
+import Header from "../components/common/Header";
 
 
 
@@ -12,6 +13,7 @@ export default function order() {
       height: "926px",
       margin: "auto",
     }}>
+      <Header></Header>
       <Storecardsmall></Storecardsmall>
       <OrderFlower></OrderFlower>
       <Request></Request>

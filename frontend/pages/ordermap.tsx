@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import {Box, Button, Typography} from '@mui/material';
 import Storecard from '../components/order/storecard'
 import Map from '../components/order/map'
+import Header from "../components/common/Header";
+
 
 
 
@@ -14,7 +16,7 @@ function OrderMap() {
     margin: "auto",
     minHeight: "100vh",
   }}>
-    <header></header>
+    <Header></Header>
     <Map></Map>
     <Storecard></Storecard>
   </Box>)
