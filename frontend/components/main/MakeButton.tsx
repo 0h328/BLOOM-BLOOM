@@ -5,7 +5,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 function MakeButton() {
   return (
-    <Link href="/make" passHref>
+    <Link href="/bouquet" passHref>
       <Box sx={{ position: "absolute" }}>
         <Button
           variant="contained"
