@@ -65,12 +65,14 @@ public class OAuthController {
      * 3. 회원가입 및 로그인 진행
      * 작성자 : 김정혁
      */
-    @RequestMapping("/kakao/callback")
-    public ResponseEntity<Result> home(String code) throws JsonProcessingException {
-        // json을 object로 맵핑 시킬때 사용
-        ObjectMapper objectMapper = new ObjectMapper();
-        //code로 access token 받기
-        String accessToken = userService.getAccessToken(code);
+    @RequestMapping("/login")
+    public ResponseEntity<Result> home(String accessToken) throws JsonProcessingException {
+        /**
+         * 리엑트에서 수행해서 accessToken까지 받아옴
+
+            //code로 access token 받기
+            String accessToken = userService.getAccessToken(code);
+        */
         //access token으로 사용자 정보 받기
         HashMap<String, Object> profile = userService.getUserInfo(accessToken);
 
