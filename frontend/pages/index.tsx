@@ -2,31 +2,19 @@ import React from "react";
 import { Box } from "@mui/material";
 import KakaoBtn from "../components/Button/KakaoBtn";
 import Title from "../components/login/Title";
-import { getLogin, getKaokaoLogin } from "../components/apis/auth";
 import FlowerImg from "../components/login/FlowerImg";
-import Router, { useRouter } from "next/router";
-import axios from "axios";
-
+import { useRouter } from "next/router";
 function Login() {
+  const BASE_URI = "http://localhost:3000/kakaoLogin";
   const router = useRouter();
   const handleLogin = () => {
-    loginApi();
+    kakaoLogin();
   };
-  const loginApi = async () => {
-    try {
-      const response = await getLogin();
-      console.log(response.data);
-      kakaoLogin(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const kakaoLogin = async (url: string) => {
+
+  const kakaoLogin = async () => {
+    const url = `https://kauth.kakao.com/oauth/authorize?client_id=df2b93fe31185203897eca6511064994&redirect_uri=${BASE_URI}&response_type=code`;
     try {
       router.push(url);
-      // const response = await axios.get(url);
-      // const response = await getKaokaoLogin(kakaoApi.substring(23));
-      // const response = await getKaokaoLogin(url);
     } catch (error) {
       console.log(error);
     }

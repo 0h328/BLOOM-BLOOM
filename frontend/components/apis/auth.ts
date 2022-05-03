@@ -18,17 +18,6 @@ axios.interceptors.request.use(
   }
 );
 
-export const getLogin = async () => {
-  return await userApi.get("api/v1/oauth/login");
-};
-
-export const getKaokaoLogin = async (kakaoapi: string) => {
-  // console.log(kakaoapi);
-  return await userApi.get(kakaoapi);
-};
-
-export const login = async (code: string) => {
-  console.log(code);
-  return await userApi.get(`api/v1/oauth/kakao/callback?code=${code}`);
-  // return await userApi.get(`api/v1/oauth/kakao/callback/${code}`);
+export const getLogin = async (accessToken: string) => {
+  return await userApi.get(`api/v1/oauth/login?accessToken=${accessToken}`);
 };
