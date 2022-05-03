@@ -33,7 +33,7 @@ import java.util.Objects;
 public class OAuthController {
 
 //    public final static String BASE_URI = "http://bloombloom.kro.kr:8080/api/v1/oauth/kakao/callback";
-    public final static String BASE_URI = "http://bloombloom.kro.kr:3000/kakaoLogin";
+    public final static String BASE_URI = "http://localhost:3000/kakaoLogin";
 //    public final static String BASE_URI = "http://localhost:8080/api/v1/oauth/kakao/callback";
     private final UserService userService;
 
