@@ -35,7 +35,7 @@ function CarnationOrange() {
       }}>
         순수한 사랑
       </Box>
-      <Card className="image_card" sx={{ maxWidth: 80 }}>
+      <Card className="image_card" sx={{ maxWidth: 80, backgroundColor: "rgba( 255, 255, 255, 0 )" }}>
         <CardMedia 
           component="img"
           height="80"
