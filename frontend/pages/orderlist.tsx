@@ -66,8 +66,8 @@ export default function OrderlistPage() {
       <Header></Header>
       <Typography sx={{fontFamily: "Julius Sans One", fontSize:'17px', fontWeight:'bold', ml:4, mt:3}}>주문내역</Typography>
       <Box sx={{height:720,overflowY: "scroll"}}>
-      {OrderinfoList.map((OrderInfo) => (
-        <OrderlIst OrderInfo={OrderInfo}></OrderlIst>
+      {OrderinfoList.map((OrderInfo, index) => (
+        <OrderlIst OrderInfo={OrderInfo} key={index}></OrderlIst>
       ))}
       </Box>
     </div>
