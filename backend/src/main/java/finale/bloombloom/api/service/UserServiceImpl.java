@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     public String getAccessToken(String code) {
         // json을 object로 맵핑 시킬때 사용
         ObjectMapper objectMapper = new ObjectMapper();
-
+        System.out.println("*******************");
         // 인증 코드를 받은 후, 파라미터들을 포함해 토큰 요청
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code"); // 고정값
@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
         params.add("redirect_uri", "http://bloombloom.kro.kr:8080/api/v1/oauth/kakao/callback");
         params.add("code", code);
 
+        System.out.println("*******************");
         // HttpHeader 오브젝트 생성
         HttpHeaders headersForAccessToken = new HttpHeaders();
         headersForAccessToken.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
