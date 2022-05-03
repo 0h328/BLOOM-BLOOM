@@ -38,31 +38,10 @@ public class OAuthController {
     private final UserService userService;
 
     /**
-     * [value] : 로그인
-     * [notes] : 카카오 로그인 버튼을 누르면 authorization_code를 포함한 uri를 얻는다.
-     * 작성자 : 김정혁
-     */
-    @RequestMapping(value = "/login")
-    public @ResponseBody
-    String getKakaoAuthUrl(
-            HttpServletRequest request) throws Exception {
-        String reqUrl =
-                "https://kauth.kakao.com/oauth/authorize"
-                        + "?client_id=df2b93fe31185203897eca6511064994"
-                        + "&redirect_uri="+BASE_URI
-                        + "&response_type=code";
-
-        userService.getCode();
-        System.out.println("안녕하세요 getkakaoauth입니다.");
-        return reqUrl;
-    }
-
-    /**
      * [value] : redirect api
      * [notes]
-     * 1. 카카오 로그인 버튼 클릭후 받아온 authorization_code를 이용해여 토큰을 얻는다.
-     * 2. 얻은 토큰을 이용하여 사용자의 정보를 받는다.
-     * 3. 회원가입 및 로그인 진행
+     * 1. 얻은 토큰을 이용하여 사용자의 정보를 받는다.
+     * 2. 회원가입 및 로그인 진행
      * 작성자 : 김정혁
      */
     @RequestMapping("/login")
