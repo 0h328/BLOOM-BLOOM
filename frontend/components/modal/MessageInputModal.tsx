@@ -118,7 +118,7 @@ function MessageInputModal({
             >
               완성된 메시지 카드와 꽃다발을 전달해보세요
             </Typography>
-            <Box sx={{ position: "absolute", top: "300px", left: "70px" }}>
+            <Box sx={{ position: "absolute", top: "80%", left: "70px" }}>
               <KakaoBtn
                 handleBtn={handleShare}
                 title="카카오톡으로 공유하기"

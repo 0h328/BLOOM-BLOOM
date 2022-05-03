@@ -7,9 +7,9 @@ import BouquetDetailModal from "../components/modal/BouquetDetailModal";
 function MadeList() {
   //test용 dummy data
   const bouquetList = [
-    { bouquetSeq: 1, bouquetImage: "/img/bouquet1.png" },
-    { bouquetSeq: 2, bouquetImage: "/img/bouquet2.png" },
-    { bouquetSeq: 3, bouquetImage: "/img/bouquet3.png" },
+    { bouquetSeq: 1, bouquetImage: "/img/bouquet0.png" },
+    { bouquetSeq: 2, bouquetImage: "/img/bouquet0.png" },
+    { bouquetSeq: 3, bouquetImage: "/img/bouquet0.png" },
     { bouquetSeq: 4, bouquetImage: "/img/bouquet1.png" },
     { bouquetSeq: 5, bouquetImage: "/img/bouquet2.png" },
     { bouquetSeq: 6, bouquetImage: "/img/bouquet3.png" },
