@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -20,6 +21,12 @@ public class BloomBloomAdvice {
     public ResponseEntity<ExceptionDto> bloombloomException(BloomBloomException exception) {
         logger.error(String.format(ERROR_LOG, exception.getClass().getSimpleName(), exception.getMessage()));
         return ResponseEntity.status(exception.status()).body(new ExceptionDto(exception.getMessage()));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ExceptionDto> validException(MethodArgumentNotValidException exception) {
+        logger.error(String.format(ERROR_LOG, exception.getClass().getSimpleName(), exception.getMessage()));
+        return ResponseEntity.badRequest().body(new ExceptionDto(exception.getMessage()));
     }
 
     @Getter
