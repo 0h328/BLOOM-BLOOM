@@ -106,7 +106,7 @@ public class FlowerService {
     }
 
     private Bouquet findBouquetDetailByBouquetSeq(Long bouquetSeq) {
-        return bouquetRepository.findByBouquetSeq(bouquetSeq)
+        return bouquetRepository.findById(bouquetSeq)
                 .orElseThrow(() -> new BloomBloomNotFoundException(String.format("해당 꽃다발이 존재하지 않습니다. ID : %d", bouquetSeq)));
     }
 }
