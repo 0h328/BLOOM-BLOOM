@@ -64,6 +64,7 @@ function Map() {
 
   return (
     <div id="map" style={{
+      marginTop:'24px',
       width: "420px",
       height: "497px"
     }}>
