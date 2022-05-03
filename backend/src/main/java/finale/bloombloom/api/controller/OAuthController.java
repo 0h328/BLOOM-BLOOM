@@ -33,7 +33,7 @@ import java.util.Objects;
 public class OAuthController {
 
 //    public final static String BASE_URI = "http://bloombloom.kro.kr:8080/api/v1/oauth/kakao/callback";
-    public final static String BASE_URI = "http://localhost:3000/kakaoLogin";
+//    public final static String BASE_URI = "http://localhost:3000/kakaoLogin";
 //    public final static String BASE_URI = "http://localhost:8080/api/v1/oauth/kakao/callback";
     private final UserService userService;
 
@@ -48,10 +48,9 @@ public class OAuthController {
     public ResponseEntity<Result> home(String accessToken) throws JsonProcessingException {
         /**
          * 리엑트에서 수행해서 accessToken까지 받아옴
-
-            //code로 access token 받기
-            String accessToken = userService.getAccessToken(code);
+         * code로 access token 받기
         */
+
         //access token으로 사용자 정보 받기
         HashMap<String, Object> profile = userService.getUserInfo(accessToken);
 
@@ -59,7 +58,7 @@ public class OAuthController {
          * 카카오로부터 받은 사용자의 정보로 회원가입 또는 로그인을 수행
          */
 
-        /**z
+        /**
          * DB에 회원이 없다면 회원가입 + 로그인
          */
         User user = userService.getUserByUserId(String.valueOf(profile.get("userId")));
