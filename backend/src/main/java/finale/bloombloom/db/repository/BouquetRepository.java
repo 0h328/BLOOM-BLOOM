@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface BouquetRepository extends JpaRepository<Bouquet, Long> {
     List<Bouquet> findAllByUser_UserSeq(Long userSeq);
-    Optional<Bouquet>  findByBouquetSeq(Long bouquetSeq);
 }

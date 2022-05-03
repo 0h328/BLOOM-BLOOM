@@ -1,8 +1,10 @@
 package finale.bloombloom.api.controller;
 
 import finale.bloombloom.api.request.BouquetSaveRequest;
+import finale.bloombloom.api.request.PresentBouquetSaveRequest;
 import finale.bloombloom.api.response.*;
 import finale.bloombloom.api.service.FlowerService;
+import finale.bloombloom.api.service.PresentService;
 import finale.bloombloom.common.auth.BloomUserDetails;
 import finale.bloombloom.common.model.response.Result;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FlowerController {
     private final FlowerService flowerService;
+    private final PresentService presentService;
 
     /**
      * 기능: 유저가 보유한 꽃다발 리스트 조회
@@ -113,6 +116,21 @@ public class FlowerController {
         BouquetSaveResponse response = flowerService.saveBouquet(userSeq, request);
         return ResponseEntity.ok(Result.builder().data(response).message("꽃다발 저장에 성공했습니다.").build());
     }
+
+    /**
+     * 기능: 선물용 꽃다발 저장하기
+     * 작성자: 문준호
+     */
+    @PostMapping("/present")
+    public ResponseEntity<Result> savePresentBouquet(Authentication authentication, @RequestBody @Valid PresentBouquetSaveRequest request) {
+        if (authentication == null)
+            return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
+
+        Long userSeq = getUserSeq(authentication);
+        PresentBouquetSaveResponse response = presentService.savePresentBouquet(userSeq, request);
+        return ResponseEntity.ok(Result.builder().data(response).message("선물하기에 성공했습니다.").build());
+    }
+
 
     private Long getUserSeq(Authentication authentication) {
         return ((BloomUserDetails) authentication.getDetails()).getUser().getUserSeq();
