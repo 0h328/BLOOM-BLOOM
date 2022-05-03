@@ -98,7 +98,7 @@ function KakaoLogin() {
       response.then((result) =>
         localStorage.setItem("accessToken", result.data.data)
       );
-      //   router.push("/main");
+      router.push("/main");
     } catch (error) {
       console.log(error);
     }
