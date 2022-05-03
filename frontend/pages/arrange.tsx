@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import Header from "../components/common/Header";
-import BouquetImg from "../components/present/BouquetImg";
+// import BouquetImg from "../components/present/BouquetImg";
 import FlowerArrangeText from '../components/Choose/FlowerArrangeText';
 import ConfirmBtn from "../components/Button/ConfirmPageBtn";
 import DecoConfirmModal from "../components/modal/DecoConfirmModal";
 import FlowerArrange from '../components/Bouquet/FlowerArrange';
+import MakingFlowerImage from '../components/Bouquet/MakingFlowerImage';
 import { Box } from '@mui/material';
 
 export default function Arrange() {
   const [decoModal, setDecoModal] = useState<boolean>(false);
 
-  const bouquetImage = "/img/bouquet2.png";
+  const makingFlowerImg = "/images/Wrapper1.png";
 
   const handleDecoModal = (e: any) => {
     openDecoModal();
@@ -45,7 +46,7 @@ export default function Arrange() {
       ></DecoConfirmModal>
       <FlowerArrangeText></FlowerArrangeText>
       <Box sx={{ position: "absolute", top: "150px", left: "30px" }}>
-        <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+        <MakingFlowerImage makingFlowerImg={makingFlowerImg}></MakingFlowerImage>
       </Box>
       <Box sx={{ position: "absolute", top: "600px", left: "30px" }}>
         <FlowerArrange></FlowerArrange>
