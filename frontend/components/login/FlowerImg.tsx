@@ -7,7 +7,7 @@ function FlowerImg() {
       <Box
         sx={{
           ...imgboxStyle,
-          top: "251px",
+          top: "250px",
           left: "135px",
         }}
       >
@@ -24,7 +24,7 @@ function FlowerImg() {
       <Box
         sx={{
           ...imgboxStyle,
-          top: "351px",
+          top: "330px",
           left: "-135px",
         }}
       >

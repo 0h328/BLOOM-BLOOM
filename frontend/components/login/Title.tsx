@@ -3,12 +3,12 @@ import { Box, Button, Typography, Grid } from "@mui/material";
 function Title() {
   return (
     <Box>
-      <Typography sx={{ ...titleStyle }} style={{ top: "71px", left: "74px" }}>
+      <Typography sx={{ ...titleStyle }} style={{ top: "60px", left: "74px" }}>
         BLOOM
       </Typography>
       <Typography
         sx={{ ...titleStyle }}
-        style={{ top: "140px", left: "159px" }}
+        style={{ top: "120px", left: "159px" }}
       >
         BLOOM
       </Typography>
