@@ -5,9 +5,14 @@ const detailModalState = atom({
   default: false,
 });
 
+const decoModalState = atom({
+  key: "decoModal",
+  default: false,
+})
+
 const bouquetInfoState = atom({
   key: "bouquetInfo",
   default: { bouquetSeq: 1, bouquetImage: "" },
 });
 
-export { detailModalState, bouquetInfoState };
+export { detailModalState, decoModalState, bouquetInfoState };

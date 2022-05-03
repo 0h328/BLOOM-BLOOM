@@ -1,23 +1,38 @@
 import React from "react";
-import Layout from "./styles";
 import HyacinthPurple from "../components/Bouquet/Flower/Hyacinth/HyacinthPurple";
-import HyacinthRed from "../components/Bouquet/Flower/Hyacinth/HyacinthRed";
+import HyacinthPink from "../components/Bouquet/Flower/Hyacinth/HyacinthPink";
 import HyacinthYellow from "../components/Bouquet/Flower/Hyacinth/HyacinthYellow";
-import { Typography } from '@mui/material';
+import { 
+  Box, 
+  Typography 
+} from '@mui/material';
 
 const HyacinthContainer = () => {
 
+  const style = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
+  }
+
+  const textStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "10px"
+  }
+
   return (
-    <Layout>
-      <Typography variant="subtitle1" display="block" gutterBottom>
+    <Box>
+      <Typography sx={{ ...textStyle }} variant="subtitle1" display="block" gutterBottom>
         히아신스
       </Typography>
-      <div className="select_items">
+      <Box sx={{ ...style }}>
         <HyacinthPurple></HyacinthPurple>
-        <HyacinthRed></HyacinthRed>
+        <HyacinthPink></HyacinthPink>
         <HyacinthYellow></HyacinthYellow>
-      </div>
-    </Layout>
+      </Box>
+    </Box>
   
   )
 }

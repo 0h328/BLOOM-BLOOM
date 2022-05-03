@@ -10,11 +10,18 @@ from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 
-function HyacinthRed() {
+function RanunculusWhite() {
   const [count, setCount] = useState<number>(0);
-  const onIncrease = () => setCount(count + 1);
-  const onDecrease = () => setCount(count - 1);
-  
+  const onIncrease = () => {
+    if ( count < 8 ) {
+      setCount(count + 1);
+    }
+  }
+  const onDecrease = () => {
+    if ( count > 0 ) {
+      setCount(count - 1);
+    }
+  }
 
   return (
     <Box>
@@ -26,13 +33,13 @@ function HyacinthRed() {
         fontSize: "12px",
         textAlign: "center"
       }}>
-        당신의 사랑
+        순결
       </Box>
       <Card className="image_card" sx={{ maxWidth: 80 }}>
         <CardMedia 
           component="img"
           height="80"
-          image="/images/hyacinthRed.png"
+          image="/images/ranunculusYellow.png"
         />
       </Card>
       <ButtonGroup 
@@ -83,4 +90,4 @@ function HyacinthRed() {
   )
 };
 
-export default HyacinthRed;
+export default RanunculusWhite;

@@ -12,9 +12,16 @@ import AddIcon from '@mui/icons-material/Add';
 
 function FreesiaPurple() {
   const [count, setCount] = useState<number>(0);
-  const onIncrease = () => setCount(count + 1);
-  const onDecrease = () => setCount(count - 1);
-  
+  const onIncrease = () => {
+    if ( count < 8 ) {
+      setCount(count + 1);
+    }
+  }
+  const onDecrease = () => {
+    if ( count > 0 ) {
+      setCount(count - 1);
+    }
+  }  
 
   return (
     <Box>

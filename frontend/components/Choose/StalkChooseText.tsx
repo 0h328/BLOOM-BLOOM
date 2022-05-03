@@ -1,20 +1,19 @@
 import React from 'react';
-import Layout from './styles';
 import { Typography } from '@mui/material';
 
 function StalkChooseText() {
 
   return (
-    <Layout>
       <Typography 
-        variant="h6" 
+        variant="subtitle1" 
         gutterBottom 
         component="div"
-        className="choose_wrapper"
+        textAlign="center"
+        position="relative"
+        bottom="20px"
       >
         부속꽃을 선택해주세요
       </Typography>
-    </Layout>
   )
 }
 

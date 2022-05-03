@@ -1,23 +1,38 @@
 import React from "react";
-import Layout from "./styles";
 import LilyPink from "../components/Bouquet/Flower/Lily/LilyPink";
 import LilyWhite from "../components/Bouquet/Flower/Lily/LilyWhite";
 import LilyYellow from "../components/Bouquet/Flower/Lily/LilyYellow";
-import { Typography } from '@mui/material';
+import { 
+  Box, 
+  Typography 
+} from '@mui/material';
 
 const LilyContainer = () => {
 
+  const style = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
+  }
+
+  const textStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "10px"
+  }
+
   return (
-    <Layout>
-      <Typography variant="subtitle1" display="block" gutterBottom>
+    <Box>
+      <Typography sx={{ ...textStyle }} variant="subtitle1" display="block" gutterBottom>
         백합
       </Typography>
-      <div className="select_items">
+      <Box sx={{ ...style }}>
         <LilyPink></LilyPink>
         <LilyWhite></LilyWhite>
         <LilyYellow></LilyYellow>
-      </div>
-    </Layout>
+      </Box>
+    </Box>
   
   )
 }

@@ -1,70 +1,56 @@
 import React from 'react';
-import Layout from './styles';
-import { Card, CardMedia } from '@mui/material';
+import { 
+  Box, 
+  ImageList, 
+  ImageListItem 
+} from '@mui/material';
 
 function Wrapper() {
 
+  const WrapperImageData = [
+    {
+      img: "/images/Wrapper1.png"
+    },
+    {
+      img: "/images/Wrapper2.png"
+    },
+    {
+      img: "/images/Wrapper3.png"
+    },
+    {
+      img: "/images/Wrapper4.png"
+    },
+    {
+      img: "/images/Wrapper5.png"
+    },
+    {
+      img: "/images/Wrapper6.png"
+    },
+    {
+      img: "/images/Wrapper7.png"
+    },
+    {
+      img: "/images/Wrapper8.png"
+    },
+  ];
+
+  const style = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    margin: "20px auto"
+  }
+
   return (
-    <Layout>
-      <div className="select_items">
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper1.png"
-          />
-        </Card>
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper2.png"
-          />
-        </Card>
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper3.png"
-          />
-        </Card>
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper4.png"
-          />
-        </Card>
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper5.png"
-          />
-        </Card>
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper6.png"
-          />
-        </Card>
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper7.png"
-          />
-        </Card>
-        <Card className="wrapper_image" sx={{ maxWidth: 100 }}>
-          <CardMedia 
-            component="img"
-            height="100"
-            image="/images/Wrapper8.png"
-          />
-        </Card>
-      </div>
-    </Layout>
+    <Box sx={{ ...style }}>
+      <ImageList sx={{ width: 330, height: 330 }} cols={3} rowHeight={100}>
+        {WrapperImageData.map((item) => (
+          <ImageListItem key={item.img}>
+            <img src={`${item.img}`}/>
+          </ImageListItem>
+        ))}
+      </ImageList>
+    </Box>
   )
 }
 

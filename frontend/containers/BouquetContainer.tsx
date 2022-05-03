@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import Layout from './styles';
 import Link from 'next/link';
 import { 
   Card,
   CardMedia,
   Button,
-  ButtonGroup,
   ToggleButton,
   ToggleButtonGroup,
   Box,
- }
-from '@mui/material';
+} from '@mui/material';
 import WrapperChooseText from '../components/Choose/WrapperChooseText';
 import RibbonChooseText from '../components/Choose/RibbonChooseText';
 import StalkChooseText from '../components/Choose/StalkChooseText';
@@ -26,39 +23,37 @@ function BouquetContainer() {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
     }
-
-    if (newAlignment === '2') {
-      // 리본 선택 페이지로 이동
-
-    }
-
-    if (newAlignment === '3') {
-      // 꽃줄기 선택 페이지로 이동
-
-    }
   }
 
+  const BouquetLayout = {
+    position: "relative",
+    top: "100px"
+  };
+
   return (
-    <Layout>
+    <Box sx={{ ...BouquetLayout }}>
       {alignment === '1' && <WrapperChooseText></WrapperChooseText>}
       {alignment === '2' && <RibbonChooseText></RibbonChooseText>}
       {alignment === '3' && <StalkChooseText></StalkChooseText>}
+
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
       <Card 
-        className="main_image" 
         sx={{ 
-          maxWidth: 200,
-          border: '1px solid #FFC0D0'
+          maxWidth: 180,
+          border: '1px solid #FFC0D0',
+          margin: '0 auto'
         }}
       >
         <CardMedia
           component="img"
-          height="200"
-          image="/images/flower.png" //포장지를 먼저 default로 보여주고, 누적되는 식으로 리본 default 보여주고 해야하나? // z-index
+          height="180"
+          image="/images/Bouquet.png" //포장지를 먼저 default로 보여주고, 누적되는 식으로 리본 default 보여주고 해야하나? // z-index
         />
       </Card>
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
-    <ToggleButtonGroup
+    
+      {/* 포장지, 리본, 꽃줄기 버튼 */}
+      <ToggleButtonGroup
         value={alignment}
         exclusive
         onChange={handleAlignment}
@@ -67,10 +62,10 @@ function BouquetContainer() {
         <ToggleButton 
           value="1" 
           style={{ 
-            backgroundColor: "#EFDFBF", 
+            backgroundColor: "#FFE0E0", 
             color: "black", 
             marginLeft: "20px",
-            border: "1px solid #EFDFBF"
+            border: "1px solid #FFE0E0",
           }} 
         >
           포장지
@@ -78,9 +73,9 @@ function BouquetContainer() {
         <ToggleButton 
           value="2"
           style={{ 
-            backgroundColor: "#EFDFBF", 
+            backgroundColor: "#FFE0E0", 
             color: "black",
-            border: "1px solid #EFDFBF"
+            border: "1px solid #FFE0E0"
           }} 
         >
           리본
@@ -88,59 +83,15 @@ function BouquetContainer() {
         <ToggleButton 
           value="3"
           style={{ 
-            backgroundColor: "#EFDFBF", 
+            backgroundColor: "#FFE0E0", 
             color: "black", 
             marginRight: "20px",
-            border: "1px solid #EFDFBF"
+            border: "1px solid #FFE0E0"
           }} 
         >
           꽃줄기
         </ToggleButton>
       </ToggleButtonGroup>
-      {/* <ButtonGroup 
-        variant="outlined" 
-        value={alignment}
-        onChange={handleAlignment}
-        sx={{ 
-          marginTop: "30px", 
-          display: "flex", 
-          justifyContent: "space-evenly" 
-        }}
-      >
-        <Button
-          variant="contained"
-          value="1"
-          style={{ 
-            backgroundColor: "#EFDFBF", 
-            color: "black", 
-            marginLeft: "20px" 
-          }}
-        >
-          포장지
-        </Button>
-        <Button 
-          variant="contained"
-          value="2"
-          style={{ 
-            backgroundColor: "#EFDFBF", 
-            color: "black", 
-            marginLeft: "20px" 
-          }}
-        >
-          리본
-        </Button>
-        <Button
-          variant="contained"
-          value="3"
-          style={{ 
-            backgroundColor: "#EFDFBF", 
-            color: "black", 
-            marginLeft: "20px" 
-          }}
-        >
-          부속꽃
-        </Button>
-      </ButtonGroup> */}
       {/* 포장지, 리본, 꽃줄기 버튼 */}
 
       {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
@@ -154,21 +105,18 @@ function BouquetContainer() {
         <Link href="/flower" passHref>
           <Button 
             style={{
-              backgroundColor: "#EFDFBF",
+              backgroundColor: "#FFE0E0",
               color: "black",
-              width: '380px'          
+              width: '330px'          
             }}
             variant="contained"
           >
-              꽃 선택하기
+            꽃 선택하기
           </Button>
         </Link>
       </Box>
       {/* 꽃을 선택하러갈 수 있는 버튼 */}
-
-    </Layout>
-    
-
+    </Box>
   )
 }
 

@@ -1,20 +1,19 @@
 import React from 'react';
-import Layout from './styles';
 import { Typography } from '@mui/material';
 
 function WrapperChooseText() {
 
   return (
-    <Layout>
-      <Typography 
-        variant="h6" 
-        gutterBottom 
-        component="div"
-        className="choose_wrapper"
-      >
-        포장지를 선택해주세요
-      </Typography>
-    </Layout>
+    <Typography 
+      variant="subtitle1" 
+      gutterBottom 
+      component="div"
+      textAlign="center"
+      position="relative"
+      bottom="20px"
+    >
+      포장지를 선택해주세요
+    </Typography>
   )
 }
 

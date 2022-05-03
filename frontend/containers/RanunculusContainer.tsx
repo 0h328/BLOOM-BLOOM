@@ -1,23 +1,39 @@
 import React from "react";
-import Layout from "./styles";
 import RanunculusPink from "../components/Bouquet/Flower/Ranunculus/RanunculusPink";
-import RanunculusWhite from "../components/Bouquet/Flower/Ranunculus/RanunculusWhite";
+import RanunculusYellow from "../components/Bouquet/Flower/Ranunculus/RanunculusYellow";
 import RanunculusPurple from "../components/Bouquet/Flower/Ranunculus/RanunculusPurple";
-import { Typography } from '@mui/material';
+import { 
+  Box, 
+  Typography 
+} from '@mui/material';
 
 const RanunculusContainer = () => {
 
+  const style = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+    marginBottom: "20px"
+  }
+
+  const textStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "10px"
+  }
+
   return (
-    <Layout>
-      <Typography variant="subtitle1" display="block" gutterBottom>
+    <Box>
+      <Typography sx={{ ...textStyle }} variant="subtitle1" display="block" gutterBottom>
         라넌큘러스
       </Typography>
-      <div className="select_items">
+      <Box sx={{ ...style }}>
         <RanunculusPink></RanunculusPink>
-        <RanunculusWhite></RanunculusWhite>
+        <RanunculusYellow></RanunculusYellow>
         <RanunculusPurple></RanunculusPurple>
-      </div>
-    </Layout>
+      </Box>
+    </Box>
   
   )
 }

@@ -1,23 +1,38 @@
 import React from "react";
-import Layout from "./styles";
 import PeonyPink from "../components/Bouquet/Flower/Peony/PeonyPink";
 import PeonyPurple from "../components/Bouquet/Flower/Peony/PeonyPurple";
 import PeonyWhite from "../components/Bouquet/Flower/Peony/PeonyWhite";
-import { Typography } from '@mui/material';
+import { 
+  Box, 
+  Typography 
+} from '@mui/material';
 
 const PeonyContainer = () => {
 
+  const style = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
+  }
+
+  const textStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "10px"
+  }
+
   return (
-    <Layout>
-      <Typography variant="subtitle1" display="block" gutterBottom>
+    <Box>
+      <Typography sx={{ ...textStyle }} variant="subtitle1" display="block" gutterBottom>
         작약
       </Typography>
-      <div className="select_items">
+      <Box sx={{ ...style }}>
         <PeonyPink></PeonyPink>
         <PeonyPurple></PeonyPurple>
         <PeonyWhite></PeonyWhite>
-      </div>
-    </Layout>
+      </Box>
+    </Box>
   
   )
 }

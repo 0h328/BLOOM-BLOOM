@@ -1,23 +1,38 @@
 import React from "react";
-import Layout from "./styles";
 import LisianthusPink from "../components/Bouquet/Flower/Lisianthus/LisianthusPink";
 import LisianthusWhite from "../components/Bouquet/Flower/Lisianthus/LisianthusWhite";
 import LisianthusPurple from "../components/Bouquet/Flower/Lisianthus/LisianthusPurple";
-import { Typography } from '@mui/material';
+import { 
+  Box, 
+  Typography 
+} from '@mui/material';
 
 const LisianthusContainer = () => {
 
+  const style = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
+  }
+
+  const textStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "10px"
+  }
+
   return (
-    <Layout>
-      <Typography variant="subtitle1" display="block" gutterBottom>
+    <Box>
+      <Typography sx={{ ...textStyle }} variant="subtitle1" display="block" gutterBottom>
         리시안셔스
       </Typography>
-      <div className="select_items">
+      <Box sx={{ ...style }}>
         <LisianthusPink></LisianthusPink>
         <LisianthusWhite></LisianthusWhite>
         <LisianthusPurple></LisianthusPurple>
-      </div>
-    </Layout>
+      </Box>
+    </Box>
   
   )
 }

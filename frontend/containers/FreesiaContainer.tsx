@@ -1,23 +1,38 @@
 import React from "react";
-import Layout from "./styles";
 import FreesiaYellow from "../components/Bouquet/Flower/Freesia/FreesiaYellow";
 import FreesiaPurple from "../components/Bouquet/Flower/Freesia/FreesiaPurple";
 import FreesiaPink from "../components/Bouquet/Flower/Freesia/FreesiaPink";
-import { Typography } from '@mui/material';
+import { 
+  Box, 
+  Typography 
+} from '@mui/material';
 
 const FreesiaContainer = () => {
 
+  const style = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly"
+  }
+
+  const textStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "10px"
+  }
+
   return (
-    <Layout>
-      <Typography variant="subtitle1" display="block" gutterBottom>
+    <Box>
+      <Typography sx={{ ...textStyle }} variant="subtitle1" display="block" gutterBottom>
         프리지어
       </Typography>
-      <div className="select_items">
+      <Box sx={{ ...style }}>
         <FreesiaYellow></FreesiaYellow>
         <FreesiaPurple></FreesiaPurple>
         <FreesiaPink></FreesiaPink>
-      </div>
-    </Layout>
+      </Box>
+    </Box>
   
   )
 }
