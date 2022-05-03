@@ -40,10 +40,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserId(String userId) {
         Optional<User> user = userRepository.findByUserId(userId);
-        if(user.isPresent())
-        return userRepository.findByUserId(userId).get();
+        if (user.isPresent())
+            return userRepository.findByUserId(userId).get();
         else return null;
     }
+
+    @Override
+    public String getCode() {
+        String url =
+                "https://kauth.kakao.com/oauth/authorize"
+                        + "?client_id=df2b93fe31185203897eca6511064994"
+                        + "&redirect_uri=" + BASE_URI
+                        + "&response_type=code";
+
+        RestTemplate rt = new RestTemplate(); //http 요청을 간단하게 해줄 수 있는 클래스
+
+        String json = rt.getForObject(url, String.class);
+
+//        System.out.println(json);
+
+        return json;
+    }
+
 
     /**
      * authorization_code를 이용하여 access token을 요청하고 결과값을 받아 객체로 파싱
@@ -52,7 +70,6 @@ public class UserServiceImpl implements UserService {
     public String getAccessToken(String code) {
         // json을 object로 맵핑 시킬때 사용
         ObjectMapper objectMapper = new ObjectMapper();
-        System.out.println("*******************");
         // 인증 코드를 받은 후, 파라미터들을 포함해 토큰 요청
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code"); // 고정값
@@ -60,7 +77,6 @@ public class UserServiceImpl implements UserService {
         params.add("redirect_uri", "http://bloombloom.kro.kr:8080/api/v1/oauth/kakao/callback");
         params.add("code", code);
 
-        System.out.println("*******************");
         // HttpHeader 오브젝트 생성
         HttpHeaders headersForAccessToken = new HttpHeaders();
         headersForAccessToken.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -124,9 +140,9 @@ public class UserServiceImpl implements UserService {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        HashMap<String,Object> result =new HashMap<String,Object>();
-        result.put("nickname",profile.getProperties().getNickname());
-        result.put("userId",profile.getId());
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("nickname", profile.getProperties().getNickname());
+        result.put("userId", profile.getId());
         return result;
     }
 }

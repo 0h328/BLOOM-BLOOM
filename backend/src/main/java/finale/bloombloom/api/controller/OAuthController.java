@@ -32,7 +32,9 @@ import java.util.Objects;
 @RequestMapping("/api/v1/oauth")
 public class OAuthController {
 
-    public final static String BASE_URI = "http://localhost:3000/kakaoLogin";
+//    public final static String BASE_URI = "http://bloombloom.kro.kr:8080/api/v1/oauth/kakao/callback";
+    public final static String BASE_URI = "http://bloombloom.kro.kr:3000/kakaoLogin";
+//    public final static String BASE_URI = "http://localhost:8080/api/v1/oauth/kakao/callback";
     private final UserService userService;
 
     /**
@@ -49,6 +51,9 @@ public class OAuthController {
                         + "?client_id=df2b93fe31185203897eca6511064994"
                         + "&redirect_uri="+BASE_URI
                         + "&response_type=code";
+
+        userService.getCode();
+        System.out.println("안녕하세요 getkakaoauth입니다.");
         return reqUrl;
     }
 
