@@ -7,12 +7,15 @@ import { groupBy } from "../components/common/GroupBy";
 import FlowerObject from "../components/flower/FlowerObject";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
+import { mainFlowerState } from "../states/states";
+import { useRecoilState } from "recoil";
 
 function Flower() {
   let groupByName = groupBy(flowerList, (flower) => flower.flowerName);
   const flowerListByName = Object.entries(groupByName);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [validCount, setValidCount] = useState<boolean>(true);
+  const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   const handleTotal = (dif: number) => {
     setTotalCount(totalCount + dif);
   };
@@ -67,14 +70,22 @@ function Flower() {
         {flowerListByName.map((item, index) => {
           return (
             <>
-              <Typography
-                sx={{ ...textStyle }}
-                key={index}
-                variant="subtitle1"
-                display="block"
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
               >
-                {item[0]}
-              </Typography>
+                <Typography
+                  sx={{ ...textStyle }}
+                  key={index}
+                  variant="subtitle1"
+                  display="block"
+                >
+                  {item[0]}
+                </Typography>
+              </Box>
               <Grid container>
                 {item[1].map((flowerItem, index) => {
                   return (
@@ -112,6 +123,11 @@ export const textStyle = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
-  marginTop: "10px",
+  margin: "10px 0px 10px 0px",
+  width: "30%",
+  minWidth: "fitContent",
+  backgroundColor: "white",
+  borderRadius: "5px",
+  fontFamily: "JuliusSansOne",
 };
 export default Flower;

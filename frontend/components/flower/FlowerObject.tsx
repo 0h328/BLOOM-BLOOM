@@ -3,7 +3,6 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import CountBtn from "./CountBtn";
 import { Flower } from "../flower/Flower";
-import { toast } from "material-react-toastify";
 import Toast from "../common/Toast";
 
 interface flowerProps {

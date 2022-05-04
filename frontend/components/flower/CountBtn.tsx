@@ -14,12 +14,14 @@ function CountBtn({ onDecrease, onIncrease, count }: countProps) {
         variant="text"
         aria-label="text button group"
         style={{
-          backgroundColor: "white",
+          backgroundColor: "rgba(82, 82, 82, 0.29)",
           maxWidth: "80px",
           minWidth: "80px",
           maxHeight: "20px",
           minHeight: "20px",
           marginTop: "5px",
+          display: "flex",
+          alignItems: "center",
         }}
       >
         <IconButton
@@ -29,15 +31,19 @@ function CountBtn({ onDecrease, onIncrease, count }: countProps) {
             maxHeight: "20px",
             minWidth: "20px",
             minHeight: "20px",
+            // backgroundColor: "white",
           }}
         >
           <RemoveIcon />
         </IconButton>
         <Box
           style={{
+            display: "flex",
             textAlign: "center",
             maxWidth: "40px",
             minWidth: "40px",
+            backgroundColor: "white",
+            justifyContent: "center",
           }}
         >
           {count}
@@ -49,6 +55,7 @@ function CountBtn({ onDecrease, onIncrease, count }: countProps) {
             maxHeight: "20px",
             minWidth: "20px",
             minHeight: "20px",
+            // backgroundColor: "white",
           }}
         >
           <AddIcon />
