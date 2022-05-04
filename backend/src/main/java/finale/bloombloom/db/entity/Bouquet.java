@@ -19,19 +19,19 @@ public class Bouquet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bouquetSeq;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_seq")
     private User user;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wrap_seq")
     private Wrap wrap;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_flower_seq")
     private SubFlower subFlower;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deco_seq")
     private Deco deco;
 
