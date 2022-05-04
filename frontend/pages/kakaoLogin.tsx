@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getLogin } from "../components/apis/auth";
-import Spring from "../components/login/Spring";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import axios from "axios";
 import qs from "qs";
