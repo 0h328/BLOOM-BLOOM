@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getLogin } from "../components/apis/auth";
-import Spring from "../components/login/Spring";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import axios from "axios";
 import qs from "qs";
@@ -60,10 +59,6 @@ function KakaoLogin() {
     setCode(new URL(window.location.href).searchParams.get("code"));
   }, []);
 
-  useEffect(() => {
-    if (code !== undefined) loginApi(code);
-  }, [code]);
-
   const loginApi = async (code: string) => {
     try {
       console.log(code);
@@ -72,6 +67,10 @@ function KakaoLogin() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (code !== undefined) loginApi(code);
+  }, [code]);
 
   const getToken = async (code: string) => {
     const payload = qs.stringify({
