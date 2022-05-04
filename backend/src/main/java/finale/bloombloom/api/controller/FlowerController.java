@@ -131,6 +131,19 @@ public class FlowerController {
         return ResponseEntity.ok(Result.builder().data(response).message("선물하기에 성공했습니다.").build());
     }
 
+    /**
+     * 기능: 꽃다발 선물 조회
+     * 작성자: 문준호
+     */
+    @GetMapping("/present/{uuid}")
+    public ResponseEntity<Result> findPresentBouquet(Authentication authentication, @PathVariable String uuid) {
+        if (authentication == null)
+            return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
+
+        PresentBouquetResponse response = presentService.findPresentBouquet(uuid);
+        return ResponseEntity.ok(Result.builder().data(response).message("선물용 꽃다발 조회에 성공했습니다.").build());
+    }
+
 
     private Long getUserSeq(Authentication authentication) {
         return ((BloomUserDetails) authentication.getDetails()).getUser().getUserSeq();

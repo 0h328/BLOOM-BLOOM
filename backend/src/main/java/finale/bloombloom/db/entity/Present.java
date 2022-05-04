@@ -15,7 +15,7 @@ public class Present {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long presentSeq;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bouquet_seq")
     private Bouquet bouquet;
 

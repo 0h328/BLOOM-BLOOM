@@ -18,11 +18,11 @@ public class FlowerInfo {
 
     private int flowerInfoCount;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "main_flower_seq")
     private MainFlower mainFlower;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bouquet_seq")
     private Bouquet bouquet;
 }
