@@ -50,17 +50,25 @@ function FlowerObject({
       >
         {flower.flowerDesc}
       </Box>
-      <Image
-        src={flower.flowerImage}
-        alt="flower"
-        width="80px"
-        height="80px"
-      ></Image>
-      <CountBtn
-        onIncrease={onIncrease}
-        onDecrease={onDecrease}
-        count={count}
-      ></CountBtn>
+      <Box
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      >
+        <Image
+          src={flower.flowerImage}
+          alt="flower"
+          width="80px"
+          height="80px"
+        ></Image>
+      </Box>
+      <Box
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      >
+        <CountBtn
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+          count={count}
+        ></CountBtn>
+      </Box>
       <Toast></Toast>
     </Box>
   );

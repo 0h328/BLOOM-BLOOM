@@ -79,8 +79,8 @@ function Flower() {
                 {item[1].map((flowerItem, index) => {
                   return (
                     <>
-                      <Grid key={index} item xs={3}>
-                        <Box sx={{ margin: "10%" }}>
+                      <Grid key={index} item xs={12 / item[1].length}>
+                        <Box sx={{ margin: "5%" }}>
                           <FlowerObject
                             flower={flowerItem}
                             handleTotal={handleTotal}
