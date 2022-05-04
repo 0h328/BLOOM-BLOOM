@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
-import KakaoBtn from "../Button/KakaoBtn";
+import KakaoBtn from "../button/KakaoBtn";
 import { useRouter } from "next/router";
 
 interface meesageModalProps {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import KakaoBtn from "../components/Button/KakaoBtn";
+import KakaoBtn from "../components/button/KakaoBtn";
 import Title from "../components/login/Title";
 import FlowerImg from "../components/login/FlowerImg";
 import { useRouter } from "next/router";
