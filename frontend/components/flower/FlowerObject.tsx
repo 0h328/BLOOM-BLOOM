@@ -3,19 +3,37 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import CountBtn from "./CountBtn";
 import { Flower } from "../flower/Flower";
+import { toast } from "material-react-toastify";
+import Toast from "../common/Toast";
+
 interface flowerProps {
   flower: Flower;
-  handleTotal: (count: number) => void;
+  validCount: boolean;
+  handleTotal: (dif: number) => void;
+  handleError: (code: number) => void;
 }
-function FlowerObject({ flower, handleTotal }: flowerProps) {
+function FlowerObject({
+  flower,
+  handleTotal,
+  validCount,
+  handleError,
+}: flowerProps) {
   const [count, setCount] = useState<number>(0);
   const onIncrease = () => {
-    setCount(count + 1);
-    handleTotal(+1);
+    if (validCount) {
+      setCount(count + 1);
+      handleTotal(+1);
+    } else {
+      handleError(1);
+    }
   };
   const onDecrease = () => {
-    setCount(count - 1);
-    handleTotal(-1);
+    if (count != 0 && validCount) {
+      setCount(count - 1);
+      handleTotal(-1);
+    } else {
+      handleError(0);
+    }
   };
   useEffect(() => {}, [count]);
   return (
@@ -43,6 +61,7 @@ function FlowerObject({ flower, handleTotal }: flowerProps) {
         onDecrease={onDecrease}
         count={count}
       ></CountBtn>
+      <Toast></Toast>
     </Box>
   );
 }

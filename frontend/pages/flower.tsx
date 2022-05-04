@@ -5,7 +5,8 @@ import FlowerChooseText from "../components/Choose/FlowerChooseText";
 import { flowerList } from "../components/flower/FlowerData";
 import { groupBy } from "../components/common/GroupBy";
 import FlowerObject from "../components/flower/FlowerObject";
-import { ToastContainer, toast } from "react-toastify";
+import Toast from "../components/common/Toast";
+import { toast } from "material-react-toastify";
 
 function Flower() {
   let groupByName = groupBy(flowerList, (flower) => flower.flowerName);
@@ -15,29 +16,25 @@ function Flower() {
   const handleTotal = (dif: number) => {
     setTotalCount(totalCount + dif);
   };
-  useEffect(() => {
-    if (totalCount == 8) setValidCount(false);
-    console.log(totalCount);
-    if (totalCount > 8) {
-      toast.error(
-        <div
-          style={{ width: "100%", display: "flex", justifyContent: "center" }}
-        >
-          <div
-            style={{
-              display: "inline-block",
-              fontFamily: "Gowun Batang",
-            }}
-          >
-            꽃은 8개까지만 선택할 수 있습니다
-          </div>
-        </div>,
-        {
-          position: toast.POSITION.TOP_CENTER,
-          role: "alert",
-        }
-      );
+  const handleError = (code: number) => {
+    switch (code) {
+      case 0:
+        toast.error("📣0개이하는 선택할 수 없습니다");
+        break;
+      case 1:
+        toast.error("📣꽃은 8개까지 선택할 수 있습니다");
+        break;
     }
+  };
+  useEffect(() => {
+    if (totalCount == 8) {
+      setValidCount(false);
+    } else if (totalCount < 8) {
+      setValidCount(true);
+    } else if (totalCount > 8) {
+      setValidCount(false);
+    }
+    console.log(totalCount);
   }, [totalCount]);
   return (
     <Box
@@ -87,6 +84,8 @@ function Flower() {
                           <FlowerObject
                             flower={flowerItem}
                             handleTotal={handleTotal}
+                            validCount={validCount}
+                            handleError={handleError}
                           ></FlowerObject>
                         </Box>
                       </Grid>
@@ -98,7 +97,7 @@ function Flower() {
           );
         })}
       </Box>
-      <ToastContainer />
+      <Toast />
     </Box>
   );
 }
