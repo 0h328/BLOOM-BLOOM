@@ -54,7 +54,6 @@ function CountBtn({ onDecrease, onIncrease, count }: countProps) {
           <AddIcon />
         </IconButton>
       </ButtonGroup>
-      ;
     </>
   );
 }
