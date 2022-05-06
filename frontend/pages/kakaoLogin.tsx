@@ -61,7 +61,7 @@ function KakaoLogin() {
 
   const loginApi = async (code: string) => {
     try {
-      console.log(code);
+      console.log("code" + code);
       getToken(code);
     } catch (error) {
       console.log(error);
@@ -85,7 +85,7 @@ function KakaoLogin() {
         payload
       );
       login(response.data.access_token);
-      console.log(response.data.access_token);
+      console.log("kakaoToken" + response.data.access_token);
     } catch (error) {
       console.log(error);
     }

@@ -3,29 +3,24 @@ import Image from "next/image";
 import { Box, Grid } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { detailModalState, bouquetInfoState } from "../../states/states";
-
-interface bouquet {
-  bouquetSeq: number;
-  bouquetImage: string;
-}
+import { Bouquet } from "../common/Bouquet";
 
 interface dataProps {
-  bouquetList: bouquet[];
+  bouquetList: Bouquet[];
   top: string;
   page?: string;
+  handleBouquet?: (bouquet: Bouquet) => void;
 }
 
-function FlowerImgList({ bouquetList, top, page }: dataProps) {
-  const [detailModal, setDetailModal] = useRecoilState(detailModalState);
-  const [bouquetInfo, setBouquetInfo] = useRecoilState(bouquetInfoState);
-
+function FlowerImgList({ bouquetList, top, page, handleBouquet }: dataProps) {
   const handleBouquetInfo = (bouquet: {
     bouquetSeq: number;
     bouquetImage: string;
   }) => {
-    setBouquetInfo({
-      ...bouquet,
-    });
+    handleBouquet(bouquet);
+    // setBouquetInfo({
+    //   ...bouquet,
+    // });
   };
 
   const clickHandler = (
@@ -33,10 +28,9 @@ function FlowerImgList({ bouquetList, top, page }: dataProps) {
       bouquetSeq: number;
       bouquetImage: string;
     },
-    event
+    event: any
   ) => {
     handleBouquetInfo(bouquet);
-    setDetailModal(true);
   };
   return (
     <Box

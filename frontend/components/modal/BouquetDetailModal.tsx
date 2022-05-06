@@ -6,11 +6,18 @@ import { detailModalState, bouquetInfoState } from "../../states/states";
 import CloseIcon from "@mui/icons-material/Close";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
 import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
+import { Bouquet } from "../common/Bouquet";
 
 interface modalProps {
-  open: boolean;
+  bouquet: Bouquet;
+  handleDetailModal: (state: boolean) => void;
+  detailModal: boolean;
 }
-function BouquetDetailModal() {
+function BouquetDetailModal({
+  bouquet,
+  handleDetailModal,
+  detailModal,
+}: modalProps) {
   //test용 dummy data
   const flowerinfoList = [
     {
@@ -54,13 +61,11 @@ function BouquetDetailModal() {
       flowerCount: 1,
     },
   ];
-  const [detailModal, setDetailModal] = useRecoilState(detailModalState);
-  const [bouquetInfo, setBouquetInfo] = useRecoilState(bouquetInfoState);
   //api 연동후 data set
   //   const [flowerInfo, setFlowerInfo] = useState<Array<{}>>([]);
 
   const closeBouquetDetailModal = () => {
-    setDetailModal(false);
+    handleDetailModal(false);
   };
 
   //   useEffect(() => {
@@ -97,7 +102,7 @@ function BouquetDetailModal() {
             />
             <Box sx={{ position: "absolute", top: "8%", left: "10%" }}>
               <Image
-                src={bouquetInfo.bouquetImage}
+                src={bouquet.bouquetImage}
                 alt="꽃다발"
                 width={315}
                 height={290}

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Header from "../components/common/Header";
 import FlowerImgList from "../components/main/FlowerImgList";
 import BouquetDetailModal from "../components/modal/BouquetDetailModal";
+import { getBouquet } from "../components/apis/bouquetApi";
+import { Bouquet } from "../components/common/Bouquet";
 
 function MadeList() {
-  //test용 dummy data
+  // test용 dummy data
   const bouquetList = [
     { bouquetSeq: 1, bouquetImage: "/img/bouquet0.png" },
     { bouquetSeq: 2, bouquetImage: "/img/bouquet0.png" },
@@ -28,7 +30,30 @@ function MadeList() {
   ];
 
   //api 연동후 data set
-  // const [imgList, setImgList] = useState<Array<{}>>([]);
+  // const [bouquetList, setBouquetList] = useState<
+  //   Array<{ bouquetSeq: number; bouquetImage: string }>
+  // >([]);
+  const [bouquet, setBouquet] = useState<Bouquet>();
+  const [detailModal, setDetailModal] = useState<boolean>(false);
+  const handleBouquetList = async () => {
+    const response = await getBouquet();
+    // setBouquetList({ ...response.data.data });
+    console.log(response.data.data);
+  };
+
+  const handleBouquet = (bouquet: Bouquet) => {
+    handleDetailModal(true);
+    setBouquet(bouquet);
+    console.log(bouquet);
+  };
+
+  const handleDetailModal = (state: boolean) => {
+    setDetailModal(state);
+  };
+
+  useEffect(() => {
+    handleBouquetList();
+  }, []);
 
   return (
     <Box
@@ -44,7 +69,11 @@ function MadeList() {
       <Box sx={{ position: "absolute", top: "30px" }}>
         <Header page="madelist"></Header>
       </Box>
-      <BouquetDetailModal></BouquetDetailModal>
+      <BouquetDetailModal
+        bouquet={bouquet}
+        handleDetailModal={handleDetailModal}
+        detailModal={detailModal}
+      ></BouquetDetailModal>
       <Typography
         sx={{
           ...textStyle,
@@ -69,6 +98,7 @@ function MadeList() {
           bouquetList={bouquetList}
           top="15px"
           page="madelist"
+          handleBouquet={handleBouquet}
         ></FlowerImgList>
       </Box>
     </Box>

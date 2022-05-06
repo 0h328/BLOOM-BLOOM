@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Header from "../components/common/Header";
 // import BouquetImg from "../components/present/BouquetImg";
-import FlowerArrangeText from '../components/Choose/FlowerArrangeText';
-import ConfirmBtn from "../components/Button/ConfirmPageBtn";
+import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
+import ConfirmBtn from "../components/button/ConfirmPageBtn";
 import DecoConfirmModal from "../components/modal/DecoConfirmModal";
-import FlowerArrange from '../components/Bouquet/FlowerArrange';
-import MakingFlowerImage from '../components/Bouquet/MakingFlowerImage';
-import { Box } from '@mui/material';
+import FlowerArrange from "../components/Bouquet/FlowerArrange";
+import MakingFlowerImage from "../components/Bouquet/MakingFlowerImage";
+import { Box } from "@mui/material";
 
 export default function Arrange() {
   const [decoModal, setDecoModal] = useState<boolean>(false);
@@ -18,12 +18,10 @@ export default function Arrange() {
   };
   const openDecoModal = () => {
     setDecoModal(true);
-  }
+  };
   const closeDecoModal = () => {
     setDecoModal(false);
-  }
-
-
+  };
 
   return (
     <Box
@@ -46,7 +44,9 @@ export default function Arrange() {
       ></DecoConfirmModal>
       <FlowerArrangeText></FlowerArrangeText>
       <Box sx={{ position: "absolute", top: "150px", left: "30px" }}>
-        <MakingFlowerImage makingFlowerImg={makingFlowerImg}></MakingFlowerImage>
+        <MakingFlowerImage
+          makingFlowerImg={makingFlowerImg}
+        ></MakingFlowerImage>
       </Box>
       <Box sx={{ position: "absolute", top: "600px", left: "30px" }}>
         <FlowerArrange></FlowerArrange>
@@ -66,5 +66,5 @@ export default function Arrange() {
         ></ConfirmBtn>
       </Box>
     </Box>
-  )
-};
+  );
+}
