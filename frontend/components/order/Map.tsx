@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { constSelector } from "recoil";
+import StoreCard from "./StoreCard"
 
 declare global {
   interface Window {
@@ -14,6 +15,9 @@ declare global {
 
 
 function Map() {
+  const [forMarker,SetForMarker] = useState([])
+  const [store,SetStore] = useState({ storeName: '꽃집 이름', storeCall:'010-0000-0000', storeAddress:'서울특별시 역삼 어디에있어요', storeDomain:'www.naver.com', storeImage: "/test.png" })
+  const store2 = { storeName: '마커 클릭', storeCall:'010-0000-0000', storeAddress:'서울특별시 역삼 어디에있어요', storeDomain:'www.naver.com', storeImage: "/test.png" };
 
   useEffect(() => {
 
@@ -98,11 +102,49 @@ function Map() {
         marker.setMap(map);
         window.kakao.maps.event.addListener(marker, 'click', function() {
           alert(`${marker}`);
-          console.log(i)
+          SetStore(store2)
       });
       }
+      window.kakao.maps.event.addListener(map, 'dragend', function() {     
+        // 지도의 center를 얻어옵니다.   
+        var center = map.getCenter(); 
+        // 지도의 현재 레벨을 얻어옵니다
+        var level = map.getLevel();
+        
+        // 지도타입을 얻어옵니다
+        var mapTypeId = map.getMapTypeId(); 
+        
+        // 지도의 현재 영역을 얻어옵니다 
+        var bounds = map.getBounds();
+        
+        // 영역의 남서쪽 좌표를 얻어옵니다 
+        var swLatLng = bounds.getSouthWest(); 
+        
+        // 영역의 북동쪽 좌표를 얻어옵니다 
+        var neLatLng = bounds.getNorthEast(); 
+        
+        // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+        var boundsStr = bounds.toString(); 
+
+        console.log(boundsStr)
+        
+        });
+      
+        window.kakao.maps.event.addListener(map, 'zoom_changed', function() {        
+    
+          // 지도의 현재 레벨을 얻어옵니다
+          var level = map.getLevel();
+
+          var bounds = map.getBounds();
+
+          var boundsStr = bounds.toString(); 
+          
+          var message = '현재 지도 레벨은 ' + level + ' 입니다';
+          console.log(message)
+  
 
       });
+    });
     };
     mapScript.addEventListener("load", onLoadKakaoMap);
 
@@ -110,12 +152,15 @@ function Map() {
   }, []);
 
   return (
+    <>
     <div id="map" style={{
       marginTop:'24px',
       width: "420px",
       height: "497px"
     }}>
-   </div>)
+   </div>
+   <StoreCard storeInfo={store}></StoreCard>
+   </>)
 }
 
 
