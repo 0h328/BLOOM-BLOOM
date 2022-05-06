@@ -48,8 +48,8 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
 
-        BouquetResponse bouquetDetail = flowerService.findBouquetDetail(bouquetSeq);
-        return ResponseEntity.ok(Result.builder().data(bouquetDetail).message("꽃다발 상세조회에 성공했습니다.").build());
+        BouquetDetailResponse response = flowerService.findBouquetDetail(bouquetSeq);
+        return ResponseEntity.ok(Result.builder().data(response).message("꽃다발 상세조회에 성공했습니다.").build());
     }
 
     /**

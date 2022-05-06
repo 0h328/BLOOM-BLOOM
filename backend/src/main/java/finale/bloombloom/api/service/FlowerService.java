@@ -67,8 +67,10 @@ public class FlowerService {
                 .collect(Collectors.toList());
     }
 
-    public BouquetResponse findBouquetDetail(Long bouquetSeq) {
-        return BouquetResponse.from(findBouquetDetailByBouquetSeq(bouquetSeq));
+    public BouquetDetailResponse findBouquetDetail(Long bouquetSeq) {
+        Bouquet bouquet = findBouquetDetailByBouquetSeq(bouquetSeq);
+        List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquetSeq);
+        return BouquetDetailResponse.from(bouquet, flowerInfos);
     }
 
 
