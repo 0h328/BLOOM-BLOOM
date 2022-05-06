@@ -17,9 +17,9 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public List<StoreListResponse> findAllStore() {
-        return storeRepository.findAll().stream()
-                .map(StoreListResponse::from)
-                .collect(Collectors.toList());
+          return storeRepository.findAllStoreListBy().stream()
+                  .map(StoreListResponse::from)
+                  .collect(Collectors.toList());
     }
 
     @Override

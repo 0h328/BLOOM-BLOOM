@@ -1,6 +1,6 @@
 package finale.bloombloom.api.response;
 
-import finale.bloombloom.db.entity.Store;
+import finale.bloombloom.db.entity.mapping.StoreListMapping;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class StoreListResponse {
     private String storeAddress;
     private String storeRegNum;
 
-    public static StoreListResponse from(Store store) {
+    public static StoreListResponse from(StoreListMapping store) {
         return StoreListResponse.builder()
                 .storeSeq(store.getStoreSeq())
                 .storeName(store.getStoreName())
