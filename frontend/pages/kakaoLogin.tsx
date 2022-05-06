@@ -20,7 +20,7 @@ const Text = styled(motion.div)`
   margin: 0.5em;
 `;
 
-const bounceTransition1 = {
+export const bounceTransition1 = {
   y: {
     duration: 1,
     yoyo: Infinity,

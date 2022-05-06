@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { useRecoilState } from "recoil";
 import Image from "next/image";
-import { detailModalState, bouquetInfoState } from "../../states/states";
 import CloseIcon from "@mui/icons-material/Close";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
 import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
 import { Bouquet } from "../common/Bouquet";
+import { getBouquetDetail } from "../apis/bouquetApi";
 
 interface modalProps {
   bouquet: Bouquet;
@@ -67,10 +67,16 @@ function BouquetDetailModal({
   const closeBouquetDetailModal = () => {
     handleDetailModal(false);
   };
+  const handleBouquetDetail = async (bouquet: Bouquet) => {
+    const reponse = await getBouquetDetail(bouquet.bouquetSeq);
+    console.log(reponse);
+  };
 
-  //   useEffect(() => {
-  //     console.log(bouquetInfo);
-  //   }, [bouquetInfo]);
+  useEffect(() => {
+    if (bouquet !== undefined) {
+      handleBouquetDetail(bouquet);
+    }
+  }, [bouquet]);
 
   return (
     <>

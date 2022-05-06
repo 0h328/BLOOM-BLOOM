@@ -3,48 +3,46 @@ import { Box, Typography } from "@mui/material";
 import Header from "../components/common/Header";
 import FlowerImgList from "../components/main/FlowerImgList";
 import BouquetDetailModal from "../components/modal/BouquetDetailModal";
-import { getBouquet } from "../components/apis/bouquetApi";
+import { getBouquetList } from "../components/apis/bouquetApi";
 import { Bouquet } from "../components/common/Bouquet";
 
 function MadeList() {
   // test용 dummy data
-  const bouquetList = [
-    { bouquetSeq: 1, bouquetImage: "/img/bouquet0.png" },
-    { bouquetSeq: 2, bouquetImage: "/img/bouquet0.png" },
-    { bouquetSeq: 3, bouquetImage: "/img/bouquet0.png" },
-    { bouquetSeq: 4, bouquetImage: "/img/bouquet1.png" },
-    { bouquetSeq: 5, bouquetImage: "/img/bouquet2.png" },
-    { bouquetSeq: 6, bouquetImage: "/img/bouquet3.png" },
-    { bouquetSeq: 7, bouquetImage: "/img/bouquet1.png" },
-    { bouquetSeq: 8, bouquetImage: "/img/bouquet2.png" },
-    { bouquetSeq: 9, bouquetImage: "/img/bouquet3.png" },
-    { bouquetSeq: 10, bouquetImage: "/img/bouquet1.png" },
-    { bouquetSeq: 11, bouquetImage: "/img/bouquet2.png" },
-    { bouquetSeq: 12, bouquetImage: "/img/bouquet3.png" },
-    { bouquetSeq: 13, bouquetImage: "/img/bouquet1.png" },
-    { bouquetSeq: 14, bouquetImage: "/img/bouquet2.png" },
-    { bouquetSeq: 15, bouquetImage: "/img/bouquet3.png" },
-    { bouquetSeq: 16, bouquetImage: "/img/bouquet1.png" },
-    { bouquetSeq: 17, bouquetImage: "/img/bouquet2.png" },
-    { bouquetSeq: 18, bouquetImage: "/img/bouquet3.png" },
-  ];
+  // const bouquetList = [
+  //   { bouquetSeq: 1, bouquetImage: "/img/bouquet0.png" },
+  //   { bouquetSeq: 2, bouquetImage: "/img/bouquet0.png" },
+  //   { bouquetSeq: 3, bouquetImage: "/img/bouquet0.png" },
+  //   { bouquetSeq: 4, bouquetImage: "/img/bouquet1.png" },
+  //   { bouquetSeq: 5, bouquetImage: "/img/bouquet2.png" },
+  //   { bouquetSeq: 6, bouquetImage: "/img/bouquet3.png" },
+  //   { bouquetSeq: 7, bouquetImage: "/img/bouquet1.png" },
+  //   { bouquetSeq: 8, bouquetImage: "/img/bouquet2.png" },
+  //   { bouquetSeq: 9, bouquetImage: "/img/bouquet3.png" },
+  //   { bouquetSeq: 10, bouquetImage: "/img/bouquet1.png" },
+  //   { bouquetSeq: 11, bouquetImage: "/img/bouquet2.png" },
+  //   { bouquetSeq: 12, bouquetImage: "/img/bouquet3.png" },
+  //   { bouquetSeq: 13, bouquetImage: "/img/bouquet1.png" },
+  //   { bouquetSeq: 14, bouquetImage: "/img/bouquet2.png" },
+  //   { bouquetSeq: 15, bouquetImage: "/img/bouquet3.png" },
+  //   { bouquetSeq: 16, bouquetImage: "/img/bouquet1.png" },
+  //   { bouquetSeq: 17, bouquetImage: "/img/bouquet2.png" },
+  //   { bouquetSeq: 18, bouquetImage: "/img/bouquet3.png" },
+  // ];
 
   //api 연동후 data set
-  // const [bouquetList, setBouquetList] = useState<
-  //   Array<{ bouquetSeq: number; bouquetImage: string }>
-  // >([]);
+  const [bouquetList, setBouquetList] = useState<
+    Array<{ bouquetSeq: number; bouquetImage: string }>
+  >([]);
   const [bouquet, setBouquet] = useState<Bouquet>();
   const [detailModal, setDetailModal] = useState<boolean>(false);
   const handleBouquetList = async () => {
-    const response = await getBouquet();
-    // setBouquetList({ ...response.data.data });
-    console.log(response.data.data);
+    const response = await getBouquetList();
+    setBouquetList(response.data.data);
   };
 
   const handleBouquet = (bouquet: Bouquet) => {
     handleDetailModal(true);
     setBouquet(bouquet);
-    console.log(bouquet);
   };
 
   const handleDetailModal = (state: boolean) => {

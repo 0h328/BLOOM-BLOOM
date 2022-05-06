@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Box, Grid } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { detailModalState, bouquetInfoState } from "../../states/states";
 import { Bouquet } from "../common/Bouquet";
 
 interface dataProps {

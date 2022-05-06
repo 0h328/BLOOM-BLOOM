@@ -10,4 +10,4 @@ const mainFlowerState = atom({
   default: [{ flowerSeq: 1, flowerCount: 1 }],
 });
 
-export {, decoModalState,  mainFlowerState };
+export { decoModalState, mainFlowerState };

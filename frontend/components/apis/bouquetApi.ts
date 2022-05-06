@@ -18,6 +18,10 @@ bouquetApi.interceptors.request.use(
   }
 );
 
-export const getBouquet = async () => {
+export const getBouquetList = async () => {
   return await bouquetApi.get("api/v1/flower");
+};
+
+export const getBouquetDetail = async (bouquetSeq: number) => {
+  return await bouquetApi.get(`api/v1/flower/${bouquetSeq}`);
 };

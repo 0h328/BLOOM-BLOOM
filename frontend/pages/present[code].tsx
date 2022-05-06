@@ -21,7 +21,7 @@ function Present() {
   const [image, setImage] = useState<string>("");
 
   const onCapture = () => {
-    console.log("ca[pture");
+    console.log("capture");
     html2canvas(document.getElementById("img"), {
       backgroundColor: "#FFC0D0",
     }).then((canvas) => {
