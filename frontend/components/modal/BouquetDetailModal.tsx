@@ -7,6 +7,8 @@ import FlowerInfoList from "../../components/modal/FlowerInfoList";
 import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
 import { Bouquet } from "../common/Bouquet";
 import { getBouquetDetail } from "../apis/bouquetApi";
+import { presentState } from "../../states/states";
+import { useRouter } from "next/router";
 
 interface modalProps {
   bouquet: Bouquet;
@@ -61,16 +63,44 @@ function BouquetDetailModal({
       flowerCount: 1,
     },
   ];
+  const router = useRouter();
+  const [presnt, setPresent] = useRecoilState(presentState);
   //api 연동후 data set
   const [flowerInfo, setFlowerInfo] = useState<Array<{}>>([]);
-
   const closeBouquetDetailModal = () => {
+    setPresent((prevState) => ({
+      ...prevState,
+      bouquetSeq: -1,
+    }));
     handleDetailModal(false);
   };
   const handleBouquetDetail = async (bouquet: Bouquet) => {
     const reponse = await getBouquetDetail(bouquet.bouquetSeq);
     setFlowerInfo(reponse.data.data.flowerInfo);
   };
+  const handleBtn = (code: number) => {
+    switch (code) {
+      case 0:
+        handleShare();
+        break;
+      case 1:
+        handleOrder();
+        break;
+      case 2:
+        handleDelete();
+        break;
+    }
+  };
+  const handleShare = () => {
+    setPresent((prevstate) => ({
+      ...prevstate,
+      bouquetSeq: bouquet.bouquetSeq,
+      presentDesc: "",
+    }));
+    router.push("/share");
+  };
+  const handleOrder = () => {};
+  const handleDelete = () => {};
 
   useEffect(() => {
     if (bouquet !== undefined) {
@@ -130,7 +160,7 @@ function BouquetDetailModal({
               <FlowerInfoList flowerInfoList={flowerinfoList} />
             </Box>
             <Box sx={{ position: "absolute", top: "90%", left: "15%" }}>
-              <BouquetDetailModalBtn />
+              <BouquetDetailModalBtn handleBtn={handleBtn} />
             </Box>
           </Box>
         </Box>

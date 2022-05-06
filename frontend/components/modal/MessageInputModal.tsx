@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
@@ -19,7 +19,10 @@ function MessageInputModal({
 }: meesageModalProps) {
   const router = useRouter();
   const [content, setContent] = useState<string>();
-  const handleInput = () => {};
+  const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = event.target.value;
+    setContent(text);
+  };
   const handleShare = () => {};
   const handleRoute = () => {
     router.back();
@@ -41,11 +44,11 @@ function MessageInputModal({
             sx={{
               position: "absolute",
               width: "100%",
-              height: "40%",
+              height: "45%",
               backgroundColor: "#FFE0E0",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "25%",
+              top: "20%",
             }}
           >
             <Typography
@@ -83,7 +86,7 @@ function MessageInputModal({
             </Box>
             <TextareaAutosize
               aria-label="minimum height"
-              id="contents"
+              id="content"
               value={content}
               minRows={3}
               maxRows={10}
@@ -104,7 +107,7 @@ function MessageInputModal({
                 padding: "1rem",
                 borderRadius: "10px",
               }}
-              onChange={handleInput}
+              onChange={(event) => handleInput(event)}
             />
             <Typography
               sx={{
@@ -112,7 +115,7 @@ function MessageInputModal({
                 fontSize: "15px",
                 fontWeight: "bold",
                 fontFamily: "JuliusSansOne",
-                top: "260px",
+                top: "70%",
                 left: "15%",
               }}
             >

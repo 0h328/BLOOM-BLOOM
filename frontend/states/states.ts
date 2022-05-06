@@ -7,7 +7,12 @@ const decoModalState = atom({
 
 const mainFlowerState = atom({
   key: "mainFlower",
-  default: [{ flowerSeq: 1, flowerCount: 1 }],
+  default: [{ flowerSeq: -1, flowerCount: 0 }],
 });
 
-export { decoModalState, mainFlowerState };
+const presentState = atom({
+  key: "present",
+  default: { bouqeutSeq: -1, presentDesc: "" },
+});
+
+export { decoModalState, mainFlowerState, presentState };
