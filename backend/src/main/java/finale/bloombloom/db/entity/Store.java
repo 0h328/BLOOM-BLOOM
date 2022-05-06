@@ -3,10 +3,8 @@ package finale.bloombloom.db.entity;
 import lombok.*;
 import org.locationtech.jts.geom.Point;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
@@ -14,6 +12,7 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "`store`")
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,8 +2,10 @@ package finale.bloombloom.api.service;
 
 
 import finale.bloombloom.api.request.OrderBouquetRequest;
+import finale.bloombloom.api.request.StoreLocationRequest;
 import finale.bloombloom.api.response.OrderDetailResponse;
 import finale.bloombloom.api.response.OrderListResponse;
+import finale.bloombloom.api.response.StoreLocationResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.Order;
@@ -17,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,6 +32,7 @@ public class OrderServieImpl implements OrderService {
     private final BouquetRepository bouquetRepository;
     private final StoreRepository storeRepository;
     private final UserRepository userRepository;
+    private final EntityManager em;
 
     /**
      * 기능 : 주문내역 조회
@@ -74,6 +78,7 @@ public class OrderServieImpl implements OrderService {
 
         return orderRepository.save(order);
     }
+
     /**
      * 기능 : 주문 내역 상세조회
      * 작성자 : 김정혁
@@ -88,6 +93,32 @@ public class OrderServieImpl implements OrderService {
                 .store(order.getStore())
                 .orderDecs(order.getOrderDesc())
                 .build();
+    }
+
+    /**
+     * 기능 : 근처 꽃집 조회
+     * 작성자 : 김정혁
+     */
+    @Override
+    public List<StoreLocationResponse> findStore(StoreLocationRequest storeLocationRequest) {
+
+        double x1 = storeLocationRequest.getSwLat();
+        double y1 = storeLocationRequest.getSwLng();
+        double x2 = storeLocationRequest.getNeLat();
+        double y2 = storeLocationRequest.getNeLng();
+
+//      조회에 필요한 함수 안에 파라미터를 넣어야 했다.
+//      이를 해결하기위해 직접 쿼리를 만듬
+//      String format으로 직접 파라미터가 담긴 string을 만들고 sql에 붙여 쿼리를 작성
+
+        Query query = em.createNativeQuery("" +
+                "SELECT store_seq,store_name,store_contact,store_address,store_reg_num,ST_X(store_loc) as store_lat,ST_Y(store_loc) as store_lng,store_map_id,store_blog_id,store_instagram_id,store_image_link \n" +
+                "FROM store as st \n" +
+                "WHERE MBRContains(ST_LINESTRINGFROMTEXT(" + String.format("'LINESTRING(%f %f, %f %f)')", x1, y1, x2, y2) + ",st.store_loc)"
+        );
+        List<StoreLocationResponse> st = query.getResultList();
+
+        return st;
     }
 
 
