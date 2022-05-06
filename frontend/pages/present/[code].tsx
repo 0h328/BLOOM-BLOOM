@@ -1,25 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import MessageCard from "../components/present/MessageCard";
-import Header from "../components/common/Header";
-import ImgDownloadBtn from "../components/present/ImgDownloadBtn";
+import MessageCard from "../../components/present/MessageCard";
+import Header from "../../components/common/Header";
+import ImgDownloadBtn from "../../components/present/ImgDownloadBtn";
 import html2canvas from "html2canvas";
-import BouquetImg from "../components/present/BouquetImg";
+import BouquetImg from "../../components/present/BouquetImg";
+import { useRouter } from "next/router";
+import { getPresent } from "../../components/apis/bouquetApi";
 
 function Present() {
-  const presentData = {
-    bouquetImage: "/img/bouquet1.png",
-    presentSender: "김정혁",
-    presentDesc: `좋은 옷 있으면 생각날 때 입고
-  좋은 음식 있으면 먹고 싶을 때 먹고
-  좋은 음악 있으면 듣고 싶을 때 들으세요
-  더구나 좋은 사람 있으면
-  마음 속에 숨겨두지 말고
-  마음껏 좋아하고 마음껏 그리워하세요`,
-  };
-
+  //   const presentData = {
+  //     bouquetImage: "/img/bouquet1.png",
+  //     presentSender: "김정혁",
+  //     presentDesc: `좋은 옷 있으면 생각날 때 입고
+  //   좋은 음식 있으면 먹고 싶을 때 먹고
+  //   좋은 음악 있으면 듣고 싶을 때 들으세요
+  //   더구나 좋은 사람 있으면
+  //   마음 속에 숨겨두지 말고
+  //   마음껏 좋아하고 마음껏 그리워하세요`,
+  //   };
+  const router = useRouter();
   const [image, setImage] = useState<string>("");
-
+  const [code, setCode] = useState<any>([]);
+  const [presentData, setPresentData] = useState<{
+    bouquetImage: string;
+    presentSender: string;
+    presentDesc: string;
+  }>({
+    bouquetImage: "",
+    presentSender: "",
+    presentDesc: "",
+  });
   const onCapture = () => {
     console.log("capture");
     html2canvas(document.getElementById("img"), {
@@ -28,7 +39,6 @@ function Present() {
       onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
     });
   };
-
   const onSave = (uri: string, filename: string) => {
     let link = document.createElement("a");
     document.body.appendChild(link);
@@ -37,6 +47,22 @@ function Present() {
     link.click();
     document.body.removeChild(link);
   };
+  const handlePresent = async (code: string) => {
+    const response = await getPresent(code);
+    setPresentData({ ...response.data.data });
+    console.log(response);
+  };
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    setCode(router.query.code);
+  }, [router.isReady]);
+
+  useEffect(() => {
+    if (code !== "" && code !== undefined) {
+      handlePresent(code);
+    }
+  }, []);
 
   return (
     <>

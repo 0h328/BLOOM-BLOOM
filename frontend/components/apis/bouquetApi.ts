@@ -25,3 +25,8 @@ export const getBouquetList = async () => {
 export const getBouquetDetail = async (bouquetSeq: number) => {
   return await bouquetApi.get(`api/v1/flower/${bouquetSeq}`);
 };
+
+export const getPresent = async (code: string) => {
+  console.log(code);
+  return await bouquetApi.get(`api/v1/flower/present/${code}`);
+};

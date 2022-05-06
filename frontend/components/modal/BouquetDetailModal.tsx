@@ -62,14 +62,14 @@ function BouquetDetailModal({
     },
   ];
   //api 연동후 data set
-  //   const [flowerInfo, setFlowerInfo] = useState<Array<{}>>([]);
+  const [flowerInfo, setFlowerInfo] = useState<Array<{}>>([]);
 
   const closeBouquetDetailModal = () => {
     handleDetailModal(false);
   };
   const handleBouquetDetail = async (bouquet: Bouquet) => {
     const reponse = await getBouquetDetail(bouquet.bouquetSeq);
-    console.log(reponse);
+    setFlowerInfo(reponse.data.data.flowerInfo);
   };
 
   useEffect(() => {
