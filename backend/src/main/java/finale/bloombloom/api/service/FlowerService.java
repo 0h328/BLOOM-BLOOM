@@ -4,6 +4,7 @@ import finale.bloombloom.api.request.BouquetSaveRequest;
 import finale.bloombloom.api.request.FlowerRequest;
 import finale.bloombloom.api.response.*;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
+import finale.bloombloom.common.model.FileFolder;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.FlowerInfo;
 import finale.bloombloom.db.entity.User;
@@ -13,16 +14,21 @@ import finale.bloombloom.db.entity.metadata.SubFlower;
 import finale.bloombloom.db.entity.metadata.Wrap;
 import finale.bloombloom.db.repository.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class FlowerService {
+    private final FileProcessService fileProcessService;
     private final UserRepository userRepository;
     private final BouquetRepository bouquetRepository;
     private final MainFlowerRepository mainFlowerRepository;
@@ -61,13 +67,15 @@ public class FlowerService {
                 .collect(Collectors.toList());
     }
 
-    public BouquetResponse findBouquetDetail(Long bouquetSeq) {
-        return BouquetResponse.from(findBouquetDetailByBouquetSeq(bouquetSeq));
+    public BouquetDetailResponse findBouquetDetail(Long bouquetSeq) {
+        Bouquet bouquet = findBouquetDetailByBouquetSeq(bouquetSeq);
+        List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquetSeq);
+        return BouquetDetailResponse.from(bouquet, flowerInfos);
     }
 
 
     @Transactional
-    public BouquetSaveResponse saveBouquet(Long userSeq, BouquetSaveRequest request) {
+    public BouquetSaveResponse saveBouquet(Long userSeq, BouquetSaveRequest request, MultipartFile file) {
         Optional<Deco> deco = decoRepository.findById(request.getDecoSeq());
         Optional<Wrap> wrap = wrapRepository.findById(request.getWrapSeq());
         Optional<SubFlower> subFlower = subFlowerRepository.findById(request.getSubFlowerSeq());
@@ -76,9 +84,25 @@ public class FlowerService {
         if (user.isEmpty() || deco.isEmpty() || subFlower.isEmpty() || wrap.isEmpty())
             throw new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다.");
 
-        // 1. bouquet 테이블에 저장
-        Bouquet bouquet = bouquetRepository.save(request.toEntity(user.get(), wrap.get(), deco.get(), subFlower.get()));
-        // 2. flower_info 테이블에 저장
+        // 1. 넘어온 이미지를 S3에 저장 후 주소를 반환받는다.
+        String bouquetImage = null;
+        try {
+            bouquetImage = fileProcessService.upload(FileFolder.BOUQUET_FOLDER, file);
+        } catch (IOException e) {
+            log.error("이미지 업로드에 실패했습니다.");
+            e.printStackTrace();
+        }
+
+        // 2. bouquet 테이블에 저장
+        Bouquet bouquet = bouquetRepository.save(Bouquet.builder()
+                .user(user.get())
+                .subFlower(subFlower.get())
+                .wrap(wrap.get())
+                .deco(deco.get())
+                .bouquetImage(bouquetImage)
+                .build());
+
+        // 3. flower_info 테이블에 저장
         saveFlowerInfo(request, bouquet);
 
         return BouquetSaveResponse.from(bouquet);

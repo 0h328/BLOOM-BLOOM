@@ -1,13 +1,9 @@
 package finale.bloombloom.api.request;
 
-import finale.bloombloom.db.entity.Bouquet;
-import finale.bloombloom.db.entity.User;
-import finale.bloombloom.db.entity.metadata.Deco;
-import finale.bloombloom.db.entity.metadata.SubFlower;
-import finale.bloombloom.db.entity.metadata.Wrap;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -29,16 +25,4 @@ public class BouquetSaveRequest {
     @NotNull(message = "꽃 리스트는 null 일 수 없습니다.")
     @Valid
     private List<FlowerRequest> mainFlower;
-    @NotEmpty(message = "꽃다발 이미지 링크는 공백일 수 없습니다.")
-    private String bouquetImage;
-
-    public Bouquet toEntity(User user, Wrap wrap, Deco deco, SubFlower subFlower) {
-        return Bouquet.builder()
-                .user(user)
-                .wrap(wrap)
-                .deco(deco)
-                .subFlower(subFlower)
-                .bouquetImage(this.getBouquetImage())
-                .build();
-    }
 }

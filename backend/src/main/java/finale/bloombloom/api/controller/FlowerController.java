@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -47,8 +48,8 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
 
-        BouquetResponse bouquetDetail = flowerService.findBouquetDetail(bouquetSeq);
-        return ResponseEntity.ok(Result.builder().data(bouquetDetail).message("꽃다발 상세조회에 성공했습니다.").build());
+        BouquetDetailResponse response = flowerService.findBouquetDetail(bouquetSeq);
+        return ResponseEntity.ok(Result.builder().data(response).message("꽃다발 상세조회에 성공했습니다.").build());
     }
 
     /**
@@ -108,12 +109,14 @@ public class FlowerController {
      * 작성자: 문준호
      */
     @PostMapping
-    public ResponseEntity<Result> saveBouquet(Authentication authentication, @RequestBody @Valid BouquetSaveRequest request) {
+    public ResponseEntity<Result> saveBouquet(Authentication authentication,
+                                              @RequestPart(value = "request") @Valid BouquetSaveRequest request,
+                                              @RequestPart(value = "file") MultipartFile file) {
         if (authentication == null)
             return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
 
         Long userSeq = getUserSeq(authentication);
-        BouquetSaveResponse response = flowerService.saveBouquet(userSeq, request);
+        BouquetSaveResponse response = flowerService.saveBouquet(userSeq, request, file);
         return ResponseEntity.ok(Result.builder().data(response).message("꽃다발 저장에 성공했습니다.").build());
     }
 
