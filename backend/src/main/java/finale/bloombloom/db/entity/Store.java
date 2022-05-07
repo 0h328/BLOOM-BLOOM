@@ -4,7 +4,6 @@ import lombok.*;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Getter
