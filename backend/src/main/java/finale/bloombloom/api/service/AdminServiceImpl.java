@@ -1,6 +1,7 @@
 package finale.bloombloom.api.service;
 
 import finale.bloombloom.api.request.AdminSaveRequest;
+import finale.bloombloom.api.response.StoreListResponse;
 import finale.bloombloom.db.entity.Store;
 import finale.bloombloom.db.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,5 +44,10 @@ public class AdminServiceImpl implements AdminService{
         query.setParameter(8,req.getStoreImageLink());
 
         return query.executeUpdate();
+
+    public List<StoreListResponse> findAllStore() {
+          return storeRepository.findAllStoreListBy().stream()
+                  .map(StoreListResponse::from)
+                  .collect(Collectors.toList());
     }
 }

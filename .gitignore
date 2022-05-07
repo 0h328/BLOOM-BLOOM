@@ -698,3 +698,4 @@ backend/src/generated
 *.gz
 backend/src/main/generated
 backend/src/main/resources/application-mysql.properties
+backend/src/main/resources/application-credentials.properties
