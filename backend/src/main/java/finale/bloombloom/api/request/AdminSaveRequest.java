@@ -33,12 +33,16 @@ public class AdminSaveRequest {
     private String storeImageLink;
 
     public Store toEntity() {
-        String pointWKT = String.format("POINT(%s %s)", this.getStoreLng(), this.getStoreLat());
+        String pointWKT = String.format("POINT(%s %s)", this.getStoreLat(), this.getStoreLng());
+        System.out.println(pointWKT);
+        System.out.println(this.getStoreLng()+ " "+this.getStoreLat());
         Point point = null;
         try {
             point = (Point) new WKTReader().read(pointWKT);
+
         }
         catch (ParseException e) {
+            System.out.println("WKTReader() 에러");
             e.printStackTrace();
         }
 

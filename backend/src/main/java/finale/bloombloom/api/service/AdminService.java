@@ -11,5 +11,5 @@ public interface AdminService {
     List<StoreListResponse> findAllStore();
 
     // 업장 등록
-    Store saveStore(AdminSaveRequest req);
+    public int saveStore(AdminSaveRequest req);
 }
