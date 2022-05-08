@@ -1,6 +1,6 @@
-package finale.bloombloom.db.entity.mapping;
+package finale.bloombloom.db.entity.mapper;
 
-public interface StoreListMapping {
+public interface StoreListMapper {
     Long getStoreSeq();
     String getStoreName();
     String getStoreContact();

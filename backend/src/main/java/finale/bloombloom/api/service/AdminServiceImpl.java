@@ -1,8 +1,8 @@
 package finale.bloombloom.api.service;
 
 import finale.bloombloom.api.request.AdminSaveRequest;
+import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
-import finale.bloombloom.db.entity.Store;
 import finale.bloombloom.db.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,16 @@ public class AdminServiceImpl implements AdminService{
           return storeRepository.findAllStoreListBy().stream()
                   .map(StoreListResponse::from)
                   .collect(Collectors.toList());
+    }
+
+    /**
+     *  업장 정보 조회
+     *  작성자 : 박건우
+     */
+    @Override
+    public StoreDetailResponse findStore(Long storeReq) {
+
+        return StoreDetailResponse.from(storeRepository.findStoreByStoreSeq(storeReq).get());
     }
 
     /**

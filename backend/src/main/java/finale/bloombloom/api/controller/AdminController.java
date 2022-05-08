@@ -1,6 +1,7 @@
 package finale.bloombloom.api.controller;
 
 import finale.bloombloom.api.request.AdminSaveRequest;
+import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
 import finale.bloombloom.api.service.AdminService;
 import finale.bloombloom.common.model.response.Result;
@@ -22,10 +23,21 @@ public class AdminController {
      *  작성자 : 박건우
      */
     @GetMapping
-    ResponseEntity<Result> findAllStore() {
+    ResponseEntity<Result> findAllStore(Authentication authentication) {
         List<StoreListResponse> stores = adminService.findAllStore();
 
         return ResponseEntity.status(200).body(Result.builder().data(stores).status(200).message("업장 리스트 조회에 성공하였습니다.").build());
+    }
+
+    /**
+     *  업장 정보 조회
+     *  작성자 : 박건우
+     */
+    @GetMapping("/{storeSeq}")
+    ResponseEntity<Result> findStore(Authentication authentication, @PathVariable Long storeSeq) {
+        StoreDetailResponse store = adminService.findStore(storeSeq);
+
+        return ResponseEntity.status(200).body(Result.builder().data(store).status(200).message("업장 정보 조회에 성공하였습니다.").build());
     }
 
     /**
