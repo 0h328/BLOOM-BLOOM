@@ -1,6 +1,7 @@
 package finale.bloombloom.api.service;
 
 import finale.bloombloom.api.request.AdminSaveRequest;
+import finale.bloombloom.api.request.AdminUpdateRequest;
 import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
 import finale.bloombloom.db.entity.Store;
@@ -27,9 +28,14 @@ public interface AdminService {
     void deleteStore(Long storeReq);
 
     /**
+     *  업장 수정
+     *  작성자 : 박건우
+     */
+    void updateStore(AdminUpdateRequest req);
+
+    /**
      *  업장 등록
      *  작성자 : 김정혁
      */
     int saveStore(AdminSaveRequest req);
-
 }

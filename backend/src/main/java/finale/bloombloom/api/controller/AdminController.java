@@ -1,6 +1,7 @@
 package finale.bloombloom.api.controller;
 
 import finale.bloombloom.api.request.AdminSaveRequest;
+import finale.bloombloom.api.request.AdminUpdateRequest;
 import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
 import finale.bloombloom.api.service.AdminService;
@@ -55,10 +56,22 @@ public class AdminController {
      *  업장 등록
      *  작성자 : 박건우
      */
-    @PostMapping("/store")
+    @PostMapping
     ResponseEntity<Result> createStore(Authentication authentication, @RequestBody AdminSaveRequest req) {
         adminService.saveStore(req);
 
         return ResponseEntity.status(200).body(Result.builder().status(200).message("업장 등록에 성공하였습니다.").build());
     }
+
+    /**
+     *  업장 수정
+     *  작성자 : 박건우
+     */
+    @PatchMapping
+    ResponseEntity<Result> updateStore(Authentication authentication, @RequestBody AdminUpdateRequest req) {
+        adminService.updateStore(req);
+
+        return ResponseEntity.status(200).body(Result.builder().status(200).message("업장 수정에 성공하였습니다.").build());
+    }
+
 }
