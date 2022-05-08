@@ -1,6 +1,7 @@
 package finale.bloombloom.api.service;
 
 import finale.bloombloom.api.request.AdminSaveRequest;
+import finale.bloombloom.api.request.AdminUpdateRequest;
 import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
 import finale.bloombloom.db.repository.StoreRepository;
@@ -48,6 +49,15 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public void deleteStore(Long storeReq) {
         storeRepository.deleteById(storeReq);
+    }
+
+    /**
+     *  업장 수정
+     *  작성자 : 박건우
+     */
+    @Override
+    public void updateStore(AdminUpdateRequest req) {
+        storeRepository.save(req.toEntity());
     }
 
     /**
