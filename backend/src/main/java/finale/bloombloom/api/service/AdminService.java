@@ -7,9 +7,21 @@ import finale.bloombloom.db.entity.Store;
 import java.util.List;
 
 public interface AdminService {
-    // 업장 리스트 조회
+    /**
+     *  업장 리스트 조회
+     *  작성자 : 박건우
+     */
     List<StoreListResponse> findAllStore();
 
-    // 업장 등록
-    public int saveStore(AdminSaveRequest req);
+    /**
+     *  업장 삭제
+     *  작성자 : 박건우
+     */
+    void deleteStore(Long storeReq);
+
+    /**
+     *  업장 등록
+     *  작성자 : 김정혁
+     */
+    int saveStore(AdminSaveRequest req);
 }

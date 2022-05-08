@@ -17,6 +17,10 @@ import java.util.List;
 public class AdminController {
     private final AdminService adminService;
 
+    /**
+     *  업장 리스트 조회
+     *  작성자 : 박건우
+     */
     @GetMapping
     ResponseEntity<Result> findAllStore() {
         List<StoreListResponse> stores = adminService.findAllStore();
@@ -24,9 +28,23 @@ public class AdminController {
         return ResponseEntity.status(200).body(Result.builder().data(stores).status(200).message("업장 리스트 조회에 성공하였습니다.").build());
     }
 
+    /**
+     *  업장 삭제
+     *  작성자 : 박건우
+     */
+    @DeleteMapping("/{storeSeq}")
+    ResponseEntity<Result> deleteStore(Authentication authentication, @PathVariable Long storeSeq) {
+        adminService.deleteStore(storeSeq);
+
+        return ResponseEntity.status(200).body(Result.builder().status(200).message("업장 삭제에 성공하였습니다.").build());
+    }
+
+    /**
+     *  업장 등록
+     *  작성자 : 박건우
+     */
     @PostMapping("/store")
     ResponseEntity<Result> createStore(Authentication authentication, @RequestBody AdminSaveRequest req) {
-
         adminService.saveStore(req);
 
         return ResponseEntity.status(200).body(Result.builder().status(200).message("업장 등록에 성공하였습니다.").build());
