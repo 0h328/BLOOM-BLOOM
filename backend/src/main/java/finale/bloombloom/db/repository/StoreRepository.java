@@ -11,5 +11,9 @@ public interface StoreRepository extends JpaRepository<Store,Long> {
     @Override
     Optional<Store> findById(Long storeSeq);
 
+    /**
+     *  업장 리스트 조회
+     *  작성자 : 박건우
+     */
     List<StoreListMapping> findAllStoreListBy();
 }
