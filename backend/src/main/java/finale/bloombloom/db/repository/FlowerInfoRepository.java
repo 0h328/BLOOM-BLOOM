@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface FlowerInfoRepository extends JpaRepository<FlowerInfo, Long> {
     List<FlowerInfo> findByBouquet_BouquetSeq(Long bouquetSeq);
+
+    void deleteByBouquet_BouquetSeq(Long bouquetSeq);
 }

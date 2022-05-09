@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/api/v1/flower")
 @RestController
@@ -145,6 +147,22 @@ public class FlowerController {
 
         PresentBouquetResponse response = presentService.findPresentBouquet(uuid);
         return ResponseEntity.ok(Result.builder().data(response).message("선물용 꽃다발 조회에 성공했습니다.").build());
+    }
+
+    /**
+     * 기능: 꽃다발 삭제
+     * 작성자: 문준호
+     */
+    @DeleteMapping("/{bouquetSeq}")
+    public ResponseEntity<Result> deleteBouquet(Authentication authentication, @PathVariable Long bouquetSeq) {
+        if (authentication == null)
+            return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
+
+        flowerService.deleteBouquet(bouquetSeq);
+
+        Map<String, Long> response = new HashMap<>();
+        response.put("bouquetSeq", bouquetSeq);
+        return ResponseEntity.ok(Result.builder().data(response).message("꽃다발 삭제에 성공했습니다.").build());
     }
 
 
