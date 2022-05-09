@@ -26,21 +26,29 @@ function Login() {
           mx: "auto",
           width: 420,
           position: "relative",
+          height: "100vh",
+          overflow: "hidden",
         }}
       >
         <Box
           sx={{
             backgroundColor: "#FFFAFA",
-            height: "800px",
+            // height: "800px",
             minHeight: "100vh",
             position: "relative",
-            overflow: "hidden",
           }}
         >
           <Title />
           <FlowerImg />
-
-          <Box sx={{ position: "absolute", top: "680px", left: "70px" }}>
+          <Box
+            sx={{
+              position: "absolute",
+              width: "100%",
+              top: "75%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <KakaoBtn
               handleBtn={handleLogin}
               title="카카오톡으로 시작하기"

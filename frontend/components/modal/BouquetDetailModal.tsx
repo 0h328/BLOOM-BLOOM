@@ -7,7 +7,7 @@ import FlowerInfoList from "../../components/modal/FlowerInfoList";
 import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
 import { Bouquet } from "../common/Bouquet";
 import { getBouquetDetail } from "../apis/bouquetApi";
-import { presentState } from "../../states/states";
+import { presentBouquetState } from "../../states/states";
 import { useRouter } from "next/router";
 
 interface modalProps {
@@ -64,14 +64,12 @@ function BouquetDetailModal({
     },
   ];
   const router = useRouter();
-  const [presnt, setPresent] = useRecoilState(presentState);
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   //api 연동후 data set
   const [flowerInfo, setFlowerInfo] = useState<Array<{}>>([]);
   const closeBouquetDetailModal = () => {
-    setPresent((prevState) => ({
-      ...prevState,
-      bouquetSeq: -1,
-    }));
+    setPresentBouquet(-1);
     handleDetailModal(false);
   };
   const handleBouquetDetail = async (bouquet: Bouquet) => {
@@ -92,11 +90,7 @@ function BouquetDetailModal({
     }
   };
   const handleShare = () => {
-    setPresent((prevstate) => ({
-      ...prevstate,
-      bouquetSeq: bouquet.bouquetSeq,
-      presentDesc: "",
-    }));
+    setPresentBouquet(bouquet.bouquetSeq);
     router.push("/share");
   };
   const handleOrder = () => {};

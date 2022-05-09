@@ -4,6 +4,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
 import KakaoBtn from "../button/KakaoBtn";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { presentBouquetState } from "../../states/states";
+import { savePresent } from "../apis/bouquetApi";
 
 interface meesageModalProps {
   openMessageModal?: () => void;
@@ -19,11 +22,22 @@ function MessageInputModal({
 }: meesageModalProps) {
   const router = useRouter();
   const [content, setContent] = useState<string>();
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.target.value;
-    setContent(text);
+    setContent(`${text}`);
   };
-  const handleShare = () => {};
+  const handleShare = async () => {
+    const body = {
+      bouquetSeq: presentBouquet,
+      presentDesc: content,
+    };
+
+    const response = await savePresent(body);
+    const uuid = response.data.data.uuid;
+    console.log(response);
+  };
   const handleRoute = () => {
     router.back();
   };

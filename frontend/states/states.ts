@@ -10,9 +10,9 @@ const mainFlowerState = atom({
   default: [{ flowerSeq: -1, flowerCount: 0 }],
 });
 
-const presentState = atom({
-  key: "present",
-  default: { bouqeutSeq: -1, presentDesc: "" },
+const presentBouquetState = atom({
+  key: "presentBouquet",
+  default: -1,
 });
 
-export { decoModalState, mainFlowerState, presentState };
+export { decoModalState, mainFlowerState, presentBouquetState };
