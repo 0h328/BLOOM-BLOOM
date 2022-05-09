@@ -131,12 +131,12 @@ function BouquetDetailModal({
               onClick={closeBouquetDetailModal}
             />
             <Box sx={{ position: "absolute", top: "8%", left: "10%" }}>
-              <Image
+              <img
                 src={bouquet.bouquetImage}
                 alt="꽃다발"
                 width={315}
                 height={290}
-              ></Image>
+              ></img>
             </Box>
             <Box
               sx={{

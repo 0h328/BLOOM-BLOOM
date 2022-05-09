@@ -60,11 +60,13 @@ function MadeList() {
         width: 420,
         position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "840px",
+        height: "100vh",
         minHeight: "100vh",
+        justifyContent: "center",
+        display: "flex",
       }}
     >
-      <Box sx={{ position: "absolute", top: "30px" }}>
+      <Box sx={{ position: "absolute", top: "2%" }}>
         <Header page="madelist"></Header>
       </Box>
       <BouquetDetailModal
@@ -84,17 +86,18 @@ function MadeList() {
         sx={{
           position: "absolute",
           backgroundColor: "#FFE0E0",
-          width: "410px",
-          height: "730px",
-          top: "140px",
+          width: "95%",
+          height: "80%",
+          top: "16%",
           borderRadius: "10px",
           overflowX: "hidden",
           overflowY: "scroll",
+          // display: "flex",
         }}
       >
         <FlowerImgList
           bouquetList={bouquetList}
-          top="15px"
+          top="2%"
           page="madelist"
           handleBouquet={handleBouquet}
         ></FlowerImgList>
