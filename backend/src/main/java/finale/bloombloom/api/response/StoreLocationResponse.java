@@ -10,15 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StoreLocationResponse {
-    private long store_seq;
-    private String store_name;
-    private String store_contact;
-    private String store_address;
-    private String store_reg_num;
-    private double store_lat;
-    private double store_lng;
-    private String store_map_id;
-    private String store_blog_id;
-    private String store_instagram_id;
-    private String store_image_li;
+    private long storeSeq;
+    private String storeName;
+    private String storeContact;
+    private String storeAddress;
+    private String storeRegNum;
+    private double storeLat;
+    private double storeLng;
+    private String storeMapId;
+    private String storeBlogId;
+    private String storeInstagramId;
+    private String storeImageLink;
 }
