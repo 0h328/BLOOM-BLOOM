@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import finale.bloombloom.common.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,7 +28,7 @@ public class BloomUserDetails implements UserDetails {
     public BloomUserDetails(User user) {
         super();
         this.user = user;
-        if (user.getUserRole().equals("ROLE_USER"))
+        if (user.getUserRole()==Role.ROLE_USER)
             roles.add(new SimpleGrantedAuthority("ROLE_USER"));
         else
             roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
