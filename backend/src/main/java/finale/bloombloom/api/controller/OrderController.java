@@ -12,6 +12,7 @@ import finale.bloombloom.common.model.response.Result;
 import finale.bloombloom.db.entity.Order;
 import finale.bloombloom.db.entity.Store;
 import lombok.RequiredArgsConstructor;
+import org.locationtech.jts.geom.Point;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -52,8 +53,9 @@ public class OrderController {
 
         BloomUserDetails bloomUserDetails = (BloomUserDetails) authentication.getDetails();
 
+        orderService.createOrder(orderBouquetRequest, bloomUserDetails.getUsername());
+
         return ResponseEntity.status(200).body(Result.builder()
-                .data(orderService.createOrder(orderBouquetRequest, bloomUserDetails.getUsername()))
                 .message("주문 의뢰에 성공하였습니다.")
                 .build()
         );
@@ -67,8 +69,6 @@ public class OrderController {
     ResponseEntity<Result> findOrderDetail(Authentication authentication, @PathVariable Long orderSeq) {
         if (authentication == null)
             return ResponseEntity.status(401).body(Result.builder().message("인증 실패").build());
-
-        BloomUserDetails bloomUserDetails = (BloomUserDetails) authentication.getDetails();
 
         OrderDetailResponse orderdetail = orderService.findOrderDetail(orderSeq);
 

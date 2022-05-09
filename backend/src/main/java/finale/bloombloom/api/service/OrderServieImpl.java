@@ -7,14 +7,8 @@ import finale.bloombloom.api.response.OrderDetailResponse;
 import finale.bloombloom.api.response.OrderListResponse;
 import finale.bloombloom.api.response.StoreLocationResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
-import finale.bloombloom.db.entity.Bouquet;
-import finale.bloombloom.db.entity.Order;
-import finale.bloombloom.db.entity.Store;
-import finale.bloombloom.db.entity.User;
-import finale.bloombloom.db.repository.BouquetRepository;
-import finale.bloombloom.db.repository.OrderRepository;
-import finale.bloombloom.db.repository.StoreRepository;
-import finale.bloombloom.db.repository.UserRepository;
+import finale.bloombloom.db.entity.*;
+import finale.bloombloom.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +26,7 @@ public class OrderServieImpl implements OrderService {
     private final BouquetRepository bouquetRepository;
     private final StoreRepository storeRepository;
     private final UserRepository userRepository;
+    private final FlowerInfoRepository flowerInfoRepository;
     private final EntityManager em;
 
     /**
@@ -87,12 +82,10 @@ public class OrderServieImpl implements OrderService {
     public OrderDetailResponse findOrderDetail(Long orderSeq) {
         Order order = orderRepository.findById(orderSeq)
                 .orElseThrow(() -> new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다."));
-
-        return OrderDetailResponse.builder()
-                .bouquet(order.getBouquet())
-                .store(order.getStore())
-                .orderDecs(order.getOrderDesc())
-                .build();
+        Bouquet bouquet = order.getBouquet();
+        Store store = order.getStore();
+        List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
+        return OrderDetailResponse.from(bouquet,store,flowerInfos);
     }
 
     /**
