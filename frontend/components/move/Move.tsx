@@ -2,7 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 import Selecto from "react-selecto";
 import { Box, Grid } from "@mui/material";
-function Move() {
+interface moveProps {
+  finish: boolean;
+}
+function Move({ finish }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
   const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
   const [frameMap] = useState(() => new Map());
@@ -180,7 +183,7 @@ function Move() {
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
                   <Box
-                    className="cube target"
+                    className={finish ? null : "cube target"}
                     sx={{
                       width: "70px",
                       height: "70px",

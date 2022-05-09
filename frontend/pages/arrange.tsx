@@ -1,16 +1,20 @@
 import React, { useState, useRef } from "react";
-import { Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Header from "../components/common/Header";
 import Move from "../components/move/Move";
 import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 function Arrange() {
+  const handleFinish = () => {
+    setFinish(true);
+  };
+  const [finish, setFinish] = useState<boolean>(false);
   return (
     <Box
       sx={{
         mx: "auto",
         width: 420,
         position: "relative",
-        backgroundColor: "#FFE0E0",
+        backgroundColor: "#FFFAFA",
         height: "100vh",
         minHeight: "100vh",
         justifyContent: "center",
@@ -56,10 +60,28 @@ function Arrange() {
             backgroundColor: "#EFDFBF",
             display: "flex",
             alignItems: "center",
+            borderRadius: "5px",
           }}
         >
-          <Move></Move>
+          <Move finish={finish}></Move>
         </Box>
+        <Button
+          variant="contained"
+          size="small"
+          style={{
+            position: "absolute",
+            backgroundColor: "#FFE0E0",
+            color: "#3A1D1D",
+            fontFamily: "JuliusSansOne",
+            borderRadius: "5",
+            width: 280,
+            height: 45,
+            top: "75%",
+          }}
+          onClick={handleFinish}
+        >
+          <Typography>완료</Typography>
+        </Button>
       </Box>
     </Box>
   );
