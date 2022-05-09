@@ -20,4 +20,29 @@ const mainFlowerState = atom({
   default: [{ flowerSeq: 1, flowerCount: 1 }],
 });
 
-export { detailModalState, decoModalState, bouquetInfoState, mainFlowerState };
+const wrapState = atom({
+  key: "wrapInfo",
+  default: { wrapSeq: 1, wrapImage: "/img/wrapOrange.png" },
+})
+
+// 리본
+const decoState = atom({
+  key: "decoInfo",
+  default: { decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" },
+})
+
+const flowerState = atom({
+  key: "flowerInfo",
+  default: { flowerSeq: 1, flowerImage: "/img/flower1.png" },
+})
+
+
+export { 
+  detailModalState, 
+  decoModalState, 
+  bouquetInfoState, 
+  mainFlowerState,
+  wrapState,
+  decoState,
+  flowerState,
+};

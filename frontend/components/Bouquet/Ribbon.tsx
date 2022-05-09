@@ -1,57 +1,84 @@
 import React from 'react';
 import { 
   Box, 
-  ImageList, 
-  ImageListItem 
+  Grid,
 } from '@mui/material';
+import Image from 'next/image';
+import { useRecoilState } from 'recoil';
+import { decoState } from '../../states/states';
 
-function Ribbon() {
+interface deco {
+  decoSeq: number;
+  decoImage: string;
+}
 
-  const RibbonImageData = [
-    {
-      img: "/images/ribbonDeepPink.png"
-    },
-    {
-      img: "/images/ribbonDeepBrown.png"
-    },
-    {
-      img: "/images/ribbonPurple.png"
-    },
-    {
-      img: "/images/ribbonNavy.png"
-    },
-    {
-      img: "/images/ribbonMixBrown.png"
-    },
-    {
-      img: "/images/ribbonMixPink.png"
-    },
-    {
-      img: "/images/ribbonMixRed.png"
-    },
-    {
-      img: "/images/ribbonMixYellow.png"
-    },
-  ];
+interface decoProps {
+  decoList: deco[];
+}
 
-  const style = {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    margin: "20px auto"
-  }
+function Ribbon({ decoList }: decoProps) {
+  const [decoInfo, setDecoInfo] = useRecoilState(decoState)
+  const handleDecoInfo = (deco: {
+    decoSeq: number;
+    decoImage: string;
+  }) => {
+    setDecoInfo({
+      ...deco,
+    });
+  };
+
+  const clickHandler = (
+    deco : {
+      decoSeq: number;
+      decoImage: string;
+    },
+    event
+  ) => {
+    handleDecoInfo(deco);
+  };
+
+
     
   return (
     <Box sx={{ ...style }}>
-      <ImageList sx={{ width: 330, height: 330 }} cols={3} rowHeight={100}>
-        {RibbonImageData.map((item) => (
-          <ImageListItem key={item.img}>
-            <img src={`${item.img}`}/>
-          </ImageListItem>
-        ))}
-      </ImageList>
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        alignItems="center"
+        justifyItems="center"
+        sx={{ width: 320 }}
+      >
+        {decoList.map((deco, index) => {
+          return (
+            <Grid
+              item
+              xs={4}
+              key={index}
+              sx={{ "&:hover": { cursor: "pointer" } }}
+            >
+              <Image
+                src={deco.decoImage}
+                alt="포장지"
+                width={80}
+                height={80}
+                onClick={(event) => {
+                  clickHandler(deco, event);
+                }}
+              ></Image>
+            </Grid>
+          );
+        })}
+      </Grid>
     </Box>
   )
 }
+
+export const style = {
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  margin: "20px auto"
+};
 
 export default Ribbon;
