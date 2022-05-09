@@ -7,6 +7,7 @@ import finale.bloombloom.common.exception.BloomBloomNotFoundException;
 import finale.bloombloom.common.model.FileFolder;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.FlowerInfo;
+import finale.bloombloom.db.entity.Order;
 import finale.bloombloom.db.entity.User;
 import finale.bloombloom.db.entity.metadata.Deco;
 import finale.bloombloom.db.entity.metadata.MainFlower;
@@ -15,6 +16,7 @@ import finale.bloombloom.db.entity.metadata.Wrap;
 import finale.bloombloom.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -120,6 +122,28 @@ public class FlowerService {
         orderRepository.deleteByBouquet_BouquetSeq(bouquetSeq);
         // 꽃다발 삭제
         bouquetRepository.deleteById(bouquetSeq);
+    }
+
+    public RecentBouquetResponse findRecentBouquet(Long userSeq, Pageable pageable) {
+        // 1. 최근 제작한 꽃다발 조회 (BouquetResponse 형태로 변경)
+        List<BouquetResponse> makeBouquetList = bouquetRepository.findByUser_UserSeqOrderByBouquetSeqDesc(userSeq, pageable).stream()
+                .map(BouquetResponse::from)
+                .collect(Collectors.toList());
+
+        // 1. 해당 유저의 주문 내역 조회
+        List<Order> orderList = orderRepository.findByUser_UserSeqOrderByOrderSeqDesc(userSeq, pageable);
+        // 2. 주문 내역을 기반으로 최근 주문한 꽃다발 조회 (BouquetResponse 형태로 변경)
+        List<BouquetResponse> orderBouquetList = findOrderBouquetListByOrderList(orderList).stream()
+                .map(BouquetResponse::from)
+                .collect(Collectors.toList());
+
+        return new RecentBouquetResponse(makeBouquetList, orderBouquetList);
+    }
+
+    private List<Bouquet> findOrderBouquetListByOrderList(List<Order> orderList) {
+        return orderList.stream()
+                .map(order -> bouquetRepository.findById(order.getBouquet().getBouquetSeq()).orElseThrow(() -> new BloomBloomNotFoundException("주문에 해당하는 꽃다발이 없습니다.")))
+                .collect(Collectors.toList());
     }
 
     private void saveFlowerInfo(BouquetSaveRequest request, Bouquet bouquet) {
