@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Header from "../components/common/Header";
 import MakeButton from "../components/main/MakeButton";
 import FlowerImgListTitle from "../components/main/FlowerImgListTitle";

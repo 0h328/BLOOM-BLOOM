@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { presentBouquetState } from "../../states/states";
 import { savePresent } from "../apis/bouquetApi";
-import KakaoMessage from "../kakaoApi/kakaoMessage";
+import KakaoMessage from "../kakaoApi/KakaoMessage";
 
 interface meesageModalProps {
   openMessageModal?: () => void;
@@ -22,9 +22,10 @@ function MessageInputModal({
   share,
 }: meesageModalProps) {
   const router = useRouter();
-  const [content, setContent] = useState<string>();
+  const [content, setContent] = useState<string>("");
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
+  const [uuid, setUuid] = useState<string>("");
   const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.target.value;
     setContent(`${text}`);
@@ -36,7 +37,7 @@ function MessageInputModal({
     };
 
     const response = await savePresent(body);
-    const uuid = response.data.data.uuid;
+    setUuid(response.data.data.uuid);
     console.log(response);
   };
   const handleRoute = () => {
@@ -149,6 +150,7 @@ function MessageInputModal({
               ></KakaoBtn>
             </Box>
           </Box>
+          <KakaoMessage></KakaoMessage>
         </Box>
       ) : null}
     </>

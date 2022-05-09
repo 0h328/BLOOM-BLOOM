@@ -6,6 +6,7 @@ const nextConfig = {
     loader: "imgix",
     path: "https://finale.bloombloom.s3.ap-northeast-2.amazonaws.com/",
   },
+  extends: "next",
 };
 
 module.exports = nextConfig;
