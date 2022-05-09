@@ -12,14 +12,14 @@ function Move() {
   const [elementGuidelines, setElementGuidelines] = useState(null);
   //test용
   const [flowers, setFlowers] = useState([
-    "/img/carnationOrange.jpg",
-    "/img/carnationOrange.jpg",
-    "/img/carnationOrange.jpg",
-    "/img/carnationOrange.jpg",
-    "/img/carnationOrange.jpg",
-    "/img/carnationOrange.jpg",
-    "/img/carnationOrange.jpg",
-    "/img/carnationOrange.jpg",
+    "/img/carnationOrange.png",
+    "/img/carnationOrange.png",
+    "/img/carnationOrange.png",
+    "/img/carnationOrange.png",
+    "/img/carnationOrange.png",
+    "/img/carnationOrange.png",
+    "/img/carnationOrange.png",
+    "/img/carnationOrange.png",
   ]);
   const [windows, setWindows] = useState([
     {
@@ -182,13 +182,19 @@ function Move() {
                   <Box
                     className="cube target"
                     sx={{
-                      width: "40px",
-                      height: "40px",
-                      backgroundColor: "black",
-                      margin: "10px",
+                      width: "70px",
+                      height: "70px",
+                      margin: "5px",
                     }}
                   >
-                    <img src={item}></img>
+                    <img
+                      src={item}
+                      style={{
+                        borderRadius: "200px",
+                        height: "100%",
+                        width: "100%",
+                      }}
+                    ></img>
                   </Box>
                 </Grid>
               ))}

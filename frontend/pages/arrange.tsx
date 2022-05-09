@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 import Header from "../components/common/Header";
 import Move from "../components/move/Move";
 import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
-import Image from "next/image";
 function Arrange() {
   return (
     <Box
@@ -36,17 +35,23 @@ function Arrange() {
           sx={{
             width: "80%",
             height: "50%",
-            backgroundColor: "black",
+            // backgroundColor: "black",
             margin: "10px",
           }}
         >
-          {/* <Image src="/img/wrapPink.jpg" alt="꽃다발" layout="fill"></Image> */}
-          <img src="/img/wrapPink.jpg"></img>
+          <img
+            src="/img/wrapPink.png"
+            style={{
+              borderRadius: "200px",
+              height: "100%",
+              width: "100%",
+            }}
+          ></img>
         </Box>
         <Box
           sx={{
             width: "90%",
-            height: "20%",
+            height: "18%",
             mt: "5%",
             backgroundColor: "#EFDFBF",
             display: "flex",

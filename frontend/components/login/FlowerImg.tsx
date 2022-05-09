@@ -20,15 +20,6 @@ function FlowerImg() {
             width: "100%",
           }}
         ></img>
-        {/* <Image
-          layout="fill"
-          src="/img/loginFlower2.jpg"
-          alt="flower"
-          style={{
-            borderRadius: "200px",
-            overflow: "hidden",
-          }}
-        ></Image> */}
       </Box>
       <Box
         sx={{
@@ -45,16 +36,6 @@ function FlowerImg() {
             width: "100%",
           }}
         ></img>
-        {/* <Image
-          layout="fill"
-          objectFit="cover"
-          src="/img/loginFlower1.jpg"
-          alt="flower"
-          style={{
-            borderRadius: "200px",
-            overflow: "hidden",
-          }}
-        ></Image> */}
       </Box>
     </Box>
   );
