@@ -1,13 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 import Selecto from "react-selecto";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 function Move() {
   const [onLoad, setOnLoad] = useState<boolean>(false);
   const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
   const selectoRef = useRef(null);
+  const [trigger, setTrigger] = useState(false);
+  const [elementGuidelines, setElementGuidelines] = useState(null);
   //test용
   const [flowers, setFlowers] = useState([
     "/img/carnationOrange.jpg",
@@ -19,21 +21,73 @@ function Move() {
     "/img/carnationOrange.jpg",
     "/img/carnationOrange.jpg",
   ]);
+  const [windows, setWindows] = useState([
+    {
+      translate: [0, 0],
+      scale: [1, 1],
+      rotate: 0,
+    },
+  ]);
   const [cubes, setCubes] = useState([]);
+  const handleScaleStart = (attr) => {
+    const { set, dragStart } = attr;
+    const frame = windows[0];
+    set(frame.scale);
+
+    // If a drag event has already occurred, there is no dragStart.
+    dragStart && dragStart.set(frame.translate);
+  };
+  const handleScale = (attr) => {
+    const { target, scale, drag } = attr;
+    const frame = windows[0];
+
+    frame.scale = scale;
+    // get drag event
+    frame.translate = drag.beforeTranslate;
+    target.style.transform =
+      `translate(${frame.translate[0]}px, ${frame.translate[1]}px) ` +
+      `rotate(${frame.rotate}deg)` +
+      `scale(${scale[0]}, ${scale[1]})`;
+  };
+  const handleRotateStart = (attr) => {
+    const { set } = attr;
+    const frame = windows[0];
+    set(frame.rotate);
+  };
+  const handleRotate = (attr) => {
+    const { target, beforeRotate } = attr;
+    const frame = windows[0];
+    frame.rotate = beforeRotate;
+    target.style.transform =
+      `translate(${frame.translate[0]}px, ${frame.translate[1]}px) ` +
+      `rotate(${frame.rotate}deg)` +
+      `scale(${frame.scale[0]}, ${frame.scale[1]})`;
+  };
   useEffect(() => {
     setOnLoad(true);
     for (let i = 0; i < 30; ++i) {
       cubes.push(i);
     }
+    setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
+    const arr = [];
+    for (let i = 0; i < 30; ++i) {
+      arr.push(i);
+    }
+    setCubes(arr);
   }, []);
   return (
     <>
       {onLoad ? (
-        <Box className="container" sx={{ width: "400px" }}>
+        <Box className="container" sx={{ width: "100%" }}>
           <Moveable
             ref={moveableRef}
             draggable={true}
+            trigger={trigger}
             target={targets}
+            onScale={handleScale}
+            onRotate={handleRotate}
+            onRotateStart={handleRotateStart}
+            onScaleStart={handleScaleStart}
             onClickGroup={(e) => {
               selectoRef.current.clickTarget(e.inputEvent, e.inputTarget);
             }}
@@ -113,20 +167,32 @@ function Move() {
               }
             }}
           ></Selecto>
-
-          <Box className="elements selecto-area" sx={{ display: "flex" }}>
-            {flowers.map((item, index) => (
-              <Box
-                className="cube target"
-                key={index}
-                sx={{
-                  width: "30px",
-                  height: "30px",
-                  backgroundColor: "black",
-                  margin: "10px",
-                }}
-              ></Box>
-            ))}
+          <Box
+            className="elements selecto-area"
+            sx={{ display: "flex", width: "100%" }}
+          >
+            <Grid container sx={{ width: "100%" }}>
+              {flowers.map((item, index) => (
+                <Grid
+                  item
+                  xs={3}
+                  key={index}
+                  sx={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Box
+                    className="cube target"
+                    sx={{
+                      width: "40px",
+                      height: "40px",
+                      backgroundColor: "black",
+                      margin: "10px",
+                    }}
+                  >
+                    <img src={item}></img>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </Box>
       ) : null}
