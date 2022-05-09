@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { presentBouquetState } from "../../states/states";
 import { savePresent } from "../apis/bouquetApi";
+import KakaoMessage from "../kakaoApi/kakaoMessage";
 
 interface meesageModalProps {
   openMessageModal?: () => void;

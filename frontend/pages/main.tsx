@@ -4,7 +4,7 @@ import Header from "../components/common/Header";
 import MakeButton from "../components/main/MakeButton";
 import FlowerImgListTitle from "../components/main/FlowerImgListTitle";
 import FlowerImgList from "../components/main/FlowerImgList";
-import { getBouquetList } from "../components/apis/bouquetApi";
+import { getRecentBouquetList } from "../components/apis/bouquetApi";
 import { getOrderList } from "../components/apis/orderApi";
 function Main() {
   //test용
@@ -17,18 +17,13 @@ function Main() {
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
   const [orderBouquetList, setOrderBouquetList] =
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
-  const handleMadeList = async () => {
-    const response = await getBouquetList();
-    console.log(response);
-    setMadeBouquetList(response.data.data);
-  };
-  const handleOrderList = async () => {
-    const response = await getOrderList();
-    setOrderBouquetList(response.data.data);
+  const handleRecentList = async () => {
+    const response = await getRecentBouquetList();
+    setMadeBouquetList(response.data.data.makeBouquet);
+    setOrderBouquetList(response.data.data.orderBouquet);
   };
   useEffect(() => {
-    handleMadeList();
-    handleOrderList();
+    handleRecentList();
   }, []);
   return (
     <>

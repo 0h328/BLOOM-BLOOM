@@ -92,7 +92,7 @@ function MadeList() {
           borderRadius: "10px",
           overflowX: "hidden",
           overflowY: "scroll",
-          // display: "flex",
+          justifyContent: "center",
         }}
       >
         <FlowerImgList
@@ -113,7 +113,7 @@ export const textStyle = {
   fontWeight: "bold",
   fontSize: "15px",
   lineHeight: "17px",
-  top: "110px",
+  top: "10%",
   left: "18px",
   color: "rgba(0, 0, 0, 0.8)",
 };

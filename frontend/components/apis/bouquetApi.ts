@@ -27,11 +27,13 @@ export const getBouquetDetail = async (bouquetSeq: number) => {
 };
 
 export const getPresent = async (code: string) => {
-  console.log(code);
   return await bouquetApi.get(`/present/${code}`);
 };
 
 export const savePresent = async (body: any) => {
-  console.log(body);
   return await bouquetApi.post("/present", body);
+};
+
+export const getRecentBouquetList = async () => {
+  return await bouquetApi.get("/recent");
 };
