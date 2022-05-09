@@ -17,6 +17,7 @@ import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,11 +66,14 @@ public class OrderServieImpl implements OrderService {
         if (bouquet.isEmpty() || store.isEmpty() || user.isEmpty())
             throw new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다.");
 
+
+        String uuid = UUID.randomUUID().toString().replace("-", "");
         Order order = Order.builder()
                 .bouquet(bouquet.get())
                 .user(user.get())
                 .store(store.get())
                 .orderDesc(orderBouquetRequest.getOrderDesc())
+                .orderUri(uuid)
                 .build();
 
         return orderRepository.save(order);
@@ -86,7 +90,7 @@ public class OrderServieImpl implements OrderService {
         Bouquet bouquet = order.getBouquet();
         Store store = order.getStore();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
-        return OrderDetailResponse.from(bouquet,store,flowerInfos);
+        return OrderDetailResponse.from(bouquet, store, flowerInfos);
     }
 
     /**
@@ -112,19 +116,19 @@ public class OrderServieImpl implements OrderService {
         );
         List<Object[]> list = query.getResultList();
 
-        return list.stream().map(item->new StoreLocationResponse(
-                ((BigInteger)item[0]).longValue(),
-                (String)item[1],
-                (String)item[2],
-                (String)item[3],
-                (String)item[4],
-                (Double)item[5],
-                (Double)item[6],
-                (String)item[7],
-                (String)item[8],
-                (String)item[9],
-                (String)item[10]
-                )).collect(Collectors.toList());
+        return list.stream().map(item -> new StoreLocationResponse(
+                ((BigInteger) item[0]).longValue(),
+                (String) item[1],
+                (String) item[2],
+                (String) item[3],
+                (String) item[4],
+                (Double) item[5],
+                (Double) item[6],
+                (String) item[7],
+                (String) item[8],
+                (String) item[9],
+                (String) item[10]
+        )).collect(Collectors.toList());
     }
 
 

@@ -2,7 +2,7 @@ package finale.bloombloom.api.service;
 
 import finale.bloombloom.api.request.PresentBouquetSaveRequest;
 import finale.bloombloom.api.response.PresentBouquetResponse;
-import finale.bloombloom.api.response.PresentBouquetSaveResponse;
+import finale.bloombloom.api.response.UuidResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.Present;
@@ -24,12 +24,12 @@ public class PresentService {
     private final PresentRepository presentRepository;
 
     @Transactional
-    public PresentBouquetSaveResponse savePresentBouquet(Long userSeq, PresentBouquetSaveRequest request) {
+    public UuidResponse savePresentBouquet(Long userSeq, PresentBouquetSaveRequest request) {
         Bouquet bouquet = findBouquetByBouquetSeq(request.getBouquetSeq());
         String userName = findUserByUserSeq(userSeq).getUserName();
         String uuid = UUID.randomUUID().toString().replace("-", "");
         presentRepository.save(request.toEntity(bouquet, userName, uuid));
-        return PresentBouquetSaveResponse.from(uuid);
+        return UuidResponse.from(uuid);
     }
 
     public PresentBouquetResponse findPresentBouquet(String uuid) {

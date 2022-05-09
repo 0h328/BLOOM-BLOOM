@@ -31,4 +31,6 @@ Order extends BaseTimeEntity{
     private Bouquet bouquet;
 
     private String orderDesc;
+
+    private String orderUri;
 }

@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PresentBouquetSaveResponse {
+public class UuidResponse {
     private String uuid;
 
-    public static PresentBouquetSaveResponse from(String uuid) {
-        return PresentBouquetSaveResponse.builder().uuid(uuid).build();
+    public static UuidResponse from(String uuid) {
+        return UuidResponse.builder().uuid(uuid).build();
     }
 }
