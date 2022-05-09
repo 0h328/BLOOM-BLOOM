@@ -133,7 +133,7 @@ public class FlowerController {
             return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
 
         Long userSeq = getUserSeq(authentication);
-        PresentBouquetSaveResponse response = presentService.savePresentBouquet(userSeq, request);
+        UuidResponse response = presentService.savePresentBouquet(userSeq, request);
         return ResponseEntity.ok(Result.builder().data(response).message("선물하기에 성공했습니다.").build());
     }
 

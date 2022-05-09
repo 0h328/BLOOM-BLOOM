@@ -6,6 +6,7 @@ import finale.bloombloom.api.request.StoreLocationRequest;
 import finale.bloombloom.api.response.OrderDetailResponse;
 import finale.bloombloom.api.response.OrderListResponse;
 import finale.bloombloom.api.response.StoreLocationResponse;
+import finale.bloombloom.api.response.UuidResponse;
 import finale.bloombloom.api.service.OrderService;
 import finale.bloombloom.common.auth.BloomUserDetails;
 import finale.bloombloom.common.model.response.Result;
@@ -17,7 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/api/v1/order")
 @RestController
@@ -53,9 +56,9 @@ public class OrderController {
 
         BloomUserDetails bloomUserDetails = (BloomUserDetails) authentication.getDetails();
 
-        orderService.createOrder(orderBouquetRequest, bloomUserDetails.getUsername());
-
+        Order order = orderService.createOrder(orderBouquetRequest, bloomUserDetails.getUsername());
         return ResponseEntity.status(200).body(Result.builder()
+                .data(UuidResponse.from(order.getOrderUri()))
                 .message("주문 의뢰에 성공하였습니다.")
                 .build()
         );
