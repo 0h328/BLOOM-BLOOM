@@ -36,6 +36,8 @@ public class FlowerService {
     private final DecoRepository decoRepository;
     private final WrapRepository wrapRepository;
     private final FlowerInfoRepository flowerInfoRepository;
+    private final PresentRepository presentRepository;
+    private final OrderRepository orderRepository;
 
     public List<MainFlowerResponse> findAllMainFlower() {
         return mainFlowerRepository.findAll().stream()
@@ -108,6 +110,18 @@ public class FlowerService {
         return BouquetSaveResponse.from(bouquet);
     }
 
+    @Transactional
+    public void deleteBouquet(Long bouquetSeq) {
+        // 선물내역 삭제
+        presentRepository.deleteByBouquet_BouquetSeq(bouquetSeq);
+        // 꽃정보 삭제
+        flowerInfoRepository.deleteByBouquet_BouquetSeq(bouquetSeq);
+        // 주문 삭제
+        orderRepository.deleteByBouquet_BouquetSeq(bouquetSeq);
+        // 꽃다발 삭제
+        bouquetRepository.deleteById(bouquetSeq);
+    }
+
     private void saveFlowerInfo(BouquetSaveRequest request, Bouquet bouquet) {
         List<FlowerRequest> mainFlower = request.getMainFlower();
         mainFlower.stream().forEach(f -> {
@@ -133,4 +147,5 @@ public class FlowerService {
         return bouquetRepository.findById(bouquetSeq)
                 .orElseThrow(() -> new BloomBloomNotFoundException(String.format("해당 꽃다발이 존재하지 않습니다. ID : %d", bouquetSeq)));
     }
+
 }
