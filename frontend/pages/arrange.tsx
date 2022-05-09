@@ -28,8 +28,9 @@ function Arrange() {
       <Box
         sx={{
           position: "absolute",
+          width: "100%",
           height: "100%",
-          top: "15%",
+          top: "13%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -37,26 +38,69 @@ function Arrange() {
       >
         <Box
           sx={{
-            width: "80%",
-            height: "50%",
-            // backgroundColor: "black",
-            margin: "10px",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <img
-            src="/img/wrapPink.png"
-            style={{
-              borderRadius: "200px",
-              height: "100%",
-              width: "100%",
+          <Box
+            sx={{
+              position: "absolute",
+              width: "80%",
+              height: "50%",
             }}
-          ></img>
+          >
+            <img
+              src="/img/wrapPinkBack.png"
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              width: "80%",
+              height: "50%",
+            }}
+          >
+            <img
+              src="/img/flower3.png"
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              width: "80%",
+              height: "50%",
+            }}
+          >
+            <img
+              src="/img/wrapPinkFront.png"
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
         </Box>
         <Box
           sx={{
+            position: "absolute",
+            top: "52%",
             width: "90%",
             height: "18%",
-            mt: "5%",
             backgroundColor: "#EFDFBF",
             display: "flex",
             alignItems: "center",

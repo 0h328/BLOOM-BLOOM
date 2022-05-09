@@ -15,14 +15,14 @@ function Move({ finish }: moveProps) {
   const [elementGuidelines, setElementGuidelines] = useState(null);
   //test용
   const [flowers, setFlowers] = useState([
+    "/img/carnationPink.png",
     "/img/carnationOrange.png",
-    "/img/carnationOrange.png",
-    "/img/carnationOrange.png",
-    "/img/carnationOrange.png",
-    "/img/carnationOrange.png",
-    "/img/carnationOrange.png",
-    "/img/carnationOrange.png",
-    "/img/carnationOrange.png",
+    "/img/hydrangeaPurple.png",
+    "/img/hydrangeaBlue.png",
+    "/img/peonyWhite.png",
+    "/img/lisianthusPurple.png",
+    "/img/lisianthusPink.png",
+    "/img/ranunculusPink.png",
   ]);
   const [windows, setWindows] = useState([
     {
@@ -37,7 +37,6 @@ function Move({ finish }: moveProps) {
     const frame = windows[0];
     set(frame.scale);
 
-    // If a drag event has already occurred, there is no dragStart.
     dragStart && dragStart.set(frame.translate);
   };
   const handleScale = (attr) => {
@@ -45,7 +44,6 @@ function Move({ finish }: moveProps) {
     const frame = windows[0];
 
     frame.scale = scale;
-    // get drag event
     frame.translate = drag.beforeTranslate;
     target.style.transform =
       `translate(${frame.translate[0]}px, ${frame.translate[1]}px) ` +
