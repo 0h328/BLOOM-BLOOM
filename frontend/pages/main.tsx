@@ -24,7 +24,6 @@ function Main() {
   };
   const handleOrderList = async () => {
     const response = await getOrderList();
-    console.log(response.data.data);
     setOrderBouquetList(response.data.data);
   };
   useEffect(() => {
@@ -83,7 +82,7 @@ function Main() {
           {orderBouquetList !== undefined ? (
             <FlowerImgList
               bouquetList={orderBouquetList}
-              top="60%"
+              top="40%"
               infoText="주문한 꽃다발이 없습니다"
             ></FlowerImgList>
           ) : null}

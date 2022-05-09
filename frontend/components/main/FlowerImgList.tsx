@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Box, Grid, Typography } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { Bouquet } from "../common/Bouquet";
-
+import { textStyle } from "./FlowerImgListTitle";
 interface dataProps {
   bouquetList: Bouquet[];
   top: string;
@@ -39,7 +39,7 @@ function FlowerImgList({
         position: "relative",
         display: "flex",
         top: { top },
-        left: page === "madelist" ? "5px" : "2%",
+        left: page === "madelist" ? "5px" : "0",
         justifyContent: "center",
       }}
     >
@@ -81,33 +81,39 @@ function FlowerImgList({
             <Box
               sx={{
                 position: "absolute",
-                height: "10%",
+                height: "100%",
                 width: "100%",
                 justifyContent: "center",
                 alignItems: "center",
                 display: "flex",
+                top: "10%",
               }}
             >
-              <Typography sx={{ ...infoTextStyle }}>{infoText}</Typography>
+              <Typography sx={{ ...textStyle }}>{infoText}</Typography>
             </Box>
           ) : (
-            <>
+            <Box sx={{ display: "flex" }}>
               {bouquetList.map((bouquet, index) => {
                 return (
                   <Box
                     key={index}
-                    sx={{ display: "flex", width: "100%", height: "100%" }}
+                    sx={{
+                      display: "flex",
+                      width: "100%",
+                      height: "100%",
+                      margin: "1%",
+                    }}
                   >
                     <img
                       src={bouquet.bouquetImage}
                       alt="꽃다발"
-                      width={"90%"}
-                      height={"150%"}
+                      width={"100%"}
+                      height={"100%"}
                     ></img>
                   </Box>
                 );
               })}
-            </>
+            </Box>
           )}
         </>
       )}
