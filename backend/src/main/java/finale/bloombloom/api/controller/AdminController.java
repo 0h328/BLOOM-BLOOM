@@ -24,7 +24,7 @@ public class AdminController {
      *  작성자 : 박건우
      */
     @GetMapping
-    ResponseEntity<Result> findAllStore(Authentication authentication) {
+    ResponseEntity<Result> findAllStore() {
         List<StoreListResponse> stores = adminService.findAllStore();
 
         return ResponseEntity.status(200).body(Result.builder().data(stores).status(200).message("업장 리스트 조회에 성공하였습니다.").build());

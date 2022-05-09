@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import finale.bloombloom.db.entity.User;
@@ -22,9 +23,14 @@ public class BloomUserDetails implements UserDetails {
     boolean enabled = false;
     List<GrantedAuthority> roles = new ArrayList<>();
 
+    //authentication을 만들때 권한 부여 추가
     public BloomUserDetails(User user) {
         super();
         this.user = user;
+        if (user.getUserRole().equals("ROLE_USER"))
+            roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+        else
+            roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     public User getUser() {
