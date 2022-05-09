@@ -5,6 +5,9 @@ interface MakingFlowerImageProps {
   makingFlowerImg: string;
 }
 
+
+
+
 function MakingFlowerImage({ makingFlowerImg }: MakingFlowerImageProps) {
 
 
