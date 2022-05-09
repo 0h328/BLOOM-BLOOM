@@ -118,24 +118,24 @@ function BouquetDetailModal({
             sx={{
               position: "absolute",
               width: "90%",
-              height: "75%",
+              height: "80%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "15%",
+              top: "10%",
               left: "4%",
             }}
           >
             <CloseIcon
-              sx={{ position: "absolute", top: "20px", left: "90%", color: "" }}
+              sx={{ position: "absolute", top: "2%", left: "90%", color: "" }}
               onClick={closeBouquetDetailModal}
             />
             <Box sx={{ position: "absolute", top: "8%", left: "10%" }}>
               <img
                 src={bouquet.bouquetImage}
                 alt="꽃다발"
-                width={315}
-                height={290}
+                width={"100%"}
+                height={"100%"}
               ></img>
             </Box>
             <Box
@@ -153,7 +153,7 @@ function BouquetDetailModal({
             >
               <FlowerInfoList flowerInfoList={flowerinfoList} />
             </Box>
-            <Box sx={{ position: "absolute", top: "90%", left: "15%" }}>
+            <Box sx={{ position: "absolute", top: "91%", left: "15%" }}>
               <BouquetDetailModalBtn handleBtn={handleBtn} />
             </Box>
           </Box>

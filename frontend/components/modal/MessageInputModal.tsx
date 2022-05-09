@@ -63,6 +63,8 @@ function MessageInputModal({
               zIndex: 1300,
               borderRadius: "10px",
               top: "20%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <Typography
@@ -71,8 +73,7 @@ function MessageInputModal({
                 fontSize: "15px",
                 fontFamily: "JuliusSansOne",
                 fontWeight: "bold",
-                top: "20px",
-                left: "20%",
+                top: "3%",
               }}
             >
               메세지 내용을 입력해주세요
@@ -89,40 +90,45 @@ function MessageInputModal({
             />
             <Box
               sx={{
-                position: "absolute",
-                width: "150px",
-                height: "200px",
-                top: "62px",
-                left: "64%",
+                width: "100%",
+                height: "50%",
+                top: "15%",
+                position: "relative",
+                display: "flex",
+                margin: "0rem 0.5rem 0rem 0.5rem",
               }}
             >
-              <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+              <TextareaAutosize
+                aria-label="minimum height"
+                id="content"
+                value={content}
+                minRows={3}
+                maxRows={10}
+                placeholder="메세지 내용을 입력해주세요"
+                style={{
+                  fontSize: "1rem",
+                  fontFamily: "JuliusSansOne",
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: "#FFFAFA",
+                  border: "1px solid rgba(109, 107, 107, 0.4)",
+                  resize: "none",
+                  // marginBottom: "-1rem",
+                  // marginLeft: "0.6rem",
+                  padding: "1rem",
+                  borderRadius: "10px",
+                }}
+                onChange={(event) => handleInput(event)}
+              />
+              <Box
+                sx={{
+                  width: "50%",
+                  height: "100%",
+                }}
+              >
+                <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+              </Box>
             </Box>
-            <TextareaAutosize
-              aria-label="minimum height"
-              id="content"
-              value={content}
-              minRows={3}
-              maxRows={10}
-              placeholder="메세지 내용을 입력해주세요"
-              style={{
-                position: "absolute",
-                top: "60px",
-                left: "0%",
-                fontSize: "1rem",
-                fontFamily: "JuliusSansOne",
-                width: "254px",
-                height: "185px",
-                backgroundColor: "#FFFAFA",
-                border: "1px solid rgba(109, 107, 107, 0.4)",
-                resize: "none",
-                marginBottom: "-1rem",
-                marginLeft: "0.6rem",
-                padding: "1rem",
-                borderRadius: "10px",
-              }}
-              onChange={(event) => handleInput(event)}
-            />
             <Typography
               sx={{
                 position: "absolute",
