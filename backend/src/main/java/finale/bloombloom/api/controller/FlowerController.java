@@ -8,6 +8,7 @@ import finale.bloombloom.api.service.PresentService;
 import finale.bloombloom.common.auth.BloomUserDetails;
 import finale.bloombloom.common.model.response.Result;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -163,6 +164,21 @@ public class FlowerController {
         Map<String, Long> response = new HashMap<>();
         response.put("bouquetSeq", bouquetSeq);
         return ResponseEntity.ok(Result.builder().data(response).message("꽃다발 삭제에 성공했습니다.").build());
+    }
+
+    /**
+     * 기능: 최근 제작/주문한 꽃다발 조회 (3개)
+     * 작성자: 문준호
+     */
+    @GetMapping("/recent")
+    public ResponseEntity<Result> findRecentBouquet(Authentication authentication) {
+        if (authentication == null)
+            return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
+
+        Long userSeq = getUserSeq(authentication);
+
+        RecentBouquetResponse response = flowerService.findRecentBouquet(userSeq, PageRequest.of(0, 3));
+        return ResponseEntity.ok(Result.builder().data(response).message("최근 제작 및 주문한 꽃다발 조회에 성공했습니다.").build());
     }
 
 
