@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -109,9 +110,21 @@ public class OrderServieImpl implements OrderService {
                 "FROM store as st \n" +
                 "WHERE MBRContains(ST_LINESTRINGFROMTEXT(" + String.format("'LINESTRING(%f %f, %f %f)')", x1, y1, x2, y2) + ",st.store_loc)"
         );
-        List<StoreLocationResponse> st = query.getResultList();
+        List<Object[]> list = query.getResultList();
 
-        return st;
+        return list.stream().map(item->new StoreLocationResponse(
+                ((BigInteger)item[0]).longValue(),
+                (String)item[1],
+                (String)item[2],
+                (String)item[3],
+                (String)item[4],
+                (Double)item[5],
+                (Double)item[6],
+                (String)item[7],
+                (String)item[8],
+                (String)item[9],
+                (String)item[10]
+                )).collect(Collectors.toList());
     }
 
 
