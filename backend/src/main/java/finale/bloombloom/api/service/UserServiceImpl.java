@@ -2,6 +2,7 @@ package finale.bloombloom.api.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import finale.bloombloom.common.model.Role;
 import finale.bloombloom.db.entity.User;
 import finale.bloombloom.db.repository.UserRepository;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .userId(String.valueOf(profile.get("userId")))
                 .userName(profile.get("nickname").toString())
+                .userRole(Role.ROLE_USER)
                 .build();
         return userRepository.save(user);
     }
