@@ -125,9 +125,7 @@ function Move() {
                   backgroundColor: "black",
                   margin: "10px",
                 }}
-              >
-                <img src={item}></img>
-              </Box>
+              ></Box>
             ))}
           </Box>
         </Box>
