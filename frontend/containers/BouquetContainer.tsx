@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { 
   Button,
   ToggleButton,
@@ -119,13 +118,12 @@ function BouquetContainer(props: { src: any; }) {
             zIndex: "mobile stepper",
           }}
         >
-          <Image
+          <img
             src={wrapInfo.wrapBackImage}
             alt="포장지 뒷 부분"
-            width={300}
-            height={300}
+            style={{ width: "300px", height: "300px" }}
             onError={handleError}
-          ></Image>
+          ></img>
         </Box>
         <Box 
           sx={{ 
@@ -134,27 +132,25 @@ function BouquetContainer(props: { src: any; }) {
             zIndex: "snackbar",
           }}
         >
-          <Image
+          <img
             src={wrapInfo.wrapFrontImage}
             alt="포장지 앞 부분"
-            width={300}
-            height={300}
+            style={{ width: "300px", height: "300px" }}
             onError={handleError}
-          ></Image>
+          ></img>
         </Box>
         <Box
           sx={{ 
             position: "absolute", 
-            top: "182px",
+            top: "180px",
             zIndex: "tooltip" 
           }}
         >
-          <Image
+          <img
             src={decoInfo.decoImage}
             alt="리본"
-            width={100}
-            height={100}
-          ></Image>
+            style={{ width:"100px", height: "100px" }}
+          ></img>
         </Box>
         <Box
           sx={{ 
@@ -163,12 +159,11 @@ function BouquetContainer(props: { src: any; }) {
             zIndex: "drawer",
           }}
         >
-          <Image
+          <img
             src={flowerInfo.flowerImage}
             alt="부속꽃"
-            width={200}
-            height={200}
-          ></Image>
+            style={{ width:"200px", height: "200px" }}
+          ></img>
         </Box>
       </Box>     
       {/* 선택한 포장지를 확인할 수 있는 곳 */}

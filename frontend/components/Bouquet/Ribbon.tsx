@@ -3,7 +3,6 @@ import {
   Box, 
   Grid,
 } from '@mui/material';
-import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { decoState } from '../../states/states';
 
@@ -57,15 +56,14 @@ function Ribbon({ decoList }: decoProps) {
               key={index}
               sx={{ "&:hover": { cursor: "pointer" } }}
             >
-              <Image
+              <img
                 src={deco.decoImage}
                 alt="포장지"
-                width={80}
-                height={80}
+                style={{ width: "80px", height: "80px"}}
                 onClick={(event) => {
                   clickHandler(deco, event);
                 }}
-              ></Image>
+              ></img>
             </Grid>
           );
         })}
