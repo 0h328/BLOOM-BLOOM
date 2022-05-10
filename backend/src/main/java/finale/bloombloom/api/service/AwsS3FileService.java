@@ -33,6 +33,19 @@ public class AwsS3FileService implements FileService {
         if (fileFolder == FileFolder.BOUQUET_FOLDER) {
             folder = s3Component.getBouquetFolderName();
         }
+        if (fileFolder == FileFolder.MAIN_FLOWER_FOLDER) {
+            folder = s3Component.getMainFlowerFolderName();
+        }
+        if (fileFolder == FileFolder.SUB_FLOWER_FOLDER) {
+            folder = s3Component.getSubFlowerFolderName();
+        }
+        if (fileFolder == FileFolder.WRAP_FOLDER) {
+            folder = s3Component.getWrapFolderName();
+        }
+        if (fileFolder == FileFolder.DECO_FOLDER) {
+            folder = s3Component.getDecoFolderName();
+        }
+
         return folder;
     }
 }

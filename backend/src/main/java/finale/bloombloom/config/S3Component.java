@@ -15,4 +15,16 @@ public class S3Component {
 
     @Value("${cloud.aws.s3.folder.bouquet}")
     private String bouquetFolderName;
+
+    @Value("mainFlower/")
+    private String mainFlowerFolderName;
+
+    @Value("subFlower/")
+    private String subFlowerFolderName;
+
+    @Value("wrap/")
+    private String wrapFolderName;
+
+    @Value("deco/")
+    private String decoFolderName;
 }

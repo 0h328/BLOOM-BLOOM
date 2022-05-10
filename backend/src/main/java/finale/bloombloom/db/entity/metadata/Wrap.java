@@ -20,6 +20,7 @@ public class Wrap {
     private Long wrapSeq;
 
     private String wrapImage;
-    private String wrapType;
+    private String wrapFrontImage;
+    private String wrapBackImage;
     private String wrapColor;
 }
