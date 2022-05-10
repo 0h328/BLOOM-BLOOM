@@ -52,12 +52,12 @@ function FlowerObject({
       <Box
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
-        <Image
+        <img
           src={flower.flowerImage}
           alt="flower"
           width="80px"
           height="80px"
-        ></Image>
+        ></img>
       </Box>
       <Box
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}

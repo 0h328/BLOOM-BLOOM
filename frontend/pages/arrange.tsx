@@ -35,7 +35,6 @@ function Arrange() {
       <Box sx={{ position: "absolute", top: "2%" }}>
         <Header page="main"></Header>
       </Box>
-      <FlowerArrangeText></FlowerArrangeText>
       <Box
         sx={{
           position: "absolute",

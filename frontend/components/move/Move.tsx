@@ -32,39 +32,103 @@ function Move({ finish }: moveProps) {
       rotate: 0,
     },
   ]);
-  const [cubes, setCubes] = useState([]);
-  const handleScaleStart = (attr) => {
-    console.log(attr);
-    const { set, dragStart } = attr;
-    const frame = windows[0];
-    set(frame.scale);
-
-    dragStart && dragStart.set(frame.translate);
+  const handleScaleStart = (e) => {
+    console.log("3");
+    const target = e.target;
+    if (!frameMap.has(target)) {
+      frameMap.set(target, {
+        translate: [0, 0],
+        scale: [1, 1],
+        rotate: 0,
+      });
+    }
+    const frame = frameMap.get(target);
+    e.set(frame.scale);
+    e.dragStart && e.dragStart.set(frame.translate);
   };
   const handleScale = (attr) => {
     const { target, scale, drag } = attr;
-    const frame = windows[0];
-
+    const frame = frameMap.get(target);
     frame.scale = scale;
     frame.translate = drag.beforeTranslate;
     target.style.transform =
       `translate(${frame.translate[0]}px, ${frame.translate[1]}px) ` +
       `rotate(${frame.rotate}deg)` +
-      `scale(${scale[0]}, ${scale[1]})`;
+      `scale(${frame.scale[0]}, ${frame.scale[1]})`;
   };
-  const handleRotateStart = (attr) => {
-    const { set } = attr;
-    const frame = windows[0];
-    set(frame.rotate);
+  const handleRotateStart = (e) => {
+    console.log("1");
+    // const frame = windows[0];
+    if (!frameMap.has(target)) {
+      frameMap.set(target, {
+        translate: [0, 0],
+        scale: [1, 1],
+        rotate: 0,
+      });
+    }
+    const frame = frameMap.get(target);
+    e.set(frame.rotate);
   };
-  const handleRotate = (attr) => {
-    const { target, beforeRotate } = attr;
-    const frame = windows[0];
+  const handleRotate = (e) => {
+    const { target, beforeRotate } = e;
+    const frame = frameMap.get(target);
     frame.rotate = beforeRotate;
     target.style.transform =
       `translate(${frame.translate[0]}px, ${frame.translate[1]}px) ` +
       `rotate(${frame.rotate}deg)` +
       `scale(${frame.scale[0]}, ${frame.scale[1]})`;
+  };
+  const handleDragStart = (e) => {
+    console.log("1");
+    const target = e.target;
+    if (!frameMap.has(target)) {
+      frameMap.set(target, {
+        translate: [0, 0],
+        scale: [1, 1],
+        rotate: 0,
+      });
+    }
+    const frame = frameMap.get(target);
+
+    e.set(frame.translate);
+  };
+  const handleDrag = (e) => {
+    console.log("2");
+    const target = e.target;
+    const frame = frameMap.get(target);
+    console.log("2", frame);
+    frame.translate = e.beforeTranslate;
+    target.style.transform =
+      `translate(${frame.translate[0]}px, ${frame.translate[1]}px) ` +
+      `rotate(${frame.rotate}deg)` +
+      `scale(${frame.scale[0]}, ${frame.scale[1]})`;
+  };
+  const handleDragGroupStart = (e) => {
+    e.events.forEach((ev) => {
+      const target = ev.target;
+      if (!frameMap.has(target)) {
+        frameMap.set(target, {
+          translate: [0, 0],
+          scale: [1, 1],
+          rotate: 0,
+        });
+      }
+      const frame = frameMap.get(target);
+
+      ev.set(frame.translate);
+    });
+  };
+  const handleClickGroup = (e) => {
+    selectoRef.current.clickTarget(e.inputEvent, e.inputTarget);
+  };
+  const handleDragGroup = (e) => {
+    e.events.forEach((ev) => {
+      const target = ev.target;
+      const frame = frameMap.get(target);
+
+      frame.translate = ev.beforeTranslate;
+      target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
+    });
   };
   useEffect(() => {
     setOnLoad(true);
@@ -86,51 +150,11 @@ function Move({ finish }: moveProps) {
             onRotate={handleRotate}
             onRotateStart={handleRotateStart}
             onScaleStart={handleScaleStart}
-            onClickGroup={(e) => {
-              selectoRef.current.clickTarget(e.inputEvent, e.inputTarget);
-            }}
-            onDragStart={(e) => {
-              const target = e.target;
-
-              if (!frameMap.has(target)) {
-                frameMap.set(target, {
-                  translate: [0, 0],
-                });
-              }
-              const frame = frameMap.get(target);
-
-              e.set(frame.translate);
-            }}
-            onDrag={(e) => {
-              const target = e.target;
-              const frame = frameMap.get(target);
-
-              frame.translate = e.beforeTranslate;
-              target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
-            }}
-            onDragGroupStart={(e) => {
-              e.events.forEach((ev) => {
-                const target = ev.target;
-
-                if (!frameMap.has(target)) {
-                  frameMap.set(target, {
-                    translate: [0, 0],
-                  });
-                }
-                const frame = frameMap.get(target);
-
-                ev.set(frame.translate);
-              });
-            }}
-            onDragGroup={(e) => {
-              e.events.forEach((ev) => {
-                const target = ev.target;
-                const frame = frameMap.get(target);
-
-                frame.translate = ev.beforeTranslate;
-                target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
-              });
-            }}
+            onClickGroup={handleClickGroup}
+            onDragStart={handleDragStart}
+            onDrag={handleDrag}
+            onDragGroupStart={handleDragGroupStart}
+            onDragGroup={handleDragGroup}
             origin={false}
             scalable={true}
             keepRatio={false}
@@ -152,6 +176,7 @@ function Move({ finish }: moveProps) {
             toggleContinueSelect={["shift"]}
             ratio={0}
             onDragStart={(e) => {
+              console.log("0");
               const moveable = moveableRef.current;
               const target = e.inputEvent.target;
               if (
@@ -164,8 +189,10 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
+              console.log("0-1");
             }}
             onSelectEnd={(e) => {
+              console.log("0-2");
               const moveable = moveableRef.current;
               if (e.isDragStart) {
                 e.inputEvent.preventDefault();
@@ -210,7 +237,6 @@ function Move({ finish }: moveProps) {
               ))}
             </Grid>
           </Box>
-          {/* <Button onClick={handleScaleStart}>scale</Button> */}
         </Box>
       ) : null}
     </>
