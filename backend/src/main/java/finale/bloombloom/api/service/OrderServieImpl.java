@@ -5,6 +5,7 @@ import finale.bloombloom.api.request.OrderBouquetRequest;
 import finale.bloombloom.api.request.StoreLocationRequest;
 import finale.bloombloom.api.response.OrderDetailResponse;
 import finale.bloombloom.api.response.OrderListResponse;
+import finale.bloombloom.api.response.OrderResponse;
 import finale.bloombloom.api.response.StoreLocationResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
 import finale.bloombloom.db.entity.*;
@@ -91,6 +92,19 @@ public class OrderServieImpl implements OrderService {
         Store store = order.getStore();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
         return OrderDetailResponse.from(bouquet, store, flowerInfos);
+    }
+
+    /**
+     * 기능 : 주문 내역 상세조회 (업체)
+     * 작성자 : 문준호
+     */
+    @Override
+    public OrderResponse findOrderDetailByUUID(User user, String uuid) {
+        Order order = orderRepository.findByOrderUri(uuid)
+                .orElseThrow(() -> new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다."));
+        Bouquet bouquet = order.getBouquet();
+        List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
+        return OrderResponse.from(user, bouquet, flowerInfos, order.getOrderDesc());
     }
 
     /**
