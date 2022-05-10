@@ -3,11 +3,22 @@ import { Box, Button, Typography } from "@mui/material";
 import Header from "../components/common/Header";
 import Move from "../components/move/Move";
 import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
+import Test from "../components/move/Test";
 function Arrange() {
   const handleFinish = () => {
     setFinish(true);
   };
   const [finish, setFinish] = useState<boolean>(false);
+  const [flowers, setFlowers] = useState([
+    "/img/carnationPink.png",
+    "/img/carnationOrange.png",
+    "/img/hydrangeaPurple.png",
+    "/img/hydrangeaBlue.png",
+    "/img/peonyWhite.png",
+    "/img/lisianthusPurple.png",
+    "/img/lisianthusPink.png",
+    "/img/ranunculusPink.png",
+  ]);
   return (
     <Box
       sx={{
@@ -49,7 +60,7 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "80%",
+              width: "75%",
               height: "50%",
             }}
           >
@@ -65,7 +76,7 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "80%",
+              width: "75%",
               height: "50%",
             }}
           >
@@ -81,7 +92,7 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "80%",
+              width: "75%",
               height: "50%",
             }}
           >

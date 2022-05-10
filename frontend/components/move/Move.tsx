@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 import Selecto from "react-selecto";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Button } from "@mui/material";
 interface moveProps {
   finish: boolean;
 }
 function Move({ finish }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
   const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
+  const [target, setTarget] = useState([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
   const selectoRef = useRef(null);
@@ -33,6 +34,7 @@ function Move({ finish }: moveProps) {
   ]);
   const [cubes, setCubes] = useState([]);
   const handleScaleStart = (attr) => {
+    console.log(attr);
     const { set, dragStart } = attr;
     const frame = windows[0];
     set(frame.scale);
@@ -66,16 +68,11 @@ function Move({ finish }: moveProps) {
   };
   useEffect(() => {
     setOnLoad(true);
-    for (let i = 0; i < 30; ++i) {
-      cubes.push(i);
-    }
     setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
-    const arr = [];
-    for (let i = 0; i < 30; ++i) {
-      arr.push(i);
-    }
-    setCubes(arr);
   }, []);
+  useEffect(() => {
+    console.log(target);
+  }, [target]);
   return (
     <>
       {onLoad ? (
@@ -84,7 +81,7 @@ function Move({ finish }: moveProps) {
             ref={moveableRef}
             draggable={true}
             trigger={trigger}
-            target={targets}
+            target={target}
             onScale={handleScale}
             onRotate={handleRotate}
             onRotateStart={handleRotateStart}
@@ -134,6 +131,16 @@ function Move({ finish }: moveProps) {
                 target.style.transform = `translate(${frame.translate[0]}px, ${frame.translate[1]}px)`;
               });
             }}
+            origin={false}
+            scalable={true}
+            keepRatio={false}
+            snappable={true}
+            throttleScale={0}
+            snapThreshold={5}
+            snapCenter={true}
+            rotatable={true}
+            rotationPosition="top"
+            elementGuidelines={elementGuidelines}
           ></Moveable>
           <Selecto
             ref={selectoRef}
@@ -156,6 +163,7 @@ function Move({ finish }: moveProps) {
             }}
             onSelect={(e) => {
               setTargets(e.selected);
+              setTarget(e.selected);
             }}
             onSelectEnd={(e) => {
               const moveable = moveableRef.current;
@@ -175,6 +183,7 @@ function Move({ finish }: moveProps) {
             <Grid container sx={{ width: "100%" }}>
               {flowers.map((item, index) => (
                 <Grid
+                  className="element"
                   item
                   xs={3}
                   key={index}
@@ -201,6 +210,7 @@ function Move({ finish }: moveProps) {
               ))}
             </Grid>
           </Box>
+          {/* <Button onClick={handleScaleStart}>scale</Button> */}
         </Box>
       ) : null}
     </>
