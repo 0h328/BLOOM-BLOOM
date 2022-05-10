@@ -3,15 +3,13 @@ package finale.bloombloom.api.controller;
 
 import finale.bloombloom.api.request.OrderBouquetRequest;
 import finale.bloombloom.api.request.StoreLocationRequest;
-import finale.bloombloom.api.response.OrderDetailResponse;
-import finale.bloombloom.api.response.OrderListResponse;
-import finale.bloombloom.api.response.StoreLocationResponse;
-import finale.bloombloom.api.response.UuidResponse;
+import finale.bloombloom.api.response.*;
 import finale.bloombloom.api.service.OrderService;
 import finale.bloombloom.common.auth.BloomUserDetails;
 import finale.bloombloom.common.model.response.Result;
 import finale.bloombloom.db.entity.Order;
 import finale.bloombloom.db.entity.Store;
+import finale.bloombloom.db.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.locationtech.jts.geom.Point;
 import org.springframework.http.ResponseEntity;
@@ -93,6 +91,21 @@ public class OrderController {
         List<StoreLocationResponse> store = orderService.findStore(storeLocationRequest);
 
         return ResponseEntity.status(200).body(Result.builder().data(store).message("근처 꽃집 조회에 성공하였습니다.").build());
+    }
+
+    /**
+     * 기능: 주문 내역 상세 조회 (업체)
+     * 작성자: 문준호
+     */
+    @GetMapping("/store/{uuid}")
+    public ResponseEntity<Result> findOrderDetailByUUID(Authentication authentication, @PathVariable String uuid) {
+        if (authentication == null)
+            return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
+
+        User user = ((BloomUserDetails) authentication.getDetails()).getUser();
+
+        OrderResponse response = orderService.findOrderDetailByUUID(user, uuid);
+        return ResponseEntity.ok(Result.builder().data(response).message("주문내역 상세 조회(업체)에 성공하였습니다.").build());
     }
 
 }
