@@ -14,7 +14,11 @@ import Wrapper from '../components/Bouquet/Wrapper';
 import Ribbon from '../components/Bouquet/Ribbon';
 import Stalk from '../components/Bouquet/Stalk';
 import { useRecoilState } from "recoil";
-import { wrapState, decoState, flowerState } from "../states/states";
+import { 
+  wrapState,
+  decoState, 
+  flowerState 
+} from "../states/states";
 
 
 function BouquetContainer(props: { src: any; }) {
@@ -34,18 +38,49 @@ function BouquetContainer(props: { src: any; }) {
   }
 
   const wrapList = [
-    { wrapSeq: 1, wrapImage: "/img/wrapOrange.png" },
-    { wrapSeq: 2, wrapImage: "/img/wrapIvory.png" },
-    { wrapSeq: 3, wrapImage: "/img/wrapNavy.png" },
-    { wrapSeq: 4, wrapImage: "/img/wrapLightgreen.png" },
-    { wrapSeq: 5, wrapImage: "/img/wrapPink.png" },
-    { wrapSeq: 6, wrapImage: "/img/wrapPurple.png" },
-    { wrapSeq: 7, wrapImage: "/img/wrapSkyblue.png" },
-    { wrapSeq: 8, wrapImage: "/img/wrapYellow.png" },
+    { 
+      wrapSeq: 1, 
+      wrapImage: "/img/wrapOrange.png", 
+      wrapBackImage: "/img/wrapBackOrange.png", 
+      wrapFrontImage: "/img/wrapFrontOrange.png" 
+    },
+    { 
+      wrapSeq: 2, 
+      wrapImage: "/img/wrapIvory.png", 
+      wrapBackImage: "/img/wrapBackIvory.png", 
+      wrapFrontImage: "/img/wrapFrontIvory.png" 
+    },
+    { wrapSeq: 3, 
+      wrapImage: "/img/wrapNavy.png", 
+      wrapBackImage: "/img/wrapBackNavy.png", 
+      wrapFrontImage: "/img/wrapFrontNavy.png" 
+    },
+    { wrapSeq: 4, 
+      wrapImage: "/img/wrapLightgreen.png", 
+      wrapBackImage: "/img/wrapBackLightgreen.png", 
+      wrapFrontImage: "/img/wrapFrontLightgreen.png" 
+    },
+    { wrapSeq: 5, 
+      wrapImage: "/img/wrapPink.png", 
+      wrapBackImage: "/img/wrapBackPink.png", 
+      wrapFrontImage: "/img/wrapFrontPink.png" 
+    },
+    { wrapSeq: 6, 
+      wrapImage: "/img/wrapPurple.png", 
+      wrapBackImage: "/img/wrapBackPurple.png", 
+      wrapFrontImage: "/img/wrapFrontPurple.png" 
+    },
+    { wrapSeq: 7, 
+      wrapImage: "/img/wrapSkyblue.png", 
+      wrapBackImage: "/img/wrapBackSkyblue.png", 
+      wrapFrontImage: "/img/wrapFrontSkyblue.png" 
+    },
+    { wrapSeq: 8, 
+      wrapImage: "/img/wrapYellow.png", 
+      wrapBackImage: "/img/wrapBackYellow.png",
+      wrapFrontImage: "/img/wrapFrontYellow.png" 
+    },
   ]
-  // 포장지 뒤, 앞 두개 더 불러오기
-  // z-index
-  // 크기는 그대로
 
   const flowerList = [
     { flowerSeq: 1, flowerImage: "/img/flower1.png" },
@@ -64,10 +99,10 @@ function BouquetContainer(props: { src: any; }) {
     { decoSeq: 8, decoImage: "/img/ribbonMixYellow.png" },
   ]
 
+
   useEffect(() => {
     console.log(wrapInfo)
   }, [wrapInfo])
-
 
   return (    
     <Box sx={{ ...BouquetPage }}>
@@ -81,20 +116,37 @@ function BouquetContainer(props: { src: any; }) {
           sx={{ 
             position: "absolute", 
             top: "8%", 
+            zIndex: "mobile stepper",
           }}
         >
           <Image
-            src={wrapInfo.wrapImage}
-            alt="포장지"
-            width={330}
-            height={330}
+            src={wrapInfo.wrapBackImage}
+            alt="포장지 뒷 부분"
+            width={300}
+            height={300}
+            onError={handleError}
+          ></Image>
+        </Box>
+        <Box 
+          sx={{ 
+            position: "absolute", 
+            top: "8%",
+            zIndex: "snackbar",
+          }}
+        >
+          <Image
+            src={wrapInfo.wrapFrontImage}
+            alt="포장지 앞 부분"
+            width={300}
+            height={300}
             onError={handleError}
           ></Image>
         </Box>
         <Box
           sx={{ 
             position: "absolute", 
-            top: "205px", 
+            top: "182px",
+            zIndex: "tooltip" 
           }}
         >
           <Image
@@ -108,6 +160,7 @@ function BouquetContainer(props: { src: any; }) {
           sx={{ 
             position: "absolute", 
             top: "50px", 
+            zIndex: "drawer",
           }}
         >
           <Image
@@ -161,7 +214,7 @@ function BouquetContainer(props: { src: any; }) {
               border: "1px solid #FFE0E0"
             }} 
           >
-            꽃줄기
+            부속꽃
           </ToggleButton>
         </ToggleButtonGroup>
         {/* 포장지, 리본, 꽃줄기 버튼 */}
@@ -195,14 +248,13 @@ function BouquetContainer(props: { src: any; }) {
 
 export const BouquetPage = {
   position: "relative",
-  top: "100px"
+  top: "100px",
 };
 
 export const BouquetLayout = {
   position: "relative",
   display: "flex",
   justifyContent: "center",
-
 };
 
 export default BouquetContainer;

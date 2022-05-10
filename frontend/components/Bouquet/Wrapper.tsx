@@ -11,6 +11,8 @@ import { wrapState } from '../../states/states';
 interface wrap {
   wrapSeq: number;
   wrapImage: string;
+  wrapBackImage: string;
+  wrapFrontImage: string;
 }
 
 interface wrapProps {
@@ -22,6 +24,8 @@ function Wrapper({ wrapList }: wrapProps) {
   const handleWrapInfo = (wrap: {
     wrapSeq: number;
     wrapImage: string;
+    wrapBackImage: string;
+    wrapFrontImage: string;
   }) => {
     setWrapInfo({
       ...wrap,
@@ -31,15 +35,13 @@ function Wrapper({ wrapList }: wrapProps) {
   const clickHandler = (
     wrap : {
       wrapSeq: number;
-      wrapImage: string;
+      wrapBackImage: string;
+      wrapFrontImage: string;
     },
     event
   ) => {
     handleWrapInfo(wrap);
   };  
-
-
-
 
   return (
     <Box sx={{ ...style }}>
