@@ -21,3 +21,7 @@ orderApi.interceptors.request.use(
 export const getOrderList = async () => {
   return await orderApi.get("");
 };
+
+export const getOrderInfo = async (code: string) => {
+  return await orderApi.get(`/store/${code}`);
+};

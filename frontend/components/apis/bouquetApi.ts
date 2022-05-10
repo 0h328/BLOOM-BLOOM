@@ -37,3 +37,7 @@ export const savePresent = async (body: any) => {
 export const getRecentBouquetList = async () => {
   return await bouquetApi.get("/recent");
 };
+
+export const getFlower = async () => {
+  return await bouquetApi.get("/main");
+};

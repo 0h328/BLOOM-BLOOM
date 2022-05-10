@@ -4,11 +4,11 @@ import Header from "../components/common/Header";
 import Move from "../components/move/Move";
 import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
+import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 function Arrange() {
-  const handleFinish = () => {
-    setFinish(true);
-  };
   const [finish, setFinish] = useState<boolean>(false);
+  const [bouquetImage, setBouquetImage] = useState<string>();
+  const [checkModal, setCheckModal] = useState<boolean>();
   const [flowers, setFlowers] = useState([
     "/img/carnationPink.png",
     "/img/carnationOrange.png",
@@ -19,6 +19,10 @@ function Arrange() {
     "/img/lisianthusPink.png",
     "/img/ranunculusPink.png",
   ]);
+  const handleCheckModal = (state: boolean) => {
+    setFinish(state);
+    setCheckModal(state);
+  };
   return (
     <Box
       sx={{
@@ -35,6 +39,11 @@ function Arrange() {
       <Box sx={{ position: "absolute", top: "2%" }}>
         <Header page="main"></Header>
       </Box>
+      <BouquetCheckModal
+        bouquetImage={bouquetImage}
+        handleCheckModal={handleCheckModal}
+        checkModal={checkModal}
+      ></BouquetCheckModal>
       <Box
         sx={{
           position: "absolute",
@@ -132,7 +141,9 @@ function Arrange() {
             height: 45,
             top: "75%",
           }}
-          onClick={handleFinish}
+          onClick={(e) => {
+            handleCheckModal(true);
+          }}
         >
           <Typography>완료</Typography>
         </Button>
