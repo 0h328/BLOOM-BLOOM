@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
 import KakaoBtn from "../button/KakaoBtn";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { presentBouquetState } from "../../states/states";
+import { savePresent } from "../apis/bouquetApi";
+import KakaoMessage from "../kakaoApi/KakaoMessage";
 
 interface meesageModalProps {
   openMessageModal?: () => void;
@@ -18,9 +22,24 @@ function MessageInputModal({
   share,
 }: meesageModalProps) {
   const router = useRouter();
-  const [content, setContent] = useState<string>();
-  const handleInput = () => {};
-  const handleShare = () => {};
+  const [content, setContent] = useState<string>("");
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
+  const [uuid, setUuid] = useState<string>("");
+  const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = event.target.value;
+    setContent(`${text}`);
+  };
+  const handleShare = async () => {
+    const body = {
+      bouquetSeq: presentBouquet,
+      presentDesc: content,
+    };
+
+    const response = await savePresent(body);
+    setUuid(response.data.data.uuid);
+    console.log(response);
+  };
   const handleRoute = () => {
     router.back();
   };
@@ -41,11 +60,13 @@ function MessageInputModal({
             sx={{
               position: "absolute",
               width: "100%",
-              height: "40%",
+              height: "45%",
               backgroundColor: "#FFE0E0",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "25%",
+              top: "20%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <Typography
@@ -54,8 +75,7 @@ function MessageInputModal({
                 fontSize: "15px",
                 fontFamily: "JuliusSansOne",
                 fontWeight: "bold",
-                top: "20px",
-                left: "20%",
+                top: "3%",
               }}
             >
               메세지 내용을 입력해주세요
@@ -72,47 +92,52 @@ function MessageInputModal({
             />
             <Box
               sx={{
-                position: "absolute",
-                width: "150px",
-                height: "200px",
-                top: "62px",
-                left: "64%",
+                width: "100%",
+                height: "50%",
+                top: "15%",
+                position: "relative",
+                display: "flex",
+                margin: "0rem 0.5rem 0rem 0.5rem",
               }}
             >
-              <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+              <TextareaAutosize
+                aria-label="minimum height"
+                id="content"
+                value={content}
+                minRows={3}
+                maxRows={10}
+                placeholder="메세지 내용을 입력해주세요"
+                style={{
+                  fontSize: "1rem",
+                  fontFamily: "JuliusSansOne",
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: "#FFFAFA",
+                  border: "1px solid rgba(109, 107, 107, 0.4)",
+                  resize: "none",
+                  // marginBottom: "-1rem",
+                  // marginLeft: "0.6rem",
+                  padding: "1rem",
+                  borderRadius: "10px",
+                }}
+                onChange={(event) => handleInput(event)}
+              />
+              <Box
+                sx={{
+                  width: "50%",
+                  height: "100%",
+                }}
+              >
+                <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+              </Box>
             </Box>
-            <TextareaAutosize
-              aria-label="minimum height"
-              id="contents"
-              value={content}
-              minRows={3}
-              maxRows={10}
-              placeholder="메세지 내용을 입력해주세요"
-              style={{
-                position: "absolute",
-                top: "60px",
-                left: "0%",
-                fontSize: "1rem",
-                fontFamily: "JuliusSansOne",
-                width: "254px",
-                height: "185px",
-                backgroundColor: "#FFFAFA",
-                border: "1px solid rgba(109, 107, 107, 0.4)",
-                resize: "none",
-                marginBottom: "-1rem",
-                marginLeft: "0.6rem",
-                padding: "1rem",
-                borderRadius: "10px",
-              }}
-              onChange={handleInput}
-            />
             <Typography
               sx={{
                 position: "absolute",
                 fontSize: "15px",
                 fontWeight: "bold",
                 fontFamily: "JuliusSansOne",
-                top: "260px",
+                top: "70%",
                 left: "15%",
               }}
             >
@@ -125,6 +150,7 @@ function MessageInputModal({
               ></KakaoBtn>
             </Box>
           </Box>
+          <KakaoMessage></KakaoMessage>
         </Box>
       ) : null}
     </>

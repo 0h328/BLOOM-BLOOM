@@ -7,13 +7,13 @@ interface bouquetImgProps {
 }
 function BouquetImg({ bouquetImage }: bouquetImgProps) {
   return (
-    <Image
+    <img
       id="img"
       src={bouquetImage}
       alt="꽃다발"
-      width={360}
-      height={450}
-    ></Image>
+      width={"100%"}
+      height={"100%"}
+    ></img>
   );
 }
 

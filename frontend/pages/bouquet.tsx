@@ -1,12 +1,10 @@
-import React from 'react';
-import BouquetContainer from '../containers/BouquetContainer';
+import React from "react";
+import BouquetContainer from "../containers/BouquetContainer";
 import Header from "../components/common/Header";
 import { Box } from "@mui/material";
 
-
 export default function flowerPage() {
   return (
-
     <Box
       sx={{
         mx: "auto",
