@@ -100,13 +100,7 @@ function BouquetContainer({ src }: containerProps) {
     { decoSeq: 8, decoImage: "/img/ribbonMixYellow.png" },
   ];
 
-  useEffect(() => {
-<<<<<<< HEAD
-    // console.log(wrapInfo);
-=======
->>>>>>> 0cf70231cb48d5f41b3fbad2e0f62b829a975707
-  }, [wrapInfo]);
-
+  useEffect(() => {}, [wrapInfo]);
 
   return (
     <Box sx={{ ...BouquetPage }}>
