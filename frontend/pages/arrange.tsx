@@ -5,6 +5,8 @@ import Move from "../components/move/Move";
 import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
+import html2canvas from "html2canvas";
+
 function Arrange() {
   const [finish, setFinish] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>();
@@ -21,7 +23,22 @@ function Arrange() {
   ]);
   const handleCheckModal = (state: boolean) => {
     setFinish(state);
+    ongotpointercapture = () => {
+      html2canvas(document.getElementById("img"), {
+        backgroundColor: "#FFC0D0",
+      }).then((canvas) => {
+        onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
+      });
+    };
     setCheckModal(state);
+  };
+  const onSave = (uri: string, filename: string) => {
+    let link = document.createElement("a");
+    document.body.appendChild(link);
+    link.href = uri;
+    link.download = filename;
+    link.click();
+    document.body.removeChild(link);
   };
   return (
     <Box
@@ -56,6 +73,7 @@ function Arrange() {
         }}
       >
         <Box
+          id="img"
           sx={{
             position: "absolute",
             width: "100%",
@@ -128,26 +146,26 @@ function Arrange() {
         >
           <Move finish={finish}></Move>
         </Box>
-        <Button
-          variant="contained"
-          size="small"
-          style={{
-            position: "absolute",
-            backgroundColor: "#FFE0E0",
-            color: "#3A1D1D",
-            fontFamily: "JuliusSansOne",
-            borderRadius: "5",
-            width: 280,
-            height: 45,
-            top: "75%",
-          }}
-          onClick={(e) => {
-            handleCheckModal(true);
-          }}
-        >
-          <Typography>완료</Typography>
-        </Button>
       </Box>
+      <Button
+        variant="contained"
+        size="small"
+        style={{
+          position: "absolute",
+          backgroundColor: "#FFE0E0",
+          color: "#3A1D1D",
+          fontFamily: "JuliusSansOne",
+          borderRadius: "5",
+          width: 280,
+          height: 45,
+          top: "85%",
+        }}
+        onClick={(e) => {
+          handleCheckModal(true);
+        }}
+      >
+        <Typography>완료</Typography>
+      </Button>
     </Box>
   );
 }

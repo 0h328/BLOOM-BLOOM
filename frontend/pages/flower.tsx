@@ -30,7 +30,7 @@ function Flower() {
         break;
     }
   };
-  const handleFloweList = async () => {
+  const handleFlowerList = async () => {
     const response = await getFlower();
     console.log(response);
   };
@@ -45,7 +45,7 @@ function Flower() {
     console.log(totalCount);
   }, [totalCount]);
   useEffect(() => {
-    handleFloweList();
+    handleFlowerList();
   }, []);
   console.log(mainFlower);
   return (

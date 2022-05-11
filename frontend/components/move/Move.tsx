@@ -33,7 +33,6 @@ function Move({ finish }: moveProps) {
     },
   ]);
   const handleScaleStart = (e) => {
-    console.log("3");
     const target = e.target;
     if (!frameMap.has(target)) {
       frameMap.set(target, {
@@ -57,7 +56,6 @@ function Move({ finish }: moveProps) {
       `scale(${frame.scale[0]}, ${frame.scale[1]})`;
   };
   const handleRotateStart = (e) => {
-    console.log("1");
     // const frame = windows[0];
     if (!frameMap.has(target)) {
       frameMap.set(target, {
@@ -79,7 +77,6 @@ function Move({ finish }: moveProps) {
       `scale(${frame.scale[0]}, ${frame.scale[1]})`;
   };
   const handleDragStart = (e) => {
-    console.log("1");
     const target = e.target;
     if (!frameMap.has(target)) {
       frameMap.set(target, {
@@ -89,14 +86,11 @@ function Move({ finish }: moveProps) {
       });
     }
     const frame = frameMap.get(target);
-
     e.set(frame.translate);
   };
   const handleDrag = (e) => {
-    console.log("2");
     const target = e.target;
     const frame = frameMap.get(target);
-    console.log("2", frame);
     frame.translate = e.beforeTranslate;
     target.style.transform =
       `translate(${frame.translate[0]}px, ${frame.translate[1]}px) ` +
@@ -114,7 +108,6 @@ function Move({ finish }: moveProps) {
         });
       }
       const frame = frameMap.get(target);
-
       ev.set(frame.translate);
     });
   };
@@ -134,13 +127,11 @@ function Move({ finish }: moveProps) {
     setOnLoad(true);
     setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
   }, []);
-  useEffect(() => {
-    console.log(target);
-  }, [target]);
+  useEffect(() => {}, [target]);
   return (
     <>
       {onLoad ? (
-        <Box className="container" sx={{ width: "100%" }}>
+        <Box className="container" sx={{ width: "100%", height: "100%" }}>
           <Moveable
             ref={moveableRef}
             draggable={true}
@@ -176,7 +167,6 @@ function Move({ finish }: moveProps) {
             toggleContinueSelect={["shift"]}
             ratio={0}
             onDragStart={(e) => {
-              console.log("0");
               const moveable = moveableRef.current;
               const target = e.inputEvent.target;
               if (
@@ -189,10 +179,8 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
-              console.log("0-1");
             }}
             onSelectEnd={(e) => {
-              console.log("0-2");
               const moveable = moveableRef.current;
               if (e.isDragStart) {
                 e.inputEvent.preventDefault();
@@ -205,22 +193,32 @@ function Move({ finish }: moveProps) {
           ></Selecto>
           <Box
             className="elements selecto-area"
-            sx={{ display: "flex", width: "100%" }}
+            sx={{ display: "flex", width: "100%", height: "90%" }}
           >
-            <Grid container sx={{ width: "100%" }}>
+            <Grid
+              container
+              spacing={1}
+              justifyContent="center"
+              alignItems="center"
+              sx={{ width: "100%", height: "100%" }}
+            >
               {flowers.map((item, index) => (
                 <Grid
                   className="element"
                   item
                   xs={3}
                   key={index}
-                  sx={{ display: "flex", justifyContent: "center" }}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    // padding: "2%",
+                  }}
                 >
                   <Box
                     className={finish ? null : "cube target"}
                     sx={{
-                      width: "70px",
-                      height: "70px",
+                      width: "80%",
+                      height: "80%",
                       margin: "5px",
                     }}
                   >
