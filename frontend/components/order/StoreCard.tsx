@@ -6,7 +6,9 @@ import Image from "next/image";
 import React from "react";
 
 
+
 function Storecard({storeInfo}) {
+  console.log(storeInfo)
   return(
     <Box sx={{width:400,height:242,mt:3,backgroundColor: "#FFE0E0",mx:'auto'}}>
       <Box sx={{width:400,height:120,mt:1,mb:1,display: 'flex'}}>
@@ -22,13 +24,13 @@ function Storecard({storeInfo}) {
           </Box>
         </Box>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:2.5, display:'flex', alignItems:'center'}}>
-          <CallIcon sx={{ fontSize: '11px', mr:2 }}></CallIcon>{storeInfo.storeCall}
+          <CallIcon sx={{ fontSize: '11px', mr:2 }}></CallIcon>{storeInfo.storeContact}
         </Typography>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5, display:'flex', alignItems:'center'}}>
           <LocationOnIcon sx={{ fontSize: '11px', mr:2 }}></LocationOnIcon>{storeInfo.storeAddress}
         </Typography>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5}}>
-          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon>{storeInfo.storeDomain}
+          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon><Link href={`https://naver.com/${storeInfo.storeMapId}`}>{storeInfo.storeMapId}</Link>
         </Typography>
       </Box>
       </Box>

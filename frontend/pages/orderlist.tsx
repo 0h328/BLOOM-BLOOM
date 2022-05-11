@@ -1,8 +1,14 @@
 import { Box, Button, Typography } from '@mui/material';
 import OrderlIst from '../components/order/OrderList'
 import Header from "../components/common/Header";
+import {getOrderList} from "../components/apis/order"
+import { useEffect, useState } from 'react';
 
 export default function OrderlistPage() {
+  const [orderInfoList, getOrderInfoList] = useState([])
+  useEffect(() => {
+    const value = getOrderList()
+  },[])
     const OrderinfoList = [
     {
       storeName: "1번 꽃집",

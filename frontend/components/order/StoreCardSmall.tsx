@@ -21,13 +21,13 @@ function StoreCardSmall({storeInfo}) {
           </Box>
         </Box>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:2.5, display:'flex', alignItems:'center'}}>
-          <CallIcon sx={{ fontSize: '11px', mr:2 }}></CallIcon>{storeInfo.storeCall}
+          <CallIcon sx={{ fontSize: '11px', mr:2 }}></CallIcon>{storeInfo.storeContact}
         </Typography>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5, display:'flex', alignItems:'center'}}>
           <LocationOnIcon sx={{ fontSize: '11px', mr:2 }}></LocationOnIcon>{storeInfo.storeAddress}
         </Typography>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5}}>
-          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon>{storeInfo.storeDomain}
+          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon>{storeInfo.storeMapId}
         </Typography>
       </Box>
       </Box>
