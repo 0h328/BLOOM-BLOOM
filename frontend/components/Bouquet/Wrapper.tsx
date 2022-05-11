@@ -3,7 +3,6 @@ import {
   Box, 
   Grid,
 } from '@mui/material';
-import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { wrapState } from '../../states/states';
 
@@ -11,6 +10,8 @@ import { wrapState } from '../../states/states';
 interface wrap {
   wrapSeq: number;
   wrapImage: string;
+  wrapBackImage: string;
+  wrapFrontImage: string;
 }
 
 interface wrapProps {
@@ -22,6 +23,8 @@ function Wrapper({ wrapList }: wrapProps) {
   const handleWrapInfo = (wrap: {
     wrapSeq: number;
     wrapImage: string;
+    wrapBackImage: string;
+    wrapFrontImage: string;
   }) => {
     setWrapInfo({
       ...wrap,
@@ -32,14 +35,13 @@ function Wrapper({ wrapList }: wrapProps) {
     wrap : {
       wrapSeq: number;
       wrapImage: string;
+      wrapBackImage: string;
+      wrapFrontImage: string;
     },
     event
   ) => {
     handleWrapInfo(wrap);
   };  
-
-
-
 
   return (
     <Box sx={{ ...style }}>
@@ -59,15 +61,14 @@ function Wrapper({ wrapList }: wrapProps) {
               key={index}
               sx={{ "&:hover": { cursor: "pointer" } }}
             >
-              <Image
+              <img
                 src={wrap.wrapImage}
                 alt="포장지"
-                width={80}
-                height={80}
+                style={{ width: "80px", height: "80px"}}
                 onClick={(event) => {
                   clickHandler(wrap, event);
                 }}
-              ></Image>
+              ></img>
             </Grid>
           );
         })}
