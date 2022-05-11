@@ -6,6 +6,7 @@ import Image from "next/image";
 import React from "react";
 
 
+
 function Storecard({storeInfo}) {
   return(
     <Box sx={{width:400,height:242,mt:3,backgroundColor: "#FFE0E0",mx:'auto'}}>
@@ -22,17 +23,18 @@ function Storecard({storeInfo}) {
           </Box>
         </Box>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:2.5, display:'flex', alignItems:'center'}}>
-          <CallIcon sx={{ fontSize: '11px', mr:2 }}></CallIcon>{storeInfo.storeCall}
+          <CallIcon sx={{ fontSize: '11px', mr:2 }}></CallIcon>{storeInfo.storeContact}
         </Typography>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5, display:'flex', alignItems:'center'}}>
           <LocationOnIcon sx={{ fontSize: '11px', mr:2 }}></LocationOnIcon>{storeInfo.storeAddress}
         </Typography>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5}}>
-          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon>{storeInfo.storeDomain}
+          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon><Link href={`https://naver.me/${storeInfo.storeMapId}`} target="_blank">{storeInfo.storeMapId}</Link>
         </Typography>
       </Box>
       </Box>
       <Box sx={{width:420,display:'flex'}}>
+        {/* 여기에 이제 받아온 데이터를 넘겨서 옮겨주면 보내주면 될 것 같습니다 */}
         <Link href="/order" sx={{ textDecoration: "none",mx:"auto" }}>
           <Button sx={{width:156,height:36, backgroundColor:'#FFFFFF',color: "#000000",fontFamily: "JuliusSansOne",mt:4}}> 주문하기 </Button>
         </Link>

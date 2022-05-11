@@ -7,8 +7,8 @@ import Header from "../components/common/Header";
 
 
 
+
 function OrderMap() {
-  const store = { storeName: '꽃집 이름', storeCall:'010-0000-0000', storeAddress:'서울특별시 역삼 어디에있어요', storeDomain:'www.naver.com', storeImage: "/test.png" };
  
   return (
   <Box style={{
@@ -20,7 +20,6 @@ function OrderMap() {
     <Box sx={{height:30}}></Box>
     <Header></Header>
     <Map></Map>
-    <StoreCard storeInfo={store}></StoreCard>
   </Box>)
 }
 
