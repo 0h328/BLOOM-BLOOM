@@ -19,6 +19,14 @@ flowerApi.interceptors.request.use(
   }
 );
 
-export const getFlower = async (data: Object) => {
-  return await flowerApi.post("api/v1/flower", data);
+export const getWrap = async () => {
+  return await flowerApi.get("api/v1/flower/wrap");
+};
+
+export const getDeco = async () => {
+  return await flowerApi.get("api/v1/flower/deco");
+};
+
+export const getFlower = async () => {
+  return await flowerApi.get("api/v1/flower/sub");
 };

@@ -101,8 +101,8 @@ function BouquetContainer({ src }: containerProps) {
   ];
 
   useEffect(() => {
-    console.log(wrapInfo);
   }, [wrapInfo]);
+
 
   return (
     <Box sx={{ ...BouquetPage }}>
