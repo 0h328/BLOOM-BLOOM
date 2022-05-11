@@ -3,7 +3,6 @@ import {
   Box, 
   Grid
 } from '@mui/material';
-import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { flowerState } from '../../states/states';
 
@@ -57,15 +56,14 @@ function Stalk({ flowerList }: flowerProps) {
               key={index}
               sx={{ "&:hover": { cursor: "pointer" } }}
             >
-              <Image
+              <img
                 src={flower.flowerImage}
                 alt="포장지"
-                width={120}
-                height={120}
+                style={{ width: "120px", height: "120px"}}
                 onClick={(event) => {
                   clickHandler(flower, event);
                 }}
-              ></Image>
+              ></img>
             </Grid>
           );
         })}
@@ -80,5 +78,6 @@ export const style = {
   justifyContent: "center",
   margin: "20px auto"
 };
+
 
 export default Stalk;
