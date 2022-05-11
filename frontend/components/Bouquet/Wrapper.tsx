@@ -34,6 +34,7 @@ function Wrapper({ wrapList }: wrapProps) {
   const clickHandler = (
     wrap : {
       wrapSeq: number;
+      wrapImage: string;
       wrapBackImage: string;
       wrapFrontImage: string;
     },
