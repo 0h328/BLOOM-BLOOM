@@ -1,5 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
+import { BASE_URL } from "../apis/config";
 function FlowerImg() {
   return (
     // <Box sx={{ position: "" }}>
@@ -12,7 +13,7 @@ function FlowerImg() {
         }}
       >
         <img
-          src="/img/loginFlower2.jpg"
+          src={BASE_URL + "img/loginFlower2.jpg"}
           style={{
             borderRadius: "200px",
             height: "100%",

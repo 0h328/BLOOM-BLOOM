@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import Header from "../components/common/Header";
 import Move from "../components/move/Move";
@@ -6,31 +6,27 @@ import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
-
+import { wrapState, decoState, flowerState } from "../states/states";
+import { useRecoilState } from "recoil";
 function Arrange() {
   const [finish, setFinish] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>();
   const [checkModal, setCheckModal] = useState<boolean>();
-  const [flowers, setFlowers] = useState([
-    "/img/carnationPink.png",
-    "/img/carnationOrange.png",
-    "/img/hydrangeaPurple.png",
-    "/img/hydrangeaBlue.png",
-    "/img/peonyWhite.png",
-    "/img/lisianthusPurple.png",
-    "/img/lisianthusPink.png",
-    "/img/ranunculusPink.png",
-  ]);
-  const handleCheckModal = (state: boolean) => {
-    setFinish(state);
-    ongotpointercapture = () => {
-      html2canvas(document.getElementById("img"), {
-        backgroundColor: "#FFC0D0",
-      }).then((canvas) => {
-        onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
-      });
-    };
-    setCheckModal(state);
+  const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
+  const [decoInfo, setDecoInfo] = useRecoilState(decoState);
+  const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
+  const handleSaveImg = () => {
+    html2canvas(document.querySelector("#img"), {
+      backgroundColor: "#FFFAFA",
+      foreignObjectRendering: false,
+      useCORS: true,
+      height: 500,
+    }).then((canvas) => {
+      setBouquetImage(canvas.toDataURL("image/jpeg"));
+      onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
+      // console.log(bouquetImage);
+      // handleCheckModal(state);
+    });
   };
   const onSave = (uri: string, filename: string) => {
     let link = document.createElement("a");
@@ -39,6 +35,13 @@ function Arrange() {
     link.download = filename;
     link.click();
     document.body.removeChild(link);
+  };
+  const handleArrange = (state: boolean) => {
+    setFinish(state);
+  };
+  const handleCheckModal = (state: boolean) => {
+    setCheckModal(state);
+    setFinish(state);
   };
   return (
     <Box
@@ -62,6 +65,7 @@ function Arrange() {
         checkModal={checkModal}
       ></BouquetCheckModal>
       <Box
+        id="img"
         sx={{
           position: "absolute",
           width: "100%",
@@ -73,11 +77,11 @@ function Arrange() {
         }}
       >
         <Box
-          id="img"
+          // id="img"
           sx={{
             position: "absolute",
             width: "100%",
-            height: "100%",
+            height: "50%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -86,12 +90,12 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "75%",
-              height: "50%",
+              width: "85%",
+              height: "90%",
             }}
           >
             <img
-              src="/img/wrapPinkBack.png"
+              src={wrapInfo.wrapBackImage}
               style={{
                 borderRadius: "200px",
                 height: "100%",
@@ -102,12 +106,12 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "75%",
-              height: "50%",
+              width: "80%",
+              height: "80%",
             }}
           >
             <img
-              src="/img/flower3.png"
+              src={flowerInfo.flowerImage}
               style={{
                 borderRadius: "200px",
                 height: "100%",
@@ -118,12 +122,29 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "75%",
-              height: "50%",
+              width: "85%",
+              height: "90%",
             }}
           >
             <img
-              src="/img/wrapPinkFront.png"
+              src={wrapInfo.wrapFrontImage}
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "53%",
+              width: "30%",
+              height: "30%",
+            }}
+          >
+            <img
+              src={decoInfo.decoImage}
               style={{
                 borderRadius: "200px",
                 height: "100%",
@@ -134,11 +155,11 @@ function Arrange() {
         </Box>
         <Box
           sx={{
+            backgroundColor: "#EFDFBF",
             position: "absolute",
-            top: "52%",
+            top: "48%",
             width: "90%",
             height: "18%",
-            backgroundColor: "#EFDFBF",
             display: "flex",
             alignItems: "center",
             borderRadius: "5px",
@@ -161,10 +182,29 @@ function Arrange() {
           top: "85%",
         }}
         onClick={(e) => {
-          handleCheckModal(true);
+          handleSaveImg();
         }}
       >
         <Typography>완료</Typography>
+      </Button>
+      <Button
+        variant="contained"
+        size="small"
+        style={{
+          position: "absolute",
+          backgroundColor: "#FFE0E0",
+          color: "#3A1D1D",
+          fontFamily: "JuliusSansOne",
+          borderRadius: "5",
+          width: 280,
+          height: 45,
+          top: "95%",
+        }}
+        onClick={(e) => {
+          handleArrange(true);
+        }}
+      >
+        <Typography> 배치 완료</Typography>
       </Button>
     </Box>
   );

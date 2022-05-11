@@ -1,4 +1,4 @@
-export class Flower {
+export class FlowerType {
   flowerSeq: number;
   flowerName: string;
   flowerColor: string;
