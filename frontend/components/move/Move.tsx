@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 import Selecto from "react-selecto";
 import { Box, Grid, Button } from "@mui/material";
+import { mainFlowerState } from "../../states/states";
+import { useRecoilState } from "recoil";
 interface moveProps {
   finish: boolean;
 }
@@ -14,6 +16,8 @@ function Move({ finish }: moveProps) {
   const selectoRef = useRef(null);
   const [trigger, setTrigger] = useState(false);
   const [elementGuidelines, setElementGuidelines] = useState(null);
+  const [selectedFlower, setSelectedFlower] = useState([]);
+  const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   //test용
   const [flowers, setFlowers] = useState([
     "/img/carnationPink.png",
@@ -128,6 +132,16 @@ function Move({ finish }: moveProps) {
     setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
   }, []);
   useEffect(() => {}, [target]);
+  useEffect(() => {
+    const temp1 = mainFlower.filter((flower) => flower.flowerSeq !== -1);
+    const temp2 = [];
+    temp1.map((flower, index) => {
+      for (let i = 0; i < flower.flowerCount; i++) {
+        temp2.push(flower.flowerImage);
+      }
+    });
+    setSelectedFlower(temp2);
+  }, []);
   return (
     <>
       {onLoad ? (
@@ -202,7 +216,7 @@ function Move({ finish }: moveProps) {
               alignItems="center"
               sx={{ width: "100%", height: "100%" }}
             >
-              {flowers.map((item, index) => (
+              {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"
                   item
@@ -215,6 +229,7 @@ function Move({ finish }: moveProps) {
                   }}
                 >
                   <Box
+                    id="img"
                     className={finish ? null : "cube target"}
                     sx={{
                       width: "80%",

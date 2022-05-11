@@ -101,7 +101,7 @@ function BouquetContainer({ src }: containerProps) {
   ];
 
   useEffect(() => {
-    console.log(wrapInfo);
+    // console.log(wrapInfo);
   }, [wrapInfo]);
 
   return (
@@ -116,7 +116,7 @@ function BouquetContainer({ src }: containerProps) {
           sx={{
             position: "absolute",
             top: "8%",
-            zIndex: "mobile stepper",
+            // zIndex: "mobile stepper",
           }}
         >
           <img
@@ -130,7 +130,20 @@ function BouquetContainer({ src }: containerProps) {
           sx={{
             position: "absolute",
             top: "8%",
-            zIndex: "snackbar",
+            // zIndex: "drawer",
+          }}
+        >
+          <img
+            src={flowerInfo.flowerImage}
+            alt="부속꽃"
+            style={{ width: "300px", height: "300px" }}
+          ></img>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "8%",
+            // zIndex: "snackbar",
           }}
         >
           <img
@@ -144,26 +157,13 @@ function BouquetContainer({ src }: containerProps) {
           sx={{
             position: "absolute",
             top: "180px",
-            zIndex: "tooltip",
+            // zIndex: "tooltip",
           }}
         >
           <img
             src={decoInfo.decoImage}
             alt="리본"
             style={{ width: "100px", height: "100px" }}
-          ></img>
-        </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50px",
-            zIndex: "drawer",
-          }}
-        >
-          <img
-            src={flowerInfo.flowerImage}
-            alt="부속꽃"
-            style={{ width: "200px", height: "200px" }}
           ></img>
         </Box>
       </Box>

@@ -1,6 +1,6 @@
-import { Flower } from "./Flower";
+import { FlowerType } from "./Flower";
 
-export const flowerList: Flower[] = [
+export const flowerList: FlowerType[] = [
   {
     flowerSeq: 1,
     flowerName: "장미",

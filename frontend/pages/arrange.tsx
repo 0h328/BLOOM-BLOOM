@@ -6,30 +6,35 @@ import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
-
+import { wrapState, decoState, flowerState } from "../states/states";
+import { useRecoilState } from "recoil";
 function Arrange() {
   const [finish, setFinish] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>();
   const [checkModal, setCheckModal] = useState<boolean>();
-  const [flowers, setFlowers] = useState([
-    "/img/carnationPink.png",
-    "/img/carnationOrange.png",
-    "/img/hydrangeaPurple.png",
-    "/img/hydrangeaBlue.png",
-    "/img/peonyWhite.png",
-    "/img/lisianthusPurple.png",
-    "/img/lisianthusPink.png",
-    "/img/ranunculusPink.png",
-  ]);
+  const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
+  const [decoInfo, setDecoInfo] = useRecoilState(decoState);
+  const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const handleCheckModal = (state: boolean) => {
     setFinish(state);
-    ongotpointercapture = () => {
-      html2canvas(document.getElementById("img"), {
-        backgroundColor: "#FFC0D0",
-      }).then((canvas) => {
-        onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
-      });
-    };
+    // ongotpointercapture = () => {
+    //   html2canvas(document.querySelector("#img"), {
+    //     backgroundColor: "#FFFAFA",
+    //   }).then((canvas) => {
+    //     const imgDataUrl = canvas.toDataURL("image/jpeg");
+    //     const blobBin = atob(imgDataUrl.split(",")[1]);
+    //     const array = [];
+    //     for (var i = 0; i < blobBin.length; i++) {
+    //       array.push(blobBin.charCodeAt(i));
+    //     }
+    //     const file = new Blob([new Uint8Array(array)], { type: "image/png" });
+    //     var formdata = new FormData(); // formData 생성
+    //     formdata.append("file", file); // file data 추가
+    //     onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
+    //     console.log(file);
+    //     setBouquetImage(canvas.toDataURL("image/jpeg"));
+    //   });
+    // };
     setCheckModal(state);
   };
   const onSave = (uri: string, filename: string) => {
@@ -62,6 +67,7 @@ function Arrange() {
         checkModal={checkModal}
       ></BouquetCheckModal>
       <Box
+        id="img"
         sx={{
           position: "absolute",
           width: "100%",
@@ -73,11 +79,11 @@ function Arrange() {
         }}
       >
         <Box
-          id="img"
+          // id="img"
           sx={{
             position: "absolute",
             width: "100%",
-            height: "100%",
+            height: "50%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -87,11 +93,11 @@ function Arrange() {
             sx={{
               position: "absolute",
               width: "75%",
-              height: "50%",
+              height: "100%",
             }}
           >
             <img
-              src="/img/wrapPinkBack.png"
+              src={wrapInfo.wrapBackImage}
               style={{
                 borderRadius: "200px",
                 height: "100%",
@@ -103,11 +109,11 @@ function Arrange() {
             sx={{
               position: "absolute",
               width: "75%",
-              height: "50%",
+              height: "90%",
             }}
           >
             <img
-              src="/img/flower3.png"
+              src={flowerInfo.flowerImage}
               style={{
                 borderRadius: "200px",
                 height: "100%",
@@ -119,11 +125,28 @@ function Arrange() {
             sx={{
               position: "absolute",
               width: "75%",
-              height: "50%",
+              height: "100%",
             }}
           >
             <img
-              src="/img/wrapPinkFront.png"
+              src={wrapInfo.wrapFrontImage}
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "60%",
+              width: "30%",
+              height: "30%",
+            }}
+          >
+            <img
+              src={decoInfo.decoImage}
               style={{
                 borderRadius: "200px",
                 height: "100%",
@@ -133,6 +156,7 @@ function Arrange() {
           </Box>
         </Box>
         <Box
+          // data-html2canvas-ignore="true"
           sx={{
             position: "absolute",
             top: "52%",
