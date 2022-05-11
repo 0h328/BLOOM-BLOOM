@@ -54,7 +54,9 @@ function KakaoLogin() {
   //   const [isLogin, setIsLogin] = useState<boolean>(false);
   const router = useRouter();
   const clientId = "df2b93fe31185203897eca6511064994";
+  // const redirectUri = "http://localhost:3000/kakaoLogin";
   const redirectUri = "https://bloombloom.kro.kr/kakaoLogin";
+
   useEffect(() => {
     setCode(new URL(window.location.href).searchParams.get("code"));
   }, []);
