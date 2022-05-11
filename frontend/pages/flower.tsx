@@ -47,6 +47,8 @@ function Flower() {
     console.log(totalCount);
   }, [totalCount]);
   useEffect(() => {
+    let temp = [];
+    setMainFlower([...temp]);
     handleFlowerList();
   }, []);
   return (

@@ -15,6 +15,7 @@ function BouquetCheckModal({ bouquetImage, handleCheckModal, checkModal }) {
   const closeBouquetDetailModal = () => {
     handleCheckModal(false);
   };
+  console.log(checkModal);
   return (
     <>
       {checkModal ? (
@@ -65,10 +66,17 @@ function BouquetCheckModal({ bouquetImage, handleCheckModal, checkModal }) {
             <Box
               sx={{
                 position: "absolute",
-                top: "20%",
+                top: "18%",
+                width: "80%",
+                height: "50%",
               }}
             >
-              <img src={img} alt="꽃다발" width={"100%"} height={"100%"}></img>
+              <img
+                src={bouquetImage}
+                alt="꽃다발"
+                width={"100%"}
+                height={"100%"}
+              ></img>
             </Box>
             <Box
               sx={{

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import Header from "../components/common/Header";
 import Move from "../components/move/Move";
@@ -15,27 +15,18 @@ function Arrange() {
   const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
-  const handleCheckModal = (state: boolean) => {
-    setFinish(state);
-    // ongotpointercapture = () => {
-    //   html2canvas(document.querySelector("#img"), {
-    //     backgroundColor: "#FFFAFA",
-    //   }).then((canvas) => {
-    //     const imgDataUrl = canvas.toDataURL("image/jpeg");
-    //     const blobBin = atob(imgDataUrl.split(",")[1]);
-    //     const array = [];
-    //     for (var i = 0; i < blobBin.length; i++) {
-    //       array.push(blobBin.charCodeAt(i));
-    //     }
-    //     const file = new Blob([new Uint8Array(array)], { type: "image/png" });
-    //     var formdata = new FormData(); // formData 생성
-    //     formdata.append("file", file); // file data 추가
-    //     onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
-    //     console.log(file);
-    //     setBouquetImage(canvas.toDataURL("image/jpeg"));
-    //   });
-    // };
-    setCheckModal(state);
+  const handleSaveImg = () => {
+    html2canvas(document.querySelector("#img"), {
+      backgroundColor: "#FFFAFA",
+      foreignObjectRendering: false,
+      useCORS: true,
+      height: 500,
+    }).then((canvas) => {
+      setBouquetImage(canvas.toDataURL("image/jpeg"));
+      onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
+      // console.log(bouquetImage);
+      // handleCheckModal(state);
+    });
   };
   const onSave = (uri: string, filename: string) => {
     let link = document.createElement("a");
@@ -44,6 +35,13 @@ function Arrange() {
     link.download = filename;
     link.click();
     document.body.removeChild(link);
+  };
+  const handleArrange = (state: boolean) => {
+    setFinish(state);
+  };
+  const handleCheckModal = (state: boolean) => {
+    setCheckModal(state);
+    setFinish(state);
   };
   return (
     <Box
@@ -92,8 +90,8 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "75%",
-              height: "100%",
+              width: "85%",
+              height: "90%",
             }}
           >
             <img
@@ -108,8 +106,8 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "75%",
-              height: "90%",
+              width: "80%",
+              height: "80%",
             }}
           >
             <img
@@ -124,8 +122,8 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              width: "75%",
-              height: "100%",
+              width: "85%",
+              height: "90%",
             }}
           >
             <img
@@ -140,7 +138,7 @@ function Arrange() {
           <Box
             sx={{
               position: "absolute",
-              top: "60%",
+              top: "53%",
               width: "30%",
               height: "30%",
             }}
@@ -156,13 +154,12 @@ function Arrange() {
           </Box>
         </Box>
         <Box
-          // data-html2canvas-ignore="true"
           sx={{
+            backgroundColor: "#EFDFBF",
             position: "absolute",
-            top: "52%",
+            top: "48%",
             width: "90%",
             height: "18%",
-            backgroundColor: "#EFDFBF",
             display: "flex",
             alignItems: "center",
             borderRadius: "5px",
@@ -185,10 +182,29 @@ function Arrange() {
           top: "85%",
         }}
         onClick={(e) => {
-          handleCheckModal(true);
+          handleSaveImg();
         }}
       >
         <Typography>완료</Typography>
+      </Button>
+      <Button
+        variant="contained"
+        size="small"
+        style={{
+          position: "absolute",
+          backgroundColor: "#FFE0E0",
+          color: "#3A1D1D",
+          fontFamily: "JuliusSansOne",
+          borderRadius: "5",
+          width: 280,
+          height: 45,
+          top: "95%",
+        }}
+        onClick={(e) => {
+          handleArrange(true);
+        }}
+      >
+        <Typography> 배치 완료</Typography>
       </Button>
     </Box>
   );

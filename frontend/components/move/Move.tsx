@@ -131,7 +131,12 @@ function Move({ finish }: moveProps) {
     setOnLoad(true);
     setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
   }, []);
-  useEffect(() => {}, [target]);
+  useEffect(() => {
+    if (finish) {
+      setTargets([]);
+      setTarget([]);
+    }
+  }, [finish]);
   useEffect(() => {
     const temp1 = mainFlower.filter((flower) => flower.flowerSeq !== -1);
     const temp2 = [];
@@ -145,7 +150,15 @@ function Move({ finish }: moveProps) {
   return (
     <>
       {onLoad ? (
-        <Box className="container" sx={{ width: "100%", height: "100%" }}>
+        <Box
+          className="container"
+          sx={{
+            width: "90%",
+            height: "90%",
+            // position: "relative",
+            // top: "100%",
+          }}
+        >
           <Moveable
             ref={moveableRef}
             draggable={true}
@@ -207,19 +220,21 @@ function Move({ finish }: moveProps) {
           ></Selecto>
           <Box
             className="elements selecto-area"
-            sx={{ display: "flex", width: "100%", height: "90%" }}
+            sx={{ display: "flex", width: "100%", height: "80%" }}
           >
             <Grid
               container
               spacing={1}
               justifyContent="center"
               alignItems="center"
-              sx={{ width: "100%", height: "100%" }}
+              sx={{ width: "100%", height: "90%" }}
             >
+              {/* {flowers.map((item, index) => ( */}
               {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"
                   item
+                  sm={3}
                   xs={3}
                   key={index}
                   sx={{
@@ -229,7 +244,6 @@ function Move({ finish }: moveProps) {
                   }}
                 >
                   <Box
-                    id="img"
                     className={finish ? null : "cube target"}
                     sx={{
                       width: "80%",
