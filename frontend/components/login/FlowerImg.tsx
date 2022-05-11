@@ -13,14 +13,14 @@ function FlowerImg() {
           left: "40%",
         }}
       >
-        <Image
+        <img
           src="./img/loginFlower2.jpg"
           style={{
             borderRadius: "200px",
             height: "100%",
             width: "100%",
           }}
-        ></Image>
+        ></img>
       </Box>
       <Box
         sx={{
