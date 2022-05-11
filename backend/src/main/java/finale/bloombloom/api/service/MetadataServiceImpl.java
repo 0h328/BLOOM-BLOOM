@@ -51,7 +51,6 @@ public class MetadataServiceImpl implements MetadataService {
 
         subFlowerRepository.save(SubFlower.builder()
                 .subFlowerImage(imageLink)
-                .subFlowerDesc(request.get("desc"))
                 .build());
     }
 
