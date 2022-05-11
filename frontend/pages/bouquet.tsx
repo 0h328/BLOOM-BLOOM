@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import BouquetContainer from '../containers/BouquetContainer';
 import Header from "../components/common/Header";
 import { Box } from "@mui/material";
+import { getFlower, getDeco, getWrap } from "../components/apis/flower";
 
 
-export default function flowerPage() {
+export default function FlowerPage() {
+  const [flowerInfo, setFlowerInfo] = useState();
+  const [decoInfo, setDecoInfo] = useState();
+  const [wrapInfo, setWrapInfo] = useState();
+  const value = async () => {
+    const res = await getFlower();
+    const res2 = await getDeco();
+    const res3 = await getWrap();
+    setFlowerInfo(res.data.data)
+    setDecoInfo(res.data.data)
+    setWrapInfo(res.data.data)
+  }
+
+  useEffect(() => {
+    value()
+  },[])
+
   return (
 
     <Box

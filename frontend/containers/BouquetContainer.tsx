@@ -100,7 +100,6 @@ function BouquetContainer(props: { src: any; }) {
 
 
   useEffect(() => {
-    console.log(wrapInfo)
   }, [wrapInfo])
 
   return (    
