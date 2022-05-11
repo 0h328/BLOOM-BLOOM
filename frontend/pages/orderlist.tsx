@@ -5,10 +5,18 @@ import {getOrderList} from "../components/apis/order"
 import { useEffect, useState } from 'react';
 
 export default function OrderlistPage() {
+
   const [orderInfoList, getOrderInfoList] = useState([])
+  const value = async () => {
+    const res = await getOrderList();
+    getOrderInfoList(res.data.data)
+    console.log(res)
+  }
+
   useEffect(() => {
-    const value = getOrderList()
+    value()
   },[])
+
     const OrderinfoList = [
     {
       storeName: "1번 꽃집",

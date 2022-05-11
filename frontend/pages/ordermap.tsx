@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import {Box, Button, Typography} from '@mui/material';
 import StoreCard from '../components/order/StoreCard'
-import Map2 from '../components/order/Map2'
+import Map from '../components/order/Map'
 import Header from "../components/common/Header";
 
 
@@ -19,7 +19,7 @@ function OrderMap() {
   }}>
     <Box sx={{height:30}}></Box>
     <Header></Header>
-    <Map2></Map2>
+    <Map></Map>
   </Box>)
 }
 

@@ -19,5 +19,5 @@ order.interceptors.request.use(
 );
 
 export const getOrderList = async () => {
-  return await order.get("api/v1/map");
+  return await order.get("api/v1/order");
 };

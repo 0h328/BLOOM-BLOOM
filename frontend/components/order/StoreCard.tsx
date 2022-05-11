@@ -8,7 +8,6 @@ import React from "react";
 
 
 function Storecard({storeInfo}) {
-  console.log(storeInfo)
   return(
     <Box sx={{width:400,height:242,mt:3,backgroundColor: "#FFE0E0",mx:'auto'}}>
       <Box sx={{width:400,height:120,mt:1,mb:1,display: 'flex'}}>
@@ -30,11 +29,12 @@ function Storecard({storeInfo}) {
           <LocationOnIcon sx={{ fontSize: '11px', mr:2 }}></LocationOnIcon>{storeInfo.storeAddress}
         </Typography>
         <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5}}>
-          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon><Link href={`https://naver.com/${storeInfo.storeMapId}`}>{storeInfo.storeMapId}</Link>
+          <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon><Link href={`https://naver.me/${storeInfo.storeMapId}`} target="_blank">{storeInfo.storeMapId}</Link>
         </Typography>
       </Box>
       </Box>
       <Box sx={{width:420,display:'flex'}}>
+        {/* 여기에 이제 받아온 데이터를 넘겨서 옮겨주면 보내주면 될 것 같습니다 */}
         <Link href="/order" sx={{ textDecoration: "none",mx:"auto" }}>
           <Button sx={{width:156,height:36, backgroundColor:'#FFFFFF',color: "#000000",fontFamily: "JuliusSansOne",mt:4}}> 주문하기 </Button>
         </Link>
