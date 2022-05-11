@@ -1,51 +1,48 @@
 import React from "react";
 import { Box } from "@mui/material";
-import Image from "next/image";
 function FlowerImg() {
   return (
-    <Box sx={{ position: "absolute" }}>
+    // <Box sx={{ position: "" }}>
+    <Box sx={{}}>
       <Box
         sx={{
           ...imgboxStyle,
-          top: "250px",
-          left: "135px",
+          top: "25%",
+          left: "40%",
         }}
       >
-        <Image
-          layout="fill"
+        <img
           src="/img/loginFlower2.jpg"
-          alt="flower"
           style={{
             borderRadius: "200px",
-            overflow: "hidden",
+            height: "100%",
+            width: "100%",
           }}
-        ></Image>
+        ></img>
       </Box>
       <Box
         sx={{
           ...imgboxStyle,
-          top: "330px",
-          left: "-135px",
+          top: "35%",
+          left: "-25%",
         }}
       >
-        <Image
-          layout="fill"
-          objectFit="cover"
+        <img
           src="/img/loginFlower1.jpg"
-          alt="flower"
           style={{
             borderRadius: "200px",
-            overflow: "hidden",
+            height: "100%",
+            width: "100%",
           }}
-        ></Image>
+        ></img>
       </Box>
     </Box>
   );
 }
 
 export const imgboxStyle = {
-  width: "420px",
-  height: "288px",
+  width: "90%",
+  height: "30%",
   position: "absolute",
 };
 export default FlowerImg;

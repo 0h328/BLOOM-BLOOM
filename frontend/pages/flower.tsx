@@ -9,6 +9,7 @@ import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
 import { mainFlowerState } from "../states/states";
 import { useRecoilState } from "recoil";
+import { getFlower } from "../components/apis/bouquetApi";
 
 function Flower() {
   let groupByName = groupBy(flowerList, (flower) => flower.flowerName);
@@ -29,6 +30,10 @@ function Flower() {
         break;
     }
   };
+  const handleFlowerList = async () => {
+    const response = await getFlower();
+    console.log(response);
+  };
   useEffect(() => {
     if (totalCount == 8) {
       setValidCount(false);
@@ -39,6 +44,10 @@ function Flower() {
     }
     console.log(totalCount);
   }, [totalCount]);
+  useEffect(() => {
+    handleFlowerList();
+  }, []);
+  console.log(mainFlower);
   return (
     <Box
       sx={{

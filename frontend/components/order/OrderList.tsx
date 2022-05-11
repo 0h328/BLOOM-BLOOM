@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 
 function OrderList({OrderInfo}) {
+
   return(
     <Box sx={{width:372,height:146,mt:3,mx:'auto', border:1, borderColor: 'grey.300'}}>
       <Box sx={{width:372,height:146,mb:1,display: 'flex'}}>

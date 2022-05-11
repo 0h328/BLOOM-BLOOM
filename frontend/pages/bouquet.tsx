@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import { getFlower, getDeco, getWrap } from "../components/apis/flower";
 
 
+
 export default function FlowerPage() {
   const [flowerInfo, setFlowerInfo] = useState();
   const [decoInfo, setDecoInfo] = useState();
@@ -22,8 +23,8 @@ export default function FlowerPage() {
     value()
   },[])
 
+export default function flowerPage() {
   return (
-
     <Box
       sx={{
         mx: "auto",

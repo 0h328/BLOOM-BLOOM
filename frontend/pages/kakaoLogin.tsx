@@ -20,7 +20,7 @@ const Text = styled(motion.div)`
   margin: 0.5em;
 `;
 
-const bounceTransition1 = {
+export const bounceTransition1 = {
   y: {
     duration: 1,
     yoyo: Infinity,
@@ -54,14 +54,16 @@ function KakaoLogin() {
   //   const [isLogin, setIsLogin] = useState<boolean>(false);
   const router = useRouter();
   const clientId = "df2b93fe31185203897eca6511064994";
-  const redirectUri = "http://localhost:3000/kakaoLogin";
+  // const redirectUri = "http://localhost:3000/kakaoLogin";
+  const redirectUri = "https://bloombloom.kro.kr/kakaoLogin";
+
   useEffect(() => {
     setCode(new URL(window.location.href).searchParams.get("code"));
   }, []);
 
   const loginApi = async (code: string) => {
     try {
-      console.log(code);
+      console.log("code" + code);
       getToken(code);
     } catch (error) {
       console.log(error);
@@ -85,7 +87,7 @@ function KakaoLogin() {
         payload
       );
       login(response.data.access_token);
-      console.log(response.data.access_token);
+      console.log("kakaoToken" + response.data.access_token);
     } catch (error) {
       console.log(error);
     }

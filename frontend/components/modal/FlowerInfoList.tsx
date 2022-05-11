@@ -56,12 +56,12 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
             </Grid>
             <Grid item xs={4}>
               <Box>
-                <Image
+                <img
                   src={flowerInfo.flowerImage}
                   alt="꽃"
                   width={30}
                   height={30}
-                ></Image>
+                ></img>
               </Box>
             </Grid>
             <Grid item xs={4}>
