@@ -1,50 +1,45 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { detailModalState, bouquetInfoState } from "../../states/states";
-
-interface bouquet {
-  bouquetSeq: number;
-  bouquetImage: string;
-}
-
+import { Bouquet } from "../common/Bouquet";
+import { textStyle } from "./FlowerImgListTitle";
 interface dataProps {
-  bouquetList: bouquet[];
+  bouquetList: Bouquet[];
   top: string;
   page?: string;
+  handleBouquet?: (bouquet: Bouquet) => void;
+  infoText?: string;
 }
-
-function FlowerImgList({ bouquetList, top, page }: dataProps) {
-  const [detailModal, setDetailModal] = useRecoilState(detailModalState);
-  const [bouquetInfo, setBouquetInfo] = useRecoilState(bouquetInfoState);
-
+function FlowerImgList({
+  bouquetList,
+  top,
+  page,
+  handleBouquet,
+  infoText,
+}: dataProps) {
   const handleBouquetInfo = (bouquet: {
     bouquetSeq: number;
     bouquetImage: string;
   }) => {
-    setBouquetInfo({
-      ...bouquet,
-    });
+    handleBouquet(bouquet);
   };
-
   const clickHandler = (
     bouquet: {
       bouquetSeq: number;
       bouquetImage: string;
     },
-    event
+    event: any
   ) => {
     handleBouquetInfo(bouquet);
-    setDetailModal(true);
   };
   return (
     <Box
       sx={{
-        position: "absolute",
+        position: "relative",
         display: "flex",
         top: { top },
-        left: page === "madelist" ? "5px" : "15px",
+        justifyContent: "center",
       }}
     >
       {page == "madelist" ? (
@@ -63,17 +58,17 @@ function FlowerImgList({ bouquetList, top, page }: dataProps) {
                   item
                   xs={4}
                   key={index}
-                  sx={{ "&:hover": { cursor: "pointer" } }}
+                  sx={{ "&:hover": { cursor: "pointer" }, padding: "1%" }}
                 >
-                  <Image
+                  <img
                     src={bouquet.bouquetImage}
                     alt="꽃다발"
-                    width={115}
-                    height={190}
+                    width={"100%"}
+                    height={"100%"}
                     onClick={(event) => {
                       clickHandler(bouquet, event);
                     }}
-                  ></Image>
+                  ></img>
                 </Grid>
               );
             })}
@@ -81,21 +76,51 @@ function FlowerImgList({ bouquetList, top, page }: dataProps) {
         </>
       ) : (
         <>
-          {bouquetList.map((bouquet, index) => {
-            return (
-              <Box key={index} sx={{ margin: "5px" }}>
-                <Image
-                  src={bouquet.bouquetImage}
-                  alt="꽃다발"
-                  width={115}
-                  height={190}
-                ></Image>
-              </Box>
-            );
-          })}
+          {!bouquetList.length ? (
+            <Box
+              sx={{
+                position: "absolute",
+                height: "100%",
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+                top: "10%",
+              }}
+            >
+              <Typography sx={{ ...textStyle }}>{infoText}</Typography>
+            </Box>
+          ) : (
+            <Box sx={{ display: "flex" }}>
+              {bouquetList.map((bouquet, index) => {
+                return (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      width: "100%",
+                      height: "100%",
+                      margin: "1%",
+                    }}
+                  >
+                    <img
+                      src={bouquet.bouquetImage}
+                      alt="꽃다발"
+                      width={"100%"}
+                      height={"100%"}
+                    ></img>
+                  </Box>
+                );
+              })}
+            </Box>
+          )}
         </>
       )}
     </Box>
   );
 }
+
+export const infoTextStyle = {
+  fontFamily: "JuliusSansOne",
+};
 export default FlowerImgList;

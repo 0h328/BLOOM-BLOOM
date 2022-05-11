@@ -1,123 +1,260 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { 
-  Card,
-  CardMedia,
-  Button,
-  ToggleButton,
-  ToggleButtonGroup,
-  Box,
-} from '@mui/material';
-import WrapperChooseText from '../components/Choose/WrapperChooseText';
-import RibbonChooseText from '../components/Choose/RibbonChooseText';
-import StalkChooseText from '../components/Choose/StalkChooseText';
-import Wrapper from '../components/Bouquet/Wrapper';
-import Ribbon from '../components/Bouquet/Ribbon';
-import Stalk from '../components/Bouquet/Stalk';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button, ToggleButton, ToggleButtonGroup, Box } from "@mui/material";
+import WrapperChooseText from "../components/Choose/WrapperChooseText";
+import RibbonChooseText from "../components/Choose/RibbonChooseText";
+import StalkChooseText from "../components/Choose/StalkChooseText";
+import Wrapper from "../components/Bouquet/Wrapper";
+import Ribbon from "../components/Bouquet/Ribbon";
+import Stalk from "../components/Bouquet/Stalk";
+import { useRecoilState } from "recoil";
+import { wrapState, decoState, flowerState } from "../states/states";
 
-
-function BouquetContainer() {
-
-  const [alignment, setAlignment] = useState('1');
-  const handleAlignment = (event, newAlignment) => {
+interface containerProps {
+  src?: any;
+}
+function BouquetContainer({ src }: containerProps) {
+  // const { src } = props;
+  const [imgSrc, setImgSrc] = useState(src);
+  const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
+  const [decoInfo, setDecoInfo] = useRecoilState(decoState);
+  const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
+  const [alignment, setAlignment] = useState("1");
+  const handleAlignment = (
+    event: any,
+    newAlignment: React.SetStateAction<string>
+  ) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
     }
-  }
-
-  const BouquetLayout = {
-    position: "relative",
-    top: "100px"
+  };
+  const handleError = () => {
+    setImgSrc("/img/bouquet0.png");
   };
 
+  const wrapList = [
+    {
+      wrapSeq: 1,
+      wrapImage: "/img/wrapOrange.png",
+      wrapBackImage: "/img/wrapBackOrange.png",
+      wrapFrontImage: "/img/wrapFrontOrange.png",
+    },
+    {
+      wrapSeq: 2,
+      wrapImage: "/img/wrapIvory.png",
+      wrapBackImage: "/img/wrapBackIvory.png",
+      wrapFrontImage: "/img/wrapFrontIvory.png",
+    },
+    {
+      wrapSeq: 3,
+      wrapImage: "/img/wrapNavy.png",
+      wrapBackImage: "/img/wrapBackNavy.png",
+      wrapFrontImage: "/img/wrapFrontNavy.png",
+    },
+    {
+      wrapSeq: 4,
+      wrapImage: "/img/wrapLightgreen.png",
+      wrapBackImage: "/img/wrapBackLightgreen.png",
+      wrapFrontImage: "/img/wrapFrontLightgreen.png",
+    },
+    {
+      wrapSeq: 5,
+      wrapImage: "/img/wrapPink.png",
+      wrapBackImage: "/img/wrapBackPink.png",
+      wrapFrontImage: "/img/wrapFrontPink.png",
+    },
+    {
+      wrapSeq: 6,
+      wrapImage: "/img/wrapPurple.png",
+      wrapBackImage: "/img/wrapBackPurple.png",
+      wrapFrontImage: "/img/wrapFrontPurple.png",
+    },
+    {
+      wrapSeq: 7,
+      wrapImage: "/img/wrapSkyblue.png",
+      wrapBackImage: "/img/wrapBackSkyblue.png",
+      wrapFrontImage: "/img/wrapFrontSkyblue.png",
+    },
+    {
+      wrapSeq: 8,
+      wrapImage: "/img/wrapYellow.png",
+      wrapBackImage: "/img/wrapBackYellow.png",
+      wrapFrontImage: "/img/wrapFrontYellow.png",
+    },
+  ];
+
+  const flowerList = [
+    { flowerSeq: 1, flowerImage: "/img/flower1.png" },
+    { flowerSeq: 2, flowerImage: "/img/flower2.png" },
+    { flowerSeq: 3, flowerImage: "/img/flower3.png" },
+  ];
+
+  const decoList = [
+    { decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" },
+    { decoSeq: 2, decoImage: "/img/ribbonDeepBrown.png" },
+    { decoSeq: 3, decoImage: "/img/ribbonPurple.png" },
+    { decoSeq: 4, decoImage: "/img/ribbonNavy.png" },
+    { decoSeq: 5, decoImage: "/img/ribbonMixBrown.png" },
+    { decoSeq: 6, decoImage: "/img/ribbonMixPink.png" },
+    { decoSeq: 7, decoImage: "/img/ribbonMixRed.png" },
+    { decoSeq: 8, decoImage: "/img/ribbonMixYellow.png" },
+  ];
+
+  useEffect(() => {
+    console.log(wrapInfo);
+  }, [wrapInfo]);
+
   return (
-    <Box sx={{ ...BouquetLayout }}>
-      {alignment === '1' && <WrapperChooseText></WrapperChooseText>}
-      {alignment === '2' && <RibbonChooseText></RibbonChooseText>}
-      {alignment === '3' && <StalkChooseText></StalkChooseText>}
+    <Box sx={{ ...BouquetPage }}>
+      {alignment === "1" && <WrapperChooseText></WrapperChooseText>}
+      {alignment === "2" && <RibbonChooseText></RibbonChooseText>}
+      {alignment === "3" && <StalkChooseText></StalkChooseText>}
 
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
-      <Card 
-        sx={{ 
-          maxWidth: 180,
-          border: '1px solid #FFC0D0',
-          margin: '0 auto'
-        }}
-      >
-        <CardMedia
-          component="img"
-          height="180"
-          image="/images/Bouquet.png" //포장지를 먼저 default로 보여주고, 누적되는 식으로 리본 default 보여주고 해야하나? // z-index
-        />
-      </Card>
+      <Box sx={{ ...BouquetLayout }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "8%",
+            zIndex: "mobile stepper",
+          }}
+        >
+          <img
+            src={wrapInfo.wrapBackImage}
+            alt="포장지 뒷 부분"
+            style={{ width: "300px", height: "300px" }}
+            onError={handleError}
+          ></img>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "8%",
+            zIndex: "snackbar",
+          }}
+        >
+          <img
+            src={wrapInfo.wrapFrontImage}
+            alt="포장지 앞 부분"
+            style={{ width: "300px", height: "300px" }}
+            onError={handleError}
+          ></img>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "180px",
+            zIndex: "tooltip",
+          }}
+        >
+          <img
+            src={decoInfo.decoImage}
+            alt="리본"
+            style={{ width: "100px", height: "100px" }}
+          ></img>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50px",
+            zIndex: "drawer",
+          }}
+        >
+          <img
+            src={flowerInfo.flowerImage}
+            alt="부속꽃"
+            style={{ width: "200px", height: "200px" }}
+          ></img>
+        </Box>
+      </Box>
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
-    
-      {/* 포장지, 리본, 꽃줄기 버튼 */}
-      <ToggleButtonGroup
-        value={alignment}
-        exclusive
-        onChange={handleAlignment}
-        sx={{ marginTop: "30px", display: "flex", justifyContent: "space-evenly" }}
-      >
-        <ToggleButton 
-          value="1" 
-          style={{ 
-            backgroundColor: "#FFE0E0", 
-            color: "black", 
-            marginLeft: "20px",
-            border: "1px solid #FFE0E0",
-          }} 
-        >
-          포장지
-        </ToggleButton>
-        <ToggleButton 
-          value="2"
-          style={{ 
-            backgroundColor: "#FFE0E0", 
-            color: "black",
-            border: "1px solid #FFE0E0"
-          }} 
-        >
-          리본
-        </ToggleButton>
-        <ToggleButton 
-          value="3"
-          style={{ 
-            backgroundColor: "#FFE0E0", 
-            color: "black", 
-            marginRight: "20px",
-            border: "1px solid #FFE0E0"
-          }} 
-        >
-          꽃줄기
-        </ToggleButton>
-      </ToggleButtonGroup>
-      {/* 포장지, 리본, 꽃줄기 버튼 */}
 
-      {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
-      {alignment === '1' && <Wrapper></Wrapper>}
-      {alignment === '2' && <Ribbon></Ribbon>}
-      {alignment === '3' && <Stalk></Stalk>}
-      {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
-
-      {/* 꽃을 선택하러갈 수 있는 버튼 */}
-      <Box textAlign='center'>
-        <Link href="/flower" passHref>
-          <Button 
+      {/* 포장지, 리본, 꽃줄기 버튼 */}
+      <Box sx={{ position: "absolute", top: "350px", left: "12%" }}>
+        <ToggleButtonGroup
+          value={alignment}
+          exclusive
+          onChange={handleAlignment}
+          sx={{
+            marginTop: "30px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <ToggleButton
+            value="1"
             style={{
               backgroundColor: "#FFE0E0",
               color: "black",
-              width: '330px'          
+              marginLeft: "20px",
+              width: "80px",
+              border: "1px solid #FFE0E0",
             }}
-            variant="contained"
           >
-            꽃 선택하기
-          </Button>
-        </Link>
+            포장지
+          </ToggleButton>
+          <ToggleButton
+            value="2"
+            style={{
+              backgroundColor: "#FFE0E0",
+              color: "black",
+              width: "80px",
+              border: "1px solid #FFE0E0",
+            }}
+          >
+            리본
+          </ToggleButton>
+          <ToggleButton
+            value="3"
+            style={{
+              backgroundColor: "#FFE0E0",
+              color: "black",
+              marginRight: "20px",
+              width: "80px",
+              border: "1px solid #FFE0E0",
+            }}
+          >
+            부속꽃
+          </ToggleButton>
+        </ToggleButtonGroup>
+        {/* 포장지, 리본, 꽃줄기 버튼 */}
+
+        {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
+        {alignment === "1" && <Wrapper wrapList={wrapList}></Wrapper>}
+        {alignment === "2" && <Ribbon decoList={decoList}></Ribbon>}
+        {alignment === "3" && <Stalk flowerList={flowerList}></Stalk>}
+        {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
+
+        {/* 꽃을 선택하러갈 수 있는 버튼 */}
+        <Box textAlign="center">
+          <Link href="/flower" passHref>
+            <Button
+              style={{
+                backgroundColor: "#FFE0E0",
+                color: "black",
+                width: "330px",
+              }}
+              variant="contained"
+            >
+              꽃 선택하기
+            </Button>
+          </Link>
+        </Box>
+        {/* 꽃을 선택하러갈 수 있는 버튼 */}
       </Box>
-      {/* 꽃을 선택하러갈 수 있는 버튼 */}
     </Box>
-  )
+  );
 }
+
+export const BouquetPage = {
+  position: "relative",
+  top: "100px",
+};
+
+export const BouquetLayout = {
+  position: "relative",
+  display: "flex",
+  justifyContent: "center",
+};
 
 export default BouquetContainer;

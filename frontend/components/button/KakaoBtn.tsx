@@ -7,13 +7,11 @@ interface btnProps {
   title: string;
 }
 function KakaoBtn({ handleBtn, title }: btnProps) {
-  const handleLogin = () => {};
   return (
     <Button
       variant="contained"
       size="small"
       style={{
-        position: "absolute",
         backgroundColor: "#FEE500",
         color: "#3A1D1D",
         fontFamily: "JuliusSansOne",
@@ -41,12 +39,12 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
               left: "30px",
             }}
           >
-            <Image
+            <img
               src="/img/kakaoLogo.png"
               alt="KakaoLogo"
               width={30}
               height={33}
-            ></Image>
+            ></img>
           </Box>
         </Grid>
         <Grid item xs={9}>

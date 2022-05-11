@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getLogin } from "../components/apis/auth";
-import Spring from "../components/login/Spring";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import axios from "axios";
 import qs from "qs";
@@ -21,7 +20,7 @@ const Text = styled(motion.div)`
   margin: 0.5em;
 `;
 
-const bounceTransition1 = {
+export const bounceTransition1 = {
   y: {
     duration: 1,
     yoyo: Infinity,
@@ -60,18 +59,18 @@ function KakaoLogin() {
     setCode(new URL(window.location.href).searchParams.get("code"));
   }, []);
 
-  useEffect(() => {
-    if (code !== undefined) loginApi(code);
-  }, [code]);
-
   const loginApi = async (code: string) => {
     try {
-      console.log(code);
+      console.log("code" + code);
       getToken(code);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (code !== undefined) loginApi(code);
+  }, [code]);
 
   const getToken = async (code: string) => {
     const payload = qs.stringify({
@@ -86,7 +85,7 @@ function KakaoLogin() {
         payload
       );
       login(response.data.access_token);
-      console.log(response.data.access_token);
+      console.log("kakaoToken" + response.data.access_token);
     } catch (error) {
       console.log(error);
     }

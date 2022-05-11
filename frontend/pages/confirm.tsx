@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Header from "../components/common/Header";
 import { useRouter } from "next/router";
 import BouquetImg from "../components/present/BouquetImg";
-import ConfirmBtn from "../components/Button/ConfirmPageBtn";
+import ConfirmBtn from "../components/button/ConfirmPageBtn";
 import MessageInputModal from "../components/modal/MessageInputModal";
 function Confirm() {
   const router = useRouter();
