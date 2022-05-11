@@ -8,22 +8,26 @@ import finale.bloombloom.api.response.OrderListResponse;
 import finale.bloombloom.api.response.OrderResponse;
 import finale.bloombloom.api.response.StoreLocationResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
+import finale.bloombloom.config.CoolSMSConfig;
 import finale.bloombloom.db.entity.*;
 import finale.bloombloom.db.repository.*;
 import lombok.RequiredArgsConstructor;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import javax.swing.text.html.HTML;
 import java.math.BigInteger;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.net.URL;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class OrderServieImpl implements OrderService {
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final BouquetRepository bouquetRepository;
@@ -31,6 +35,9 @@ public class OrderServieImpl implements OrderService {
     private final UserRepository userRepository;
     private final FlowerInfoRepository flowerInfoRepository;
     private final EntityManager em;
+    private final CoolSMSConfig coolSMSConfig;
+
+    private static final String MESSAGE_SENDER = "01079007514";
 
     /**
      * 기능 : 주문내역 조회
@@ -56,6 +63,8 @@ public class OrderServieImpl implements OrderService {
     /**
      * 기능 : 꽃다발 주문 의뢰
      * 작성자 : 김정혁
+     * 최근수정일자 : 2022.05.11 (문준호)
+     * 수정내용 : 문자 발신 로직 추가
      */
     @Override
     @Transactional
@@ -67,7 +76,6 @@ public class OrderServieImpl implements OrderService {
         if (bouquet.isEmpty() || store.isEmpty() || user.isEmpty())
             throw new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다.");
 
-
         String uuid = UUID.randomUUID().toString().replace("-", "");
         Order order = Order.builder()
                 .bouquet(bouquet.get())
@@ -77,8 +85,11 @@ public class OrderServieImpl implements OrderService {
                 .orderUri(uuid)
                 .build();
 
+        sendMessage(uuid, store.get(), user.get());
+
         return orderRepository.save(order);
     }
+
 
     /**
      * 기능 : 주문 내역 상세조회
@@ -145,5 +156,29 @@ public class OrderServieImpl implements OrderService {
         )).collect(Collectors.toList());
     }
 
+    private void sendMessage(String uuid, Store store, User user) {
+        String apiKey = coolSMSConfig.getApiKey();
+        String apiSecret = coolSMSConfig.getApiSecret();
+
+        Message message = new Message(apiKey, apiSecret);
+
+        String messageSender = MESSAGE_SENDER;
+        String messageReceiver = "01079007514";
+        String url = "https://bloombloom.kro.kr/" + uuid;
+        String messageContent = String.format("[BloomBloom] 주문 요청이 들어왔습니다. \n%s", url);
+
+        HashMap<String, String> request = new HashMap<>();
+        request.put("from", messageSender);
+        request.put("to", messageReceiver);
+        request.put("text", messageContent);
+
+        try {
+            JSONObject obj = (JSONObject) message.send(request);
+            System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+        }
+    }
 
 }
