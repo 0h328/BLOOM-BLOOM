@@ -13,6 +13,7 @@ function FlowerImg() {
           left: "40%",
         }}
       >
+        <Box src={"/img/loginFlower2.jpg"} component="img"></Box>
         <Image
           src="/img/loginFlower2.jpg"
           style={{
@@ -20,6 +21,7 @@ function FlowerImg() {
             height: "100%",
             width: "100%",
           }}
+          layout="fill"
         ></Image>
       </Box>
       <Box
