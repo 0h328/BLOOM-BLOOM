@@ -9,7 +9,6 @@ declare global {
   }
 }
 
-
 function Map() {
   const [forMarker,SetForMarker] = useState([])
   const [store,SetStore] = useState({ storeName: '꽃집 이름', storeContact:'010-0000-0000', storeAddress:'서울특별시 역삼 어디에있어요', storeMapId:'www.naver.com', storeImage: "/test.png" })

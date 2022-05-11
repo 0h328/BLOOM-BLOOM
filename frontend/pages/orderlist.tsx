@@ -6,10 +6,10 @@ import { useEffect, useState } from 'react';
 
 export default function OrderlistPage() {
 
-  const [orderInfoList, getOrderInfoList] = useState([])
+  const [orderInfoList, setOrderInfoList] = useState()
   const value = async () => {
     const res = await getOrderList();
-    getOrderInfoList(res.data.data)
+    setOrderInfoList(res.data.data)
     console.log(res)
   }
 
