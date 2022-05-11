@@ -699,3 +699,4 @@ backend/src/generated
 backend/src/main/generated
 backend/src/main/resources/application-mysql.properties
 backend/src/main/resources/application-credentials.properties
+backend/src/main/resources/application-coolsms.properties
