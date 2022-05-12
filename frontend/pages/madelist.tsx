@@ -98,7 +98,6 @@ function MadeList() {
       >
         <FlowerImgList
           bouquetList={bouquetList}
-          top="2%"
           page="madelist"
           handleBouquet={handleBouquet}
         ></FlowerImgList>
