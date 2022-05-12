@@ -30,6 +30,9 @@ function Flower() {
       case 1:
         toast.error("📣꽃은 8개까지 선택할 수 있습니다");
         break;
+      case 2:
+        toast.error("📣꽃을 1개이상 선택해주세요");
+        break;
     }
   };
   const handleFlowerList = async () => {

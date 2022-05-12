@@ -12,7 +12,7 @@ const mainFlowerState = atom({
 
 const presentBouquetState = atom({
   key: "presentBouquet",
-  default: -1,
+  default: "",
 });
 
 // 포장지

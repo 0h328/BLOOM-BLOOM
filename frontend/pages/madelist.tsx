@@ -37,6 +37,7 @@ function MadeList() {
   const [detailModal, setDetailModal] = useState<boolean>(false);
   const handleBouquetList = async () => {
     const response = await getBouquetList();
+    console.log(response);
     setBouquetList(response.data.data);
   };
 

@@ -67,14 +67,17 @@ function BouquetDetailModal({
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
   //api 연동후 data set
-  const [flowerInfo, setFlowerInfo] = useState<Array<{}>>([]);
+  const [flowerInfo, setFlowerInfo] = useState<
+    Array<{ flowerName: string; flowerImage: string; flowerCount: number }>
+  >([]);
   const closeBouquetDetailModal = () => {
-    setPresentBouquet(-1);
+    setPresentBouquet("");
     handleDetailModal(false);
   };
   const handleBouquetDetail = async (bouquet: Bouquet) => {
-    const reponse = await getBouquetDetail(bouquet.bouquetSeq);
-    setFlowerInfo(reponse.data.data.flowerInfo);
+    const response = await getBouquetDetail(bouquet.bouquetSeq);
+    // console.log(response);
+    setFlowerInfo(response.data.data.flowerInfo);
   };
   const handleBtn = (code: number) => {
     switch (code) {
@@ -90,7 +93,8 @@ function BouquetDetailModal({
     }
   };
   const handleShare = () => {
-    setPresentBouquet(bouquet.bouquetSeq);
+    console.log(bouquet.bouquetImage);
+    setPresentBouquet(bouquet.bouquetImage);
     router.push("/share");
   };
   const handleOrder = () => {};
@@ -151,7 +155,7 @@ function BouquetDetailModal({
                 overflow: "scroll",
               }}
             >
-              <FlowerInfoList flowerInfoList={flowerinfoList} />
+              <FlowerInfoList flowerInfoList={flowerInfo} />
             </Box>
             <Box sx={{ position: "absolute", top: "91%", left: "15%" }}>
               <BouquetDetailModalBtn handleBtn={handleBtn} />

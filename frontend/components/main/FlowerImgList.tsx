@@ -60,7 +60,7 @@ function FlowerImgList({
                   key={index}
                   sx={{ "&:hover": { cursor: "pointer" }, padding: "1%" }}
                 >
-                  <Image
+                  <img
                     src={bouquet.bouquetImage}
                     alt="꽃다발"
                     width={"100%"}
@@ -68,7 +68,7 @@ function FlowerImgList({
                     onClick={(event) => {
                       clickHandler(bouquet, event);
                     }}
-                  ></Image>
+                  ></img>
                 </Grid>
               );
             })}
