@@ -6,7 +6,7 @@ function Title() {
       <Typography sx={{ ...titleStyle }} style={{ top: "8%", left: "18%" }}>
         BLOOM
       </Typography>
-      <Typography sx={{ ...titleStyle }} style={{ top: "14%", left: "40%" }}>
+      <Typography sx={{ ...titleStyle }} style={{ top: "15%", left: "40%" }}>
         BLOOM
       </Typography>
     </Box>

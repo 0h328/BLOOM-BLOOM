@@ -25,7 +25,7 @@ function Login() {
       <Box
         sx={{
           mx: "auto",
-          width: "420",
+          width: "420px",
           position: "relative",
           height: "100vh",
           overflow: "hidden",

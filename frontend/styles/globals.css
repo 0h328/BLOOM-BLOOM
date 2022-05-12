@@ -29,11 +29,11 @@ a {
   box-sizing: border-box;
 }
 
-.__next {
+/* .__next {
   height: 100vh;
   position: fixed;
   overflow: hidden;
-}
+} */
 
 /* width */
 ::-webkit-scrollbar {
