@@ -62,7 +62,6 @@ function Main() {
             link="/madelist"
             top="5%"
           ></FlowerImgListTitle>
-
           {madeBouquetList !== undefined ? (
             <FlowerImgList
               bouquetList={madeBouquetList}
@@ -77,8 +76,8 @@ function Main() {
           ></FlowerImgListTitle>
           {orderBouquetList !== undefined ? (
             <FlowerImgList
-              bouquetList={orderBouquetList}
-              top="40%"
+              bouquetList={madeBouquetList}
+              top="37%"
               infoText="주문한 꽃다발이 없습니다"
             ></FlowerImgList>
           ) : null}

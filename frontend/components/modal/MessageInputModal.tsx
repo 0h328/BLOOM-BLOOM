@@ -32,7 +32,7 @@ function MessageInputModal({
   };
   const handleShare = async () => {
     const body = {
-      bouquetSeq: 0,
+      bouquetSeq: 7,
       presentDesc: content,
     };
 
@@ -115,10 +115,9 @@ function MessageInputModal({
                   backgroundColor: "#FFFAFA",
                   border: "1px solid rgba(109, 107, 107, 0.4)",
                   resize: "none",
-                  // marginBottom: "-1rem",
-                  // marginLeft: "0.6rem",
+                  margin: "0rem 0.6rem 0rem 0rem",
                   padding: "1rem",
-                  borderRadius: "10px",
+                  // borderRadius: "10px",
                 }}
                 onChange={(event) => handleInput(event)}
               />
@@ -128,7 +127,7 @@ function MessageInputModal({
                   height: "100%",
                 }}
               >
-                <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+                <BouquetImg bouquetImage={presentBouquet}></BouquetImg>
               </Box>
             </Box>
             <Typography
