@@ -31,7 +31,7 @@ function Main() {
       <Box
         sx={{
           mx: "auto",
-          width: 420,
+          width: "420",
           position: "relative",
           backgroundColor: "#FFE0E0",
           height: "100vh",

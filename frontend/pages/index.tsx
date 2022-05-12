@@ -25,7 +25,7 @@ function Login() {
       <Box
         sx={{
           mx: "auto",
-          width: "100vh",
+          width: "420",
           position: "relative",
           height: "100vh",
           overflow: "hidden",
@@ -34,7 +34,6 @@ function Login() {
         <Box
           sx={{
             backgroundColor: "#FFFAFA",
-            // height: "800px",
             minHeight: "100vh",
             position: "relative",
           }}

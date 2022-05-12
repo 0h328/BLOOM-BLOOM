@@ -14,7 +14,8 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests width=device-width, initial-scale=1, minimum-scale=1"
+          content="upgrade-insecure-requests width=device-width, initial-scale=1,user-scalable=no, 
+          maximum-scale=1.0, minimum-scale=1.0"
           name="viewport"
         ></meta>
       </Head>
