@@ -14,7 +14,7 @@ function FlowerImg() {
           left: "40%",
         }}
       >
-        <Image
+        <img
           src={loginImg}
           style={{
             borderRadius: "200px",
@@ -22,7 +22,7 @@ function FlowerImg() {
             width: "100%",
           }}
           layout="fill"
-        ></Image>
+        ></img>
       </Box>
       <Box
         sx={{
