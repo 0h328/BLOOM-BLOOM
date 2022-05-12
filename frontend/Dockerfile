@@ -9,4 +9,8 @@ COPY ./node_modules ./node_modules
 RUN mkdir ./.next
 COPY ./.next ./.next
 
+RUN mkdir ./public
+RUN mkdir ./public/img
+COPY ./public ./public
+
 CMD ["npm", "run", "start"]
