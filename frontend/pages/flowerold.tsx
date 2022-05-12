@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 import Header from "../components/common/Header";
-import FlowerChooseText from '../components/Choose/FlowerChooseText';
-import RoseContainer from '../containers/RoseContainer';
-import TulipContainer from '../containers/TulipContainer';
-import CarnationContainer from '../containers/CarnationContainer';
-import FreesiaContainer from '../containers/FreesiaContainer';
-import GerbaraContainer from '../containers/GerberaContainer';
-import HyacinthContainer from '../containers/HyacinthContainer';
-import LilyContainer from '../containers/LilyContainer';
-import LisianthusContainer from '../containers/LisianthusContainer';
-import PeonyContainer from '../containers/PeonyContainer';
-import RanunculusContainer from '../containers/RanunculusContainer';
-import { Box } from '@mui/material';
+import FlowerChooseText from "../components/Choose/FlowerChooseText";
+import RoseContainer from "../containers/RoseContainer";
+import TulipContainer from "../containers/TulipContainer";
+import CarnationContainer from "../containers/CarnationContainer";
+import FreesiaContainer from "../containers/FreesiaContainer";
+import GerbaraContainer from "../containers/GerberaContainer";
+import HyacinthContainer from "../containers/HyacinthContainer";
+import LilyContainer from "../containers/LilyContainer";
+import LisianthusContainer from "../containers/LisianthusContainer";
+import PeonyContainer from "../containers/PeonyContainer";
+import RanunculusContainer from "../containers/RanunculusContainer";
+import { Box } from "@mui/material";
 
 export default function flowerPage() {
-  return (    
+  return (
     <Box
       sx={{
         mx: "auto",
@@ -24,11 +24,11 @@ export default function flowerPage() {
         height: "840px",
         minHeight: "100vh",
       }}
-    >      
+    >
       <Box sx={{ position: "absolute", top: "30px" }}>
         <Header page="flower"></Header>
       </Box>
-      <FlowerChooseText></FlowerChooseText>
+      {/* <FlowerChooseText></FlowerChooseText> */}
       <Box
         sx={{
           position: "absolute",
