@@ -5,7 +5,7 @@ import Script from "next/script";
 import Head from "next/head";
 declare global {
   interface Window {
-    kakao: any;
+    Kakao: any;
   }
 }
 function App({ Component, pageProps }: AppProps) {
@@ -19,7 +19,6 @@ function App({ Component, pageProps }: AppProps) {
         ></meta>
       </Head>
       <RecoilRoot>
-        <Script src="https://developers.kakao.com/sdk/js/kakao.js"></Script>
         <Component {...pageProps} />
       </RecoilRoot>
     </>

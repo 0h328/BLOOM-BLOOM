@@ -6,6 +6,9 @@ const nextConfig = {
     loader: "imgix",
     path: "https://finale.bloombloom.s3.ap-northeast-2.amazonaws.com/",
   },
+  env: {
+    KAKAO_API_KEY:process.env.KAKAO_API_KEY,
+  },
   extends: "next",
   withImages: require("next-images"),
 };
