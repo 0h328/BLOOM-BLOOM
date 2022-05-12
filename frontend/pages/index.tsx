@@ -5,8 +5,8 @@ import Title from "../components/login/Title";
 import FlowerImg from "../components/login/FlowerImg";
 import { useRouter } from "next/router";
 function Login() {
-  // const BASE_URI = "http://localhost:3000/kakaoLogin";
-  const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
+  const BASE_URI = "http://localhost:3000/kakaoLogin";
+  // const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
   const router = useRouter();
   const handleLogin = () => {
     kakaoLogin();
@@ -25,7 +25,7 @@ function Login() {
       <Box
         sx={{
           mx: "auto",
-          width: "100vh",
+          width: "414px",
           position: "relative",
           height: "100vh",
           overflow: "hidden",
