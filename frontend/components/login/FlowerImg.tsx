@@ -14,7 +14,7 @@ function FlowerImg() {
         }}
       >
         <img
-          src="/img/loginFlower2.jpg"
+          src="../public/img/loginFlower2.jpg"
           style={{
             borderRadius: "200px",
             height: "100%",
