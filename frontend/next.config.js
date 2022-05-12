@@ -7,6 +7,7 @@ const nextConfig = {
     path: "https://finale.bloombloom.s3.ap-northeast-2.amazonaws.com/",
   },
   extends: "next",
+  withImages: require("next-images"),
 };
 
 module.exports = nextConfig;
