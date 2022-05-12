@@ -14,9 +14,9 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta content="yes" name="apple-mobile-web-app-capable" />
         <meta
-          content="width=device-width,  minimum-scale=1"
+          content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no"
           name="viewport"
-        ></meta>
+        />
       </Head>
       <RecoilRoot>
         <Component {...pageProps} />
