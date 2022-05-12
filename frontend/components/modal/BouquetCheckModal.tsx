@@ -84,7 +84,7 @@ function BouquetCheckModal({
                 완성된 꽃다발이 마음에 드시나요?
               </Typography>
             </Box>
-            <Box sx={{ mt: "8.5rem" }}>
+            <Box sx={{ mt: "8rem" }}>
               <img
                 src={bouquetImage}
                 alt="꽃다발"
