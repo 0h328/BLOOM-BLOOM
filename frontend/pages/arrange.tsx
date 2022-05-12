@@ -141,14 +141,16 @@ function Arrange() {
               position: "absolute",
               width: "85%",
               height: "90%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <img
               src={wrapInfo.wrapBackImage}
               style={{
                 borderRadius: "200px",
-                height: "100%",
-                width: "100%",
+                height: "300px",
+                width: "300px",
               }}
             ></img>
           </Box>
@@ -157,14 +159,16 @@ function Arrange() {
               position: "absolute",
               width: "80%",
               height: "80%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <img
               src={flowerInfo.flowerImage}
               style={{
                 borderRadius: "200px",
-                height: "100%",
-                width: "100%",
+                height: "290px",
+                width: "290px",
               }}
             ></img>
           </Box>
@@ -173,21 +177,23 @@ function Arrange() {
               position: "absolute",
               width: "85%",
               height: "90%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <img
               src={wrapInfo.wrapFrontImage}
               style={{
                 borderRadius: "200px",
-                height: "100%",
-                width: "100%",
+                height: "300px",
+                width: "300px",
               }}
             ></img>
           </Box>
           <Box
             sx={{
               position: "absolute",
-              top: "53%",
+              top: "48%",
               width: "30%",
               height: "30%",
             }}
