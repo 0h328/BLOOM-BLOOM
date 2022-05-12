@@ -20,7 +20,7 @@ export default function OrderlistPage() {
   const value = async () => {
     const res = await getOrderList();
     setOrderInfoList(res.data.data);
-    // console.log(res.data.data.length);
+    console.log(res.data.data);
   };
 
   useEffect(() => {
