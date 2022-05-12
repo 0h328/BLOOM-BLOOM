@@ -37,7 +37,7 @@ function Login() {
           mx: "auto",
           width: windowHeight > 480 ? 420 : "100vw",
           position: "relative",
-          height: "100vh",
+          height: windowHeight > 480 ? 420 : "90vh",
           minHeight: "100vh",
           overflow: "hidden",
         }}
