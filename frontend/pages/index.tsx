@@ -38,7 +38,7 @@ function Login() {
         style={{}}
         sx={{
           mx: "auto",
-          width: windowHeight > 480 ? 420 : "90vw",
+          width: windowHeight > 480 ? 420 : "100vw",
           position: "relative",
           height: windowHeight > 480 ? 420 : "85vh",
           minHeight: "100vh",
