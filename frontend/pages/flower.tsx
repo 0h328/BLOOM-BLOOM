@@ -5,20 +5,23 @@ import FlowerChooseText from "../components/Choose/FlowerChooseText";
 import { flowerList } from "../components/flower/FlowerData";
 import { groupBy } from "../components/common/GroupBy";
 import FlowerObject from "../components/flower/FlowerObject";
+import { FlowerType } from "../components/flower/Flower";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
 import { mainFlowerState } from "../states/states";
 import { useRecoilState } from "recoil";
+import { getFlower } from "../components/apis/bouquetApi";
 
 function Flower() {
-  let groupByName = groupBy(flowerList, (flower) => flower.flowerName);
-  const flowerListByName = Object.entries(groupByName);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [validCount, setValidCount] = useState<boolean>(true);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [flowerList, setFlowerList] = useState<Array<FlowerType>>([]);
   const handleTotal = (dif: number) => {
     setTotalCount(totalCount + dif);
   };
+  let groupByName = groupBy(flowerList, (flower) => flower.flowerName);
+  const flowerListByName = Object.entries(groupByName);
   const handleError = (code: number) => {
     switch (code) {
       case 0:
@@ -27,7 +30,14 @@ function Flower() {
       case 1:
         toast.error("📣꽃은 8개까지 선택할 수 있습니다");
         break;
+      case 2:
+        toast.error("📣꽃을 1개이상 선택해주세요");
+        break;
     }
+  };
+  const handleFlowerList = async () => {
+    const response = await getFlower();
+    setFlowerList(response.data.data);
   };
   useEffect(() => {
     if (totalCount == 8) {
@@ -39,6 +49,11 @@ function Flower() {
     }
     console.log(totalCount);
   }, [totalCount]);
+  useEffect(() => {
+    let temp = [];
+    setMainFlower([...temp]);
+    handleFlowerList();
+  }, []);
   return (
     <Box
       sx={{
@@ -69,7 +84,7 @@ function Flower() {
       >
         {flowerListByName.map((item, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <Box
                 sx={{
                   display: "flex",
@@ -89,7 +104,7 @@ function Flower() {
               <Grid container>
                 {item[1].map((flowerItem, index) => {
                   return (
-                    <>
+                    <React.Fragment key={index}>
                       <Grid key={index} item xs={12 / item[1].length}>
                         <Box sx={{ margin: "5%" }}>
                           <FlowerObject
@@ -100,11 +115,11 @@ function Flower() {
                           ></FlowerObject>
                         </Box>
                       </Grid>
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </Grid>
-            </>
+            </React.Fragment>
           );
         })}
       </Box>

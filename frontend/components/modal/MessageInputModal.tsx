@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
 import KakaoBtn from "../button/KakaoBtn";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { presentBouquetState } from "../../states/states";
+import { savePresent } from "../apis/bouquetApi";
+import KakaoMessage from "../kakaoApi/KakaoMessage";
 
 interface meesageModalProps {
   openMessageModal?: () => void;
@@ -18,9 +22,45 @@ function MessageInputModal({
   share,
 }: meesageModalProps) {
   const router = useRouter();
-  const [content, setContent] = useState<string>();
-  const handleInput = () => {};
-  const handleShare = () => {};
+  const [content, setContent] = useState<string>("");
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
+  const [uuid, setUuid] = useState<string>("");
+  const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const text = event.target.value;
+    setContent(`${text}`);
+  };
+  const handleShare = async () => {
+    const body = {
+      bouquetSeq: 7,
+      presentDesc: content,
+    };
+
+    const response = await savePresent(body);
+    console.log(response.data.data.uuid);
+
+    const KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
+    if (window.Kakao)
+      try {
+        window.Kakao.init(KAKAO_KEY);
+      } catch (e) {}
+
+    const linkcallback = () => {
+      //공유하기를 성공하면 router.back
+      router.back();
+    };
+
+    //메시지 내용 보이게 해도 되고 안해도 되고
+    window.Kakao.Link.sendScrap({
+      requestUrl: "https://bloombloom.kro.kr", // 페이지 url (선물 결과 페이지가 보여야한다.) path는 따로 설정해주면됨
+      templateId: 76396, // 메시지템플릿 번호
+      templateArgs: {
+        THUMB:
+          "https://cdn.discordapp.com/attachments/968011285998469190/970608815470936084/unknown.png", // 썸네일 주소
+      },
+      callback: linkcallback,
+    });
+  };
   const handleRoute = () => {
     router.back();
   };
@@ -41,11 +81,13 @@ function MessageInputModal({
             sx={{
               position: "absolute",
               width: "100%",
-              height: "40%",
+              height: "45%",
               backgroundColor: "#FFE0E0",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "25%",
+              top: "20%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <Typography
@@ -54,8 +96,7 @@ function MessageInputModal({
                 fontSize: "15px",
                 fontFamily: "JuliusSansOne",
                 fontWeight: "bold",
-                top: "20px",
-                left: "20%",
+                top: "3%",
               }}
             >
               메세지 내용을 입력해주세요
@@ -72,47 +113,51 @@ function MessageInputModal({
             />
             <Box
               sx={{
-                position: "absolute",
-                width: "150px",
-                height: "200px",
-                top: "62px",
-                left: "64%",
+                width: "100%",
+                height: "50%",
+                top: "15%",
+                position: "relative",
+                display: "flex",
+                margin: "0rem 0.5rem 0rem 0.5rem",
               }}
             >
-              <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+              <TextareaAutosize
+                aria-label="minimum height"
+                id="content"
+                value={content}
+                minRows={3}
+                maxRows={10}
+                placeholder="메세지 내용을 입력해주세요"
+                style={{
+                  fontSize: "1rem",
+                  fontFamily: "JuliusSansOne",
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: "#FFFAFA",
+                  border: "1px solid rgba(109, 107, 107, 0.4)",
+                  resize: "none",
+                  margin: "0rem 0.6rem 0rem 0rem",
+                  padding: "1rem",
+                  // borderRadius: "10px",
+                }}
+                onChange={(event) => handleInput(event)}
+              />
+              <Box
+                sx={{
+                  width: "50%",
+                  height: "100%",
+                }}
+              >
+                <BouquetImg bouquetImage={presentBouquet}></BouquetImg>
+              </Box>
             </Box>
-            <TextareaAutosize
-              aria-label="minimum height"
-              id="contents"
-              value={content}
-              minRows={3}
-              maxRows={10}
-              placeholder="메세지 내용을 입력해주세요"
-              style={{
-                position: "absolute",
-                top: "60px",
-                left: "0%",
-                fontSize: "1rem",
-                fontFamily: "JuliusSansOne",
-                width: "254px",
-                height: "185px",
-                backgroundColor: "#FFFAFA",
-                border: "1px solid rgba(109, 107, 107, 0.4)",
-                resize: "none",
-                marginBottom: "-1rem",
-                marginLeft: "0.6rem",
-                padding: "1rem",
-                borderRadius: "10px",
-              }}
-              onChange={handleInput}
-            />
             <Typography
               sx={{
                 position: "absolute",
                 fontSize: "15px",
                 fontWeight: "bold",
                 fontFamily: "JuliusSansOne",
-                top: "260px",
+                top: "70%",
                 left: "15%",
               }}
             >

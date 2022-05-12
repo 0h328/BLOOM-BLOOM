@@ -6,20 +6,17 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 function MakeButton() {
   return (
     <Link href="/bouquet" passHref>
-      <Box sx={{ position: "absolute" }}>
+      <Box sx={{}}>
         <Button
           variant="contained"
           size="small"
           style={{
-            position: "absolute",
             backgroundColor: "#FFFFFF",
             color: "#000000",
             fontFamily: "JuliusSansOne",
             borderRadius: "16px",
             width: 266,
             height: 52,
-            top: "139px",
-            left: "77px",
           }}
         >
           <Typography sx={{ fontSize: "18px", fontWeight: "Regular" }}>

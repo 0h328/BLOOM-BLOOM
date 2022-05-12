@@ -1,13 +1,18 @@
 import React from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, useRadioGroup } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type PageIdetifierProps = {
   page?: string;
 };
 
 function Header({ page }: PageIdetifierProps) {
-  const handleLogout = () => {};
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    router.push("/");
+  };
   return (
     <>
       <Box sx={{ position: "relative" }}>
@@ -27,7 +32,7 @@ function Header({ page }: PageIdetifierProps) {
                   <Typography
                     sx={{
                       textAlign: "center",
-                      fontFamily: "JuliusSansOne",
+                      fontFamily: "ONEMobileLight",
                       fontSize: 25,
                     }}
                   >

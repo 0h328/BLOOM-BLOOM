@@ -2,15 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { useRecoilState } from "recoil";
 import Image from "next/image";
-import { detailModalState, bouquetInfoState } from "../../states/states";
 import CloseIcon from "@mui/icons-material/Close";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
 import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
+import { Bouquet } from "../common/Bouquet";
+import { getBouquetDetail } from "../apis/bouquetApi";
+import { presentBouquetState } from "../../states/states";
+import { useRouter } from "next/router";
 
 interface modalProps {
-  open: boolean;
+  bouquet: Bouquet;
+  handleDetailModal: (state: boolean) => void;
+  detailModal: boolean;
 }
-function BouquetDetailModal() {
+function BouquetDetailModal({
+  bouquet,
+  handleDetailModal,
+  detailModal,
+}: modalProps) {
   //test용 dummy data
   const flowerinfoList = [
     {
@@ -54,18 +63,48 @@ function BouquetDetailModal() {
       flowerCount: 1,
     },
   ];
-  const [detailModal, setDetailModal] = useRecoilState(detailModalState);
-  const [bouquetInfo, setBouquetInfo] = useRecoilState(bouquetInfoState);
+  const router = useRouter();
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   //api 연동후 data set
-  //   const [flowerInfo, setFlowerInfo] = useState<Array<{}>>([]);
-
+  const [flowerInfo, setFlowerInfo] = useState<
+    Array<{ flowerName: string; flowerImage: string; flowerCount: number }>
+  >([]);
   const closeBouquetDetailModal = () => {
-    setDetailModal(false);
+    setPresentBouquet("");
+    handleDetailModal(false);
   };
+  const handleBouquetDetail = async (bouquet: Bouquet) => {
+    const response = await getBouquetDetail(bouquet.bouquetSeq);
+    // console.log(response);
+    setFlowerInfo(response.data.data.flowerInfo);
+  };
+  const handleBtn = (code: number) => {
+    switch (code) {
+      case 0:
+        handleShare();
+        break;
+      case 1:
+        handleOrder();
+        break;
+      case 2:
+        handleDelete();
+        break;
+    }
+  };
+  const handleShare = () => {
+    console.log(bouquet.bouquetImage);
+    setPresentBouquet(bouquet.bouquetImage);
+    router.push("/share");
+  };
+  const handleOrder = () => {};
+  const handleDelete = () => {};
 
-  //   useEffect(() => {
-  //     console.log(bouquetInfo);
-  //   }, [bouquetInfo]);
+  useEffect(() => {
+    if (bouquet !== undefined) {
+      handleBouquetDetail(bouquet);
+    }
+  }, [bouquet]);
 
   return (
     <>
@@ -83,25 +122,25 @@ function BouquetDetailModal() {
             sx={{
               position: "absolute",
               width: "90%",
-              height: "75%",
+              height: "80%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "15%",
+              top: "10%",
               left: "4%",
             }}
           >
             <CloseIcon
-              sx={{ position: "absolute", top: "20px", left: "90%", color: "" }}
+              sx={{ position: "absolute", top: "2%", left: "90%", color: "" }}
               onClick={closeBouquetDetailModal}
             />
             <Box sx={{ position: "absolute", top: "8%", left: "10%" }}>
-              <Image
-                src={bouquetInfo.bouquetImage}
+              <img
+                src={bouquet.bouquetImage}
                 alt="꽃다발"
-                width={315}
-                height={290}
-              ></Image>
+                width={"100%"}
+                height={"100%"}
+              ></img>
             </Box>
             <Box
               sx={{
@@ -116,10 +155,10 @@ function BouquetDetailModal() {
                 overflow: "scroll",
               }}
             >
-              <FlowerInfoList flowerInfoList={flowerinfoList} />
+              <FlowerInfoList flowerInfoList={flowerInfo} />
             </Box>
-            <Box sx={{ position: "absolute", top: "90%", left: "15%" }}>
-              <BouquetDetailModalBtn />
+            <Box sx={{ position: "absolute", top: "91%", left: "15%" }}>
+              <BouquetDetailModalBtn handleBtn={handleBtn} />
             </Box>
           </Box>
         </Box>

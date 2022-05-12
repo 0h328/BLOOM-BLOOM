@@ -1,30 +1,93 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from "react";
+import { Box, Button, Typography } from "@mui/material";
 import Header from "../components/common/Header";
-// import BouquetImg from "../components/present/BouquetImg";
-import FlowerArrangeText from '../components/Choose/FlowerArrangeText';
-import ConfirmBtn from "../components/Button/ConfirmPageBtn";
-import DecoConfirmModal from "../components/modal/DecoConfirmModal";
-import FlowerArrange from '../components/Bouquet/FlowerArrange';
-import MakingFlowerImage from '../components/Bouquet/MakingFlowerImage';
-import { Box } from '@mui/material';
+import Move from "../components/move/Move";
+import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
+import Test from "../components/move/Test";
+import BouquetCheckModal from "../components/modal/BouquetCheckModal";
+import html2canvas from "html2canvas";
+import {
+  wrapState,
+  decoState,
+  flowerState,
+  mainFlowerState,
+} from "../states/states";
+import Toast from "../components/common/Toast";
+import { toast } from "material-react-toastify";
+import { useRecoilState } from "recoil";
+import { saveBouquet } from "../components/apis/bouquetApi";
+function Arrange() {
+  const [finish, setFinish] = useState<boolean>(false);
+  const [bouquetImage, setBouquetImage] = useState<string>();
+  const [checkModal, setCheckModal] = useState<boolean>();
+  const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
+  const [decoInfo, setDecoInfo] = useRecoilState(decoState);
+  const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
+  const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [windowHeight, setWindowHeight] = useState<number>();
+  const [height, setHeight] = useState<number>();
+  const [bouquetImageData, setBouquetImageData] = useState<FormData>();
 
-export default function Arrange() {
-  const [decoModal, setDecoModal] = useState<boolean>(false);
+  const handleSaveImg = () => {
+    if (finish) {
+      html2canvas(document.querySelector("#img"), {
+        backgroundColor: "#FFFAFA",
+        foreignObjectRendering: false,
+        useCORS: true,
+        height: windowHeight,
+      }).then((canvas) => {
+        setBouquetImage(canvas.toDataURL("image/jpeg"));
 
-  const makingFlowerImg = "/images/Wrapper1.png";
+        const imgBase64 = canvas.toDataURL("image/jpeg", "image/octet-stream");
+        const decodImg = atob(imgBase64.split(",")[1]);
 
-  const handleDecoModal = (e: any) => {
-    openDecoModal();
+        let array = [];
+        for (let i = 0; i < decodImg.length; i++) {
+          array.push(decodImg.charCodeAt(i));
+        }
+
+        const file = new Blob([new Uint8Array(array)], { type: "image/jpeg" });
+        const fileName = "canvas_img_" + new Date().getMilliseconds() + ".jpg";
+        let formData = new FormData();
+        formData.append("file", file, fileName);
+
+        setBouquetImageData(formData);
+        handleCheckModal(true);
+      });
+    } else {
+      toast.error("📣배치완료 버튼을 눌러 배치를 완료해주세요");
+    }
   };
-  const openDecoModal = () => {
-    setDecoModal(true);
-  }
-  const closeDecoModal = () => {
-    setDecoModal(false);
-  }
-
-
-
+  const onSave = (uri: string, filename: string) => {
+    let link = document.createElement("a");
+    document.body.appendChild(link);
+    link.href = uri;
+    link.download = filename;
+    link.click();
+    document.body.removeChild(link);
+  };
+  const handleArrange = (state: boolean) => {
+    setFinish(state);
+    setWindowHeight(window.innerHeight * 0.35);
+  };
+  const handleCheckModal = (state: boolean) => {
+    setCheckModal(state);
+    setFinish(state);
+  };
+  const handleComplete = async () => {
+    const body = {
+      wrapSeq: wrapInfo.wrapSeq,
+      decoSeq: decoInfo.decoSeq,
+      subFlowerSeq: flowerInfo.flowerSeq,
+      mainFlower: mainFlower,
+      bouquetImage: bouquetImageData,
+    };
+    const response = await saveBouquet(body);
+    console.log(response);
+  };
+  useEffect(() => {
+    setHeight(window.innerHeight);
+  });
   return (
     <Box
       sx={{
@@ -32,39 +95,165 @@ export default function Arrange() {
         width: 420,
         position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "840px",
+        height: height,
         minHeight: "100vh",
+        justifyContent: "center",
+        display: "flex",
       }}
     >
-      <Box sx={{ position: "absolute", top: "30px" }}>
-        <Header></Header>
+      <Box sx={{ position: "absolute", top: "2%" }}>
+        <Header page="main"></Header>
       </Box>
-      <DecoConfirmModal
-        openDecoModal={openDecoModal}
-        closeDecoModal={closeDecoModal}
-        decoModal={decoModal}
-      ></DecoConfirmModal>
-      <FlowerArrangeText></FlowerArrangeText>
-      <Box sx={{ position: "absolute", top: "150px", left: "30px" }}>
-        <MakingFlowerImage makingFlowerImg={makingFlowerImg}></MakingFlowerImage>
-      </Box>
-      <Box sx={{ position: "absolute", top: "600px", left: "30px" }}>
-        <FlowerArrange></FlowerArrange>
+      <BouquetCheckModal
+        bouquetImage={bouquetImage}
+        handleCheckModal={handleCheckModal}
+        checkModal={checkModal}
+        handleComplete={handleComplete}
+      ></BouquetCheckModal>
+      <Box>
+        <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
       </Box>
       <Box
+        id="img"
         sx={{
           position: "absolute",
-          bottom: "100px",
-          left: "45px",
+          width: "100%",
+          height: "80%",
+          top: "20%",
+          display: "flex",
+          flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <ConfirmBtn
-          click={(e: any) => handleDecoModal(e)}
-          title="완료"
-          text=""
-        ></ConfirmBtn>
+        <Box
+          // id="img"
+          sx={{
+            position: "absolute",
+            width: "100%",
+            height: "50%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              width: "85%",
+              height: "90%",
+            }}
+          >
+            <img
+              src={wrapInfo.wrapBackImage}
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              width: "80%",
+              height: "80%",
+            }}
+          >
+            <img
+              src={flowerInfo.flowerImage}
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              width: "85%",
+              height: "90%",
+            }}
+          >
+            <img
+              src={wrapInfo.wrapFrontImage}
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "53%",
+              width: "30%",
+              height: "30%",
+            }}
+          >
+            <img
+              src={decoInfo.decoImage}
+              style={{
+                borderRadius: "200px",
+                height: "100%",
+                width: "100%",
+              }}
+            ></img>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            backgroundColor: "#EFDFBF",
+            position: "absolute",
+            top: "48%",
+            width: "90%",
+            height: "18%",
+            display: "flex",
+            alignItems: "center",
+            borderRadius: "5px",
+            justifyContent: "center",
+          }}
+        >
+          <Move finish={finish}></Move>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            width: "100%",
+            top: "70%",
+            display: "flex",
+            alignItems: "center",
+            borderRadius: "5px",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Button
+            variant="contained"
+            size="small"
+            style={{
+              ...btnStyle,
+            }}
+            onClick={(e) => {
+              handleArrange(true);
+            }}
+          >
+            <Typography> 배치 완료</Typography>
+          </Button>
+        </Box>
       </Box>
+      <Toast />
     </Box>
-  )
+  );
+}
+
+export const btnStyle = {
+  backgroundColor: "#FFE0E0",
+  color: "#3A1D1D",
+  fontFamily: "JuliusSansOne",
+  borderRadius: "5",
+  width: "40%",
+  height: "auto",
 };
+
+export default Arrange;

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import CountBtn from "./CountBtn";
-import { Flower } from "../flower/Flower";
+import { FlowerType } from "../flower/Flower";
 import Toast from "../common/Toast";
+import { mainFlowerState } from "../../states/states";
+import { useRecoilState } from "recoil";
 
 interface flowerProps {
-  flower: Flower;
+  flower: FlowerType;
   validCount: boolean;
   handleTotal: (dif: number) => void;
   handleError: (code: number) => void;
@@ -17,6 +19,7 @@ function FlowerObject({
   validCount,
   handleError,
 }: flowerProps) {
+  const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   const [count, setCount] = useState<number>(0);
   const onIncrease = () => {
     if (validCount) {
@@ -34,7 +37,25 @@ function FlowerObject({
       handleError(0);
     }
   };
-  useEffect(() => {}, [count]);
+  useEffect(() => {
+    // const values = Object.values(mainFlower);
+    // console.log(values);
+    if (count > 0) {
+      let temp = [];
+      for (let index in mainFlower) {
+        const value = mainFlower[index];
+        temp = mainFlower.filter(
+          (value) => value.flowerSeq !== flower.flowerSeq
+        );
+      }
+      const flowerInfo = {
+        flowerSeq: flower.flowerSeq,
+        flowerCount: count,
+        // flowerImage: flower.flowerImage,
+      };
+      setMainFlower([...temp, flowerInfo]);
+    }
+  }, [count]);
   return (
     <Box>
       <Box
@@ -52,12 +73,12 @@ function FlowerObject({
       <Box
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
       >
-        <Image
+        <img
           src={flower.flowerImage}
           alt="flower"
           width="80px"
           height="80px"
-        ></Image>
+        ></img>
       </Box>
       <Box
         sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}

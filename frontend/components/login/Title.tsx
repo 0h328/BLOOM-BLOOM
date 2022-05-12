@@ -2,14 +2,11 @@ import React from "react";
 import { Box, Button, Typography, Grid } from "@mui/material";
 function Title() {
   return (
-    <Box>
-      <Typography sx={{ ...titleStyle }} style={{ top: "60px", left: "74px" }}>
+    <Box sx={{ height: "30%", width: "100%" }}>
+      <Typography sx={{ ...titleStyle }} style={{ top: "8%", left: "18%" }}>
         BLOOM
       </Typography>
-      <Typography
-        sx={{ ...titleStyle }}
-        style={{ top: "120px", left: "159px" }}
-      >
+      <Typography sx={{ ...titleStyle }} style={{ top: "15%", left: "40%" }}>
         BLOOM
       </Typography>
     </Box>
@@ -18,7 +15,7 @@ function Title() {
 
 export const titleStyle = {
   position: "absolute",
-  fontSize: 50,
+  fontSize: "3rem",
   fontFamily: "JuliusSansOne",
 };
 

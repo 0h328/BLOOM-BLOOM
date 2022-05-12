@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import KakaoBtn from "../components/button/KakaoBtn";
 import Title from "../components/login/Title";
 import FlowerImg from "../components/login/FlowerImg";
 import { useRouter } from "next/router";
+import { maxWidth } from "@mui/system";
+import { setScreenSize } from "../components/common/Size";
 function Login() {
-  const BASE_URI = "http://localhost:3000/kakaoLogin";
+  const [windowHeight, setWindowHeight] = useState<number>();
+  // const BASE_URI = "http://localhost:3000/kakaoLogin";
+  const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
   const router = useRouter();
   const handleLogin = () => {
     kakaoLogin();
@@ -19,28 +23,46 @@ function Login() {
       console.log(error);
     }
   };
+
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+  useEffect(() => {
+    setScreenSize();
+    setWindowHeight(window.innerHeight);
+  }, []);
   return (
     <>
       <Box
+        style={{}}
         sx={{
           mx: "auto",
-          width: 420,
+          width: windowHeight > 480 ? 420 : "100vw",
           position: "relative",
+          height: windowHeight > 480 ? 420 : "85vh",
+          minHeight: "100vh",
+          overflow: "hidden",
         }}
       >
         <Box
           sx={{
             backgroundColor: "#FFFAFA",
-            height: "800px",
             minHeight: "100vh",
             position: "relative",
-            overflow: "hidden",
           }}
         >
           <Title />
           <FlowerImg />
-
-          <Box sx={{ position: "absolute", top: "680px", left: "70px" }}>
+          <Box
+            sx={{
+              position: "absolute",
+              width: "100%",
+              top: "75%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <KakaoBtn
               handleBtn={handleLogin}
               title="카카오톡으로 시작하기"
