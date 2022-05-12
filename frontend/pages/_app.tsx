@@ -14,7 +14,7 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta content="yes" name="apple-mobile-web-app-capable" />
         <meta
-          content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"
+          content="width=device-width,  minimum-scale=1"
           name="viewport"
         ></meta>
       </Head>
