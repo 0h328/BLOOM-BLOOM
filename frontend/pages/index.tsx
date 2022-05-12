@@ -35,7 +35,7 @@ function Login() {
       <Box
         sx={{
           mx: "auto",
-          width: windowHeight > 480 ? 420 : "100%",
+          width: windowHeight > 480 ? 420 : "100vw",
           position: "relative",
           height: "100vh",
           minHeight: "100vh",

@@ -49,6 +49,11 @@ a {
   box-sizing: border-box;
 }
 
+.fill-screen {
+  height: 100vh;
+  width: 100vw;
+} /* iOS only */
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
