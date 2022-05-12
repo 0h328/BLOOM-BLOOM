@@ -65,9 +65,11 @@ function MadeList() {
         minHeight: "100vh",
         justifyContent: "center",
         display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      <Box sx={{ position: "absolute", top: "2%" }}>
+      <Box sx={{}}>
         <Header page="madelist"></Header>
       </Box>
       <BouquetDetailModal
@@ -75,25 +77,25 @@ function MadeList() {
         handleDetailModal={handleDetailModal}
         detailModal={detailModal}
       ></BouquetDetailModal>
-      <Typography
-        sx={{
-          ...textStyle,
-        }}
-      >
-        최근 제작한 꽃다발
-      </Typography>
-
+      <Box sx={{ mt: "2rem" }}>
+        <Typography
+          sx={{
+            ...textStyle,
+          }}
+        >
+          최근 제작한 꽃다발
+        </Typography>
+      </Box>
       <Box
         sx={{
-          position: "absolute",
           backgroundColor: "#FFE0E0",
-          width: "95%",
+          width: "93%",
           height: "80%",
-          top: "16%",
           borderRadius: "10px",
           overflowX: "hidden",
           overflowY: "scroll",
           justifyContent: "center",
+          mt: "2rem",
         }}
       >
         <FlowerImgList
@@ -113,7 +115,6 @@ export const textStyle = {
   fontWeight: "bold",
   fontSize: "15px",
   lineHeight: "17px",
-  top: "10%",
   left: "18px",
   color: "rgba(0, 0, 0, 0.8)",
 };

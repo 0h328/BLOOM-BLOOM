@@ -34,7 +34,7 @@ function FlowerImgList({
   return (
     <Box
       sx={{
-        position: "relative",
+        // position: "relative",
         display: "flex",
         justifyContent: "center",
       }}
@@ -55,7 +55,7 @@ function FlowerImgList({
                   item
                   xs={4}
                   key={index}
-                  sx={{ "&:hover": { cursor: "pointer" }, padding: "1%" }}
+                  sx={{ "&:hover": { cursor: "pointer" }, padding: "1.5%" }}
                 >
                   <img
                     src={bouquet.bouquetImage}
