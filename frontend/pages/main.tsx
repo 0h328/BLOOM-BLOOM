@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Header from "../components/common/Header";
 import MakeButton from "../components/main/MakeButton";
 import FlowerImgListTitle from "../components/main/FlowerImgListTitle";
@@ -48,42 +48,48 @@ function Main() {
         <Box sx={{ position: "absolute", top: "15%" }}>
           <MakeButton />
         </Box>
-        <Box
+        <Grid
+          container
           sx={{
             backgroundColor: "#FFFFFF",
-            position: "absolute",
+            position: "relative",
             width: "95%",
             height: "70%",
             top: "26%",
             borderRadius: "40px",
             overflow: "hidden",
+            padding: "1rem",
           }}
         >
-          <FlowerImgListTitle
-            title="최근 제작한 꽃다발"
-            link="/madelist"
-            top="5%"
-          ></FlowerImgListTitle>
-          {madeBouquetList !== undefined ? (
-            <FlowerImgList
-              bouquetList={madeBouquetList}
-              top="12%"
-              infoText="제작한 꽃다발이 없습니다"
-            ></FlowerImgList>
-          ) : null}
-          <FlowerImgListTitle
-            title="최근 주문한 꽃다발"
-            link="/orderlist"
-            top="50%"
-          ></FlowerImgListTitle>
-          {orderBouquetList !== undefined ? (
-            <FlowerImgList
-              bouquetList={madeBouquetList}
-              top="37%"
-              infoText="주문한 꽃다발이 없습니다"
-            ></FlowerImgList>
-          ) : null}
-        </Box>
+          <Grid item xs={12}>
+            <FlowerImgListTitle
+              title="최근 제작한 꽃다발"
+              link="/madelist"
+            ></FlowerImgListTitle>
+          </Grid>
+          <Grid item xs={12}>
+            {madeBouquetList !== undefined ? (
+              <FlowerImgList
+                bouquetList={madeBouquetList}
+                infoText="제작한 꽃다발이 없습니다"
+              ></FlowerImgList>
+            ) : null}
+          </Grid>
+          <Grid item xs={12}>
+            <FlowerImgListTitle
+              title="최근 주문한 꽃다발"
+              link="/orderlist"
+            ></FlowerImgListTitle>
+          </Grid>
+          <Grid item xs={12}>
+            {orderBouquetList !== undefined ? (
+              <FlowerImgList
+                bouquetList={madeBouquetList}
+                infoText="주문한 꽃다발이 없습니다"
+              ></FlowerImgList>
+            ) : null}
+          </Grid>
+        </Grid>
       </Box>
     </>
   );

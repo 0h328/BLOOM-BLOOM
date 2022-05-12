@@ -6,14 +6,12 @@ import { Bouquet } from "../common/Bouquet";
 import { textStyle } from "./FlowerImgListTitle";
 interface dataProps {
   bouquetList: Bouquet[];
-  top: string;
   page?: string;
   handleBouquet?: (bouquet: Bouquet) => void;
   infoText?: string;
 }
 function FlowerImgList({
   bouquetList,
-  top,
   page,
   handleBouquet,
   infoText,
@@ -38,7 +36,6 @@ function FlowerImgList({
       sx={{
         position: "relative",
         display: "flex",
-        top: { top },
         justifyContent: "center",
       }}
     >
