@@ -54,9 +54,6 @@ a {
   width: 100vw;
 } /* iOS only */
 
-:root {
-  --vh: 100%;
-}
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
