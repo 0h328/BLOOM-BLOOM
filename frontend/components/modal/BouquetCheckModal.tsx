@@ -9,12 +9,29 @@ interface modalProps {
   checkModal: boolean;
 }
 
-function BouquetCheckModal({ bouquetImage, handleCheckModal, checkModal }) {
-  console.log(bouquetImage);
-  const img = "/img/wrapPurple.png";
+function BouquetCheckModal({
+  bouquetImage,
+  handleCheckModal,
+  checkModal,
+}: modalProps) {
+  const [imgHeight, setImgHeight] = useState<number>();
+  const [imgWidth, setImgWidth] = useState<number>();
   const closeBouquetDetailModal = () => {
     handleCheckModal(false);
   };
+  const handleResize = () => {
+    setImgWidth(window.innerWidth * 0.9);
+    setImgHeight(imgWidth * 1.2);
+    console.log(
+      `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
+    );
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
   console.log(checkModal);
   return (
     <>
@@ -67,8 +84,8 @@ function BouquetCheckModal({ bouquetImage, handleCheckModal, checkModal }) {
               sx={{
                 position: "absolute",
                 top: "20%",
-                width: "80%",
-                height: "45%",
+                width: { imgWidth },
+                height: { imgHeight },
               }}
             >
               <img

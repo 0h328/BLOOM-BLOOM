@@ -46,9 +46,9 @@ function Arrange() {
   };
   const handleResize = () => {
     setWindowHeight(window.innerHeight * 0.45);
-    console.log(
-      `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
-    );
+    // console.log(
+    //   `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
+    // );
   };
   useEffect(() => {
     window.addEventListener("resize", handleResize);
