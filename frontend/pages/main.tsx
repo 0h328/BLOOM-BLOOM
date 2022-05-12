@@ -17,6 +17,7 @@ function Main() {
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
   const [orderBouquetList, setOrderBouquetList] =
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
+  const [windowHeight, setWindowHeight] = useState<number>();
   const handleRecentList = async () => {
     const response = await getRecentBouquetList();
     console.log(response.data.data.makeBouquet);
@@ -24,6 +25,7 @@ function Main() {
     setOrderBouquetList(response.data.data.orderBouquet);
   };
   useEffect(() => {
+    setWindowHeight(window.innerHeight);
     handleRecentList();
   }, []);
   return (
@@ -31,7 +33,7 @@ function Main() {
       <Box
         sx={{
           mx: "auto",
-          width: "420px",
+          width: windowHeight > 480 ? 420 : "100%",
           position: "relative",
           backgroundColor: "#FFE0E0",
           height: "100vh",
@@ -50,7 +52,7 @@ function Main() {
           sx={{
             backgroundColor: "#FFFFFF",
             position: "absolute",
-            width: 410,
+            width: "95%",
             height: "70%",
             top: "26%",
             borderRadius: "40px",

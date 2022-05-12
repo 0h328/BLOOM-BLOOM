@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import KakaoBtn from "../components/button/KakaoBtn";
 import Title from "../components/login/Title";
 import FlowerImg from "../components/login/FlowerImg";
 import { useRouter } from "next/router";
 function Login() {
+  const [windowHeight, setWindowHeight] = useState<number>();
   // const BASE_URI = "http://localhost:3000/kakaoLogin";
   const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
   const router = useRouter();
@@ -27,15 +28,17 @@ function Login() {
   };
   useEffect(() => {
     setScreenSize();
+    setWindowHeight(window.innerHeight);
   }, []);
   return (
     <>
       <Box
         sx={{
           mx: "auto",
-          width: "420px",
+          width: windowHeight > 480 ? 420 : "100%",
           position: "relative",
-          height: "90vh",
+          height: "100vh",
+          minHeight: "100vh",
           overflow: "hidden",
         }}
       >
