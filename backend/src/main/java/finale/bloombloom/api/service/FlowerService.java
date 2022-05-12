@@ -5,6 +5,7 @@ import finale.bloombloom.api.request.FlowerRequest;
 import finale.bloombloom.api.response.*;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
 import finale.bloombloom.common.model.FileFolder;
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.FlowerInfo;
 import finale.bloombloom.db.entity.Order;
@@ -40,10 +41,11 @@ public class FlowerService {
     private final FlowerInfoRepository flowerInfoRepository;
     private final PresentRepository presentRepository;
     private final OrderRepository orderRepository;
+    private final S3ImageUrlConverter urlConverter;
 
     public List<MainFlowerResponse> findAllMainFlower() {
         return mainFlowerRepository.findAll().stream()
-                .map(MainFlowerResponse::from)
+                .map(mainFlower -> MainFlowerResponse.from(mainFlower, urlConverter))
                 .collect(Collectors.toList());
     }
 
