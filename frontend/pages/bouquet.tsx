@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import BouquetContainer from '../containers/BouquetContainer';
+import React, { useState, useEffect } from "react";
+import BouquetContainer from "../containers/BouquetContainer";
 import Header from "../components/common/Header";
 import { Box } from "@mui/material";
 import { getFlower, getDeco, getWrap } from "../components/apis/flower";
 
-
 export default function FlowerPage() {
+  const [windowHeight, setWindowHeight] = useState<number>();
   const [flowerInfo, setFlowerInfo] = useState();
   const [decoInfo, setDecoInfo] = useState();
   const [wrapInfo, setWrapInfo] = useState();
@@ -13,14 +13,15 @@ export default function FlowerPage() {
     const res = await getFlower();
     const res2 = await getDeco();
     const res3 = await getWrap();
-    setFlowerInfo(res.data.data)
-    setDecoInfo(res.data.data)
-    setWrapInfo(res.data.data)
-  }
+    setFlowerInfo(res.data.data);
+    setDecoInfo(res.data.data);
+    setWrapInfo(res.data.data);
+  };
 
   useEffect(() => {
-    value()
-  },[])
+    value();
+    setWindowHeight(window.innerHeight);
+  }, []);
 
   return (
     <Box
@@ -29,7 +30,7 @@ export default function FlowerPage() {
         width: 420,
         position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "840px",
+        height: windowHeight > 480 ? 420 : "85vh",
         minHeight: "100vh",
       }}
     >
