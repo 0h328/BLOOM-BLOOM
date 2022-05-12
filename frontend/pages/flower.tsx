@@ -42,16 +42,6 @@ function Flower() {
     const response = await getFlower();
     setFlowerList(response.data.data);
   };
-  // useEffect(() => {
-  //   if (totalCount == 8) {
-  //     setValidCount(false);
-  //   } else if (totalCount < 8) {
-  //     setValidCount(true);
-  //   } else if (totalCount > 8) {
-  //     setValidCount(false);
-  //   }
-  //   console.log(totalCount);
-  // }, [totalCount]);
   useEffect(() => {
     let temp = [];
     setMainFlower([...temp]);
@@ -68,7 +58,7 @@ function Flower() {
         minHeight: "100vh",
       }}
     >
-      <Toast />
+      {/* <Toast /> */}
       <Box sx={{ position: "absolute", top: "30px" }}>
         <Header page="flower"></Header>
       </Box>

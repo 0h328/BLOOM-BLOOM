@@ -43,7 +43,7 @@ function Wrapper({ wrapList }: wrapProps) {
     <Box sx={{ ...style }}>
       <Grid
         container
-        spacing={2}
+        spacing={3}
         direction="row"
         alignItems="center"
         justifyItems="center"

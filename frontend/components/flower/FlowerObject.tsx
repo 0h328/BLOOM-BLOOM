@@ -92,7 +92,6 @@ function FlowerObject({
           count={count}
         ></CountBtn>
       </Box>
-      <Toast></Toast>
     </Box>
   );
 }

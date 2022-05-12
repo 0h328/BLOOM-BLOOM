@@ -217,7 +217,7 @@ function BouquetContainer({ src }: containerProps) {
         {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
 
         {/* 꽃을 선택하러갈 수 있는 버튼 */}
-        {/* <Box textAlign="center">
+        <Box textAlign="center">
           <Link href="/flower" passHref>
             <Button
               style={{
@@ -230,7 +230,7 @@ function BouquetContainer({ src }: containerProps) {
               꽃 선택하기
             </Button>
           </Link>
-        </Box> */}
+        </Box>
         {/* 꽃을 선택하러갈 수 있는 버튼 */}
       </Box>
     </Box>
