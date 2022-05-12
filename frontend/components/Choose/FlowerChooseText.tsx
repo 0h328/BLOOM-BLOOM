@@ -3,10 +3,24 @@ import Link from "next/link";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Typography, IconButton } from "@mui/material";
-
-function FlowerChooseText() {
+import Toast from "../common/Toast";
+import { toast } from "material-react-toastify";
+import { useRouter } from "next/router";
+interface textProps {
+  totalCount: number;
+}
+function FlowerChooseText({ totalCount }: textProps) {
+  const router = useRouter();
+  const handleBtn = () => {
+    if (totalCount === 0) {
+      toast.error("📣꽃을 1개이상 선택해주세요");
+    } else {
+      router.push("./arrange");
+    }
+  };
   return (
     <>
+      <Toast></Toast>
       <Typography
         variant="h6"
         gutterBottom
@@ -25,10 +39,9 @@ function FlowerChooseText() {
         꽃을 선택해주세요
         <IconButton
           style={{ color: "black", left: "60px", marginBottom: "5px" }}
+          onClick={handleBtn}
         >
-          <Link href="/arrange" passHref>
-            <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
-          </Link>
+          <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
         </IconButton>
       </Typography>
       <Typography

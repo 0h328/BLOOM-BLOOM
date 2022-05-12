@@ -10,30 +10,33 @@ import { useRecoilState } from "recoil";
 interface flowerProps {
   flower: FlowerType;
   validCount: boolean;
+  totalCount: number;
   handleTotal: (dif: number) => void;
   handleError: (code: number) => void;
 }
 function FlowerObject({
   flower,
-  handleTotal,
   validCount,
+  totalCount,
+  handleTotal,
   handleError,
 }: flowerProps) {
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   const [count, setCount] = useState<number>(0);
   const onIncrease = () => {
-    if (validCount) {
+    if (totalCount < 8) {
       setCount(count + 1);
       handleTotal(+1);
-    } else {
+    } else if (totalCount == 8) {
       handleError(1);
     }
   };
   const onDecrease = () => {
-    if (count != 0 && validCount) {
+    if (totalCount > 0 && count > 0) {
       setCount(count - 1);
       handleTotal(-1);
-    } else {
+    } else if (count == 0) {
+      console.log("0 error");
       handleError(0);
     }
   };
