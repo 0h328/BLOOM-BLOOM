@@ -20,7 +20,7 @@ function FlowerImg() {
             height: "100%",
             width: "100%",
           }}
-        ></Image>
+        ></img>
       </Box>
       <Box
         sx={{

@@ -19,6 +19,7 @@ function Main() {
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
   const handleRecentList = async () => {
     const response = await getRecentBouquetList();
+    console.log(response.data.data.makeBouquet);
     setMadeBouquetList(response.data.data.makeBouquet);
     setOrderBouquetList(response.data.data.orderBouquet);
   };
