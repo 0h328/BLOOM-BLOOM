@@ -88,7 +88,7 @@ function Main() {
 }
 
 export const infoText = {
-  fontSize: "15px",
-  fontFamily: "JuliusSansOne",
+  fontSize: "20px",
+  fontFamily: "ONEMobileLight",
 };
 export default Main;

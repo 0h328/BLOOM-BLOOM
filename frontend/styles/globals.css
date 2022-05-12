@@ -10,7 +10,18 @@
   font-family: "PoppinsBold";
   src: url("../fonts/Poppins-ExtraBold.ttf");
 }
-
+@font-face {
+  font-family: "ONEMobilePOP";
+  src: url("../fonts/ONE Mobile POP.ttf");
+}
+@font-face {
+  font-family: "ONEMobileLight";
+  src: url("../fonts/ONE Mobile Light.ttf");
+}
+@font-face {
+  font-family: "ONEMobileTitle";
+  src: url("../fonts/ONE Mobile Title.ttf");
+}
 html,
 body {
   padding: 0;

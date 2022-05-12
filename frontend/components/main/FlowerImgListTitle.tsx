@@ -49,7 +49,7 @@ function FlowerImgListTitle({ title, link, top }: listProps) {
 
 export const textStyle = {
   position: "absolute",
-  fontFamily: "Julius Sans One",
+  fontFamily: "ONEMobileLight",
   fontStyle: "normal",
   fontWeight: 400,
   fontSize: "14px",
