@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box } from "@mui/material";
 import KakaoBtn from "../components/button/KakaoBtn";
 import Title from "../components/login/Title";
@@ -20,6 +20,14 @@ function Login() {
       console.log(error);
     }
   };
+
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+  useEffect(() => {
+    setScreenSize();
+  }, []);
   return (
     <>
       <Box
