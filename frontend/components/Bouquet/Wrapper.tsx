@@ -1,11 +1,7 @@
-import React from 'react';
-import { 
-  Box, 
-  Grid,
-} from '@mui/material';
-import { useRecoilState } from 'recoil';
-import { wrapState } from '../../states/states';
-
+import React from "react";
+import { Box, Grid } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { wrapState } from "../../states/states";
 
 interface wrap {
   wrapSeq: number;
@@ -19,7 +15,7 @@ interface wrapProps {
 }
 
 function Wrapper({ wrapList }: wrapProps) {
-  const [wrapInfo, setWrapInfo] = useRecoilState(wrapState)
+  const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
   const handleWrapInfo = (wrap: {
     wrapSeq: number;
     wrapImage: string;
@@ -32,7 +28,7 @@ function Wrapper({ wrapList }: wrapProps) {
   };
 
   const clickHandler = (
-    wrap : {
+    wrap: {
       wrapSeq: number;
       wrapImage: string;
       wrapBackImage: string;
@@ -41,7 +37,7 @@ function Wrapper({ wrapList }: wrapProps) {
     event
   ) => {
     handleWrapInfo(wrap);
-  };  
+  };
 
   return (
     <Box sx={{ ...style }}>
@@ -64,7 +60,7 @@ function Wrapper({ wrapList }: wrapProps) {
               <img
                 src={wrap.wrapImage}
                 alt="포장지"
-                style={{ width: "80px", height: "80px"}}
+                style={{ width: "80px", height: "80px" }}
                 onClick={(event) => {
                   clickHandler(wrap, event);
                 }}
@@ -74,7 +70,7 @@ function Wrapper({ wrapList }: wrapProps) {
         })}
       </Grid>
     </Box>
-  )
+  );
 }
 
 export const style = {

@@ -1,10 +1,7 @@
-import React from 'react';
-import { 
-  Box, 
-  Grid,
-} from '@mui/material';
-import { useRecoilState } from 'recoil';
-import { decoState } from '../../states/states';
+import React from "react";
+import { Box, Grid } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { decoState } from "../../states/states";
 
 interface deco {
   decoSeq: number;
@@ -16,18 +13,15 @@ interface decoProps {
 }
 
 function Ribbon({ decoList }: decoProps) {
-  const [decoInfo, setDecoInfo] = useRecoilState(decoState)
-  const handleDecoInfo = (deco: {
-    decoSeq: number;
-    decoImage: string;
-  }) => {
+  const [decoInfo, setDecoInfo] = useRecoilState(decoState);
+  const handleDecoInfo = (deco: { decoSeq: number; decoImage: string }) => {
     setDecoInfo({
       ...deco,
     });
   };
 
   const clickHandler = (
-    deco : {
+    deco: {
       decoSeq: number;
       decoImage: string;
     },
@@ -36,8 +30,6 @@ function Ribbon({ decoList }: decoProps) {
     handleDecoInfo(deco);
   };
 
-
-    
   return (
     <Box sx={{ ...style }}>
       <Grid
@@ -58,8 +50,8 @@ function Ribbon({ decoList }: decoProps) {
             >
               <img
                 src={deco.decoImage}
-                alt="포장지"
-                style={{ width: "80px", height: "80px"}}
+                alt="리본"
+                style={{ width: "80px", height: "80px" }}
                 onClick={(event) => {
                   clickHandler(deco, event);
                 }}
@@ -69,14 +61,14 @@ function Ribbon({ decoList }: decoProps) {
         })}
       </Grid>
     </Box>
-  )
+  );
 }
 
 export const style = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
-  margin: "20px auto"
+  // margin: "20px auto"
 };
 
 export default Ribbon;

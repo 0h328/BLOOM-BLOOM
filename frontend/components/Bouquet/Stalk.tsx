@@ -1,10 +1,7 @@
-import React from 'react';
-import { 
-  Box, 
-  Grid
-} from '@mui/material';
-import { useRecoilState } from 'recoil';
-import { flowerState } from '../../states/states';
+import React from "react";
+import { Box, Grid } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { flowerState } from "../../states/states";
 
 interface flower {
   flowerSeq: number;
@@ -16,7 +13,7 @@ interface flowerProps {
 }
 
 function Stalk({ flowerList }: flowerProps) {
-  const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState)
+  const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const handleFlowerInfo = (flower: {
     flowerSeq: number;
     flowerImage: string;
@@ -27,7 +24,7 @@ function Stalk({ flowerList }: flowerProps) {
   };
 
   const clickHandler = (
-    flower : {
+    flower: {
       flowerSeq: number;
       flowerImage: string;
     },
@@ -36,13 +33,11 @@ function Stalk({ flowerList }: flowerProps) {
     handleFlowerInfo(flower);
   };
 
-
-
   return (
     <Box sx={{ ...style }}>
       <Grid
         container
-        spacing={2}
+        spacing={1}
         direction="row"
         alignItems="center"
         justifyItems="center"
@@ -54,12 +49,16 @@ function Stalk({ flowerList }: flowerProps) {
               item
               xs={6}
               key={index}
-              sx={{ "&:hover": { cursor: "pointer" } }}
+              sx={{
+                "&:hover": { cursor: "pointer" },
+                display: "flex",
+                justifyContent: "center",
+              }}
             >
               <img
                 src={flower.flowerImage}
-                alt="포장지"
-                style={{ width: "120px", height: "120px"}}
+                alt="부속꽃"
+                style={{ width: "110px", height: "110px" }}
                 onClick={(event) => {
                   clickHandler(flower, event);
                 }}
@@ -69,15 +68,14 @@ function Stalk({ flowerList }: flowerProps) {
         })}
       </Grid>
     </Box>
-  )
+  );
 }
 
 export const style = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
-  margin: "20px auto"
+  // margin: "20px auto",
 };
-
 
 export default Stalk;
