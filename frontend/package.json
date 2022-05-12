@@ -19,6 +19,7 @@
     "html2canvas": "^1.4.1",
     "material-react-toastify": "^1.0.1",
     "next": "12.1.5",
+    "next-images": "^1.8.4",
     "qs": "^6.10.3",
     "react": "18.1.0",
     "react-dom": "18.1.0",

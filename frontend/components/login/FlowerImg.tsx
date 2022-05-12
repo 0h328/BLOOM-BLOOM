@@ -1,7 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { BASE_URL } from "../apis/config";
-import loginImg from "/img/loginFlower2.jpg";
 import Image from "next/image";
 function FlowerImg() {
   return (
@@ -14,8 +13,8 @@ function FlowerImg() {
           left: "40%",
         }}
       >
-        <Image
-          src={loginImg}
+        <img
+          src="/img/loginFlower1.jpg"
           style={{
             borderRadius: "200px",
             height: "100%",
