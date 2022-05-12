@@ -18,6 +18,7 @@ function Arrange() {
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [windowHeight, setWindowHeight] = useState<number>();
+  const [height, setHeight] = useState<number>();
   const handleSaveImg = () => {
     if (finish) {
       html2canvas(document.querySelector("#img"), {
@@ -27,7 +28,7 @@ function Arrange() {
         height: windowHeight,
       }).then((canvas) => {
         setBouquetImage(canvas.toDataURL("image/jpeg"));
-        onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
+        // onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
         // console.log(bouquetImage);
         handleCheckModal(true);
       });
@@ -45,7 +46,7 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
-    setWindowHeight(window.innerHeight * 0.45);
+    setWindowHeight(window.innerHeight * 0.35);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
@@ -57,12 +58,9 @@ function Arrange() {
   //   //   `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
   //   // );
   // };
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResize);
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // });
+  useEffect(() => {
+    setHeight(window.innerHeight);
+  });
   return (
     <Box
       sx={{
@@ -70,7 +68,7 @@ function Arrange() {
         width: 420,
         position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "100vh",
+        height: height,
         minHeight: "100vh",
         justifyContent: "center",
         display: "flex",
@@ -84,13 +82,16 @@ function Arrange() {
         handleCheckModal={handleCheckModal}
         checkModal={checkModal}
       ></BouquetCheckModal>
+      <Box>
+        <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
+      </Box>
       <Box
         id="img"
         sx={{
           position: "absolute",
           width: "100%",
-          height: "100%",
-          top: "13%",
+          height: "80%",
+          top: "20%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -188,48 +189,43 @@ function Arrange() {
         >
           <Move finish={finish}></Move>
         </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            width: "100%",
+            top: "70%",
+            display: "flex",
+            alignItems: "center",
+            borderRadius: "5px",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Button
+            variant="contained"
+            size="small"
+            style={{
+              ...btnStyle,
+            }}
+            onClick={(e) => {
+              handleArrange(true);
+            }}
+          >
+            <Typography> 배치 완료</Typography>
+          </Button>
+        </Box>
       </Box>
-      <Button
-        variant="contained"
-        size="small"
-        style={{
-          position: "absolute",
-          backgroundColor: "#FFE0E0",
-          color: "#3A1D1D",
-          fontFamily: "JuliusSansOne",
-          borderRadius: "5",
-          width: 280,
-          height: 45,
-          top: "85%",
-        }}
-        onClick={(e) => {
-          handleSaveImg();
-        }}
-      >
-        <Typography>완료</Typography>
-      </Button>
-      <Button
-        variant="contained"
-        size="small"
-        style={{
-          position: "absolute",
-          backgroundColor: "#FFE0E0",
-          color: "#3A1D1D",
-          fontFamily: "JuliusSansOne",
-          borderRadius: "5",
-          width: 280,
-          height: 45,
-          top: "95%",
-        }}
-        onClick={(e) => {
-          handleArrange(true);
-        }}
-      >
-        <Typography> 배치 완료</Typography>
-      </Button>
       <Toast />
     </Box>
   );
 }
+
+export const btnStyle = {
+  backgroundColor: "#FFE0E0",
+  color: "#3A1D1D",
+  fontFamily: "JuliusSansOne",
+  borderRadius: "5",
+  width: "40%",
+  height: "auto",
+};
 
 export default Arrange;
