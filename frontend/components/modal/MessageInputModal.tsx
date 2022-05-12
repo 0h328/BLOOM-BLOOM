@@ -31,33 +31,35 @@ function MessageInputModal({
     setContent(`${text}`);
   };
   const handleShare = async () => {
-   
     const body = {
       bouquetSeq: 7,
       presentDesc: content,
     };
 
+    const response = await savePresent(body);
+    console.log(response.data.data.uuid);
+
     const KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
-    if (window.Kakao) try {
-      window.Kakao.init(KAKAO_KEY);
-    } catch (e) { }
+    if (window.Kakao)
+      try {
+        window.Kakao.init(KAKAO_KEY);
+      } catch (e) {}
 
     const linkcallback = () => {
       //공유하기를 성공하면 router.back
       router.back();
-    }
+    };
 
-  //메시지 내용 보이게 해도 되고 안해도 되고
-   window.Kakao.Link.sendScrap ({
-    requestUrl: "https://bloombloom.kro.kr", // 페이지 url (선물 결과 페이지가 보여야한다.) path는 따로 설정해주면됨
-    templateId: 76396,// 메시지템플릿 번호 
-    templateArgs: {
-      THUMB: 'https://cdn.discordapp.com/attachments/968011285998469190/970608815470936084/unknown.png', // 썸네일 주소 
-    },
-    callback: linkcallback,
-  });
-
-    
+    //메시지 내용 보이게 해도 되고 안해도 되고
+    window.Kakao.Link.sendScrap({
+      requestUrl: "https://bloombloom.kro.kr", // 페이지 url (선물 결과 페이지가 보여야한다.) path는 따로 설정해주면됨
+      templateId: 76396, // 메시지템플릿 번호
+      templateArgs: {
+        THUMB:
+          "https://cdn.discordapp.com/attachments/968011285998469190/970608815470936084/unknown.png", // 썸네일 주소
+      },
+      callback: linkcallback,
+    });
   };
   const handleRoute = () => {
     router.back();
