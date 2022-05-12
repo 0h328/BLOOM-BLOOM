@@ -6,10 +6,16 @@ import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
-import { wrapState, decoState, flowerState } from "../states/states";
+import {
+  wrapState,
+  decoState,
+  flowerState,
+  mainFlowerState,
+} from "../states/states";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
 import { useRecoilState } from "recoil";
+import { saveBouquet } from "../components/apis/bouquetApi";
 function Arrange() {
   const [finish, setFinish] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>();
@@ -17,8 +23,11 @@ function Arrange() {
   const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
+  const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
+  const [bouquetImageData, setBouquetImageData] = useState<FormData>();
+
   const handleSaveImg = () => {
     if (finish) {
       html2canvas(document.querySelector("#img"), {
@@ -28,8 +37,21 @@ function Arrange() {
         height: windowHeight,
       }).then((canvas) => {
         setBouquetImage(canvas.toDataURL("image/jpeg"));
-        // onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
-        // console.log(bouquetImage);
+
+        const imgBase64 = canvas.toDataURL("image/jpeg", "image/octet-stream");
+        const decodImg = atob(imgBase64.split(",")[1]);
+
+        let array = [];
+        for (let i = 0; i < decodImg.length; i++) {
+          array.push(decodImg.charCodeAt(i));
+        }
+
+        const file = new Blob([new Uint8Array(array)], { type: "image/jpeg" });
+        const fileName = "canvas_img_" + new Date().getMilliseconds() + ".jpg";
+        let formData = new FormData();
+        formData.append("file", file, fileName);
+
+        setBouquetImageData(formData);
         handleCheckModal(true);
       });
     } else {
@@ -52,12 +74,17 @@ function Arrange() {
     setCheckModal(state);
     setFinish(state);
   };
-  // const handleResize = () => {
-  //   setWindowHeight(window.innerHeight * 0.45);
-  //   // console.log(
-  //   //   `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
-  //   // );
-  // };
+  const handleComplete = async () => {
+    const body = {
+      wrapSeq: wrapInfo.wrapSeq,
+      decoSeq: decoInfo.decoSeq,
+      subFlowerSeq: flowerInfo.flowerSeq,
+      mainFlower: mainFlower,
+      bouquetImage: bouquetImageData,
+    };
+    const response = await saveBouquet(body);
+    console.log(response);
+  };
   useEffect(() => {
     setHeight(window.innerHeight);
   });
@@ -81,6 +108,7 @@ function Arrange() {
         bouquetImage={bouquetImage}
         handleCheckModal={handleCheckModal}
         checkModal={checkModal}
+        handleComplete={handleComplete}
       ></BouquetCheckModal>
       <Box>
         <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>

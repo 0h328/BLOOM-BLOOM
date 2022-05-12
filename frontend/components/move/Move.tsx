@@ -136,6 +136,7 @@ function Move({ finish }: moveProps) {
     if (finish) {
       setTargets([]);
       setTarget([]);
+    } else {
     }
   }, [finish]);
   useEffect(() => {

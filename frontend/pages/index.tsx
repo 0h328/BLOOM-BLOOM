@@ -5,6 +5,7 @@ import Title from "../components/login/Title";
 import FlowerImg from "../components/login/FlowerImg";
 import { useRouter } from "next/router";
 import { maxWidth } from "@mui/system";
+import { setScreenSize } from "../components/common/Size";
 function Login() {
   const [imgHeight, setImgHeight] = useState<number>();
   const [imgWidth, setImgWidth] = useState<number>();
@@ -30,19 +31,21 @@ function Login() {
     );
   };
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    setScreenSize;
+    window.addEventListener("resize", setScreenSize);
+    // return () => {
+    //   window.removeEventListener("resize", setScreenSize);
+    // };
   });
   return (
     <>
       <Box
+        style={{}}
         sx={{
           mx: "auto",
-          width: imgWidth > 420 ? 420 : imgWidth,
+          width: 420,
           position: "relative",
-          height: "100vh",
+          height: "90vh",
           overflow: "hidden",
         }}
       >

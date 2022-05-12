@@ -7,12 +7,14 @@ interface modalProps {
   bouquetImage: string;
   handleCheckModal: (state: boolean) => void;
   checkModal: boolean;
+  handleComplete: () => void;
 }
 
 function BouquetCheckModal({
   bouquetImage,
   handleCheckModal,
   checkModal,
+  handleComplete,
 }: modalProps) {
   const [curHeight, setCurHeight] = useState<number>();
   const [curWidth, setCurWidth] = useState<number>();
@@ -25,9 +27,9 @@ function BouquetCheckModal({
     setImgWidth(window.innerWidth * 0.9);
     setImgHeight(imgWidth * 1.2);
     setCurHeight(window.innerHeight);
-    console.log(
-      `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
-    );
+    // console.log(
+    //   `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
+    // );
   };
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -65,10 +67,6 @@ function BouquetCheckModal({
               justifyContent: "center",
             }}
           >
-            <CloseIcon
-              sx={{ position: "absolute", top: "2%", left: "90%", color: "" }}
-              onClick={closeBouquetDetailModal}
-            />
             <Box
               sx={{
                 position: "absolute",
@@ -108,11 +106,21 @@ function BouquetCheckModal({
                 width: "100%",
               }}
             >
-              <Button variant="contained" size="small" sx={{ ...btnStyle }}>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{ ...btnStyle }}
+                onClick={closeBouquetDetailModal}
+              >
                 더 꾸미기
               </Button>
               <Link href="/confirm" passHref>
-                <Button variant="contained" size="small" sx={{ ...btnStyle }}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{ ...btnStyle }}
+                  onClick={handleComplete}
+                >
                   완성하기
                 </Button>
               </Link>
