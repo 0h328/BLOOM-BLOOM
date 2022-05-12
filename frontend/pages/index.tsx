@@ -7,10 +7,9 @@ import { useRouter } from "next/router";
 import { maxWidth } from "@mui/system";
 import { setScreenSize } from "../components/common/Size";
 function Login() {
-  const [imgHeight, setImgHeight] = useState<number>();
-  const [imgWidth, setImgWidth] = useState<number>();
-  const BASE_URI = "http://localhost:3000/kakaoLogin";
-  // const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
+  const [windowHeight, setWindowHeight] = useState<number>();
+  // const BASE_URI = "http://localhost:3000/kakaoLogin";
+  const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
   const router = useRouter();
   const handleLogin = () => {
     kakaoLogin();
@@ -24,28 +23,25 @@ function Login() {
       console.log(error);
     }
   };
-  const handleResize = () => {
-    setImgWidth(window.innerHeight);
-    console.log(
-      `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
-    );
+
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
   useEffect(() => {
-    setScreenSize;
-    window.addEventListener("resize", setScreenSize);
-    // return () => {
-    //   window.removeEventListener("resize", setScreenSize);
-    // };
-  });
+    setScreenSize();
+    setWindowHeight(window.innerHeight);
+  }, []);
   return (
     <>
       <Box
         style={{}}
         sx={{
           mx: "auto",
-          width: 420,
+          width: windowHeight > 480 ? 420 : "100vw",
           position: "relative",
-          height: "90vh",
+          height: windowHeight > 480 ? 420 : "85vh",
+          minHeight: "100vh",
           overflow: "hidden",
         }}
       >

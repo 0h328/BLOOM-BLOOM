@@ -32,7 +32,7 @@ function Header({ page }: PageIdetifierProps) {
                   <Typography
                     sx={{
                       textAlign: "center",
-                      fontFamily: "JuliusSansOne",
+                      fontFamily: "ONEMobileLight",
                       fontSize: 25,
                     }}
                   >
