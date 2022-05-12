@@ -37,7 +37,7 @@ function MessageInputModal({
     };
 
     const response = await savePresent(body);
-    console.log(response);
+    console.log(response.data.data.uuid);
 
     const KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_API_KEY;
     if (window.Kakao)
