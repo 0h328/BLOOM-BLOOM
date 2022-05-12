@@ -7,6 +7,8 @@ import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
 import { wrapState, decoState, flowerState } from "../states/states";
+import Toast from "../components/common/Toast";
+import { toast } from "material-react-toastify";
 import { useRecoilState } from "recoil";
 function Arrange() {
   const [finish, setFinish] = useState<boolean>(false);
@@ -17,17 +19,21 @@ function Arrange() {
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [windowHeight, setWindowHeight] = useState<number>();
   const handleSaveImg = () => {
-    html2canvas(document.querySelector("#img"), {
-      backgroundColor: "#FFFAFA",
-      foreignObjectRendering: false,
-      useCORS: true,
-      height: windowHeight,
-    }).then((canvas) => {
-      setBouquetImage(canvas.toDataURL("image/jpeg"));
-      onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
-      // console.log(bouquetImage);
-      handleCheckModal(true);
-    });
+    if (finish) {
+      html2canvas(document.querySelector("#img"), {
+        backgroundColor: "#FFFAFA",
+        foreignObjectRendering: false,
+        useCORS: true,
+        height: windowHeight,
+      }).then((canvas) => {
+        setBouquetImage(canvas.toDataURL("image/jpeg"));
+        onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
+        // console.log(bouquetImage);
+        handleCheckModal(true);
+      });
+    } else {
+      toast.error("📣배치완료 버튼을 눌러 배치를 완료해주세요");
+    }
   };
   const onSave = (uri: string, filename: string) => {
     let link = document.createElement("a");
@@ -39,23 +45,24 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
+    setWindowHeight(window.innerHeight * 0.45);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
     setFinish(state);
   };
-  const handleResize = () => {
-    setWindowHeight(window.innerHeight * 0.45);
-    // console.log(
-    //   `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
-    // );
-  };
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
+  // const handleResize = () => {
+  //   setWindowHeight(window.innerHeight * 0.45);
+  //   // console.log(
+  //   //   `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
+  //   // );
+  // };
+  // useEffect(() => {
+  //   window.addEventListener("resize", handleResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // });
   return (
     <Box
       sx={{
@@ -220,6 +227,7 @@ function Arrange() {
       >
         <Typography> 배치 완료</Typography>
       </Button>
+      <Toast />
     </Box>
   );
 }

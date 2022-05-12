@@ -14,6 +14,8 @@ function BouquetCheckModal({
   handleCheckModal,
   checkModal,
 }: modalProps) {
+  const [curHeight, setCurHeight] = useState<number>();
+  const [curWidth, setCurWidth] = useState<number>();
   const [imgHeight, setImgHeight] = useState<number>();
   const [imgWidth, setImgWidth] = useState<number>();
   const closeBouquetDetailModal = () => {
@@ -22,17 +24,21 @@ function BouquetCheckModal({
   const handleResize = () => {
     setImgWidth(window.innerWidth * 0.9);
     setImgHeight(imgWidth * 1.2);
+    setCurHeight(window.innerHeight);
     console.log(
       `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
     );
   };
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+    setImgWidth(window.innerWidth * 0.9);
+    setImgHeight(imgWidth * 1.2);
+    setCurHeight(window.innerHeight);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   });
-  console.log(checkModal);
+  console.log(imgWidth);
   return (
     <>
       {checkModal ? (
