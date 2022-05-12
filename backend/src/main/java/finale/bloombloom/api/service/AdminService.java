@@ -22,6 +22,12 @@ public interface AdminService {
     StoreDetailResponse findStore(Long storeReq);
 
     /**
+     *  업장 검색
+     *  작성자 : 박건우
+     */
+    List<StoreListResponse> searchStore(String storeName);
+
+    /**
      *  업장 삭제
      *  작성자 : 박건우
      */

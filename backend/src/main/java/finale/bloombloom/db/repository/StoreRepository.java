@@ -20,4 +20,10 @@ public interface StoreRepository extends JpaRepository<Store,Long> {
      *  작성자 : 박건우
      */
     Optional<StoreDetailMapper> findStoreByStoreSeq(Long storeSeq);
+
+    /**
+     *  업장 리스트 조회
+     *  작성자 : 박건우
+     */
+    List<StoreListMapper> findStoreListByStoreName(String storeName);
 }
