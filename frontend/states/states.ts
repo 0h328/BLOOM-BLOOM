@@ -7,7 +7,8 @@ const decoModalState = atom({
 
 const mainFlowerState = atom({
   key: "mainFlower",
-  default: [{ flowerSeq: -1, flowerCount: 0, flowerImage: "" }],
+  // default: [{ flowerSeq: -1, flowerCount: 0, flowerImage: "" }],
+  default: [{ flowerSeq: -1, flowerCount: 0 }],
 });
 
 const presentBouquetState = atom({

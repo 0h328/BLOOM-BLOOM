@@ -39,8 +39,8 @@ function BouquetCheckModal({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-    console.log(imgWidth);
   });
+  console.log(imgWidth);
   return (
     <>
       {checkModal ? (

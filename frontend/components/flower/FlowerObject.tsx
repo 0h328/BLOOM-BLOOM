@@ -51,7 +51,7 @@ function FlowerObject({
       const flowerInfo = {
         flowerSeq: flower.flowerSeq,
         flowerCount: count,
-        flowerImage: flower.flowerImage,
+        // flowerImage: flower.flowerImage,
       };
       setMainFlower([...temp, flowerInfo]);
     }
