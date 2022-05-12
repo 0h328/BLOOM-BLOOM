@@ -10,17 +10,16 @@ interface btnProps {
 
 function ConfirmBtn({ click, title, text }: btnProps) {
   return (
-    <>
+    <Box>
       <Button
         variant="contained"
         size="small"
         style={{
-          position: "absolute",
           backgroundColor: "#FFE0E0",
           color: "#000",
           fontFamily: "JuliusSansOne",
           fontWeight: "bold",
-          fontSize: "15px",
+          fontSize: "1rem",
           borderRadius: "20",
           width: 340,
           height: 45,
@@ -31,17 +30,16 @@ function ConfirmBtn({ click, title, text }: btnProps) {
       </Button>
       <Typography
         sx={{
-          position: "absolute",
-          width: "340px",
-          top: "50px",
-          left: "10px",
+          width: "100%",
+          top: "10%",
           fontFamily: "JuliusSansOne",
-          fontSize: "13px",
+          fontSize: "0.8rem",
+          mt: "3%",
         }}
       >
         {text}
       </Typography>
-    </>
+    </Box>
   );
 }
 

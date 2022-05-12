@@ -9,7 +9,7 @@ function Confirm() {
   const router = useRouter();
   const [messageModal, setMessageModal] = useState<boolean>(false);
 
-  const bouquetImage = "/img/bouquet2.png";
+  const bouquetImage = "/img/wrapIvory.png";
   const handleMessageModal = (e: any) => {
     openMessageModal();
   };
@@ -30,11 +30,13 @@ function Confirm() {
         width: 420,
         position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "840px",
+        height: "100vh",
         minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
       }}
     >
-      <Box sx={{ position: "absolute", top: "30px" }}>
+      <Box sx={{ position: "absolute", top: "2%" }}>
         <Header></Header>
       </Box>
       <MessageInputModal
@@ -42,32 +44,25 @@ function Confirm() {
         closeMessageModal={closeMessageModal}
         messageModal={messageModal}
       ></MessageInputModal>
-      <Box sx={{ position: "absolute", top: "130px", left: "30px" }}>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "15%",
+          maxHeight: "50%",
+          height: "45%",
+        }}
+      >
         <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
       </Box>
-      <Box>
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: "310px",
-            left: "45px",
-            alignItems: "center",
-          }}
-        >
+      <Box sx={{ position: "absolute", top: "65%" }}>
+        <Box sx={{ margin: "5% 0% 8% 0%" }}>
           <ConfirmBtn
             click={(e: any) => handleMessageModal(e)}
             title="메시지 카드 작성하기"
             text=" * 메시지 카드 작성 후, 카카오톡으로 공유할 수 있습니다."
           ></ConfirmBtn>
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: "200px",
-            left: "45px",
-            alignItems: "center",
-          }}
-        >
+        <Box sx={{ margin: "5% 0% 8% 0%" }}>
           <ConfirmBtn
             click={(e: any) => handleRoute(e)}
             title="주문하기"

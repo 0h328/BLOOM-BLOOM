@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import CountBtn from "./CountBtn";
-import { Flower } from "../flower/Flower";
+import { FlowerType } from "../flower/Flower";
 import Toast from "../common/Toast";
 import { mainFlowerState } from "../../states/states";
 import { useRecoilState } from "recoil";
-import { mainModule } from "process";
-import { ViewQuiltRounded } from "@mui/icons-material";
 
 interface flowerProps {
-  flower: Flower;
+  flower: FlowerType;
   validCount: boolean;
   handleTotal: (dif: number) => void;
   handleError: (code: number) => void;
@@ -53,13 +51,11 @@ function FlowerObject({
       const flowerInfo = {
         flowerSeq: flower.flowerSeq,
         flowerCount: count,
+        flowerImage: flower.flowerImage,
       };
       setMainFlower([...temp, flowerInfo]);
-      console.log(mainFlower);
     }
   }, [count]);
-  // console.log(Object.values(mainFlower)[0]);
-  // console.log(mainFlower);
   return (
     <Box>
       <Box

@@ -33,7 +33,7 @@ function MessageInputModal({
   const handleShare = async () => {
    
     const body = {
-      bouquetSeq: presentBouquet,
+      bouquetSeq: 0,
       presentDesc: content,
     };
 
@@ -169,7 +169,6 @@ function MessageInputModal({
               ></KakaoBtn>
             </Box>
           </Box>
-          <KakaoMessage></KakaoMessage>
         </Box>
       ) : null}
     </>

@@ -10,6 +10,7 @@ const nextConfig = {
     KAKAO_API_KEY:process.env.KAKAO_API_KEY,
   },
   extends: "next",
+  withImages: require("next-images"),
 };
 
 module.exports = nextConfig;
