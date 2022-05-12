@@ -6,12 +6,11 @@ import Link from "next/link";
 type listProps = {
   title: string;
   link: string;
-  top: string;
 };
 
-function FlowerImgListTitle({ title, link, top }: listProps) {
+function FlowerImgListTitle({ title, link }: listProps) {
   return (
-    <Box sx={{ position: "absolute", top: { top }, left: "15px" }}>
+    <Box sx={{ position: "absolute", left: "15px" }}>
       <Grid
         container
         spacing={0}
@@ -49,7 +48,7 @@ function FlowerImgListTitle({ title, link, top }: listProps) {
 
 export const textStyle = {
   position: "absolute",
-  fontFamily: "Julius Sans One",
+  fontFamily: "ONEMobileLight",
   fontStyle: "normal",
   fontWeight: 400,
   fontSize: "14px",
