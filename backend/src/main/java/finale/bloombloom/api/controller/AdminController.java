@@ -42,6 +42,17 @@ public class AdminController {
     }
 
     /**
+     *  업장 검색
+     *  작성자 : 박건우
+     */
+    @PostMapping("/search")
+    ResponseEntity<Result> searchStore(Authentication authentication, @RequestParam String storeName) {
+        List<StoreListResponse> stores = adminService.searchStore(storeName);
+
+        return ResponseEntity.status(200).body(Result.builder().data(stores).status(200).message("업장 검색에 성공하였습니다.").build());
+    }
+
+    /**
      *  업장 삭제
      *  작성자 : 박건우
      */

@@ -43,6 +43,17 @@ public class AdminServiceImpl implements AdminService{
     }
 
     /**
+     *  업장 검색
+     *  작성자 : 박건우
+     */
+    @Override
+    public List<StoreListResponse> searchStore(String storeName) {
+        return storeRepository.findStoreListByStoreName(storeName).stream()
+                .map(StoreListResponse::from)
+                .collect(Collectors.toList());
+    }
+
+    /**
      *  업장 삭제
      *  작성자 : 박건우
      */
