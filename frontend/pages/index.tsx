@@ -34,7 +34,6 @@ function Login() {
         <Box
           sx={{
             backgroundColor: "#FFFAFA",
-            // height: "800px",
             minHeight: "100vh",
             position: "relative",
           }}
