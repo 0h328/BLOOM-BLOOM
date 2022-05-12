@@ -88,8 +88,8 @@ function BouquetCheckModal({
               <img
                 src={bouquetImage}
                 alt="꽃다발"
-                width={"330"}
-                height={"330"}
+                width="330px"
+                height="330px"
               ></img>
             </Box>
             <Box
