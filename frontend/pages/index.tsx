@@ -4,6 +4,8 @@ import KakaoBtn from "../components/button/KakaoBtn";
 import Title from "../components/login/Title";
 import FlowerImg from "../components/login/FlowerImg";
 import { useRouter } from "next/router";
+import { maxWidth } from "@mui/system";
+import { setScreenSize } from "../components/common/Size";
 function Login() {
   const [windowHeight, setWindowHeight] = useState<number>();
   // const BASE_URI = "http://localhost:3000/kakaoLogin";
@@ -33,6 +35,7 @@ function Login() {
   return (
     <>
       <Box
+        style={{}}
         sx={{
           mx: "auto",
           width: windowHeight > 480 ? 420 : "100vw",

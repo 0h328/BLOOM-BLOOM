@@ -6,8 +6,16 @@ import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
-import { wrapState, decoState, flowerState } from "../states/states";
+import {
+  wrapState,
+  decoState,
+  flowerState,
+  mainFlowerState,
+} from "../states/states";
+import Toast from "../components/common/Toast";
+import { toast } from "material-react-toastify";
 import { useRecoilState } from "recoil";
+import { saveBouquet } from "../components/apis/bouquetApi";
 function Arrange() {
   const [finish, setFinish] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>();
@@ -15,18 +23,40 @@ function Arrange() {
   const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
+  const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [windowHeight, setWindowHeight] = useState<number>();
+  const [height, setHeight] = useState<number>();
+  const [bouquetImageData, setBouquetImageData] = useState<FormData>();
+
   const handleSaveImg = () => {
-    html2canvas(document.querySelector("#img"), {
-      backgroundColor: "#FFFAFA",
-      foreignObjectRendering: false,
-      useCORS: true,
-      height: 500,
-    }).then((canvas) => {
-      setBouquetImage(canvas.toDataURL("image/jpeg"));
-      onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
-      // console.log(bouquetImage);
-      // handleCheckModal(state);
-    });
+    if (finish) {
+      html2canvas(document.querySelector("#img"), {
+        backgroundColor: "#FFFAFA",
+        foreignObjectRendering: false,
+        useCORS: true,
+        height: windowHeight,
+      }).then((canvas) => {
+        setBouquetImage(canvas.toDataURL("image/jpeg"));
+
+        const imgBase64 = canvas.toDataURL("image/jpeg", "image/octet-stream");
+        const decodImg = atob(imgBase64.split(",")[1]);
+
+        let array = [];
+        for (let i = 0; i < decodImg.length; i++) {
+          array.push(decodImg.charCodeAt(i));
+        }
+
+        const file = new Blob([new Uint8Array(array)], { type: "image/jpeg" });
+        const fileName = "canvas_img_" + new Date().getMilliseconds() + ".jpg";
+        let formData = new FormData();
+        formData.append("file", file, fileName);
+
+        setBouquetImageData(formData);
+        handleCheckModal(true);
+      });
+    } else {
+      toast.error("📣배치완료 버튼을 눌러 배치를 완료해주세요");
+    }
   };
   const onSave = (uri: string, filename: string) => {
     let link = document.createElement("a");
@@ -38,11 +68,26 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
+    setWindowHeight(window.innerHeight * 0.35);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
     setFinish(state);
   };
+  const handleComplete = async () => {
+    const body = {
+      wrapSeq: wrapInfo.wrapSeq,
+      decoSeq: decoInfo.decoSeq,
+      subFlowerSeq: flowerInfo.flowerSeq,
+      mainFlower: mainFlower,
+      bouquetImage: bouquetImageData,
+    };
+    const response = await saveBouquet(body);
+    console.log(response);
+  };
+  useEffect(() => {
+    setHeight(window.innerHeight);
+  });
   return (
     <Box
       sx={{
@@ -50,7 +95,7 @@ function Arrange() {
         width: 420,
         position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "100vh",
+        height: height,
         minHeight: "100vh",
         justifyContent: "center",
         display: "flex",
@@ -63,14 +108,18 @@ function Arrange() {
         bouquetImage={bouquetImage}
         handleCheckModal={handleCheckModal}
         checkModal={checkModal}
+        handleComplete={handleComplete}
       ></BouquetCheckModal>
+      <Box>
+        <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
+      </Box>
       <Box
         id="img"
         sx={{
           position: "absolute",
           width: "100%",
-          height: "100%",
-          top: "13%",
+          height: "80%",
+          top: "20%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -163,51 +212,48 @@ function Arrange() {
             display: "flex",
             alignItems: "center",
             borderRadius: "5px",
+            justifyContent: "center",
           }}
         >
           <Move finish={finish}></Move>
         </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            width: "100%",
+            top: "70%",
+            display: "flex",
+            alignItems: "center",
+            borderRadius: "5px",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Button
+            variant="contained"
+            size="small"
+            style={{
+              ...btnStyle,
+            }}
+            onClick={(e) => {
+              handleArrange(true);
+            }}
+          >
+            <Typography> 배치 완료</Typography>
+          </Button>
+        </Box>
       </Box>
-      <Button
-        variant="contained"
-        size="small"
-        style={{
-          position: "absolute",
-          backgroundColor: "#FFE0E0",
-          color: "#3A1D1D",
-          fontFamily: "JuliusSansOne",
-          borderRadius: "5",
-          width: 280,
-          height: 45,
-          top: "85%",
-        }}
-        onClick={(e) => {
-          handleSaveImg();
-        }}
-      >
-        <Typography>완료</Typography>
-      </Button>
-      <Button
-        variant="contained"
-        size="small"
-        style={{
-          position: "absolute",
-          backgroundColor: "#FFE0E0",
-          color: "#3A1D1D",
-          fontFamily: "JuliusSansOne",
-          borderRadius: "5",
-          width: 280,
-          height: 45,
-          top: "95%",
-        }}
-        onClick={(e) => {
-          handleArrange(true);
-        }}
-      >
-        <Typography> 배치 완료</Typography>
-      </Button>
+      <Toast />
     </Box>
   );
 }
+
+export const btnStyle = {
+  backgroundColor: "#FFE0E0",
+  color: "#3A1D1D",
+  fontFamily: "JuliusSansOne",
+  borderRadius: "5",
+  width: "40%",
+  height: "auto",
+};
 
 export default Arrange;
