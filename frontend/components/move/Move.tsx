@@ -4,6 +4,7 @@ import Selecto from "react-selecto";
 import { Box, Grid, Button } from "@mui/material";
 import { mainFlowerState } from "../../states/states";
 import { useRecoilState } from "recoil";
+import { flowerList } from "../flower/FlowerData";
 interface moveProps {
   finish: boolean;
 }
@@ -135,6 +136,7 @@ function Move({ finish }: moveProps) {
     if (finish) {
       setTargets([]);
       setTarget([]);
+    } else {
     }
   }, [finish]);
   useEffect(() => {
@@ -142,7 +144,12 @@ function Move({ finish }: moveProps) {
     const temp2 = [];
     temp1.map((flower, index) => {
       for (let i = 0; i < flower.flowerCount; i++) {
-        temp2.push(flower.flowerImage);
+        for (let j = 0; j < flowerList.length; j++) {
+          if (flower.flowerSeq === flowerList[j].flowerSeq) {
+            console.log(flowerList[j].flowerImage);
+            temp2.push(flowerList[j].flowerImage);
+          }
+        }
       }
     });
     setSelectedFlower(temp2);
