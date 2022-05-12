@@ -15,17 +15,18 @@ function Arrange() {
   const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
+  const [windowHeight, setWindowHeight] = useState<number>();
   const handleSaveImg = () => {
     html2canvas(document.querySelector("#img"), {
       backgroundColor: "#FFFAFA",
       foreignObjectRendering: false,
       useCORS: true,
-      height: 500,
+      height: windowHeight,
     }).then((canvas) => {
       setBouquetImage(canvas.toDataURL("image/jpeg"));
       onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
       // console.log(bouquetImage);
-      // handleCheckModal(state);
+      handleCheckModal(true);
     });
   };
   const onSave = (uri: string, filename: string) => {
@@ -43,6 +44,18 @@ function Arrange() {
     setCheckModal(state);
     setFinish(state);
   };
+  const handleResize = () => {
+    setWindowHeight(window.innerHeight * 0.45);
+    console.log(
+      `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
+    );
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
   return (
     <Box
       sx={{
@@ -163,6 +176,7 @@ function Arrange() {
             display: "flex",
             alignItems: "center",
             borderRadius: "5px",
+            justifyContent: "center",
           }}
         >
           <Move finish={finish}></Move>

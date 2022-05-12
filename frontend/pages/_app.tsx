@@ -13,7 +13,6 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta
-          httpEquiv="Content-Security-Policy"
           content="width=device-width, initial-scale=1, minimum-scale=1"
           name="viewport"
         ></meta>

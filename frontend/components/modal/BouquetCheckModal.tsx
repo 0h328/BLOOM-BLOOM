@@ -66,9 +66,9 @@ function BouquetCheckModal({ bouquetImage, handleCheckModal, checkModal }) {
             <Box
               sx={{
                 position: "absolute",
-                top: "18%",
+                top: "20%",
                 width: "80%",
-                height: "50%",
+                height: "45%",
               }}
             >
               <img
