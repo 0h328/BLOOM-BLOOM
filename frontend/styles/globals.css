@@ -33,6 +33,11 @@ body {
   overflow-x: hidden;
 }
 
+main {
+  position: fixed;
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
