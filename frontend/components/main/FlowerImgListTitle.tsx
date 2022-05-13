@@ -10,7 +10,7 @@ type listProps = {
 
 function FlowerImgListTitle({ title, link }: listProps) {
   return (
-    <Box sx={{ position: "absolute", left: "15px" }}>
+    <Box sx={{}}>
       <Grid
         container
         spacing={0}
@@ -47,7 +47,6 @@ function FlowerImgListTitle({ title, link }: listProps) {
 }
 
 export const textStyle = {
-  position: "absolute",
   fontFamily: "ONEMobileLight",
   fontStyle: "normal",
   fontWeight: 400,

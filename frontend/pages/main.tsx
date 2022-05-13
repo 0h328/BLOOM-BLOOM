@@ -84,7 +84,7 @@ function Main() {
           <Grid item xs={12}>
             {orderBouquetList !== undefined ? (
               <FlowerImgList
-                bouquetList={madeBouquetList}
+                bouquetList={orderBouquetList}
                 infoText="주문한 꽃다발이 없습니다"
               ></FlowerImgList>
             ) : null}

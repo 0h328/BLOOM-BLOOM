@@ -77,12 +77,10 @@ function FlowerImgList({
             <Box
               sx={{
                 position: "absolute",
-                height: "100%",
                 width: "100%",
                 justifyContent: "center",
                 alignItems: "center",
                 display: "flex",
-                top: "10%",
               }}
             >
               <Typography sx={{ ...textStyle }}>{infoText}</Typography>

@@ -91,7 +91,7 @@ function Shop() {
                       <Typography sx={{ ...textStyle }}>고객</Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography sx={{ ...textStyle }}>연락처</Typography>
+                      <Typography sx={{ ...textStyle }}>요청사항</Typography>
                     </Grid>
                   </Grid>
                 </Box>
@@ -108,6 +108,11 @@ function Shop() {
                     <Grid item xs={4}>
                       <Typography sx={{ fontFamily: "ONEMobileLight" }}>
                         {orderData.customerName}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Typography sx={{ fontFamily: "ONEMobileLight" }}>
+                        {orderData.orderDesc}
                       </Typography>
                     </Grid>
                   </Grid>
