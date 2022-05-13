@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class StoreDetailResponse {
     private Long storeSeq;
     private String storeName;

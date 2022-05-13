@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class StoreLocationResponse {
     private long storeSeq;
     private String storeName;
