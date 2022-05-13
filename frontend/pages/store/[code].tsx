@@ -51,12 +51,12 @@ function Shop() {
           }}
         >
           <Box sx={{ width: 420, backgroundColor: "#FFFAFA" }}>
-            <Box sx={{ pt: "2rem" }}>
+            <Box sx={{ pt: "1.5rem" }}>
               <Header></Header>
             </Box>
             <Box
               sx={{
-                pt: "3rem",
+                pt: "1.5rem",
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
@@ -72,7 +72,7 @@ function Shop() {
                   backgroundColor: "#ffff",
                   border: "1px solid rgba(82, 82, 82, 0.29)",
                   borderRadius: "5px",
-                  // overflow: "scroll",
+                  mt: "1rem",
                 }}
               >
                 <Box
@@ -101,7 +101,8 @@ function Shop() {
                     textAlign: "center",
                     fontSize: "14px",
                     alignItems: "center",
-                    height: "30px",
+                    height: "fitContent",
+                    padding: "1rem",
                   }}
                 >
                   <Grid container>
@@ -111,7 +112,11 @@ function Shop() {
                       </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography sx={{ fontFamily: "ONEMobileLight" }}>
+                      <Typography
+                        sx={{
+                          fontFamily: "ONEMobileLight",
+                        }}
+                      >
                         {orderData.orderDesc}
                       </Typography>
                     </Grid>

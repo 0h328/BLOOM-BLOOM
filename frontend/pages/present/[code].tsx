@@ -20,6 +20,7 @@ function Present() {
   //   마음껏 좋아하고 마음껏 그리워하세요`,
   //   };
   const router = useRouter();
+  const [windowHeight, setWindowHeight] = useState<number>();
   const [image, setImage] = useState<string>("");
   const [code, setCode] = useState<any>([]);
   const [presentData, setPresentData] = useState<{
@@ -62,7 +63,9 @@ function Present() {
       handlePresent(code);
     }
   }, [code]);
-
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  }, []);
   return (
     <>
       {code ? (
@@ -70,48 +73,45 @@ function Present() {
           id="img"
           sx={{
             mx: "auto",
-            width: 420,
+            width: windowHeight > 480 ? 420 : "100vw",
             position: "relative",
-            backgroundColor: "#FFFAFA",
-            height: "840px",
+            height: windowHeight > 480 ? 840 : "100vh",
             minHeight: "100vh",
+            overflow: "hidden",
+            backgroundColor: "#FFFAFA",
           }}
         >
-          <Box sx={{ width: 420, backgroundColor: "#FFFAFA" }}>
-            <Box sx={{ pt: "2rem" }}>
-              <Header></Header>
-            </Box>
-            <Box
+          <Box sx={{ pt: "2rem" }}>
+            <Header></Header>
+          </Box>
+          <Box
+            sx={{
+              pt: "1rem",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography
               sx={{
-                pt: "3rem",
-                display: "flex",
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
+                fontFamily: "JuliusSansOne",
+                fontSize: "18px",
+                margin: "1rem 0rem 1rem 0rem",
               }}
             >
-              <Typography
-                sx={{
-                  fontFamily: "JuliusSansOne",
-                  fontSize: "18px",
-                  margin: "1rem 0rem 1rem 0rem",
-                }}
-              >
-                from . {presentData.presentSender}
-              </Typography>
-              <Box>
-                <BouquetImg
-                  bouquetImage={presentData.bouquetImage}
-                ></BouquetImg>
-              </Box>
-              <Box sx={{ mb: "1rem" }}>
-                <MessageCard message={presentData.presentDesc}></MessageCard>
-              </Box>
-              <ImgDownloadBtn
-                data-html2canvas-ignore="true"
-                onCapture={onCapture}
-              ></ImgDownloadBtn>
+              from . {presentData.presentSender}
+            </Typography>
+            <Box>
+              <BouquetImg bouquetImage={presentData.bouquetImage}></BouquetImg>
             </Box>
+            <Box sx={{ width: "80%", height: "30%", mb: "1rem" }}>
+              <MessageCard message={presentData.presentDesc}></MessageCard>
+            </Box>
+            <ImgDownloadBtn
+              data-html2canvas-ignore="true"
+              onCapture={onCapture}
+            ></ImgDownloadBtn>
           </Box>
         </Box>
       ) : null}
