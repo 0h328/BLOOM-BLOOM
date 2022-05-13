@@ -8,11 +8,7 @@ import { getRecentBouquetList } from "../components/apis/bouquetApi";
 import { getOrderList } from "../components/apis/orderApi";
 function Main() {
   //test용
-  // const bouquetList = [
-  //   { bouquetSeq: 1, bouquetImage: "/img/bouquet1.png" },
-  //   { bouquetSeq: 2, bouquetImage: "/img/bouquet2.png" },
-  //   { bouquetSeq: 3, bouquetImage: "/img/bouquet3.png" },
-  // ];
+  const bouquetList = [];
   const [madeBouquetList, setMadeBouquetList] =
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
   const [orderBouquetList, setOrderBouquetList] =
@@ -51,15 +47,13 @@ function Main() {
         <Grid
           container
           sx={{
-            // display: "grid",
             backgroundColor: "#FFFFFF",
             position: "relative",
             width: "95%",
-            height: "65%",
+            height: "70%",
             top: "26%",
             borderRadius: "40px",
             overflow: "hidden",
-            padding: "1rem",
           }}
         >
           <Grid item xs={12} sx={{}}>

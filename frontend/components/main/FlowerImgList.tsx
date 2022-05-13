@@ -78,37 +78,40 @@ function FlowerImgList({
               sx={{
                 position: "absolute",
                 width: "100%",
+                height: "100%",
                 justifyContent: "center",
                 alignItems: "center",
-                // display: "flex",
-                display: "grid",
+                display: "flex",
               }}
             >
-              <Typography sx={{ ...textStyle }}>{infoText}</Typography>
+              <Typography
+                sx={{
+                  fontFamily: "ONEMobileLight",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "17px",
+                  color: "rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                {infoText}
+              </Typography>
             </Box>
           ) : (
-            <Box sx={{ display: "flex" }}>
+            <Grid container sx={{ display: "flex", maxWidth: "100%" }}>
               {bouquetList.map((bouquet, index) => {
                 return (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      width: "100%",
-                      height: "100%",
-                      margin: "1%",
-                    }}
-                  >
+                  <Grid item xs={4} key={index} sx={{}}>
                     <img
                       src={bouquet.bouquetImage}
                       alt="꽃다발"
-                      width={"100%"}
-                      height={"100%"}
+                      width={"140px"}
+                      height={"140px"}
                     ></img>
-                  </Box>
+                  </Grid>
                 );
               })}
-            </Box>
+            </Grid>
           )}
         </>
       )}
@@ -116,7 +119,4 @@ function FlowerImgList({
   );
 }
 
-export const infoTextStyle = {
-  fontFamily: "JuliusSansOne",
-};
 export default FlowerImgList;

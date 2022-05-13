@@ -17,7 +17,7 @@ function FlowerImgListTitle({ title, link }: listProps) {
         direction="row"
         alignItems="center"
         justifyItems="center"
-        sx={{ width: 420 }}
+        sx={{ width: 420, padding: "1.5rem" }}
       >
         <Grid item xs={9}>
           <Typography sx={{ ...textStyle, fontWeight: "bold", left: "10px" }}>
