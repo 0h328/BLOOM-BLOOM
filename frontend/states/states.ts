@@ -39,6 +39,11 @@ const flowerState = atom({
   default: { flowerSeq: 1, flowerImage: "/img/flower1.png" },
 });
 
+const saveBouquetState = atom({
+  key: "saveFlower",
+  default: "",
+});
+
 export {
   decoModalState,
   mainFlowerState,

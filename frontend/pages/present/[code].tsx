@@ -35,7 +35,9 @@ function Present() {
   const onCapture = () => {
     console.log("capture");
     html2canvas(document.getElementById("img"), {
-      backgroundColor: "#FFC0D0",
+      backgroundColor: "#FFFAFA",
+      proxy: "https://bloombloom.kro.kr/api/v1/proxy",
+      allowTaint: false,
     }).then((canvas) => {
       onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
     });
@@ -70,7 +72,6 @@ function Present() {
     <>
       {code ? (
         <Box
-          id="img"
           sx={{
             mx: "auto",
             width: windowHeight > 480 ? 420 : "100vw",
@@ -81,33 +82,41 @@ function Present() {
             backgroundColor: "#FFFAFA",
           }}
         >
-          <Box sx={{ pt: "2rem" }}>
-            <Header></Header>
-          </Box>
-          <Box
-            sx={{
-              pt: "1rem",
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Typography
+          <Box id="img">
+            <Box sx={{ pt: "2rem" }}>
+              <Header></Header>
+            </Box>
+            <Box
               sx={{
-                fontFamily: "JuliusSansOne",
-                fontSize: "18px",
-                margin: "1rem 0rem 1rem 0rem",
+                pt: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
               }}
             >
-              from . {presentData.presentSender}
-            </Typography>
-            <Box>
-              <BouquetImg bouquetImage={presentData.bouquetImage}></BouquetImg>
+              <Typography
+                sx={{
+                  fontFamily: "JuliusSansOne",
+                  fontSize: "18px",
+                  margin: "1rem 0rem 1rem 0rem",
+                }}
+              >
+                from . {presentData.presentSender}
+              </Typography>
+              <Box>
+                <BouquetImg
+                  bouquetImage={presentData.bouquetImage}
+                ></BouquetImg>
+              </Box>
+              <Box sx={{ width: "80%", height: "30%", mb: "1rem" }}>
+                <MessageCard message={presentData.presentDesc}></MessageCard>
+              </Box>
             </Box>
-            <Box sx={{ width: "80%", height: "30%", mb: "1rem" }}>
-              <MessageCard message={presentData.presentDesc}></MessageCard>
-            </Box>
+          </Box>
+          <Box
+            sx={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
             <ImgDownloadBtn
               data-html2canvas-ignore="true"
               onCapture={onCapture}

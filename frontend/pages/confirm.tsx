@@ -5,10 +5,13 @@ import { useRouter } from "next/router";
 import BouquetImg from "../components/present/BouquetImg";
 import ConfirmBtn from "../components/button/ConfirmPageBtn";
 import MessageInputModal from "../components/modal/MessageInputModal";
+import { useRecoilState } from "recoil";
+import { presentBouquetState } from "../states/states";
 function Confirm() {
   const router = useRouter();
   const [messageModal, setMessageModal] = useState<boolean>(false);
-
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   const bouquetImage = "/img/wrapIvory.png";
   const handleMessageModal = (e: any) => {
     openMessageModal();
@@ -52,7 +55,7 @@ function Confirm() {
           height: "45%",
         }}
       >
-        <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+        <BouquetImg bouquetImage={presentBouquet}></BouquetImg>
       </Box>
       <Box sx={{ position: "absolute", top: "65%" }}>
         <Box sx={{ margin: "5% 0% 8% 0%" }}>

@@ -11,6 +11,7 @@ import {
   decoState,
   flowerState,
   mainFlowerState,
+  presentBouquetState,
 } from "../states/states";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
@@ -24,6 +25,8 @@ function Arrange() {
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
   const [bouquetImageData, setBouquetImageData] = useState<FormData>();
@@ -37,6 +40,7 @@ function Arrange() {
         height: windowHeight,
       }).then((canvas) => {
         setBouquetImage(canvas.toDataURL("image/png"));
+        setPresentBouquet(canvas.toDataURL("image/png"));
 
         const imgBase64 = canvas.toDataURL("image/png");
         const decodImg = atob(imgBase64.split(",")[1]);
@@ -75,7 +79,7 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
-    setWindowHeight(window.innerHeight * 0.35);
+    setWindowHeight(window.innerHeight * 0.48);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
@@ -89,15 +93,15 @@ function Arrange() {
       sx={{
         mx: "auto",
         width: 420,
-        position: "relative",
         backgroundColor: "#FFFAFA",
         height: height,
         minHeight: "100vh",
-        justifyContent: "center",
         display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      <Box sx={{ position: "absolute", top: "2%" }}>
+      <Box sx={{ position: "relative", mt: "5%" }}>
         <Header page="main"></Header>
       </Box>
       <BouquetCheckModal
@@ -106,105 +110,77 @@ function Arrange() {
         checkModal={checkModal}
         handleComplete={handleComplete}
       ></BouquetCheckModal>
-      <Box>
+      <Box sx={{ position: "relative", mt: "5%" }}>
         <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
       </Box>
       <Box
         id="img"
         sx={{
-          position: "absolute",
           width: "100%",
           height: "80%",
-          top: "20%",
           display: "flex",
-          flexDirection: "column",
           alignItems: "center",
+          flexDirection: "column",
         }}
       >
         <Box
           // id="img"
           sx={{
-            position: "absolute",
+            height: "65%",
             width: "100%",
-            height: "50%",
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
+            position: "relative",
           }}
         >
           <Box
             sx={{
-              position: "absolute",
-              width: "85%",
-              height: "90%",
+              ...imgBox,
             }}
           >
             <img
               src={wrapInfo.wrapBackImage}
               style={{
-                borderRadius: "200px",
-                height: "100%",
-                width: "100%",
+                height: "330px",
+                width: "330px",
               }}
             ></img>
           </Box>
-          <Box
-            sx={{
-              position: "absolute",
-              width: "80%",
-              height: "80%",
-            }}
-          >
+          <Box sx={{ ...imgBox }}>
             <img
               src={flowerInfo.flowerImage}
               style={{
-                borderRadius: "200px",
-                height: "100%",
-                width: "100%",
+                height: "330px",
+                width: "330px",
               }}
             ></img>
           </Box>
-          <Box
-            sx={{
-              position: "absolute",
-              width: "85%",
-              height: "90%",
-            }}
-          >
+          <Box sx={{ ...imgBox }}>
             <img
               src={wrapInfo.wrapFrontImage}
               style={{
-                borderRadius: "200px",
-                height: "100%",
-                width: "100%",
+                height: "330px",
+                width: "330px",
               }}
             ></img>
           </Box>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "53%",
-              width: "30%",
-              height: "30%",
-            }}
-          >
+          <Box sx={{ ...imgBox }}>
             <img
               src={decoInfo.decoImage}
               style={{
-                borderRadius: "200px",
-                height: "100%",
-                width: "100%",
+                position: "absolute",
+                top: "186px",
+                height: "130px",
+                width: "130px",
               }}
             ></img>
           </Box>
         </Box>
         <Box
           sx={{
-            backgroundColor: "#EFDFBF",
-            position: "absolute",
-            top: "48%",
+            height: "30%",
             width: "90%",
-            height: "18%",
+            backgroundColor: "#EFDFBF",
             display: "flex",
             alignItems: "center",
             borderRadius: "5px",
@@ -213,30 +189,27 @@ function Arrange() {
         >
           <Move finish={finish}></Move>
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            width: "100%",
-            top: "70%",
-            display: "flex",
-            alignItems: "center",
-            borderRadius: "5px",
-            justifyContent: "space-evenly",
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          borderRadius: "5px",
+        }}
+      >
+        <Button
+          variant="contained"
+          size="small"
+          style={{
+            ...btnStyle,
+          }}
+          onClick={(e) => {
+            handleArrange(true);
           }}
         >
-          <Button
-            variant="contained"
-            size="small"
-            style={{
-              ...btnStyle,
-            }}
-            onClick={(e) => {
-              handleArrange(true);
-            }}
-          >
-            <Typography> 배치 완료</Typography>
-          </Button>
-        </Box>
+          <Typography> 배치 완료</Typography>
+        </Button>
       </Box>
       <Toast />
     </Box>
@@ -246,10 +219,19 @@ function Arrange() {
 export const btnStyle = {
   backgroundColor: "#FFE0E0",
   color: "#3A1D1D",
-  fontFamily: "JuliusSansOne",
+  fontFamily: "ONEMobileLight",
   borderRadius: "5",
   width: "40%",
   height: "auto",
+};
+
+export const imgBox = {
+  position: "absolute",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  height: "50%",
+  minHeight: "330px",
 };
 
 export default Arrange;
