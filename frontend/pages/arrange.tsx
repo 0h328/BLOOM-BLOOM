@@ -11,6 +11,7 @@ import {
   decoState,
   flowerState,
   mainFlowerState,
+  presentBouquetState,
 } from "../states/states";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
@@ -24,6 +25,8 @@ function Arrange() {
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
   const [bouquetImageData, setBouquetImageData] = useState<FormData>();
@@ -37,6 +40,7 @@ function Arrange() {
         height: windowHeight,
       }).then((canvas) => {
         setBouquetImage(canvas.toDataURL("image/png"));
+        setPresentBouquet(canvas.toDataURL("image/png"));
 
         const imgBase64 = canvas.toDataURL("image/png");
         const decodImg = atob(imgBase64.split(",")[1]);
