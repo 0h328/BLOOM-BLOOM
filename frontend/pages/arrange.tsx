@@ -41,28 +41,28 @@ function Arrange() {
         const imgBase64 = canvas.toDataURL("image/png");
         const decodImg = atob(imgBase64.split(",")[1]);
 
-        // let array = [];
-        // for (let i = 0; i < decodImg.length; i++) {
-        //   array.push(decodImg.charCodeAt(i));
-        // }
+        let array = [];
+        for (let i = 0; i < decodImg.length; i++) {
+          array.push(decodImg.charCodeAt(i));
+        }
 
-        // const file = new Blob([new Uint8Array(array)], { type: "image/png" });
-        // const fileName = "canvas_img_" + new Date().getMilliseconds() + ".png";
-        // let formData = new FormData();
-        // formData.append("file", file, fileName);
+        const file = new Blob([new Uint8Array(array)], { type: "image/png" });
+        const fileName = "canvas_img_" + new Date().getMilliseconds() + ".png";
+        const formData = new FormData();
+        formData.append("file", file,fileName);
 
-        // const data = {
-        //   wrapSeq: wrapInfo.wrapSeq,
-        //   decoSeq: decoInfo.decoSeq,
-        //   subFlowerSeq: flowerInfo.flowerSeq,
-        //   mainFlower: mainFlower,
-        // };
-        // formData.append(
-        //   "key",
-        //   new Blob([JSON.stringify(data)], { type: "application/json" })
-        // );
-
-        // setBouquetImageData(formData);
+        const data = {
+          wrapSeq: wrapInfo.wrapSeq,
+          decoSeq: decoInfo.decoSeq,
+          subFlowerSeq: flowerInfo.flowerSeq,
+          mainFlower: mainFlower,
+        };
+        console.log(data);
+        formData.append(
+          "request",
+          new Blob([JSON.stringify(data)], { type: "application/json" })
+        );
+        setBouquetImageData(formData);
         handleCheckModal(true);
       });
     } else {
