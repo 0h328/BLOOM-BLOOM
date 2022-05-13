@@ -10,7 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Present {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long presentSeq;
@@ -23,7 +22,3 @@ public class Present {
     private String presentUri;
     private String presentSender;
 }
-
-/**
- * String a = UUID.randomUUID().toString();
- */
