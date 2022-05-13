@@ -52,11 +52,12 @@ function MessageInputModal({
 
     //메시지 내용 보이게 해도 되고 안해도 되고
     window.Kakao.Link.sendScrap({
-      requestUrl: "https://bloombloom.kro.kr", // 페이지 url (선물 결과 페이지가 보여야한다.) path는 따로 설정해주면됨
+      requestUrl: "https://bloombloom.kro.kr/present", // 페이지 url (선물 결과 페이지가 보여야한다.) path는 따로 설정해주면됨
       templateId: 76396, // 메시지템플릿 번호
       templateArgs: {
         THUMB:
-          "https://cdn.discordapp.com/attachments/968011285998469190/970608815470936084/unknown.png", // 썸네일 주소
+          "https://cdn.discordapp.com/attachments/968011285998469190/970608815470936084/unknown.png",
+        RANDOM: { uuid }, // 썸네일 주소
       },
       callback: linkcallback,
     });
