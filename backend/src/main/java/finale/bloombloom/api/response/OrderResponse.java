@@ -1,5 +1,6 @@
 package finale.bloombloom.api.response;
 
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.FlowerInfo;
 import finale.bloombloom.db.entity.User;
@@ -21,14 +22,14 @@ public class OrderResponse {
     private String orderDesc;
     private String customerName;
 
-    public static OrderResponse from(User user, Bouquet bouquet, List<FlowerInfo> flowerInfo, String orderDesc) {
+    public static OrderResponse from(User user, Bouquet bouquet, List<FlowerInfo> flowerInfo, String orderDesc, S3ImageUrlConverter urlConverter) {
         List<FlowerInfoResponse> flowerInfoResponseList = flowerInfo.stream()
-                .map(FlowerInfoResponse::from)
+                .map(elem -> FlowerInfoResponse.from(elem, urlConverter))
                 .collect(Collectors.toList());
 
         return OrderResponse.builder()
                 .flowerInfo(flowerInfoResponseList)
-                .bouquetImage(bouquet.getBouquetImage())
+                .bouquetImage(urlConverter.urlConvert(bouquet.getBouquetImage()))
                 .orderDesc(orderDesc)
                 .customerName(user.getUserName())
                 .build();

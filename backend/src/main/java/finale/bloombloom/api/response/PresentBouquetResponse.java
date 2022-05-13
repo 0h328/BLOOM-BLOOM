@@ -1,5 +1,6 @@
 package finale.bloombloom.api.response;
 
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.Present;
 import lombok.AllArgsConstructor;
@@ -16,9 +17,9 @@ public class PresentBouquetResponse {
     private String presentSender;
     private String presentDesc;
 
-    public static PresentBouquetResponse from(Present present, Bouquet bouquet) {
+    public static PresentBouquetResponse from(Present present, Bouquet bouquet, S3ImageUrlConverter urlConverter) {
         return PresentBouquetResponse.builder()
-                .bouquetImage(bouquet.getBouquetImage())
+                .bouquetImage(urlConverter.urlConvert(bouquet.getBouquetImage()))
                 .presentSender(present.getPresentSender())
                 .presentDesc(present.getPresentDesc())
                 .build();

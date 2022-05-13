@@ -1,5 +1,6 @@
 package finale.bloombloom.api.response;
 
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.FlowerInfo;
 import lombok.AllArgsConstructor;
@@ -18,12 +19,12 @@ public class BouquetDetailResponse {
     private String bouquetImage;
     private List<FlowerInfoResponse> flowerInfo;
 
-    public static BouquetDetailResponse from(Bouquet bouquet, List<FlowerInfo> flowerInfo) {
+    public static BouquetDetailResponse from(Bouquet bouquet, List<FlowerInfo> flowerInfo, S3ImageUrlConverter urlConverter) {
         List<FlowerInfoResponse> flowerInfoResponses = flowerInfo.stream()
-                .map(FlowerInfoResponse::from)
+                .map(elem -> FlowerInfoResponse.from(elem, urlConverter))
                 .collect(Collectors.toList());
         return BouquetDetailResponse.builder()
-                .bouquetImage(bouquet.getBouquetImage())
+                .bouquetImage(urlConverter.urlConvert(bouquet.getBouquetImage()))
                 .flowerInfo(flowerInfoResponses)
                 .build();
     }
