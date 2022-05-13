@@ -54,29 +54,6 @@ function Present() {
     const response = await getPresent(code);
     setPresentData({ ...response.data.data });
   };
-  const [isKakaoBrower, setKakaoBrower] = useState(false);
-  useEffect(() => {
-    const Agent = navigator.userAgent.toLowerCase();
-    const isKakao =Agent.includes("kakao");
-    console.log(navigator.userAgent);
-    if (isKakao) {
-      alert("아이폰이지!")
-      location.href = 'kakaotalk://inappbrowser/close';
-      if(navigator.userAgent.match(/iPhone|iPad/i)){ // 아이폰 접속 경우
-        console.log("");
-        console.log("[window ready] : [접속 모바일] : " + "[아이폰]");
-        console.log("");
-    }
-    else { // 안드로이드 접속 경우
-        console.log("");
-        console.log("[window ready] : [접속 모바일] : " + "[안드로이드]");
-        console.log("");
-        // 크롬으로 새창 열기
-        location.href='intent://'+location.href.replace(/https?:\/\//i,'')+'#Intent;scheme=http;package=com.android.chrome;end';
-    }
-    }
-    setKakaoBrower(Boolean(isKakao));
-  }, []);
   useEffect(() => {
     if (!router.isReady) return;
     setCode(router.query.code);
