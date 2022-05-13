@@ -142,10 +142,7 @@ public class FlowerController {
      * 작성자: 문준호
      */
     @GetMapping("/present/{uuid}")
-    public ResponseEntity<Result> findPresentBouquet(Authentication authentication, @PathVariable String uuid) {
-        if (authentication == null)
-            return ResponseEntity.status(401).body(Result.builder().status(401).message("인증실패").build());
-
+    public ResponseEntity<Result> findPresentBouquet(@PathVariable String uuid) {
         PresentBouquetResponse response = presentService.findPresentBouquet(uuid);
         return ResponseEntity.ok(Result.builder().data(response).message("선물용 꽃다발 조회에 성공했습니다.").build());
     }

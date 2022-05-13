@@ -22,7 +22,7 @@ public class OrderResponse {
     private String orderDesc;
     private String customerName;
 
-    public static OrderResponse from(User user, Bouquet bouquet, List<FlowerInfo> flowerInfo, String orderDesc, S3ImageUrlConverter urlConverter) {
+    public static OrderResponse from(Bouquet bouquet, List<FlowerInfo> flowerInfo, String orderDesc, S3ImageUrlConverter urlConverter) {
         List<FlowerInfoResponse> flowerInfoResponseList = flowerInfo.stream()
                 .map(elem -> FlowerInfoResponse.from(elem, urlConverter))
                 .collect(Collectors.toList());
@@ -31,7 +31,7 @@ public class OrderResponse {
                 .flowerInfo(flowerInfoResponseList)
                 .bouquetImage(urlConverter.urlConvert(bouquet.getBouquetImage()))
                 .orderDesc(orderDesc)
-                .customerName(user.getUserName())
+                .customerName(bouquet.getUser().getUserName())
                 .build();
     }
 }

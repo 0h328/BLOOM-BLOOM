@@ -16,6 +16,6 @@ public interface OrderService {
     List<OrderListResponse> findOrderById(String userId);
     Order createOrder(OrderBouquetRequest orderBouquetRequest, String userId);
     OrderDetailResponse findOrderDetail(Long orderSeq);
-    OrderResponse findOrderDetailByUUID(User user, String uuid);
+    OrderResponse findOrderDetailByUUID(String uuid);
     public List<StoreLocationResponse> findStore(StoreLocationRequest storeLocationRequest);
 }

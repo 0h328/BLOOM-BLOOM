@@ -111,12 +111,12 @@ public class OrderServiceImpl implements OrderService {
      * 작성자 : 문준호
      */
     @Override
-    public OrderResponse findOrderDetailByUUID(User user, String uuid) {
+    public OrderResponse findOrderDetailByUUID(String uuid) {
         Order order = orderRepository.findByOrderUri(uuid)
                 .orElseThrow(() -> new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다."));
         Bouquet bouquet = order.getBouquet();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
-        return OrderResponse.from(user, bouquet, flowerInfos, order.getOrderDesc(), urlConverter);
+        return OrderResponse.from(bouquet, flowerInfos, order.getOrderDesc(), urlConverter);
     }
 
     /**
