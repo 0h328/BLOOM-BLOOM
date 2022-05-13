@@ -110,14 +110,14 @@ function Arrange() {
         checkModal={checkModal}
         handleComplete={handleComplete}
       ></BouquetCheckModal>
-      <Box sx={{ position: "relative", mt: "5%" }}>
+      <Box sx={{ position: "relative", mt: "5%", width: "100%" }}>
         <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
       </Box>
       <Box
         id="img"
         sx={{
           width: "100%",
-          height: "80%",
+          height: "70%",
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
@@ -179,12 +179,13 @@ function Arrange() {
         <Box
           sx={{
             height: "30%",
-            width: "90%",
+            width: "85%",
             backgroundColor: "#EFDFBF",
             display: "flex",
             alignItems: "center",
             borderRadius: "5px",
             justifyContent: "center",
+            WebkitAlignItems: "flex-start",
           }}
         >
           <Move finish={finish}></Move>
@@ -194,7 +195,7 @@ function Arrange() {
         sx={{
           width: "100%",
           display: "flex",
-          alignItems: "center",
+          justifyContent: "center",
           borderRadius: "5px",
         }}
       >

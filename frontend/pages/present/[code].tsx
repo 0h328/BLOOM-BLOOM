@@ -97,7 +97,7 @@ function Present() {
             >
               <Typography
                 sx={{
-                  fontFamily: "JuliusSansOne",
+                  fontFamily: "ONEMobileLight",
                   fontSize: "18px",
                   margin: "1rem 0rem 1rem 0rem",
                 }}
