@@ -54,7 +54,15 @@ function Present() {
     const response = await getPresent(code);
     setPresentData({ ...response.data.data });
   };
-
+  const [isKakaoBrower, setKakaoBrower] = useState(false);
+  useEffect(() => {
+    const isKakao = navigator.userAgent.match("KAKAOTALK");
+    console.log(navigator.userAgent);
+    console.log(Boolean(isKakao));
+    if (Boolean(isKakao))
+      location.href = "intent://https://bloombloom.kro.kr/present/65d2939b3c78463395c3faa392e12fa7#Intent;scheme=http;package=com.android.chrome;end"
+    setKakaoBrower(Boolean(isKakao));
+  }, []);
   useEffect(() => {
     if (!router.isReady) return;
     setCode(router.query.code);
