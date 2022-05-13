@@ -15,7 +15,7 @@ function Header({ page }: PageIdetifierProps) {
   };
   return (
     <>
-      <Box sx={{ position: "relative" }}>
+      <Box sx={{}}>
         <Grid
           container
           spacing={0}

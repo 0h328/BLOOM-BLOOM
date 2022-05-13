@@ -26,12 +26,15 @@ function Flower() {
     switch (code) {
       case 0:
         toast.error("📣0개이하는 선택할 수 없습니다");
+        console.log("0");
         break;
       case 1:
         toast.error("📣꽃은 8개까지 선택할 수 있습니다");
+        console.log("1");
         break;
       case 2:
         toast.error("📣꽃을 1개이상 선택해주세요");
+        console.log("2");
         break;
     }
   };
@@ -39,16 +42,6 @@ function Flower() {
     const response = await getFlower();
     setFlowerList(response.data.data);
   };
-  useEffect(() => {
-    if (totalCount == 8) {
-      setValidCount(false);
-    } else if (totalCount < 8) {
-      setValidCount(true);
-    } else if (totalCount > 8) {
-      setValidCount(false);
-    }
-    console.log(totalCount);
-  }, [totalCount]);
   useEffect(() => {
     let temp = [];
     setMainFlower([...temp]);
@@ -65,10 +58,11 @@ function Flower() {
         minHeight: "100vh",
       }}
     >
+      {/* <Toast /> */}
       <Box sx={{ position: "absolute", top: "30px" }}>
         <Header page="flower"></Header>
       </Box>
-      <FlowerChooseText></FlowerChooseText>
+      <FlowerChooseText totalCount={totalCount}></FlowerChooseText>
       <Box
         sx={{
           position: "absolute",
@@ -112,6 +106,7 @@ function Flower() {
                             handleTotal={handleTotal}
                             validCount={validCount}
                             handleError={handleError}
+                            totalCount={totalCount}
                           ></FlowerObject>
                         </Box>
                       </Grid>
@@ -123,7 +118,6 @@ function Flower() {
           );
         })}
       </Box>
-      <Toast />
     </Box>
   );
 }

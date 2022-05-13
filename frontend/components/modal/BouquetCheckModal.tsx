@@ -39,8 +39,8 @@ function BouquetCheckModal({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+    console.log(imgWidth);
   });
-  console.log(imgWidth);
   return (
     <>
       {checkModal ? (
@@ -84,19 +84,12 @@ function BouquetCheckModal({
                 완성된 꽃다발이 마음에 드시나요?
               </Typography>
             </Box>
-            <Box
-              sx={{
-                position: "absolute",
-                top: "20%",
-                width: { imgWidth },
-                height: { imgHeight },
-              }}
-            >
+            <Box sx={{ mt: "8rem" }}>
               <img
                 src={bouquetImage}
                 alt="꽃다발"
-                width={"100%"}
-                height={"100%"}
+                width="330px"
+                height="330px"
               ></img>
             </Box>
             <Box

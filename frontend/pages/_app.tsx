@@ -12,6 +12,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <meta content="yes" name="apple-mobile-web-app-capable" />
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
       </Head>
       <RecoilRoot>

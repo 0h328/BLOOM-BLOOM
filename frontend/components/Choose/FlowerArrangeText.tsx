@@ -8,38 +8,44 @@ interface textProps {
 }
 function FlowerArrangeText({ handleSaveImg }: textProps) {
   return (
-    <Typography
-      variant="h6"
-      gutterBottom
-      component="div"
-      textAlign="center"
-      position="relative"
-      top="8%"
-    >
-      <IconButton
-        style={{ color: "black", right: "60px", marginBottom: "5px" }}
-      >
-        <Link href="/flower" passHref>
-          <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
-        </Link>
-      </IconButton>
-      꽃을 배치해주세요
-      <IconButton
-        style={{ color: "black", left: "60px", marginBottom: "5px" }}
-        onClick={handleSaveImg}
-      >
-        <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
-      </IconButton>
+    <>
+      <Box sx={{ display: "flex", width: "100%" }}>
+        <Typography
+          variant="h6"
+          gutterBottom
+          component="div"
+          textAlign="center"
+          display="flex"
+          width="100%"
+          justifyContent="space-around"
+        >
+          <IconButton
+            component="div"
+            style={{ color: "black", marginBottom: "5px" }}
+          >
+            <Link href="/flower" passHref>
+              <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
+            </Link>
+          </IconButton>
+          꽃을 배치해주세요
+          <IconButton
+            component="div"
+            style={{ color: "black", marginBottom: "5px" }}
+            onClick={handleSaveImg}
+          >
+            <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
+          </IconButton>
+        </Typography>
+      </Box>
       <Typography
         variant="subtitle2"
         gutterBottom
         component="div"
-        position="relative"
         style={{ textAlign: "center" }}
       >
         꽃 배치 완료 후 다음으로 넘어가주세요
       </Typography>
-    </Typography>
+    </>
   );
 }
 

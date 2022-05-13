@@ -35,6 +35,14 @@ body {
   /* overflow-x: hidden; */
 }
 
+body {
+  /* overflow: hidden;  */
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 main {
   position: fixed;
   overflow: hidden;
@@ -54,9 +62,6 @@ a {
   width: 100vw;
 } /* iOS only */
 
-:root {
-  --vh: 100%;
-}
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
