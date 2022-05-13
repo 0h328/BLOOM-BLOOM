@@ -36,35 +36,42 @@ function Arrange() {
         useCORS: true,
         height: windowHeight,
       }).then((canvas) => {
-        setBouquetImage(canvas.toDataURL("image/jpeg"));
+        setBouquetImage(canvas.toDataURL("image/png"));
 
-        const imgBase64 = canvas.toDataURL("image/jpeg", "image/octet-stream");
+        const imgBase64 = canvas.toDataURL("image/png");
         const decodImg = atob(imgBase64.split(",")[1]);
 
-        let array = [];
-        for (let i = 0; i < decodImg.length; i++) {
-          array.push(decodImg.charCodeAt(i));
-        }
+        // let array = [];
+        // for (let i = 0; i < decodImg.length; i++) {
+        //   array.push(decodImg.charCodeAt(i));
+        // }
 
-        const file = new Blob([new Uint8Array(array)], { type: "image/jpeg" });
-        const fileName = "canvas_img_" + new Date().getMilliseconds() + ".jpg";
-        let formData = new FormData();
-        formData.append("file", file, fileName);
+        // const file = new Blob([new Uint8Array(array)], { type: "image/png" });
+        // const fileName = "canvas_img_" + new Date().getMilliseconds() + ".png";
+        // let formData = new FormData();
+        // formData.append("file", file, fileName);
 
-        setBouquetImageData(formData);
+        // const data = {
+        //   wrapSeq: wrapInfo.wrapSeq,
+        //   decoSeq: decoInfo.decoSeq,
+        //   subFlowerSeq: flowerInfo.flowerSeq,
+        //   mainFlower: mainFlower,
+        // };
+        // formData.append(
+        //   "key",
+        //   new Blob([JSON.stringify(data)], { type: "application/json" })
+        // );
+
+        // setBouquetImageData(formData);
         handleCheckModal(true);
       });
     } else {
       toast.error("📣배치완료 버튼을 눌러 배치를 완료해주세요");
     }
   };
-  const onSave = (uri: string, filename: string) => {
-    let link = document.createElement("a");
-    document.body.appendChild(link);
-    link.href = uri;
-    link.download = filename;
-    link.click();
-    document.body.removeChild(link);
+  const handleComplete = async () => {
+    const response = await saveBouquet(bouquetImageData);
+    console.log(response);
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
@@ -73,17 +80,6 @@ function Arrange() {
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
     setFinish(state);
-  };
-  const handleComplete = async () => {
-    const body = {
-      wrapSeq: wrapInfo.wrapSeq,
-      decoSeq: decoInfo.decoSeq,
-      subFlowerSeq: flowerInfo.flowerSeq,
-      mainFlower: mainFlower,
-      bouquetImage: bouquetImageData,
-    };
-    const response = await saveBouquet(body);
-    console.log(response);
   };
   useEffect(() => {
     setHeight(window.innerHeight);
