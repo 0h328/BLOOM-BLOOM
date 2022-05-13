@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import MessageCard from "../../components/present/MessageCard";
 import Header from "../../components/common/Header";
 import ImgDownloadBtn from "../../components/present/ImgDownloadBtn";
@@ -50,7 +50,6 @@ function Present() {
   const handlePresent = async (code: string) => {
     const response = await getPresent(code);
     setPresentData({ ...response.data.data });
-    console.log(response);
   };
 
   useEffect(() => {
@@ -59,49 +58,63 @@ function Present() {
   }, [router.isReady]);
 
   useEffect(() => {
-    if (code !== "" && code !== undefined) {
+    if (code !== "" && code !== undefined && code.length) {
       handlePresent(code);
     }
-  }, []);
+  }, [code]);
 
   return (
     <>
-      <Box
-        sx={{
-          mx: "auto",
-          width: 420,
-          position: "relative",
-          backgroundColor: "#FFFAFA",
-          height: "840px",
-          minHeight: "100vh",
-        }}
-      >
+      {code ? (
         <Box
           id="img"
-          sx={{ width: 420, backgroundColor: "#FFFAFA", height: "840px" }}
+          sx={{
+            mx: "auto",
+            width: 420,
+            position: "relative",
+            backgroundColor: "#FFFAFA",
+            height: "840px",
+            minHeight: "100vh",
+          }}
         >
-          <Typography
-            // id="img"
-            sx={{
-              position: "absolute",
-              top: "115px",
-              left: "35px",
-              fontFamily: "JuliusSansOne",
-              fontSize: "18px",
-            }}
-          >
-            from . {presentData.presentSender}
-          </Typography>
-          <Box sx={{ position: "absolute", top: "30px" }}>
-            <Header></Header>
-          </Box>
-          <Box sx={{ position: "absolute", top: "150px", left: "30px" }}>
-            <BouquetImg bouquetImage={presentData.bouquetImage}></BouquetImg>
-            <MessageCard message={presentData.presentDesc}></MessageCard>
+          <Box sx={{ width: 420, backgroundColor: "#FFFAFA" }}>
+            <Box sx={{ pt: "2rem" }}>
+              <Header></Header>
+            </Box>
+            <Box
+              sx={{
+                pt: "3rem",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "JuliusSansOne",
+                  fontSize: "18px",
+                  margin: "1rem 0rem 1rem 0rem",
+                }}
+              >
+                from . {presentData.presentSender}
+              </Typography>
+              <Box>
+                <BouquetImg
+                  bouquetImage={presentData.bouquetImage}
+                ></BouquetImg>
+              </Box>
+              <Box sx={{ mb: "1rem" }}>
+                <MessageCard message={presentData.presentDesc}></MessageCard>
+              </Box>
+              <ImgDownloadBtn
+                data-html2canvas-ignore="true"
+                onCapture={onCapture}
+              ></ImgDownloadBtn>
+            </Box>
           </Box>
         </Box>
-        <ImgDownloadBtn onCapture={onCapture}></ImgDownloadBtn>
-      </Box>
+      ) : null}
     </>
   );
 }

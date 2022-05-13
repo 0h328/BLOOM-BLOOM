@@ -6,16 +6,13 @@ interface messageProps {
 }
 function MessageCard({ message }: messageProps) {
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box sx={{}}>
       <Box
         sx={{
-          position: "absolute",
           backgroundColor: "#EFDFBF",
           width: "340px",
           height: "240px",
           borderRadius: "10px",
-          top: "-30px",
-          left: "11px",
           overflow: "scroll",
         }}
       >

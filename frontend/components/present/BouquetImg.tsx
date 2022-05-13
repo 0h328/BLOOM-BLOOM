@@ -4,16 +4,29 @@ import Image from "next/image";
 
 interface bouquetImgProps {
   bouquetImage: string;
+  modal?: boolean;
 }
-function BouquetImg({ bouquetImage }: bouquetImgProps) {
+function BouquetImg({ bouquetImage, modal }: bouquetImgProps) {
   return (
-    <img
-      id="img"
-      src={bouquetImage}
-      alt="꽃다발"
-      width={"100%"}
-      height={"100%"}
-    ></img>
+    <>
+      {modal ? (
+        <img
+          id="img"
+          src={bouquetImage}
+          alt="꽃다발"
+          width={"200px"}
+          height={"200px"}
+        ></img>
+      ) : (
+        <img
+          id="img"
+          src={bouquetImage}
+          alt="꽃다발"
+          width={"300px"}
+          height={"300px"}
+        ></img>
+      )}
+    </>
   );
 }
 
