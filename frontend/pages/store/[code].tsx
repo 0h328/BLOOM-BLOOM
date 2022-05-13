@@ -51,12 +51,12 @@ function Shop() {
           }}
         >
           <Box sx={{ width: 420, backgroundColor: "#FFFAFA" }}>
-            <Box sx={{ pt: "2rem" }}>
+            <Box sx={{ pt: "1.5rem" }}>
               <Header></Header>
             </Box>
             <Box
               sx={{
-                pt: "3rem",
+                pt: "1.5rem",
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
