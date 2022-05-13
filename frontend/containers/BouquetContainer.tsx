@@ -104,6 +104,17 @@ function BouquetContainer({ src }: containerProps) {
     console.log(alignment);
   }, [alignment]);
 
+  useEffect(() => {
+    setWrapInfo({
+      wrapSeq: 1,
+      wrapImage: "/img/wrapOrange.png",
+      wrapBackImage: "/img/wrapBackOrange.png",
+      wrapFrontImage: "/img/wrapFrontOrange.png",
+    });
+    setDecoInfo({ decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" });
+    setFlowerInfo({ flowerSeq: 1, flowerImage: "/img/flower1.png" });
+  }, []);
+
   return (
     <Box sx={{ ...BouquetPage }}>
       {alignment === "1" && <WrapperChooseText></WrapperChooseText>}
