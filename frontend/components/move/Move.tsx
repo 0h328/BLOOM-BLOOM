@@ -160,8 +160,8 @@ function Move({ finish }: moveProps) {
         <Box
           className="container"
           sx={{
-            width: "90%",
-            height: "90%",
+            width: "100%",
+            height: "100%",
             // position: "relative",
             // top: "100%",
           }}
@@ -227,14 +227,22 @@ function Move({ finish }: moveProps) {
           ></Selecto>
           <Box
             className="elements selecto-area"
-            sx={{ display: "flex", width: "100%", height: "80%" }}
+            sx={{
+              display: "flex",
+              width: "100%",
+              height: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Grid
               container
-              spacing={1}
+              // disableGutters
+              // spacing={1}
+              maxWidth="sm"
               justifyContent="center"
               alignItems="center"
-              sx={{ width: "100%", height: "90%" }}
+              sx={{ padding: "1rem" }}
             >
               {/* {flowers.map((item, index) => ( */}
               {selectedFlower.map((item, index) => (
@@ -253,8 +261,8 @@ function Move({ finish }: moveProps) {
                   <Box
                     className={finish ? null : "cube target"}
                     sx={{
-                      width: "80%",
-                      height: "80%",
+                      width: "100%",
+                      height: "100%",
                       margin: "5px",
                     }}
                   >
