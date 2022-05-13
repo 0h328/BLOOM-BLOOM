@@ -56,9 +56,24 @@ function Present() {
   };
   const [isKakaoBrower, setKakaoBrower] = useState(false);
   useEffect(() => {
-    const isKakao = navigator.userAgent.match("KAKAOTALK");
+    const Agent = navigator.userAgent.toLowerCase();
+    const isKakao =Agent.includes("kakao");
     console.log(navigator.userAgent);
-    console.log(Boolean(isKakao));
+    if (isKakao) {
+      location.href = 'kakaotalk://inappbrowser/close';
+      if(navigator.userAgent.match(/iPhone|iPad/i)){ // 아이폰 접속 경우
+        console.log("");
+        console.log("[window ready] : [접속 모바일] : " + "[아이폰]");
+        console.log("");
+    }
+    else { // 안드로이드 접속 경우
+        console.log("");
+        console.log("[window ready] : [접속 모바일] : " + "[안드로이드]");
+        console.log("");
+        // 크롬으로 새창 열기
+        location.href='intent://'+location.href.replace(/https?:\/\//i,'')+'#Intent;scheme=http;package=com.android.chrome;end';
+    }
+    }
     setKakaoBrower(Boolean(isKakao));
   }, []);
   useEffect(() => {
@@ -72,8 +87,6 @@ function Present() {
     }
   }, [code]);
   useEffect(() => {
-    if (!isKakaoBrower)
-      location.href='intent://bloombloom.kro.kr/present/65d2939b3c78463395c3faa392e12fa7#Intent;scheme=http;package=com.android.chrome;end'
     setWindowHeight(window.innerHeight);
   }, []);
   return (
