@@ -20,7 +20,7 @@ const presentBouquetState = atom({
 const wrapState = atom({
   key: "wrapInfo",
   default: {
-    wrapSeq: 1,
+    wrapSeq: 2,
     wrapImage: "/img/wrapOrange.png",
     wrapBackImage: "/img/wrapBackOrange.png",
     wrapFrontImage: "/img/wrapFrontOrange.png",
@@ -30,13 +30,13 @@ const wrapState = atom({
 // 리본
 const decoState = atom({
   key: "decoInfo",
-  default: { decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" },
+  default: { decoSeq: 2, decoImage: "/img/ribbonDeepPink.png" },
 });
 
 // 부속꽃
 const flowerState = atom({
   key: "flowerInfo",
-  default: { flowerSeq: 1, flowerImage: "/img/flower1.png" },
+  default: { flowerSeq: 2, flowerImage: "/img/flower1.png" },
 });
 
 export {

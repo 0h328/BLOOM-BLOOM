@@ -82,12 +82,13 @@ function MessageInputModal({
               position: "absolute",
               width: "100%",
               height: "45%",
-              backgroundColor: "#FFE0E0",
+              backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
               top: "20%",
               display: "flex",
               justifyContent: "center",
+              border: "1rem #ffff",
             }}
           >
             <Typography
