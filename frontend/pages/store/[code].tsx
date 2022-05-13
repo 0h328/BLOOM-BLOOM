@@ -72,7 +72,7 @@ function Shop() {
                   backgroundColor: "#ffff",
                   border: "1px solid rgba(82, 82, 82, 0.29)",
                   borderRadius: "5px",
-                  // overflow: "scroll",
+                  mt: "1rem",
                 }}
               >
                 <Box
@@ -101,7 +101,8 @@ function Shop() {
                     textAlign: "center",
                     fontSize: "14px",
                     alignItems: "center",
-                    height: "30px",
+                    height: "fitContent",
+                    padding: "1rem",
                   }}
                 >
                   <Grid container>
@@ -111,7 +112,11 @@ function Shop() {
                       </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography sx={{ fontFamily: "ONEMobileLight" }}>
+                      <Typography
+                        sx={{
+                          fontFamily: "ONEMobileLight",
+                        }}
+                      >
                         {orderData.orderDesc}
                       </Typography>
                     </Grid>

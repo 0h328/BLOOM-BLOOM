@@ -37,6 +37,7 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
       <Box
         sx={{
           ...boxStyle,
+          padding: "0.5rem",
           backgroundColor: "#ffff",
           borderColor: "#fffa",
         }}

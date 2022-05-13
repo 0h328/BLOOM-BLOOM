@@ -31,7 +31,7 @@ function Arrange() {
   const handleSaveImg = () => {
     if (finish) {
       html2canvas(document.querySelector("#img"), {
-        backgroundColor: "#FFFAFA",
+        backgroundColor: "transparent",
         foreignObjectRendering: false,
         useCORS: true,
         height: windowHeight,
@@ -49,7 +49,7 @@ function Arrange() {
         const file = new Blob([new Uint8Array(array)], { type: "image/png" });
         const fileName = "canvas_img_" + new Date().getMilliseconds() + ".png";
         const formData = new FormData();
-        formData.append("file", file,fileName);
+        formData.append("file", file, fileName);
 
         const data = {
           wrapSeq: wrapInfo.wrapSeq,

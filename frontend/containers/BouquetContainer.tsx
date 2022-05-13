@@ -34,49 +34,49 @@ function BouquetContainer({ src }: containerProps) {
 
   const wrapList = [
     {
-      wrapSeq: 2,
+      wrapSeq: 1,
       wrapImage: "/img/wrapOrange.png",
       wrapBackImage: "/img/wrapBackOrange.png",
       wrapFrontImage: "/img/wrapFrontOrange.png",
     },
     {
-      wrapSeq: 3,
+      wrapSeq: 2,
       wrapImage: "/img/wrapIvory.png",
       wrapBackImage: "/img/wrapBackIvory.png",
       wrapFrontImage: "/img/wrapFrontIvory.png",
     },
     {
-      wrapSeq: 4,
+      wrapSeq: 3,
       wrapImage: "/img/wrapNavy.png",
       wrapBackImage: "/img/wrapBackNavy.png",
       wrapFrontImage: "/img/wrapFrontNavy.png",
     },
     {
-      wrapSeq: 5,
+      wrapSeq: 4,
       wrapImage: "/img/wrapLightgreen.png",
       wrapBackImage: "/img/wrapBackLightgreen.png",
       wrapFrontImage: "/img/wrapFrontLightgreen.png",
     },
     {
-      wrapSeq: 6,
+      wrapSeq: 5,
       wrapImage: "/img/wrapPink.png",
       wrapBackImage: "/img/wrapBackPink.png",
       wrapFrontImage: "/img/wrapFrontPink.png",
     },
     {
-      wrapSeq: 7,
+      wrapSeq: 6,
       wrapImage: "/img/wrapPurple.png",
       wrapBackImage: "/img/wrapBackPurple.png",
       wrapFrontImage: "/img/wrapFrontPurple.png",
     },
     {
-      wrapSeq: 8,
+      wrapSeq: 7,
       wrapImage: "/img/wrapSkyblue.png",
       wrapBackImage: "/img/wrapBackSkyblue.png",
       wrapFrontImage: "/img/wrapFrontSkyblue.png",
     },
     {
-      wrapSeq: 9,
+      wrapSeq: 8,
       wrapImage: "/img/wrapYellow.png",
       wrapBackImage: "/img/wrapBackYellow.png",
       wrapFrontImage: "/img/wrapFrontYellow.png",
@@ -84,20 +84,20 @@ function BouquetContainer({ src }: containerProps) {
   ];
 
   const flowerList = [
-    { flowerSeq: 2, flowerImage: "/img/flower1.png" },
-    { flowerSeq: 3, flowerImage: "/img/flower2.png" },
-    { flowerSeq: 4, flowerImage: "/img/flower3.png" },
+    { flowerSeq: 1, flowerImage: "/img/flower1.png" },
+    { flowerSeq: 2, flowerImage: "/img/flower2.png" },
+    { flowerSeq: 3, flowerImage: "/img/flower3.png" },
   ];
 
   const decoList = [
-    { decoSeq: 2, decoImage: "/img/ribbonDeepPink.png" },
-    { decoSeq: 3, decoImage: "/img/ribbonDeepBrown.png" },
-    { decoSeq: 4, decoImage: "/img/ribbonPurple.png" },
-    { decoSeq: 5, decoImage: "/img/ribbonNavy.png" },
-    { decoSeq: 6, decoImage: "/img/ribbonMixBrown.png" },
-    { decoSeq: 7, decoImage: "/img/ribbonMixPink.png" },
-    { decoSeq: 8, decoImage: "/img/ribbonMixRed.png" },
-    { decoSeq: 9, decoImage: "/img/ribbonMixYellow.png" },
+    { decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" },
+    { decoSeq: 2, decoImage: "/img/ribbonDeepBrown.png" },
+    { decoSeq: 3, decoImage: "/img/ribbonPurple.png" },
+    { decoSeq: 4, decoImage: "/img/ribbonNavy.png" },
+    { decoSeq: 5, decoImage: "/img/ribbonMixBrown.png" },
+    { decoSeq: 6, decoImage: "/img/ribbonMixPink.png" },
+    { decoSeq: 7, decoImage: "/img/ribbonMixRed.png" },
+    { decoSeq: 8, decoImage: "/img/ribbonMixYellow.png" },
   ];
 
   useEffect(() => {

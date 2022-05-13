@@ -80,7 +80,8 @@ function FlowerImgList({
                 width: "100%",
                 justifyContent: "center",
                 alignItems: "center",
-                display: "flex",
+                // display: "flex",
+                display: "grid",
               }}
             >
               <Typography sx={{ ...textStyle }}>{infoText}</Typography>

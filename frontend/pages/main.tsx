@@ -51,17 +51,18 @@ function Main() {
         <Grid
           container
           sx={{
+            // display: "grid",
             backgroundColor: "#FFFFFF",
             position: "relative",
             width: "95%",
-            height: "70%",
+            height: "65%",
             top: "26%",
             borderRadius: "40px",
             overflow: "hidden",
             padding: "1rem",
           }}
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{}}>
             <FlowerImgListTitle
               title="최근 제작한 꽃다발"
               link="/madelist"
