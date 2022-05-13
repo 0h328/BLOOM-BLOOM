@@ -41,7 +41,6 @@ public class AdminUpdateRequest {
         Point point = null;
         try {
             point = (Point) new WKTReader().read(pointWKT);
-
         }
         catch (ParseException e) {
             System.out.println("WKTReader() 에러");
