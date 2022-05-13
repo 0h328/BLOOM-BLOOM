@@ -4,6 +4,7 @@ import finale.bloombloom.api.request.PresentBouquetSaveRequest;
 import finale.bloombloom.api.response.PresentBouquetResponse;
 import finale.bloombloom.api.response.UuidResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.entity.Bouquet;
 import finale.bloombloom.db.entity.Present;
 import finale.bloombloom.db.entity.User;
@@ -22,6 +23,7 @@ public class PresentService {
     private final UserRepository userRepository;
     private final BouquetRepository bouquetRepository;
     private final PresentRepository presentRepository;
+    private final S3ImageUrlConverter urlConverter;
 
     @Transactional
     public UuidResponse savePresentBouquet(Long userSeq, PresentBouquetSaveRequest request) {
@@ -35,7 +37,7 @@ public class PresentService {
     public PresentBouquetResponse findPresentBouquet(String uuid) {
         Present present = findPresentBouquetByUUID(uuid);
         Bouquet bouquet = present.getBouquet();
-        return PresentBouquetResponse.from(present, bouquet);
+        return PresentBouquetResponse.from(present, bouquet, urlConverter);
     }
 
     private Present findPresentBouquetByUUID(String uuid) {
