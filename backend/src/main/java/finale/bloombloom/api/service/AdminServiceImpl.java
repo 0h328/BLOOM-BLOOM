@@ -17,34 +17,33 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
     private final StoreRepository storeRepository;
     private final EntityManager em;
 
     /**
-     *  업장 리스트 조회
-     *  작성자 : 박건우
+     * 업장 리스트 조회
+     * 작성자 : 박건우
      */
     @Override
     public List<StoreListResponse> findAllStore() {
-          return storeRepository.findAllStoreListBy().stream()
-                  .map(StoreListResponse::from)
-                  .collect(Collectors.toList());
+        return storeRepository.findAllStoreListBy().stream()
+                .map(StoreListResponse::from)
+                .collect(Collectors.toList());
     }
 
     /**
-     *  업장 정보 조회
-     *  작성자 : 박건우
+     * 업장 정보 조회
+     * 작성자 : 박건우
      */
     @Override
     public StoreDetailResponse findStore(Long storeReq) {
-
         return StoreDetailResponse.from(storeRepository.findStoreByStoreSeq(storeReq).get());
     }
 
     /**
-     *  업장 검색
-     *  작성자 : 박건우
+     * 업장 검색
+     * 작성자 : 박건우
      */
     @Override
     public List<StoreListResponse> searchStore(String storeName) {
@@ -54,8 +53,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     /**
-     *  업장 삭제
-     *  작성자 : 박건우
+     * 업장 삭제
+     * 작성자 : 박건우
      */
     @Override
     public void deleteStore(Long storeReq) {
@@ -63,8 +62,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     /**
-     *  업장 수정
-     *  작성자 : 박건우
+     * 업장 수정
+     * 작성자 : 박건우
      */
     @Override
     public void updateStore(AdminUpdateRequest req) {
@@ -79,11 +78,12 @@ public class AdminServiceImpl implements AdminService{
     @Transactional
     @Override
     public int saveStore(AdminSaveRequest req) {
-        Query query = em.createNativeQuery("insert into store\n" +
-                "(store_name,store_contact,store_address,store_reg_num,store_loc,store_map_id,store_blog_id,store_instagram_id,store_image_link)\n" +
-                " values(?1,?2,?3,?4,ST_GEOMFROMTEXT(\"" +
-                String.format("POINT(%s %s)", req.getStoreLat(), req.getStoreLng()) +
-                "\"),?5,?6,?7,?8)");
+        Query query = em.createNativeQuery(
+                "insert into store\n" +
+                        "(store_name,store_contact,store_address,store_reg_num,store_loc,store_map_id,store_blog_id,store_instagram_id,store_image_link)\n" +
+                        " values(?1,?2,?3,?4,ST_GEOMFROMTEXT(\"" +
+                        String.format("POINT(%s %s)", req.getStoreLat(), req.getStoreLng()) +
+                        "\"),?5,?6,?7,?8)");
         query.setParameter(1, req.getStoreName());
         query.setParameter(2, req.getStoreContact());
         query.setParameter(3, req.getStoreAddress());

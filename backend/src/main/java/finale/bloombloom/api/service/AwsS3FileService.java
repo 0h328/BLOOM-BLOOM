@@ -19,7 +19,12 @@ public class AwsS3FileService implements FileService {
 
     @Override
     public void uploadFile(InputStream inputStream, ObjectMetadata objectMetadata, String fileName) {
-        amazonS3.putObject(new PutObjectRequest(s3Component.getBucket(), fileName, inputStream, objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead));
+        amazonS3.putObject(new PutObjectRequest(
+                s3Component.getBucket(),
+                fileName,
+                inputStream,
+                objectMetadata
+        ).withCannedAcl(CannedAccessControlList.PublicRead));
     }
 
     @Override
@@ -30,21 +35,20 @@ public class AwsS3FileService implements FileService {
     @Override
     public String getFileFolder(FileFolder fileFolder) {
         String folder = "";
-        if (fileFolder == FileFolder.BOUQUET_FOLDER) {
+        if (fileFolder == FileFolder.BOUQUET_FOLDER)
             folder = s3Component.getBouquetFolderName();
-        }
-        if (fileFolder == FileFolder.MAIN_FLOWER_FOLDER) {
+
+        if (fileFolder == FileFolder.MAIN_FLOWER_FOLDER)
             folder = s3Component.getMainFlowerFolderName();
-        }
-        if (fileFolder == FileFolder.SUB_FLOWER_FOLDER) {
+
+        if (fileFolder == FileFolder.SUB_FLOWER_FOLDER)
             folder = s3Component.getSubFlowerFolderName();
-        }
-        if (fileFolder == FileFolder.WRAP_FOLDER) {
+
+        if (fileFolder == FileFolder.WRAP_FOLDER)
             folder = s3Component.getWrapFolderName();
-        }
-        if (fileFolder == FileFolder.DECO_FOLDER) {
+
+        if (fileFolder == FileFolder.DECO_FOLDER)
             folder = s3Component.getDecoFolderName();
-        }
 
         return folder;
     }
