@@ -60,6 +60,7 @@ function Present() {
     const isKakao =Agent.includes("kakao");
     console.log(navigator.userAgent);
     if (isKakao) {
+      alert("아이폰이지!")
       location.href = 'kakaotalk://inappbrowser/close';
       if(navigator.userAgent.match(/iPhone|iPad/i)){ // 아이폰 접속 경우
         console.log("");
