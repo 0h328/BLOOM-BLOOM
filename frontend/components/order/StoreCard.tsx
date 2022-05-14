@@ -26,12 +26,12 @@ function Storecard({ storeInfo }) {
           >
             <Typography
               sx={{
-                fontFamily: "Julius Sans One",
+                fontFamily: "OneMobileLight",
                 fontSize: "25px",
                 fontWeight: "bold",
               }}
             >
-              {storeInfo.storeName}
+              {storeInfo.storeName.length>6?storeInfo.storeName.slice(0,5)+"...":storeInfo.storeName}
             </Typography>
             <Box
               sx={{
@@ -41,23 +41,21 @@ function Storecard({ storeInfo }) {
                 ml: 0.5,
               }}
             >
-              <Image
-                src="/insta.png"
+              <img
+                src="/img/insta.PNG"
                 alt="insta"
                 width={15}
-                height={15}
-              ></Image>
-              <Image
-                src="/naver.png"
-                alt="naver"
+                height={15}></img>
+              <img
+                src="/img/blog.png"
+                alt="insta"
                 width={15}
-                height={15}
-              ></Image>
+                height={15}></img>
             </Box>
           </Box>
           <Typography
             sx={{
-              fontFamily: "Julius Sans One",
+              fontFamily: "OneMobileLight",
               fontSize: "11px",
               mt: 2.5,
               display: "flex",
@@ -69,7 +67,7 @@ function Storecard({ storeInfo }) {
           </Typography>
           <Typography
             sx={{
-              fontFamily: "Julius Sans One",
+              fontFamily: "OneMobileLight",
               fontSize: "11px",
               mt: 0.5,
               display: "flex",
@@ -80,7 +78,7 @@ function Storecard({ storeInfo }) {
             {storeInfo.storeAddress}
           </Typography>
           <Typography
-            sx={{ fontFamily: "Julius Sans One", fontSize: "11px", mt: 0.5 }}
+            sx={{ fontFamily: "OneMobileLight", fontSize: "11px", mt: 0.5 }}
           >
             <MapIcon sx={{ fontSize: "11px", mr: 2 }}></MapIcon>
             <Link
@@ -101,7 +99,7 @@ function Storecard({ storeInfo }) {
               height: 36,
               backgroundColor: "#FFFFFF",
               color: "#000000",
-              fontFamily: "JuliusSansOne",
+              fontFamily: "OneMobileLight",
               mt: 4,
             }}
           >
