@@ -35,8 +35,8 @@ function Map() {
         }
         const container = document.getElementById("map");
         const options = {
-          center: new window.kakao.maps.LatLng(37.4408907421696 , 127.147431848755), 
-          level: 3 
+          center: new window.kakao.maps.LatLng(37.494966766847845 , 127.12635783521158), 
+          level: 4 
         };
         const map = new window.kakao.maps.Map(container, options);
         var bounds = map.getBounds();
