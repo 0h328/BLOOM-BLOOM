@@ -24,7 +24,7 @@ function Map() {
     const mapScript = document.createElement("script");
 
     mapScript.async = true;
-    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=a72bcfeac31d42afb2702137336c4d9f&autoload=false`;
+    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=682d057f339c72447d6633e53e098d0c&autoload=false`;
 
     document.head.appendChild(mapScript);
     const onLoadKakaoMap = () => {

@@ -101,8 +101,19 @@ function BouquetContainer({ src }: containerProps) {
   ];
 
   useEffect(() => {
-  }, [wrapInfo]);
+    console.log(alignment);
+  }, [alignment]);
 
+  useEffect(() => {
+    setWrapInfo({
+      wrapSeq: 1,
+      wrapImage: "/img/wrapOrange.png",
+      wrapBackImage: "/img/wrapBackOrange.png",
+      wrapFrontImage: "/img/wrapFrontOrange.png",
+    });
+    setDecoInfo({ decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" });
+    setFlowerInfo({ flowerSeq: 1, flowerImage: "/img/flower1.png" });
+  }, []);
 
   return (
     <Box sx={{ ...BouquetPage }}>
@@ -115,8 +126,8 @@ function BouquetContainer({ src }: containerProps) {
         <Box
           sx={{
             position: "absolute",
-            top: "8%",
-            zIndex: "mobile stepper",
+            top: "5%",
+            // zIndex: "mobile stepper",
           }}
         >
           <img
@@ -130,7 +141,20 @@ function BouquetContainer({ src }: containerProps) {
           sx={{
             position: "absolute",
             top: "8%",
-            zIndex: "snackbar",
+            // zIndex: "drawer",
+          }}
+        >
+          <img
+            src={flowerInfo.flowerImage}
+            alt="부속꽃"
+            style={{ width: "300px", height: "300px" }}
+          ></img>
+        </Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "8%",
+            // zIndex: "snackbar",
           }}
         >
           <img
@@ -144,7 +168,7 @@ function BouquetContainer({ src }: containerProps) {
           sx={{
             position: "absolute",
             top: "180px",
-            zIndex: "tooltip",
+            // zIndex: "tooltip",
           }}
         >
           <img
@@ -153,42 +177,25 @@ function BouquetContainer({ src }: containerProps) {
             style={{ width: "100px", height: "100px" }}
           ></img>
         </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50px",
-            zIndex: "drawer",
-          }}
-        >
-          <img
-            src={flowerInfo.flowerImage}
-            alt="부속꽃"
-            style={{ width: "200px", height: "200px" }}
-          ></img>
-        </Box>
       </Box>
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
 
       {/* 포장지, 리본, 꽃줄기 버튼 */}
-      <Box sx={{ position: "absolute", top: "350px", left: "12%" }}>
+      <Box sx={{ mt: "20rem" }}>
         <ToggleButtonGroup
           value={alignment}
           exclusive
           onChange={handleAlignment}
           sx={{
-            marginTop: "30px",
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-evenly",
           }}
         >
           <ToggleButton
             value="1"
             style={{
-              backgroundColor: "#FFE0E0",
-              color: "black",
-              marginLeft: "20px",
-              width: "80px",
-              border: "1px solid #FFE0E0",
+              ...btnStyle,
+              backgroundColor: alignment === "1" ? "#EFDFBF" : "#FFE0E0",
             }}
           >
             포장지
@@ -196,10 +203,8 @@ function BouquetContainer({ src }: containerProps) {
           <ToggleButton
             value="2"
             style={{
-              backgroundColor: "#FFE0E0",
-              color: "black",
-              width: "80px",
-              border: "1px solid #FFE0E0",
+              ...btnStyle,
+              backgroundColor: alignment === "2" ? "#EFDFBF" : "#FFE0E0",
             }}
           >
             리본
@@ -207,11 +212,8 @@ function BouquetContainer({ src }: containerProps) {
           <ToggleButton
             value="3"
             style={{
-              backgroundColor: "#FFE0E0",
-              color: "black",
-              marginRight: "20px",
-              width: "80px",
-              border: "1px solid #FFE0E0",
+              ...btnStyle,
+              backgroundColor: alignment === "3" ? "#EFDFBF" : "#FFE0E0",
             }}
           >
             부속꽃
@@ -248,13 +250,22 @@ function BouquetContainer({ src }: containerProps) {
 
 export const BouquetPage = {
   position: "relative",
-  top: "100px",
+  pt: "7rem",
 };
 
 export const BouquetLayout = {
   position: "relative",
   display: "flex",
   justifyContent: "center",
+};
+
+export const btnStyle = {
+  color: "black",
+  width: "70px",
+  height: "40px",
+  border: "1px solid #FFE0E0",
+  fontSize: "0.8rem",
+  borderRadius: "1rem",
 };
 
 export default BouquetContainer;

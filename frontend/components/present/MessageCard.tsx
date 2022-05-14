@@ -6,32 +6,28 @@ interface messageProps {
 }
 function MessageCard({ message }: messageProps) {
   return (
-    <Box sx={{ position: "relative" }}>
-      <Box
+    <Box
+      sx={{
+        backgroundColor: "#EFDFBF",
+        width: "100%",
+        height: "100%",
+        borderRadius: "10px",
+        overflow: "scroll",
+        minHeight: "180px",
+      }}
+    >
+      <Typography
         sx={{
-          position: "absolute",
-          backgroundColor: "#EFDFBF",
-          width: "340px",
-          height: "240px",
-          borderRadius: "10px",
-          top: "-30px",
-          left: "11px",
-          overflow: "scroll",
+          marginTop: "15px",
+          fontFamily: "JuliusSansOne",
+          fontSize: "14px",
+          textAlign: "center",
+          whiteSpace: "pre-line",
+          lineHeight: "25px",
         }}
       >
-        <Typography
-          sx={{
-            marginTop: "15px",
-            fontFamily: "JuliusSansOne",
-            fontSize: "14px",
-            textAlign: "center",
-            whiteSpace: "pre-line",
-            lineHeight: "25px",
-          }}
-        >
-          {message}
-        </Typography>
-      </Box>
+        {message}
+      </Typography>
     </Box>
   );
 }

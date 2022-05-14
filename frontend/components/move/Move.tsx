@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import Moveable from "react-moveable";
 import Selecto from "react-selecto";
 import { Box, Grid, Button } from "@mui/material";
+import { mainFlowerState } from "../../states/states";
+import { useRecoilState } from "recoil";
+import { flowerList } from "../flower/FlowerData";
 interface moveProps {
   finish: boolean;
 }
@@ -14,6 +17,8 @@ function Move({ finish }: moveProps) {
   const selectoRef = useRef(null);
   const [trigger, setTrigger] = useState(false);
   const [elementGuidelines, setElementGuidelines] = useState(null);
+  const [selectedFlower, setSelectedFlower] = useState([]);
+  const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   //test용
   const [flowers, setFlowers] = useState([
     "/img/carnationPink.png",
@@ -127,11 +132,40 @@ function Move({ finish }: moveProps) {
     setOnLoad(true);
     setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
   }, []);
-  useEffect(() => {}, [target]);
+  useEffect(() => {
+    if (finish) {
+      setTargets([]);
+      setTarget([]);
+    } else {
+    }
+  }, [finish]);
+  useEffect(() => {
+    const temp1 = mainFlower.filter((flower) => flower.flowerSeq !== -1);
+    const temp2 = [];
+    temp1.map((flower, index) => {
+      for (let i = 0; i < flower.flowerCount; i++) {
+        for (let j = 0; j < flowerList.length; j++) {
+          if (flower.flowerSeq === flowerList[j].flowerSeq) {
+            console.log(flowerList[j].flowerImage);
+            temp2.push(flowerList[j].flowerImage);
+          }
+        }
+      }
+    });
+    setSelectedFlower(temp2);
+  }, []);
   return (
     <>
       {onLoad ? (
-        <Box className="container" sx={{ width: "100%", height: "100%" }}>
+        <Box
+          className="container"
+          sx={{
+            width: "100%",
+            height: "100%",
+            // position: "relative",
+            // top: "100%",
+          }}
+        >
           <Moveable
             ref={moveableRef}
             draggable={true}
@@ -193,19 +227,29 @@ function Move({ finish }: moveProps) {
           ></Selecto>
           <Box
             className="elements selecto-area"
-            sx={{ display: "flex", width: "100%", height: "90%" }}
+            sx={{
+              display: "flex",
+              width: "100%",
+              height: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
             <Grid
               container
-              spacing={1}
+              // disableGutters
+              // spacing={1}
+              maxWidth="sm"
               justifyContent="center"
               alignItems="center"
-              sx={{ width: "100%", height: "100%" }}
+              sx={{ padding: "1rem" }}
             >
-              {flowers.map((item, index) => (
+              {/* {flowers.map((item, index) => ( */}
+              {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"
                   item
+                  sm={3}
                   xs={3}
                   key={index}
                   sx={{
@@ -217,8 +261,8 @@ function Move({ finish }: moveProps) {
                   <Box
                     className={finish ? null : "cube target"}
                     sx={{
-                      width: "80%",
-                      height: "80%",
+                      width: "100%",
+                      height: "100%",
                       margin: "5px",
                     }}
                   >

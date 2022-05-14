@@ -10,13 +10,42 @@
   font-family: "PoppinsBold";
   src: url("../fonts/Poppins-ExtraBold.ttf");
 }
-
+@font-face {
+  font-family: "ONEMobilePOP";
+  src: url("../fonts/ONE Mobile POP.ttf");
+}
+@font-face {
+  font-family: "ONEMobileLight";
+  src: url("../fonts/ONE Mobile Light.ttf");
+}
+@font-face {
+  font-family: "ONEMobileTitle";
+  src: url("../fonts/ONE Mobile Title.ttf");
+}
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* height: calc(var(--vh, 1vh) * 100); */
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  /* overflow-x: hidden; */
+}
+
+body {
+  /* overflow: hidden;  */
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+main {
+  position: fixed;
+  overflow: hidden;
 }
 
 a {
@@ -27,6 +56,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.fill-screen {
+  height: 100vh;
+  width: 100vw;
+} /* iOS only */
 
 /* width */
 ::-webkit-scrollbar {

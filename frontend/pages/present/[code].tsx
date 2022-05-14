@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import MessageCard from "../../components/present/MessageCard";
 import Header from "../../components/common/Header";
 import ImgDownloadBtn from "../../components/present/ImgDownloadBtn";
@@ -20,6 +20,7 @@ function Present() {
   //   마음껏 좋아하고 마음껏 그리워하세요`,
   //   };
   const router = useRouter();
+  const [windowHeight, setWindowHeight] = useState<number>();
   const [image, setImage] = useState<string>("");
   const [code, setCode] = useState<any>([]);
   const [presentData, setPresentData] = useState<{
@@ -34,7 +35,9 @@ function Present() {
   const onCapture = () => {
     console.log("capture");
     html2canvas(document.getElementById("img"), {
-      backgroundColor: "#FFC0D0",
+      backgroundColor: "#FFFAFA",
+      proxy: "https://bloombloom.kro.kr/api/v1/proxy",
+      allowTaint: false,
     }).then((canvas) => {
       onSave(canvas.toDataURL("image/jpeg"), "present.jpeg");
     });
@@ -50,58 +53,76 @@ function Present() {
   const handlePresent = async (code: string) => {
     const response = await getPresent(code);
     setPresentData({ ...response.data.data });
-    console.log(response);
   };
-
   useEffect(() => {
     if (!router.isReady) return;
     setCode(router.query.code);
   }, [router.isReady]);
 
   useEffect(() => {
-    if (code !== "" && code !== undefined) {
+    if (code !== "" && code !== undefined && code.length) {
       handlePresent(code);
     }
+  }, [code]);
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
   }, []);
-
   return (
     <>
-      <Box
-        sx={{
-          mx: "auto",
-          width: 420,
-          position: "relative",
-          backgroundColor: "#FFFAFA",
-          height: "840px",
-          minHeight: "100vh",
-        }}
-      >
+      {code ? (
         <Box
-          id="img"
-          sx={{ width: 420, backgroundColor: "#FFFAFA", height: "840px" }}
+          sx={{
+            mx: "auto",
+            width: windowHeight > 480 ? 420 : "100vw",
+            position: "relative",
+            height: windowHeight > 480 ? 840 : "100vh",
+            minHeight: "100vh",
+            overflow: "hidden",
+            backgroundColor: "#FFFAFA",
+          }}
         >
-          <Typography
-            // id="img"
-            sx={{
-              position: "absolute",
-              top: "115px",
-              left: "35px",
-              fontFamily: "JuliusSansOne",
-              fontSize: "18px",
-            }}
-          >
-            from . {presentData.presentSender}
-          </Typography>
-          <Box sx={{ position: "absolute", top: "30px" }}>
-            <Header></Header>
+          <Box id="img">
+            <Box sx={{ pt: "2rem" }}>
+              <Header></Header>
+            </Box>
+            <Box
+              sx={{
+                pt: "1rem",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "ONEMobileLight",
+                  fontSize: "18px",
+                  margin: "1rem 0rem 1rem 0rem",
+                }}
+              >
+                from . {presentData.presentSender}
+              </Typography>
+              <Box>
+                <BouquetImg
+                  bouquetImage={presentData.bouquetImage}
+                ></BouquetImg>
+              </Box>
+              <Box sx={{ width: "80%", height: "30%", mb: "1rem" }}>
+                <MessageCard message={presentData.presentDesc}></MessageCard>
+              </Box>
+            </Box>
           </Box>
-          <Box sx={{ position: "absolute", top: "150px", left: "30px" }}>
-            <BouquetImg bouquetImage={presentData.bouquetImage}></BouquetImg>
-            <MessageCard message={presentData.presentDesc}></MessageCard>
+          <Box
+            sx={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <ImgDownloadBtn
+              data-html2canvas-ignore="true"
+              onCapture={onCapture}
+            ></ImgDownloadBtn>
           </Box>
         </Box>
-        <ImgDownloadBtn onCapture={onCapture}></ImgDownloadBtn>
-      </Box>
+      ) : null}
     </>
   );
 }

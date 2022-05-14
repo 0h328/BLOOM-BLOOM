@@ -13,13 +13,18 @@ function MakeButton() {
           style={{
             backgroundColor: "#FFFFFF",
             color: "#000000",
-            fontFamily: "JuliusSansOne",
             borderRadius: "16px",
             width: 266,
             height: 52,
           }}
         >
-          <Typography sx={{ fontSize: "18px", fontWeight: "Regular" }}>
+          <Typography
+            sx={{
+              fontSize: "18px",
+              fontWeight: "Regular",
+              fontFamily: "ONEMobileLight",
+            }}
+          >
             꽃다발 만들기
           </Typography>
           <ArrowRightAltIcon

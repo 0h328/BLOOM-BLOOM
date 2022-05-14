@@ -1,13 +1,14 @@
 import React from "react";
 import { Box } from "@mui/material";
+import { BASE_URL } from "../apis/config";
+import Image from "next/image";
 function FlowerImg() {
   return (
-    // <Box sx={{ position: "" }}>
     <Box sx={{}}>
       <Box
         sx={{
           ...imgboxStyle,
-          top: "25%",
+          top: "30%",
           left: "40%",
         }}
       >
@@ -23,7 +24,7 @@ function FlowerImg() {
       <Box
         sx={{
           ...imgboxStyle,
-          top: "35%",
+          top: "40%",
           left: "-25%",
         }}
       >

@@ -1,32 +1,52 @@
-import React from 'react';
-import Link from 'next/link';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import {
-  Typography,
-  IconButton
+import React from "react";
+import Link from "next/link";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Box, Typography, IconButton } from "@mui/material";
+interface textProps {
+  handleSaveImg: () => void;
 }
-from '@mui/material';
-
-function FlowerArrangeText() {
-
+function FlowerArrangeText({ handleSaveImg }: textProps) {
   return (
-    <Typography 
-      variant="h6" 
-      gutterBottom 
-      component="div"
-      textAlign="center"
-      position="relative"
-      top="80px"
-      right="18px"
-    >
-      <IconButton style={{ color: 'black', right: '60px', marginBottom: '5px' }}>
-        <Link href="/flower" passHref>
-          <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
-        </Link>
-      </IconButton>
-        꽃을 배치해주세요
-    </Typography>
-  )
+    <>
+      <Box sx={{ display: "flex", width: "100%" }}>
+        <Typography
+          variant="h6"
+          gutterBottom
+          component="div"
+          textAlign="center"
+          display="flex"
+          width="100%"
+          justifyContent="space-around"
+        >
+          <IconButton
+            component="div"
+            style={{ color: "black", marginBottom: "5px" }}
+          >
+            <Link href="/flower" passHref>
+              <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
+            </Link>
+          </IconButton>
+          꽃을 배치해주세요
+          <IconButton
+            component="div"
+            style={{ color: "black", marginBottom: "5px" }}
+            onClick={handleSaveImg}
+          >
+            <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
+          </IconButton>
+        </Typography>
+      </Box>
+      <Typography
+        variant="subtitle2"
+        gutterBottom
+        component="div"
+        style={{ textAlign: "center" }}
+      >
+        꽃 배치 완료 후 다음으로 넘어가주세요
+      </Typography>
+    </>
+  );
 }
 
 export default FlowerArrangeText;

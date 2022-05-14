@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Header from "../components/common/Header";
 import MakeButton from "../components/main/MakeButton";
 import FlowerImgListTitle from "../components/main/FlowerImgListTitle";
@@ -8,21 +8,20 @@ import { getRecentBouquetList } from "../components/apis/bouquetApi";
 import { getOrderList } from "../components/apis/orderApi";
 function Main() {
   //test용
-  // const bouquetList = [
-  //   { bouquetSeq: 1, bouquetImage: "/img/bouquet1.png" },
-  //   { bouquetSeq: 2, bouquetImage: "/img/bouquet2.png" },
-  //   { bouquetSeq: 3, bouquetImage: "/img/bouquet3.png" },
-  // ];
+  const bouquetList = [];
   const [madeBouquetList, setMadeBouquetList] =
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
   const [orderBouquetList, setOrderBouquetList] =
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
+  const [windowHeight, setWindowHeight] = useState<number>();
   const handleRecentList = async () => {
     const response = await getRecentBouquetList();
+    console.log(response.data.data.makeBouquet);
     setMadeBouquetList(response.data.data.makeBouquet);
     setOrderBouquetList(response.data.data.orderBouquet);
   };
   useEffect(() => {
+    setWindowHeight(window.innerHeight);
     handleRecentList();
   }, []);
   return (
@@ -30,7 +29,7 @@ function Main() {
       <Box
         sx={{
           mx: "auto",
-          width: 420,
+          width: windowHeight > 480 ? 420 : "100%",
           position: "relative",
           backgroundColor: "#FFE0E0",
           height: "100vh",
@@ -45,50 +44,54 @@ function Main() {
         <Box sx={{ position: "absolute", top: "15%" }}>
           <MakeButton />
         </Box>
-        <Box
+        <Grid
+          container
           sx={{
             backgroundColor: "#FFFFFF",
-            position: "absolute",
-            width: 410,
+            position: "relative",
+            width: "95%",
             height: "70%",
             top: "26%",
             borderRadius: "40px",
             overflow: "hidden",
           }}
         >
-          <FlowerImgListTitle
-            title="최근 제작한 꽃다발"
-            link="/madelist"
-            top="5%"
-          ></FlowerImgListTitle>
-
-          {madeBouquetList !== undefined ? (
-            <FlowerImgList
-              bouquetList={madeBouquetList}
-              top="12%"
-              infoText="제작한 꽃다발이 없습니다"
-            ></FlowerImgList>
-          ) : null}
-          <FlowerImgListTitle
-            title="최근 주문한 꽃다발"
-            link="/orderlist"
-            top="50%"
-          ></FlowerImgListTitle>
-          {orderBouquetList !== undefined ? (
-            <FlowerImgList
-              bouquetList={orderBouquetList}
-              top="40%"
-              infoText="주문한 꽃다발이 없습니다"
-            ></FlowerImgList>
-          ) : null}
-        </Box>
+          <Grid item xs={12} sx={{}}>
+            <FlowerImgListTitle
+              title="최근 제작한 꽃다발"
+              link="/madelist"
+            ></FlowerImgListTitle>
+          </Grid>
+          <Grid item xs={12}>
+            {madeBouquetList !== undefined ? (
+              <FlowerImgList
+                bouquetList={madeBouquetList}
+                infoText="제작한 꽃다발이 없습니다"
+              ></FlowerImgList>
+            ) : null}
+          </Grid>
+          <Grid item xs={12}>
+            <FlowerImgListTitle
+              title="최근 주문한 꽃다발"
+              link="/orderlist"
+            ></FlowerImgListTitle>
+          </Grid>
+          <Grid item xs={12}>
+            {orderBouquetList !== undefined ? (
+              <FlowerImgList
+                bouquetList={orderBouquetList}
+                infoText="주문한 꽃다발이 없습니다"
+              ></FlowerImgList>
+            ) : null}
+          </Grid>
+        </Grid>
       </Box>
     </>
   );
 }
 
 export const infoText = {
-  fontSize: "15px",
-  fontFamily: "JuliusSansOne",
+  fontSize: "20px",
+  fontFamily: "ONEMobileLight",
 };
 export default Main;

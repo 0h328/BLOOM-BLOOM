@@ -41,3 +41,14 @@ export const getRecentBouquetList = async () => {
 export const getFlower = async () => {
   return await bouquetApi.get("/main");
 };
+
+export const saveBouquet = async (data: any) => {
+  console.log(data.get("key"));
+  console.log(data.get("file"));
+  return await bouquetApi.post("", data, {
+    headers: {
+      // "Content-Type": "multipart/form-data",
+      Authorization: localStorage.getItem("accessToken"),
+    },
+  });
+};

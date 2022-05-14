@@ -28,7 +28,7 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
         alignItems="center"
         justifyItems="center"
       >
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           {" "}
           <Box
             sx={{
@@ -47,7 +47,7 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
             ></img>
           </Box>
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={10}>
           <Typography
             style={{
               fontWeight: "600",

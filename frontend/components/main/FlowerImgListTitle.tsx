@@ -6,19 +6,18 @@ import Link from "next/link";
 type listProps = {
   title: string;
   link: string;
-  top: string;
 };
 
-function FlowerImgListTitle({ title, link, top }: listProps) {
+function FlowerImgListTitle({ title, link }: listProps) {
   return (
-    <Box sx={{ position: "absolute", top: { top }, left: "15px" }}>
+    <Box sx={{}}>
       <Grid
         container
         spacing={0}
         direction="row"
         alignItems="center"
         justifyItems="center"
-        sx={{ width: 420 }}
+        sx={{ width: 420, padding: "1.5rem" }}
       >
         <Grid item xs={9}>
           <Typography sx={{ ...textStyle, fontWeight: "bold", left: "10px" }}>
@@ -48,8 +47,7 @@ function FlowerImgListTitle({ title, link, top }: listProps) {
 }
 
 export const textStyle = {
-  position: "absolute",
-  fontFamily: "Julius Sans One",
+  fontFamily: "ONEMobileLight",
   fontStyle: "normal",
   fontWeight: 400,
   fontSize: "14px",

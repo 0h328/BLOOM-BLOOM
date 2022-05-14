@@ -15,7 +15,7 @@ function Header({ page }: PageIdetifierProps) {
   };
   return (
     <>
-      <Box sx={{ position: "relative" }}>
+      <Box sx={{}}>
         <Grid
           container
           spacing={0}
@@ -32,7 +32,7 @@ function Header({ page }: PageIdetifierProps) {
                   <Typography
                     sx={{
                       textAlign: "center",
-                      fontFamily: "JuliusSansOne",
+                      fontFamily: "ONEMobileLight",
                       fontSize: 25,
                     }}
                   >

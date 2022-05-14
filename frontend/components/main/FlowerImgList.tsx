@@ -6,14 +6,12 @@ import { Bouquet } from "../common/Bouquet";
 import { textStyle } from "./FlowerImgListTitle";
 interface dataProps {
   bouquetList: Bouquet[];
-  top: string;
   page?: string;
   handleBouquet?: (bouquet: Bouquet) => void;
   infoText?: string;
 }
 function FlowerImgList({
   bouquetList,
-  top,
   page,
   handleBouquet,
   infoText,
@@ -36,9 +34,8 @@ function FlowerImgList({
   return (
     <Box
       sx={{
-        position: "relative",
+        // position: "relative",
         display: "flex",
-        top: { top },
         justifyContent: "center",
       }}
     >
@@ -58,7 +55,7 @@ function FlowerImgList({
                   item
                   xs={4}
                   key={index}
-                  sx={{ "&:hover": { cursor: "pointer" }, padding: "1%" }}
+                  sx={{ "&:hover": { cursor: "pointer" }, padding: "1.5%" }}
                 >
                   <img
                     src={bouquet.bouquetImage}
@@ -80,39 +77,41 @@ function FlowerImgList({
             <Box
               sx={{
                 position: "absolute",
-                height: "100%",
                 width: "100%",
+                height: "100%",
                 justifyContent: "center",
                 alignItems: "center",
                 display: "flex",
-                top: "10%",
               }}
             >
-              <Typography sx={{ ...textStyle }}>{infoText}</Typography>
+              <Typography
+                sx={{
+                  fontFamily: "ONEMobileLight",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "17px",
+                  color: "rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                {infoText}
+              </Typography>
             </Box>
           ) : (
-            <Box sx={{ display: "flex" }}>
+            <Grid container sx={{ display: "flex", maxWidth: "100%" }}>
               {bouquetList.map((bouquet, index) => {
                 return (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      width: "100%",
-                      height: "100%",
-                      margin: "1%",
-                    }}
-                  >
+                  <Grid item xs={4} key={index} sx={{}}>
                     <img
                       src={bouquet.bouquetImage}
                       alt="꽃다발"
-                      width={"100%"}
-                      height={"100%"}
+                      width={"140px"}
+                      height={"140px"}
                     ></img>
-                  </Box>
+                  </Grid>
                 );
               })}
-            </Box>
+            </Grid>
           )}
         </>
       )}
@@ -120,7 +119,4 @@ function FlowerImgList({
   );
 }
 
-export const infoTextStyle = {
-  fontFamily: "JuliusSansOne",
-};
 export default FlowerImgList;
