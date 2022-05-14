@@ -24,6 +24,7 @@ function Map() {
     const mapScript = document.createElement("script");
 
     mapScript.async = true;
+    //appkey 관리 필요
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=682d057f339c72447d6633e53e098d0c&autoload=false`;
 
     document.head.appendChild(mapScript);
@@ -71,7 +72,6 @@ function Map() {
         //       alert('현재 위치를 찾을 수 없습니다!');
         //   }
         var selectedMarker = null;
-        var markers = [];
         function setMarker() {
         const imageSrc = "/img/markerImg1.png"; 
         for (var i = 0; i < storeArray.length; i++) {
