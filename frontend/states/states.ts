@@ -38,6 +38,16 @@ const flowerState = atom({
   default: { flowerSeq: 1, flowerImage: "/img/flower1.png" },
 });
 
+const adminState = atom({
+  key: "AdminInfo",
+  default: false,
+})
+
+const storeImageState = atom({
+  key: "storeImageLink",
+  default: false,
+})
+
 export {
   decoModalState,
   mainFlowerState,
@@ -45,4 +55,6 @@ export {
   decoState,
   flowerState,
   presentBouquetState,
+  adminState,
+  storeImageState,
 };
