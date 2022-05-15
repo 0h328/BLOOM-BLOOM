@@ -89,10 +89,6 @@ function Arrange() {
     setCheckModal(state);
     setFinish(state);
   };
-  const handleRelease = (state: boolean) => {
-    // console.log("release", state);
-    // setRelease(true);
-  };
   useEffect(() => {
     setHeight(window.innerHeight);
   });
@@ -131,9 +127,6 @@ function Arrange() {
         toggleContinueSelect={["shift"]}
         ratio={0}
         onSelect={(e) => {
-          // setTargets(e.selected);
-          // setTarget(e.selected);
-          // handleRelease(false);
           console.log(e.selected);
         }}
       ></Selecto>
@@ -157,7 +150,6 @@ function Arrange() {
             alignItems: "center",
             position: "relative",
           }}
-          onClick={() => handleRelease(true)}
         >
           <Box
             sx={{
@@ -214,11 +206,7 @@ function Arrange() {
             WebkitAlignItems: "flex-start",
           }}
         >
-          <Move
-            finish={finish}
-            release={release}
-            handleRelease={handleRelease}
-          ></Move>
+          <Move finish={finish}></Move>
         </Box>
       </Box>
       <Box

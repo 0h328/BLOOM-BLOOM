@@ -7,10 +7,8 @@ import { useRecoilState } from "recoil";
 import { flowerList } from "../flower/FlowerData";
 interface moveProps {
   finish: boolean;
-  release: boolean;
-  handleRelease: (state: boolean) => void;
 }
-function Move({ finish, release, handleRelease }: moveProps) {
+function Move({ finish }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
   const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
   const [target, setTarget] = useState([]);
@@ -144,13 +142,6 @@ function Move({ finish, release, handleRelease }: moveProps) {
     }
   }, [finish]);
   useEffect(() => {
-    if (release) {
-      setTargets([]);
-      setTarget([]);
-    } else {
-    }
-  }, [release]);
-  useEffect(() => {
     setOnLoad(true);
     setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
     const temp1 = mainFlower.filter((flower) => flower.flowerSeq !== -1);
@@ -226,7 +217,6 @@ function Move({ finish, release, handleRelease }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
-              handleRelease(false);
               console.log(e.selected);
             }}
             onSelectEnd={(e) => {
