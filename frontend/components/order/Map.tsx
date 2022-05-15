@@ -140,6 +140,11 @@ function Map() {
             window.kakao.maps.event.addListener(map, 'click', function () {
               marker.setImage(markerImage);
             });
+
+             // 마커에 click 이벤트를 등록합니다
+             window.kakao.maps.event.addListener(map, 'click', function () {
+              marker.setImage(markerImage);
+            });
           }
         }
       window.kakao.maps.event.addListener(map, 'dragend', function() {     

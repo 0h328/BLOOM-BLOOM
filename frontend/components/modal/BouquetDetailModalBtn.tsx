@@ -15,13 +15,13 @@ function BouquetDetailModalBtn({ handleBtn }: btnProps) {
           sx={{ ...btnStyle }}
           onClick={() => handleBtn(0)}
         >
-          <Typography>공유</Typography>
+          <Typography sx={{ ...btnStyle1 }}>공유</Typography>
         </Button>
       </Grid>
       <Grid item xs={4}>
         <Link href="/order" sx={{ textDecoration: "none" }}>
-          <Button variant="contained" size="small" sx={{ ...btnStyle }}>
-            <Typography>주문</Typography>
+          <Button variant="contained" size="small" sx={{ ...btnStyle }} >
+            <Typography sx={{ ...btnStyle1 }}> 주문</Typography>
           </Button>
         </Link>
       </Grid>
@@ -33,7 +33,7 @@ function BouquetDetailModalBtn({ handleBtn }: btnProps) {
             sx={{ ...btnStyle }}
             onClick={handleDelete}
           >
-            <Typography>삭제</Typography>
+            <Typography  sx={{ ...btnStyle1 }}>삭제</Typography>
           </Button>
         </Link>
       </Grid>
@@ -44,9 +44,12 @@ function BouquetDetailModalBtn({ handleBtn }: btnProps) {
 export const btnStyle = {
   backgroundColor: "#FFE0E0",
   color: "#000000",
-  fontFamily: "JuliusSansOne",
+  fontFamily: "OneMobileLight",
   margin: "10px",
   "&:hover": { backgroundColor: "#BAD7DF" },
+};
+export const btnStyle1 = {
+  fontFamily: "OneMobileLight",
 };
 
 export default BouquetDetailModalBtn;

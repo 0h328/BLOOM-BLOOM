@@ -23,8 +23,8 @@ function OrderList({ OrderInfo }) {
           >
             <Typography
               sx={{
-                fontFamily: "Julius Sans One",
-                fontSize: "25px",
+                fontFamily: "OneMobileLight",
+                fontSize: "205px",
                 fontWeight: "bold",
               }}
             >
@@ -32,7 +32,7 @@ function OrderList({ OrderInfo }) {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "Julius Sans One",
+                fontFamily: "OneMobileLight",
                 fontSize: "12px",
                 fontWeight: "bold",
                 ml: 1,
@@ -41,14 +41,14 @@ function OrderList({ OrderInfo }) {
               주문일자
             </Typography>
             <Typography
-              sx={{ fontFamily: "Julius Sans One", fontSize: "12px", ml: 1 }}
+              sx={{ fontFamily: "OneMobileLight", fontSize: "12px", ml: 1 }}
             >
               {OrderInfo.orderDay}
             </Typography>
           </Box>
           <Typography
             sx={{
-              fontFamily: "Julius Sans One",
+              fontFamily: "OneMobileLight",
               fontSize: "11px",
               mt: 2.5,
               display: "flex",
@@ -60,7 +60,7 @@ function OrderList({ OrderInfo }) {
           </Typography>
           <Typography
             sx={{
-              fontFamily: "Julius Sans One",
+              fontFamily: "OneMobileLight",
               fontSize: "11px",
               mt: 0.5,
               display: "flex",
@@ -75,7 +75,7 @@ function OrderList({ OrderInfo }) {
           <Link href="/orderdetail" sx={{ textDecoration: "none" }}>
             <Typography
               sx={{
-                fontFamily: "Julius Sans One",
+                fontFamily: "OneMobileLight",
                 fontSize: "10px",
                 mt: 1,
                 mb: 1,
