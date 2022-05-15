@@ -54,7 +54,6 @@ function Present() {
     const response = await getPresent(code);
     setPresentData({ ...response.data.data });
   };
-
   useEffect(() => {
     if (!router.isReady) return;
     setCode(router.query.code);
