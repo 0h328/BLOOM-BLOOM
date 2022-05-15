@@ -49,7 +49,7 @@ function OrderFlower() {
   return(
     <Box sx={{width:400,height:234,mt:2,mx:'auto' }}>
       <Box sx={{pt:1,pb:1,pl:3}}>
-        <Typography sx={{fontFamily: "Julius Sans One", fontSize:'17px', fontWeight:'bold'}}>의뢰내역</Typography>
+        <Typography sx={{fontFamily: "OneMobileLight", fontSize:'17px', fontWeight:'bold'}}>의뢰내역</Typography>
       </Box>
       <Box sx={{height:193.5, display:'flex'}}>
         <Box sx={{width:150, ml:1}}>

@@ -30,7 +30,7 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
             <Typography sx={{ ...titleStyle }}>꽃</Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography sx={{ ...titleStyle }}>개수</Typography>
+            <Typography sx={{ ...titleStyle }}> 개수 </Typography>
           </Grid>
         </Grid>
       </Box>
@@ -53,7 +53,7 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
             }}
           >
             <Grid item xs={4}>
-              {flowerInfo.flowerName}
+            {flowerInfo.flowerName}
             </Grid>
             <Grid item xs={4}>
               <Box>
@@ -66,7 +66,8 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
               </Box>
             </Grid>
             <Grid item xs={4}>
-              {flowerInfo.flowerCount}
+              &nbsp;&nbsp;
+              {flowerInfo.flowerCount} 개
             </Grid>
           </Grid>
         ))}
@@ -83,7 +84,7 @@ export const boxStyle = {
 
 export const titleStyle = {
   fontWeight: "bold",
-  fontFamily: "JuliusSansOne",
+  fontFamily: "OneMobileLight",
 };
 
 export default FlowerInfoList;
