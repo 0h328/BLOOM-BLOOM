@@ -10,7 +10,7 @@ interface moveProps {
 }
 function Move({ finish }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
-  const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
+  const [targets, setTargets] = useState<Array<Element>>([]);
   const [target, setTarget] = useState([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
@@ -217,6 +217,7 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
+              e.selected[0].style.zIndex = "100000";
               console.log(e.selected);
             }}
             onSelectEnd={(e) => {
