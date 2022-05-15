@@ -147,7 +147,7 @@ function MessageInputModal({
               sx={{
                 position: "absolute",
                 fontSize: "15px",
-                fontFamily: "JuliusSansOne",
+                fontFamily: "OneMobileLight",
                 fontWeight: "bold",
                 top: "3%",
               }}
@@ -180,10 +180,10 @@ function MessageInputModal({
                 value={content}
                 minRows={3}
                 maxRows={10}
-                placeholder="메세지 내용을 입력해주세요"
+                placeholder="이야기를 전달하세요"
                 style={{
-                  fontSize: "1rem",
-                  fontFamily: "JuliusSansOne",
+                  fontSize: "0.85rem",
+                  fontFamily: "OneMobileLight",
                   width: "100%",
                   height: "100%",
                   backgroundColor: "#FFFAFA",
@@ -214,7 +214,7 @@ function MessageInputModal({
                     position: "absolute",
                     fontSize: "15px",
                     fontWeight: "bold",
-                    fontFamily: "JuliusSansOne",
+                    fontFamily: "OneMobileLight",
                     top: "70%",
                     left: "15%",
                   }}
@@ -235,14 +235,14 @@ function MessageInputModal({
                 </Box>
               </div>
             ) : (
-              <Box sx={{ position: "absolute", top: "80%", left: "70px" }}>
+              <Box sx={{ position: "absolute", top: "80%"}}>
                 <Button
                   sx={{
                     width: 156,
                     height: 36,
                     backgroundColor: "#FFE0E0",
                     color: "#000000",
-                    fontFamily: "JuliusSansOne",
+                    fontFamily: "OneMobileLight",
                   }}
                   onClick={handleStoreButtonClick}
                 >

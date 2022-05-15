@@ -74,66 +74,76 @@ function Map() {
         var selectedMarker = null;
         function setMarker() {
         const imageSrc = "/img/markerImg1.png"; 
-        for (var i = 0; i < storeArray.length; i++) {
+          for (var i = 0; i < storeArray.length; i++) {
           // 마커를 생성합니다
-          addMarker(storeArray[i],i)
+              addMarker(storeArray[i], i)
           }
           function addMarker(position, idx) {
 
             // 마커 이미지의 이미지 크기 입니다
-            var imageSize = new window.kakao.maps.Size(24, 35);
-            var _imageSize = new window.kakao.maps.Size(30, 43);
+            var imageSize = new window.kakao.maps.Size(30, 43);
+            var _imageSize = new window.kakao.maps.Size(37, 50);
             // 마커 이미지를 생성합니다    
             var markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
             var _markerImage = new window.kakao.maps.MarkerImage(imageSrc, _imageSize);
-
-            var marker = new window.kakao.maps.Marker({
-              position: new window.kakao.maps.LatLng(position.storeLat, position.storeLng),
-              title: storeArray[i].title,
-              map: map,
-              image: markerImage,
-            });
-
-            marker.markerImage = markerImage;
             
-            // 마커를 클릭할 시 일어난 이벤트 > 상점 저장 어떻게할지 
-            window.kakao.maps.event.addListener(marker, 'click', function () {
-              SetStore(storeArray[idx])
-            })
-            // 마커에 mouseover 이벤트를 등록합니다
-            window.kakao.maps.event.addListener(marker, 'mouseover', function () {
-              // 클릭된 마커가 없고, mouseover된 마커가 클릭된 마커가 아니면
-              // 마커의 이미지를 오버 이미지로 변경합니다
-              console.log(i);
-              if (!selectedMarker || selectedMarker !== marker) {
-                marker.setImage(_markerImage);
-              }
+              var marker = new window.kakao.maps.Marker({
+                position: new window.kakao.maps.LatLng(position.storeLat, position.storeLng),
+                title: storeArray[i].title,
+                map: map,
+                image: markerImage,
+              });
+            
+
+              marker.markerImage = markerImage;
+            
+              // 마커를 클릭할 시 일어난 이벤트 > 상점 저장 어떻게할지 
+              window.kakao.maps.event.addListener(marker, 'click', function () {
+                SetStore(storeArray[idx])
+              })
+              // 마커에 mouseover 이벤트를 등록합니다
+              window.kakao.maps.event.addListener(marker, 'mouseover', function () {
+                // 클릭된 마커가 없고, mouseover된 마커가 클릭된 마커가 아니면
+                // 마커의 이미지를 오버 이미지로 변경합니다
+                console.log(i);
+                if (!selectedMarker || selectedMarker !== marker) {
+                  marker.setImage(_markerImage);
+                }
+              });
+
+              // 마커에 mouseout 이벤트를 등록합니다
+              window.kakao.maps.event.addListener(marker, 'mouseout', function () {
+                // 클릭된 마커가 없고, mouseout된 마커가 클릭된 마커가 아니면
+                // 마커의 이미지를 기본 이미지로 변경합니다
+                if (!selectedMarker || selectedMarker !== marker) {
+                  marker.setImage(markerImage);
+                }
+              });
+
+              // 마커에 click 이벤트를 등록합니다
+              window.kakao.maps.event.addListener(marker, 'click', function () {
+                // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+                // 마커의 이미지를 클릭 이미지로 변경합니다
+                if (!selectedMarker || selectedMarker !== marker) {
+
+                  // 클릭된 마커 객체가 null이 아니면
+                  // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+                  !!selectedMarker && selectedMarker.setImage(selectedMarker.markerImage);
+                  // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
+                  marker.setImage(_markerImage);
+                }
+
+                // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+                selectedMarker = marker;
+              });
+            
+            window.kakao.maps.event.addListener(map, 'click', function () {
+              marker.setImage(markerImage);
             });
 
-            // 마커에 mouseout 이벤트를 등록합니다
-            window.kakao.maps.event.addListener(marker, 'mouseout', function () {
-              // 클릭된 마커가 없고, mouseout된 마커가 클릭된 마커가 아니면
-              // 마커의 이미지를 기본 이미지로 변경합니다
-              if (!selectedMarker || selectedMarker !== marker) {
-                marker.setImage(markerImage);
-              }
-            });
-
-            // 마커에 click 이벤트를 등록합니다
-            window.kakao.maps.event.addListener(marker, 'click', function () {
-              // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
-              // 마커의 이미지를 클릭 이미지로 변경합니다
-              if (!selectedMarker || selectedMarker !== marker) {
-
-                // 클릭된 마커 객체가 null이 아니면
-                // 클릭된 마커의 이미지를 기본 이미지로 변경하고
-                !!selectedMarker && selectedMarker.setImage(selectedMarker.markerImage);
-                // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
-                marker.setImage(_markerImage);
-              }
-
-              // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
-              selectedMarker = marker;
+             // 마커에 click 이벤트를 등록합니다
+             window.kakao.maps.event.addListener(map, 'click', function () {
+              marker.setImage(markerImage);
             });
           }
         }

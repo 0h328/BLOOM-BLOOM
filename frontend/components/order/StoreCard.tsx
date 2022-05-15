@@ -10,7 +10,7 @@ function Storecard({ storeInfo }) {
     <Box
       sx={{
         width: 400,
-        height: 242,
+        height: 210,
         mt: 3,
         backgroundColor: "#FFE0E0",
         mx: "auto",

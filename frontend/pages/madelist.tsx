@@ -110,7 +110,7 @@ function MadeList() {
 
 export const textStyle = {
   position: "absolute",
-  fontFamily: "JuliusSans",
+  fontFamily: "OneMobileLight",
   fontStyle: "normal",
   fontWeight: "bold",
   fontSize: "15px",
