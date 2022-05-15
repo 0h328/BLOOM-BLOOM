@@ -30,7 +30,7 @@ function Arrange() {
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
   const [bouquetImageData, setBouquetImageData] = useState<FormData>();
-
+  const [release, setRelease] = useState<boolean>(false);
   const handleSaveImg = () => {
     if (finish) {
       html2canvas(document.querySelector("#img"), {
@@ -85,6 +85,10 @@ function Arrange() {
     setCheckModal(state);
     setFinish(state);
   };
+  const handleRelease = (state: boolean) => {
+    console.log("release", state);
+    setRelease(true);
+  };
   useEffect(() => {
     setHeight(window.innerHeight);
   });
@@ -132,6 +136,7 @@ function Arrange() {
             alignItems: "center",
             position: "relative",
           }}
+          onClick={() => handleRelease(true)}
         >
           <Box
             sx={{
@@ -188,7 +193,11 @@ function Arrange() {
             WebkitAlignItems: "flex-start",
           }}
         >
-          <Move finish={finish}></Move>
+          <Move
+            finish={finish}
+            release={release}
+            handleRelease={handleRelease}
+          ></Move>
         </Box>
       </Box>
       <Box

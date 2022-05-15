@@ -7,8 +7,10 @@ import { useRecoilState } from "recoil";
 import { flowerList } from "../flower/FlowerData";
 interface moveProps {
   finish: boolean;
+  release: boolean;
+  handleRelease: (state: boolean) => void;
 }
-function Move({ finish }: moveProps) {
+function Move({ finish, release, handleRelease }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
   const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
   const [target, setTarget] = useState([]);
@@ -129,9 +131,11 @@ function Move({ finish }: moveProps) {
     });
   };
   useEffect(() => {
-    setOnLoad(true);
-    setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
-  }, []);
+    console.log("targets", targets[0]);
+  }, [targets]);
+  useEffect(() => {
+    console.log("target", target);
+  }, [target]);
   useEffect(() => {
     if (finish) {
       setTargets([]);
@@ -140,6 +144,13 @@ function Move({ finish }: moveProps) {
     }
   }, [finish]);
   useEffect(() => {
+    if (release) {
+      console.log(release);
+    }
+  }, [release]);
+  useEffect(() => {
+    setOnLoad(true);
+    setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
     const temp1 = mainFlower.filter((flower) => flower.flowerSeq !== -1);
     const temp2 = [];
     temp1.map((flower, index) => {
@@ -213,6 +224,8 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
+              handleRelease(false);
+              console.log(e.selected);
             }}
             onSelectEnd={(e) => {
               const moveable = moveableRef.current;
@@ -244,7 +257,6 @@ function Move({ finish }: moveProps) {
               alignItems="center"
               sx={{ padding: "1rem" }}
             >
-              {/* {flowers.map((item, index) => ( */}
               {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"
