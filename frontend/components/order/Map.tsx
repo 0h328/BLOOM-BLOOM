@@ -135,6 +135,11 @@ function Map() {
               // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
               selectedMarker = marker;
             });
+
+             // 마커에 click 이벤트를 등록합니다
+             window.kakao.maps.event.addListener(map, 'click', function () {
+              marker.setImage(markerImage);
+            });
           }
         }
       window.kakao.maps.event.addListener(map, 'dragend', function() {     
