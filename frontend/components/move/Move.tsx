@@ -19,6 +19,7 @@ function Move({ finish }: moveProps) {
   const [elementGuidelines, setElementGuidelines] = useState(null);
   const [selectedFlower, setSelectedFlower] = useState([]);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [zindex, setZindex] = useState<number>(100);
   //test용
   const [flowers, setFlowers] = useState([
     "/img/carnationPink.png",
@@ -217,7 +218,8 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
-              e.selected[0].style.zIndex = "100000";
+              e.selected[0].parentElement.style.zIndex = String(zindex);
+              setZindex(zindex + 1);
               console.log(e.selected);
             }}
             onSelectEnd={(e) => {
