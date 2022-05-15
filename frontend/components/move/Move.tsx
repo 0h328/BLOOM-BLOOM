@@ -145,7 +145,9 @@ function Move({ finish, release, handleRelease }: moveProps) {
   }, [finish]);
   useEffect(() => {
     if (release) {
-      console.log(release);
+      setTargets([]);
+      setTarget([]);
+    } else {
     }
   }, [release]);
   useEffect(() => {
