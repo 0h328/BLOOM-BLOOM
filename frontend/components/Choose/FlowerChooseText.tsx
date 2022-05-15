@@ -52,7 +52,7 @@ function FlowerChooseText({ totalCount }: textProps) {
         top="68px"
         style={{ textAlign: "center" }}
       >
-        꽃은 최대 8개까지 선택 가능합니다.
+        꽃은 최대 12개까지 선택 가능합니다.
       </Typography>
     </>
   );

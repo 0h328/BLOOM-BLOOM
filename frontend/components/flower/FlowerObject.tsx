@@ -24,10 +24,10 @@ function FlowerObject({
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   const [count, setCount] = useState<number>(0);
   const onIncrease = () => {
-    if (totalCount < 8) {
+    if (totalCount < 12) {
       setCount(count + 1);
       handleTotal(+1);
-    } else if (totalCount == 8) {
+    } else if (totalCount == 12) {
       handleError(1);
     }
   };

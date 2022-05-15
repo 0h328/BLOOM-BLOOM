@@ -5,6 +5,7 @@ import { Box, Grid, Button } from "@mui/material";
 import { mainFlowerState } from "../../states/states";
 import { useRecoilState } from "recoil";
 import { flowerList } from "../flower/FlowerData";
+import styles from "./global.module.css";
 interface moveProps {
   finish: boolean;
 }
@@ -172,6 +173,7 @@ function Move({ finish }: moveProps) {
           }}
         >
           <Moveable
+            className="moveable"
             ref={moveableRef}
             draggable={true}
             trigger={trigger}
@@ -218,7 +220,9 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
-              e.selected[0].parentElement.style.zIndex = String(zindex);
+              if (e.selected[0]) {
+                e.selected[0].parentElement.style.zIndex = String(zindex);
+              }
               setZindex(zindex + 1);
               console.log(e.selected);
             }}
@@ -234,7 +238,7 @@ function Move({ finish }: moveProps) {
             }}
           ></Selecto>
           <Box
-            className="elements selecto-area"
+            className="elements selecto-area moveable"
             sx={{
               display: "flex",
               width: "100%",

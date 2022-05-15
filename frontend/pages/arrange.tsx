@@ -83,7 +83,7 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
-    setWindowHeight(window.innerHeight * 0.48);
+    setWindowHeight(window.innerHeight * 0.45);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
