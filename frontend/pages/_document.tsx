@@ -6,7 +6,6 @@ class MyDocument extends Document{
             <Html>
                 <Head>
                     <script defer src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-                    <meta charset="utf-8" />
                     <meta property="og:title" content="test"/>
                     <meta property="og:type" content="article"/>
                     <meta property="og:description" content="This is a description."/>
