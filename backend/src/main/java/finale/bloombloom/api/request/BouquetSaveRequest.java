@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BouquetSaveRequest {
+public class  BouquetSaveRequest {
     @NotNull(message = "포장지 ID는 비어있을 수 없습니다.")
     @Positive(message = "포장지 ID는 1 이상입니다.")
     private Long wrapSeq;
