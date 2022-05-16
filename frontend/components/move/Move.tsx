@@ -270,7 +270,7 @@ function Move({ finish, handleSaveImg }: moveProps) {
                   className="element"
                   item
                   sm={2.3}
-                  xs={3}
+                  xs={2.3}
                   key={index}
                   sx={{
                     display: "flex",

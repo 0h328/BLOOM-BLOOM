@@ -127,7 +127,7 @@ export const btnStyle = {
   width: "40%",
   backgroundColor: "#FFE0E0",
   color: "#000000",
-  fontFamily: "JuliusSansOne",
+  fontFamily: "ONEMobileLight",
   "&:hover": { backgroundColor: "#BAD7DF" },
 };
 
