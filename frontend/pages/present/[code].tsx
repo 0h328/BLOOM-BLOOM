@@ -106,7 +106,7 @@ function Present() {
               >
                 from . {presentData.presentSender}
               </Typography>
-              <Box>
+              <Box sx={{ width: "80%" }}>
                 <BouquetImg
                   bouquetImage={presentData.bouquetImage}
                 ></BouquetImg>
@@ -161,7 +161,7 @@ function Present() {
                 <Typography
                   component="div"
                   sx={{
-                    width: "80%",
+                    width: "50%",
                     fontWeight: "600",
                     fontSize: "15px",
                     fontFamily: "OneMobileLight",
