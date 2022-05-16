@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Button } from "@mui/material";
 import MessageCard from "../../components/present/MessageCard";
 import Header from "../../components/common/Header";
 import ImgDownloadBtn from "../../components/present/ImgDownloadBtn";
@@ -120,6 +120,18 @@ function Present() {
               data-html2canvas-ignore="true"
               onCapture={onCapture}
             ></ImgDownloadBtn>
+            
+            <Button
+              variant="contained"
+              size="small"
+              style={{
+              backgroundColor: "#FFE0E0",
+              color: "#000",
+              fontFamily: "OneMobileLight",
+              fontSize: "15px",
+              borderRadius: "5",
+              width: "60%"
+            }}>BloomBloom 이용하러가기</Button>
           </Box>
         </Box>
       ) : null}
