@@ -251,21 +251,24 @@ function Move({ finish }: moveProps) {
               container
               // disableGutters
               // spacing={1}
-              maxWidth="sm"
+              maxWidth="17%"
+              height="100%"
               justifyContent="center"
-              alignItems="center"
-              sx={{ padding: "1rem" }}
+              flexDirection="column"
+              sx={{ flexDirection: "column" }}
             >
               {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"
                   item
-                  sm={3}
-                  xs={3}
+                  sm={6}
+                  xs={6}
                   key={index}
                   sx={{
                     display: "flex",
                     justifyContent: "center",
+                    width: "100%",
+                    height: "100%",
                     // padding: "2%",
                   }}
                 >
