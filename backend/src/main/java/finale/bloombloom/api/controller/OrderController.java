@@ -118,16 +118,8 @@ public class OrderController {
      * 작성자: 문준호
      */
     @GetMapping("/store/{uuid}")
-    public ResponseEntity<Result> findOrderDetailByUUID(Authentication authentication, @PathVariable String uuid) {
-        if (authentication == null)
-            return ResponseEntity.status(401).body(
-                    Result.builder()
-                            .message("인증실패")
-                            .build()
-            );
-
-        User user = ((BloomUserDetails) authentication.getDetails()).getUser();
-        OrderResponse response = orderService.findOrderDetailByUUID(user, uuid);
+    public ResponseEntity<Result> findOrderDetailByUUID(@PathVariable String uuid) {
+        OrderResponse response = orderService.findOrderDetailByUUID(uuid);
         return ResponseEntity.status(200).body(
                 Result.builder()
                         .message("주문내역 상세 조회(업체)에 성공하였습니다.")

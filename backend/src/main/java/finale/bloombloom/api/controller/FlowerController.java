@@ -222,16 +222,8 @@ public class FlowerController {
      */
     @GetMapping("/present/{uuid}")
     public ResponseEntity<Result> findPresentBouquet(
-            Authentication authentication,
             @PathVariable String uuid
     ) {
-        if (authentication == null)
-            return ResponseEntity.status(401).body(
-                    Result.builder()
-                            .message("인증실패")
-                            .build()
-            );
-
         PresentBouquetResponse response = presentService.findPresentBouquet(uuid);
         return ResponseEntity.status(200).body(
                 Result.builder()

@@ -1,5 +1,6 @@
 package finale.bloombloom.api.response;
 
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.entity.Bouquet;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,10 +15,10 @@ public class BouquetResponse {
     private Long bouquetSeq;
     private String bouquetImage;
 
-    public static BouquetResponse from(Bouquet bouquet) {
+    public static BouquetResponse from(Bouquet bouquet, S3ImageUrlConverter urlConverter) {
         return BouquetResponse.builder()
                 .bouquetSeq(bouquet.getBouquetSeq())
-                .bouquetImage(bouquet.getBouquetImage())
+                .bouquetImage(urlConverter.urlConvert(bouquet.getBouquetImage()))
                 .build();
     }
 }

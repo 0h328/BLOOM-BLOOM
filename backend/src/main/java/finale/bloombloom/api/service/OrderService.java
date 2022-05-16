@@ -18,7 +18,7 @@ public interface OrderService {
 
     OrderDetailResponse findOrderDetail(Long orderSeq);
 
-    OrderResponse findOrderDetailByUUID(User user, String uuid);
+    OrderResponse findOrderDetailByUUID(String uuid);
 
     List<StoreLocationResponse> findStore(StoreLocationRequest storeLocationRequest);
 }

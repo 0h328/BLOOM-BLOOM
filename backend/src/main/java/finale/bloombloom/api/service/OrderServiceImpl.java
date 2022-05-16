@@ -8,6 +8,7 @@ import finale.bloombloom.api.response.OrderListResponse;
 import finale.bloombloom.api.response.OrderResponse;
 import finale.bloombloom.api.response.StoreLocationResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.config.CoolSMSConfig;
 import finale.bloombloom.db.entity.*;
 import finale.bloombloom.db.repository.*;
@@ -33,6 +34,7 @@ public class OrderServiceImpl implements OrderService {
     private final FlowerInfoRepository flowerInfoRepository;
     private final EntityManager em;
     private final CoolSMSConfig coolSMSConfig;
+    private final S3ImageUrlConverter urlConverter;
 
     private static final String MESSAGE_SENDER = "01079007514";
 
@@ -52,7 +54,8 @@ public class OrderServiceImpl implements OrderService {
                             .storeContact(store.getStoreContact())
                             .storeAddress(store.getStoreAddress())
                             .createdDate(order.getCreatedDate())
-                            .bouquetImage(bouquet.getBouquetImage()).build();
+                            .bouquetImage(urlConverter.urlConvert(bouquet.getBouquetImage()))
+                            .build();
                 }
         ).collect(Collectors.toList());
     }
@@ -100,7 +103,7 @@ public class OrderServiceImpl implements OrderService {
         Bouquet bouquet = order.getBouquet();
         Store store = order.getStore();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
-        return OrderDetailResponse.from(bouquet, store, flowerInfos);
+        return OrderDetailResponse.from(bouquet, store, flowerInfos, urlConverter);
     }
 
     /**
@@ -108,13 +111,13 @@ public class OrderServiceImpl implements OrderService {
      * 작성자 : 문준호
      */
     @Override
-    public OrderResponse findOrderDetailByUUID(User user, String uuid) {
+    public OrderResponse findOrderDetailByUUID(String uuid) {
         Order order = orderRepository.findByOrderUri(uuid)
                 .orElseThrow(() -> new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다."));
 
         Bouquet bouquet = order.getBouquet();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
-        return OrderResponse.from(user, bouquet, flowerInfos, order.getOrderDesc());
+        return OrderResponse.from(bouquet, flowerInfos, order.getOrderDesc(), urlConverter);
     }
 
     /**
