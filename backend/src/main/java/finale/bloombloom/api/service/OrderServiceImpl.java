@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-
     private final OrderRepository orderRepository;
     private final BouquetRepository bouquetRepository;
     private final StoreRepository storeRepository;
@@ -100,6 +99,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDetailResponse findOrderDetail(Long orderSeq) {
         Order order = orderRepository.findById(orderSeq)
                 .orElseThrow(() -> new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다."));
+
         Bouquet bouquet = order.getBouquet();
         Store store = order.getStore();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
@@ -114,6 +114,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponse findOrderDetailByUUID(String uuid) {
         Order order = orderRepository.findByOrderUri(uuid)
                 .orElseThrow(() -> new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다."));
+
         Bouquet bouquet = order.getBouquet();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
         return OrderResponse.from(bouquet, flowerInfos, order.getOrderDesc(), urlConverter);
@@ -125,7 +126,6 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public List<StoreLocationResponse> findStore(StoreLocationRequest storeLocationRequest) {
-
         double x1 = storeLocationRequest.getSwLat();
         double y1 = storeLocationRequest.getSwLng();
         double x2 = storeLocationRequest.getNeLat();
@@ -176,7 +176,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             JSONObject obj = (JSONObject) message.send(request);
             System.out.println(obj.toString());
-        } catch (CoolsmsException e) {
+        }
+        catch (CoolsmsException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }

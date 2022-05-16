@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 
 public abstract class BloomBloomException extends RuntimeException {
     public BloomBloomException() {
+        super();
     }
 
     public BloomBloomException(String message) {

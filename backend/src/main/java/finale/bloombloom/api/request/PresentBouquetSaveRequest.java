@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class PresentBouquetSaveRequest {
     @NotNull(message = "꽃다발 ID는 비어있을 수 없습니다.")
     @Positive(message = "꽃다발 ID는 1 이상입니다.")

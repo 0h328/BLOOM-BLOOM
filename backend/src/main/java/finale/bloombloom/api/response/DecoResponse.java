@@ -1,7 +1,6 @@
 package finale.bloombloom.api.response;
 
 import finale.bloombloom.db.entity.metadata.Deco;
-import finale.bloombloom.db.entity.metadata.MainFlower;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class DecoResponse {
     private Long decoSeq;
     private String decoName;

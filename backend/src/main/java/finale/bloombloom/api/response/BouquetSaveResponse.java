@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class BouquetSaveResponse {
     private Long bouquetSeq;
     private String bouquetImage;

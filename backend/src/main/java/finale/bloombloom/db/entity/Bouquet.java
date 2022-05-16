@@ -14,7 +14,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bouquet {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bouquetSeq;

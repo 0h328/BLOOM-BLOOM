@@ -8,18 +8,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.locationtech.jts.geom.Point;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetailResponse {
-    private String orderDecs;
-
+    private String orderDesc;
     private String storeName;
     private String storeContact;
     private String storeAddress;
@@ -27,7 +25,6 @@ public class OrderDetailResponse {
     private String storeBlogId;
     private String storeInstagramId;
     private String storeImageLink;
-
     private String bouquetImage;
     private List<FlowerInfoResponse> flowerInfo;
 

@@ -12,12 +12,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userSeq;
     private String userName;
     private String userId;
+
     @Enumerated(EnumType.STRING)
     private Role userRole;
 }

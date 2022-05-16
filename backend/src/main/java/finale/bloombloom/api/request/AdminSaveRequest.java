@@ -29,8 +29,6 @@ public class AdminSaveRequest {
     private String storeMapId;
     private String storeBlogId;
     private String storeInstagramId;
-    @NotNull(message = "포장지 ID는 비어있을 수 없습니다.")
-    private String storeImageLink;
 
     public Store toEntity() {
         String pointWKT = String.format("POINT(%s %s)", this.getStoreLat(), this.getStoreLng());
@@ -39,7 +37,6 @@ public class AdminSaveRequest {
         Point point = null;
         try {
             point = (Point) new WKTReader().read(pointWKT);
-
         }
         catch (ParseException e) {
             System.out.println("WKTReader() 에러");
@@ -55,7 +52,6 @@ public class AdminSaveRequest {
                 .storeMapId(this.getStoreMapId())
                 .storeBlogId(this.getStoreBlogId())
                 .storeInstagramId(this.getStoreInstagramId())
-                .storeImageLink(this.getStoreImageLink())
                 .build();
     }
 }

@@ -1,7 +1,6 @@
 package finale.bloombloom.api.request;
 
-
-import lombok.*;
+import lombok.Getter;
 
 @Getter
 public class OrderBouquetRequest {

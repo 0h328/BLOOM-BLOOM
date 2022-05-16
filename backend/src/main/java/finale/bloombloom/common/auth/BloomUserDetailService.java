@@ -15,7 +15,7 @@ import finale.bloombloom.db.entity.User;
 @Component
 public class BloomUserDetailService implements UserDetailsService {
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

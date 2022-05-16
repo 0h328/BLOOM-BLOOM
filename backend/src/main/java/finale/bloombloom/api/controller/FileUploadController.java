@@ -16,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class FileUploadController {
+
     private final MetadataService metadataService;
 
     /**
@@ -23,8 +24,12 @@ public class FileUploadController {
      * 작성자: 문준호
      */
     @PostMapping("/main-flower")
-    public ResponseEntity saveMainFlowerImage(@RequestPart Map<String, String> request, @RequestPart MultipartFile file) {
+    public ResponseEntity saveMainFlowerImage(
+            @RequestPart Map<String, String> request,
+            @RequestPart MultipartFile file
+    ) {
         metadataService.saveMainFlowerImage(request, file);
+
         return ResponseEntity.ok("꽃 봉오리 이미지 업로드에 성공했습니다.");
     }
 
@@ -33,7 +38,10 @@ public class FileUploadController {
      * 작성자: 문준호
      */
     @PostMapping("/sub-flower")
-    public ResponseEntity saveSubFlowerImage(@RequestPart Map<String, String> request, @RequestPart MultipartFile file) {
+    public ResponseEntity saveSubFlowerImage(
+            @RequestPart Map<String, String> request,
+            @RequestPart MultipartFile file
+    ) {
         metadataService.saveSubFlowerImage(request, file);
         return ResponseEntity.ok("부속꽃 이미지 업로드에 성공했습니다.");
     }
@@ -43,7 +51,10 @@ public class FileUploadController {
      * 작성자: 문준호
      */
     @PostMapping("/wrap")
-    public ResponseEntity saveWrapImage(@RequestPart Map<String, String> request, @RequestPart List<MultipartFile> file) {
+    public ResponseEntity saveWrapImage(
+            @RequestPart Map<String, String> request,
+            @RequestPart List<MultipartFile> file
+    ) {
         metadataService.saveWrapImage(request, file);
         return ResponseEntity.ok("포장지 이미지 업로드에 성공했습니다.");
     }
@@ -53,7 +64,10 @@ public class FileUploadController {
      * 작성자: 문준호
      */
     @PostMapping("/deco")
-    public ResponseEntity saveDecoImage(@RequestPart Map<String, String> request, @RequestPart MultipartFile file) {
+    public ResponseEntity saveDecoImage(
+            @RequestPart Map<String, String> request,
+            @RequestPart MultipartFile file
+    ) {
         metadataService.saveDecoImage(request, file);
         return ResponseEntity.ok("장식 이미지 업로드에 성공했습니다.");
     }

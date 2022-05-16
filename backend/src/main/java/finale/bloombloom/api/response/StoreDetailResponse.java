@@ -1,5 +1,6 @@
 package finale.bloombloom.api.response;
 
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.entity.mapper.StoreDetailMapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,8 +9,8 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class StoreDetailResponse {
     private Long storeSeq;
     private String storeName;
@@ -21,7 +22,7 @@ public class StoreDetailResponse {
     private String storeInstagramId;
     private String storeImageLink;
 
-    public static StoreDetailResponse from(StoreDetailMapper store) {
+    public static StoreDetailResponse from(StoreDetailMapper store, S3ImageUrlConverter urlConverter) {
         return StoreDetailResponse.builder()
                 .storeSeq(store.getStoreSeq())
                 .storeName(store.getStoreName())
@@ -31,7 +32,7 @@ public class StoreDetailResponse {
                 .storeMapId(store.getStoreMapId())
                 .storeBlogId(store.getStoreBlogId())
                 .storeInstagramId(store.getStoreInstagramId())
-                .storeImageLink(store.getStoreImageLink())
+                .storeImageLink(urlConverter.urlConvert(store.getStoreImageLink()))
                 .build();
     }
 }

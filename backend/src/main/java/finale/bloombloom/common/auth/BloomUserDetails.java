@@ -17,18 +17,18 @@ import finale.bloombloom.db.entity.User;
  */
 public class BloomUserDetails implements UserDetails {
     @Autowired
-    User user;
-    boolean accountNonExpired;
-    boolean accountNonLocked;
-    boolean credentialNonExpired;
-    boolean enabled = false;
-    List<GrantedAuthority> roles = new ArrayList<>();
+    private User user;
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialNonExpired;
+    private boolean enabled = false;
+    private List<GrantedAuthority> roles = new ArrayList<>();
 
     //authentication을 만들때 권한 부여 추가
     public BloomUserDetails(User user) {
         super();
         this.user = user;
-        if (user.getUserRole()==Role.ROLE_USER)
+        if (user.getUserRole() == Role.ROLE_USER)
             roles.add(new SimpleGrantedAuthority("ROLE_USER"));
         else
             roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));

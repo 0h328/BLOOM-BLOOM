@@ -5,5 +5,6 @@ public enum FileFolder {
     MAIN_FLOWER_FOLDER,
     SUB_FLOWER_FOLDER,
     WRAP_FOLDER,
-    DECO_FOLDER
+    DECO_FOLDER,
+    STORE_FOLDER,
 }
