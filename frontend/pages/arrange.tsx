@@ -145,6 +145,7 @@ function Arrange() {
         className="elements selecto-area"
         id="img"
         sx={{
+          mt: "1rem",
           width: "100%",
           height: "70%",
           display: "flex",
@@ -215,6 +216,7 @@ function Arrange() {
             borderRadius: "5px",
             justifyContent: "center",
             WebkitAlignItems: "flex-start",
+            mt: "1rem",
           }}
         >
           <Move finish={finish} handleSaveImg={handleSaveImg}></Move>

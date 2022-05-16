@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography, Button, Grid } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
+import BouquetImg from "../../components/present/BouquetImg";
 
 interface modalProps {
   bouquetImage: string;
@@ -84,12 +85,12 @@ function BouquetCheckModal({
                 완성된 꽃다발이 마음에 드시나요?
               </Typography>
             </Box>
-            <Box sx={{ mt: "8rem" }}>
+            <Box sx={{ mt: "8rem", display: "flex", justifyContent: "center" }}>
               <img
                 src={bouquetImage}
                 alt="꽃다발"
-                width="330px"
-                height="330px"
+                width={"100%"}
+                height={"320px"}
               ></img>
             </Box>
             <Box
