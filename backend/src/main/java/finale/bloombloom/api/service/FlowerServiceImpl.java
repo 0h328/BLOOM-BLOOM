@@ -74,7 +74,7 @@ public class FlowerServiceImpl implements FlowerService{
     @Override
     public List<BouquetResponse> findBouquet(Long userSeq) {
         return bouquetRepository.findAllByUser_UserSeq(userSeq).stream()
-                .map(BouquetResponse::from)
+                .map(bouquet -> BouquetResponse.from(bouquet, urlConverter))
                 .collect(Collectors.toList());
     }
 
@@ -82,7 +82,7 @@ public class FlowerServiceImpl implements FlowerService{
     public BouquetDetailResponse findBouquetDetail(Long bouquetSeq) {
         Bouquet bouquet = findBouquetDetailByBouquetSeq(bouquetSeq);
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquetSeq);
-        return BouquetDetailResponse.from(bouquet, flowerInfos);
+        return BouquetDetailResponse.from(bouquet, flowerInfos, urlConverter);
     }
 
     @Override
@@ -100,8 +100,7 @@ public class FlowerServiceImpl implements FlowerService{
         String bouquetImage = null;
         try {
             bouquetImage = fileProcessService.upload(FileFolder.BOUQUET_FOLDER, file);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             log.error("이미지 업로드에 실패했습니다.");
             e.printStackTrace();
         }
@@ -118,7 +117,7 @@ public class FlowerServiceImpl implements FlowerService{
         // 3. flower_info 테이블에 저장
         saveFlowerInfo(request, bouquet);
 
-        return BouquetSaveResponse.from(bouquet);
+        return BouquetSaveResponse.from(bouquet, urlConverter);
     }
 
     @Override
@@ -138,14 +137,14 @@ public class FlowerServiceImpl implements FlowerService{
     public RecentBouquetResponse findRecentBouquet(Long userSeq, Pageable pageable) {
         // 1. 최근 제작한 꽃다발 조회 (BouquetResponse 형태로 변경)
         List<BouquetResponse> makeBouquetList = bouquetRepository.findByUser_UserSeqOrderByBouquetSeqDesc(userSeq, pageable).stream()
-                .map(BouquetResponse::from)
+                .map(bouquet -> BouquetResponse.from(bouquet, urlConverter))
                 .collect(Collectors.toList());
 
         // 1. 해당 유저의 주문 내역 조회
         List<Order> orderList = orderRepository.findByUser_UserSeqOrderByOrderSeqDesc(userSeq, pageable);
         // 2. 주문 내역을 기반으로 최근 주문한 꽃다발 조회 (BouquetResponse 형태로 변경)
         List<BouquetResponse> orderBouquetList = findOrderBouquetListByOrderList(orderList).stream()
-                .map(BouquetResponse::from)
+                .map(bouquet -> BouquetResponse.from(bouquet, urlConverter))
                 .collect(Collectors.toList());
 
         return new RecentBouquetResponse(makeBouquetList, orderBouquetList);
