@@ -56,47 +56,43 @@ function BouquetCheckModal({
         >
           <Box
             sx={{
-              position: "absolute",
+              mt: "10%",
               width: "90%",
-              height: "80%",
+              height: "90%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "10%",
-              left: "4%",
               display: "flex",
+              flexDirection: "column",
               justifyContent: "center",
+              boxShadow: "6px 6px 4px rgba(0, 0, 0, 0.25)",
+              mx: "auto",
             }}
           >
-            <Box
-              sx={{
-                position: "absolute",
-                top: "10%",
-              }}
-            >
+            <Box sx={{ height: "10%", mx: "auto" }}>
               <Typography
                 sx={{
                   // backgroundColor: "#FFE0E0",
                   color: "#000000",
-                  fontFamily: "JuliusSansOne",
+                  fontFamily: "ONEMobileLight",
                   fontSize: "1.1em",
                 }}
               >
                 완성된 꽃다발이 마음에 드시나요?
               </Typography>
             </Box>
-            <Box sx={{ mt: "8rem", display: "flex", justifyContent: "center" }}>
+            <Box
+              sx={{ display: "flex", justifyContent: "center", height: "60%" }}
+            >
               <img
                 src={bouquetImage}
                 alt="꽃다발"
                 width={"100%"}
-                height={"320px"}
+                height={"100%"}
               ></img>
             </Box>
             <Box
               sx={{
-                position: "absolute",
-                top: "75%",
                 width: "100%",
               }}
             >
