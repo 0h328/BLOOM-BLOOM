@@ -4,6 +4,7 @@ import finale.bloombloom.api.request.AdminSaveRequest;
 import finale.bloombloom.api.request.AdminUpdateRequest;
 import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -42,5 +43,5 @@ public interface AdminService {
      * 업장 등록
      * 작성자 : 김정혁
      */
-    int saveStore(AdminSaveRequest req);
+    String saveStore(AdminSaveRequest req, MultipartFile file);
 }
