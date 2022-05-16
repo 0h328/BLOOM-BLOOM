@@ -14,7 +14,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Wrap {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wrapSeq;

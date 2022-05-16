@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class WrapResponse {
     private Long wrapSeq;
     private String wrapColor;

@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Table(name = "`order`")
 public class
 Order extends BaseTimeEntity{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderSeq;

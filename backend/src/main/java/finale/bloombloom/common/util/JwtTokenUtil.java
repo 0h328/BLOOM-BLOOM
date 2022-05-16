@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 /**
  * jwt 토큰 유틸 정의.
  */
@@ -78,23 +76,32 @@ public class JwtTokenUtil {
 
         try {
             verifier.verify(token.replace(TOKEN_PREFIX, ""));
-        } catch (AlgorithmMismatchException ex) {
+        }
+        catch (AlgorithmMismatchException ex) {
             throw ex;
-        } catch (InvalidClaimException ex) {
+        }
+        catch (InvalidClaimException ex) {
             throw ex;
-        } catch (SignatureGenerationException ex) {
+        }
+        catch (SignatureGenerationException ex) {
             throw ex;
-        } catch (SignatureVerificationException ex) {
+        }
+        catch (SignatureVerificationException ex) {
             throw ex;
-        } catch (TokenExpiredException ex) {
+        }
+        catch (TokenExpiredException ex) {
             throw ex;
-        } catch (JWTCreationException ex) {
+        }
+        catch (JWTCreationException ex) {
             throw ex;
-        } catch (JWTDecodeException ex) {
+        }
+        catch (JWTDecodeException ex) {
             throw ex;
-        } catch (JWTVerificationException ex) {
+        }
+        catch (JWTVerificationException ex) {
             throw ex;
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             throw ex;
         }
     }
@@ -102,23 +109,32 @@ public class JwtTokenUtil {
     public static void handleError(JWTVerifier verifier, String token) {
         try {
             verifier.verify(token.replace(TOKEN_PREFIX, ""));
-        } catch (AlgorithmMismatchException ex) {
+        }
+        catch (AlgorithmMismatchException ex) {
             throw ex;
-        } catch (InvalidClaimException ex) {
+        }
+        catch (InvalidClaimException ex) {
             throw ex;
-        } catch (SignatureGenerationException ex) {
+        }
+        catch (SignatureGenerationException ex) {
             throw ex;
-        } catch (SignatureVerificationException ex) {
+        }
+        catch (SignatureVerificationException ex) {
             throw ex;
-        } catch (TokenExpiredException ex) {
+        }
+        catch (TokenExpiredException ex) {
             throw ex;
-        } catch (JWTCreationException ex) {
+        }
+        catch (JWTCreationException ex) {
             throw ex;
-        } catch (JWTDecodeException ex) {
+        }
+        catch (JWTDecodeException ex) {
             throw ex;
-        } catch (JWTVerificationException ex) {
+        }
+        catch (JWTVerificationException ex) {
             throw ex;
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             throw ex;
         }
     }

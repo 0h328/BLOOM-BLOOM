@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderResponse {

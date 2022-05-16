@@ -25,15 +25,14 @@ import java.time.format.DateTimeFormatter;
  * Spring Data JPA 관련 추가 설정 정의.
  */
 @Configuration
-public class JpaConfig {
+public class JPAConfig {
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Bean
     public JPAQueryFactory jpaQueryFactory() {
         return new JPAQueryFactory(entityManager);
     }
-
 
     @Bean
     @Primary

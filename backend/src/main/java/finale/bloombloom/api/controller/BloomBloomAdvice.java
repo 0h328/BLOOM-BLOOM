@@ -35,4 +35,5 @@ public class BloomBloomAdvice {
     static class ExceptionDto {
         private String message;
     }
+
 }

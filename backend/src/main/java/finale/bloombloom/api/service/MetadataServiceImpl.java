@@ -25,7 +25,6 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MetadataServiceImpl implements MetadataService {
     private final FileProcessService fileProcessService;
-
     private final MainFlowerRepository mainFlowerRepository;
     private final SubFlowerRepository subFlowerRepository;
     private final DecoRepository decoRepository;
@@ -43,7 +42,6 @@ public class MetadataServiceImpl implements MetadataService {
                 .build()
         );
     }
-
 
     @Override
     public void saveSubFlowerImage(Map<String, String> request, MultipartFile file) {
@@ -84,7 +82,8 @@ public class MetadataServiceImpl implements MetadataService {
                 String fileName = getFileName(file);    // 앞, 뒤, 전체
                 imageLinks.put(fileName, fileProcessService.upload(folder, file));
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             log.error("이미지 업로드에 실패했습니다.");
             e.printStackTrace();
         }
@@ -96,12 +95,12 @@ public class MetadataServiceImpl implements MetadataService {
         return file.getOriginalFilename().substring(0, file.getOriginalFilename().lastIndexOf('.'));
     }
 
-
     private String uploadImage(FileFolder folder, MultipartFile file) {
         String imageLink = null;
         try {
             imageLink = fileProcessService.upload(folder, file);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             log.error("이미지 업로드에 실패했습니다.");
             e.printStackTrace();
         }
