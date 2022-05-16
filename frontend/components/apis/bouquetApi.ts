@@ -31,6 +31,7 @@ export const getPresent = async (code: string) => {
 };
 
 export const savePresent = async (body: any) => {
+  console.log("present", body);
   return await bouquetApi.post("/present", body);
 };
 
@@ -43,7 +44,7 @@ export const getFlower = async () => {
 };
 
 export const saveBouquet = async (data: any) => {
-  console.log(data.get("key"));
+  console.log(data.get("request"));
   console.log(data.get("file"));
   return await bouquetApi.post("", data, {
     headers: {

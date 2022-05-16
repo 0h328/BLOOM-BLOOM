@@ -17,7 +17,7 @@ function ConfirmBtn({ click, title, text }: btnProps) {
         style={{
           backgroundColor: "#FFE0E0",
           color: "#000",
-          fontFamily: "JuliusSansOne",
+          fontFamily: "OneMobileLight",
           fontWeight: "bold",
           fontSize: "1rem",
           borderRadius: "20",
@@ -32,7 +32,7 @@ function ConfirmBtn({ click, title, text }: btnProps) {
         sx={{
           width: "100%",
           top: "10%",
-          fontFamily: "JuliusSansOne",
+          fontFamily: "OneMobileLight",
           fontSize: "0.8rem",
           mt: "3%",
         }}

@@ -55,7 +55,9 @@ function Confirm() {
           height: "45%",
         }}
       >
-        <BouquetImg bouquetImage={presentBouquet}></BouquetImg>
+        <BouquetImg
+          bouquetImage={presentBouquet.presentBouquetImage}
+        ></BouquetImg>
       </Box>
       <Box sx={{ position: "absolute", top: "65%" }}>
         <Box sx={{ margin: "5% 0% 8% 0%" }}>

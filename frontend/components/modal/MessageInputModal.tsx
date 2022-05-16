@@ -47,7 +47,7 @@ function MessageInputModal({
   const handleStoreButtonClick = async () => {
     // 1. requeset를 만든다.
     const body = {
-      bouquetSeq: 7,
+      bouquetSeq: presentBouquet.presentBouquetSeq,
       presentDesc: content,
     };
     // 2. 서버로 요청을 보낸다.
@@ -202,7 +202,7 @@ function MessageInputModal({
                 }}
               >
                 <BouquetImg
-                  bouquetImage={presentBouquet}
+                  bouquetImage={presentBouquet.presentBouquetImage}
                   modal={true}
                 ></BouquetImg>
               </Box>
@@ -221,7 +221,7 @@ function MessageInputModal({
                 >
                   완성된 메시지 카드와 꽃다발을 전달해보세요
                   <CopyToClipboard
-                    text={BASE_URL + "/present/" + uuid}
+                    text={BASE_URL + "present/" + uuid}
                     onCopy={handleCopyButton}
                   >
                     <Button>🔗링크복사</Button>
@@ -235,7 +235,7 @@ function MessageInputModal({
                 </Box>
               </div>
             ) : (
-              <Box sx={{ position: "absolute", top: "80%"}}>
+              <Box sx={{ position: "absolute", top: "80%" }}>
                 <Button
                   sx={{
                     width: 156,

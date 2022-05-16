@@ -71,7 +71,10 @@ function BouquetDetailModal({
     Array<{ flowerName: string; flowerImage: string; flowerCount: number }>
   >([]);
   const closeBouquetDetailModal = () => {
-    setPresentBouquet("");
+    setPresentBouquet({
+      presentBouquetImage: "",
+      presentBouquetSeq: -1,
+    });
     handleDetailModal(false);
   };
   const handleBouquetDetail = async (bouquet: Bouquet) => {
@@ -94,7 +97,10 @@ function BouquetDetailModal({
   };
   const handleShare = () => {
     console.log(bouquet.bouquetImage);
-    setPresentBouquet(bouquet.bouquetImage);
+    setPresentBouquet({
+      presentBouquetImage: bouquet.bouquetImage,
+      presentBouquetSeq: bouquet.bouquetSeq,
+    });
     router.push("/share");
   };
   const handleOrder = () => {};
