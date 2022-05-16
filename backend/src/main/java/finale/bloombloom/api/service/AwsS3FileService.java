@@ -50,6 +50,9 @@ public class AwsS3FileService implements FileService {
         if (fileFolder == FileFolder.DECO_FOLDER)
             folder = s3Component.getDecoFolderName();
 
+        if (fileFolder == FileFolder.STORE_FOLDER)
+            folder = s3Component.getStoreFolderName();
+
         return folder;
     }
 }

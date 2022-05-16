@@ -10,8 +10,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/api/v1/admin")
 @RestController
@@ -95,11 +98,16 @@ public class AdminController {
     @PostMapping
     ResponseEntity<Result> createStore(
             Authentication authentication,
-            @RequestBody AdminSaveRequest req
+            @RequestPart(value = "request") AdminSaveRequest req,
+            @RequestPart(value = "file") MultipartFile file
     ) {
-        adminService.saveStore(req);
+        String storeImageLink = adminService.saveStore(req, file);
+        Map<String, String> response = new HashMap<>();
+        response.put("storeImageLink", storeImageLink);
+
         return ResponseEntity.status(200).body(
                 Result.builder()
+                        .data(response)
                         .message("업장 등록에 성공하였습니다.")
                         .build()
         );

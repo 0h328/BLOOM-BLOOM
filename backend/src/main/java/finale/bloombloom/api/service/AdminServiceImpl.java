@@ -4,22 +4,30 @@ import finale.bloombloom.api.request.AdminSaveRequest;
 import finale.bloombloom.api.request.AdminUpdateRequest;
 import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
+import finale.bloombloom.common.model.FileFolder;
+import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.db.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
     private final StoreRepository storeRepository;
     private final EntityManager em;
+    private final FileProcessService fileProcessService;
+    private final S3ImageUrlConverter urlConverter;
 
     /**
      * 업장 리스트 조회
@@ -38,7 +46,7 @@ public class AdminServiceImpl implements AdminService {
      */
     @Override
     public StoreDetailResponse findStore(Long storeReq) {
-        return StoreDetailResponse.from(storeRepository.findStoreByStoreSeq(storeReq).get());
+        return StoreDetailResponse.from(storeRepository.findStoreByStoreSeq(storeReq).get(), urlConverter);
     }
 
     /**
@@ -77,7 +85,16 @@ public class AdminServiceImpl implements AdminService {
      */
     @Transactional
     @Override
-    public int saveStore(AdminSaveRequest req) {
+    public String saveStore(AdminSaveRequest req, MultipartFile file) {
+
+        String storeImageLink = null;
+        try {
+            storeImageLink = fileProcessService.upload(FileFolder.STORE_FOLDER, file);
+        } catch (IOException e) {
+            log.error("상점 이미지 업로드에 실패했습니다.");
+            e.printStackTrace();
+        }
+
         Query query = em.createNativeQuery(
                 "insert into store\n" +
                         "(store_name,store_contact,store_address,store_reg_num,store_loc,store_map_id,store_blog_id,store_instagram_id,store_image_link)\n" +
@@ -91,9 +108,12 @@ public class AdminServiceImpl implements AdminService {
         query.setParameter(5, req.getStoreMapId());
         query.setParameter(6, req.getStoreBlogId());
         query.setParameter(7, req.getStoreInstagramId());
-        query.setParameter(8, req.getStoreImageLink());
+        query.setParameter(8, storeImageLink);
+        query.executeUpdate();
 
-        return query.executeUpdate();
+        log.info("이미지 주소: {}", storeImageLink);
+
+        return urlConverter.urlConvert(storeImageLink);
     }
 
 }
