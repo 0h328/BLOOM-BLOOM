@@ -84,7 +84,7 @@ function MessageInputModal({
   };
   const handleShare = async () => {
     const body = {
-      bouquetSeq: 7,
+      bouquetSeq: presentBouquet.presentBouquetSeq,
       presentDesc: content,
     };
 
