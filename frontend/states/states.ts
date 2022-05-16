@@ -42,15 +42,20 @@ const flowerState = atom({
 const adminState = atom({
   key: "AdminInfo",
   default: false,
-})
+});
 
 const storeImageState = atom({
   key: "storeImageLink",
   default: false,
-})
+});
 const saveBouquetState = atom({
   key: "saveFlower",
   default: "",
+});
+
+const totalCountState = atom({
+  key: "totalCount",
+  default: 0,
 });
 
 export {
@@ -62,4 +67,5 @@ export {
   presentBouquetState,
   adminState,
   storeImageState,
+  totalCountState,
 };

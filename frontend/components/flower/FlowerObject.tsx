@@ -4,9 +4,8 @@ import Image from "next/image";
 import CountBtn from "./CountBtn";
 import { FlowerType } from "../flower/Flower";
 import Toast from "../common/Toast";
-import { mainFlowerState } from "../../states/states";
+import { mainFlowerState, totalCountState } from "../../states/states";
 import { useRecoilState } from "recoil";
-
 interface flowerProps {
   flower: FlowerType;
   validCount: boolean;
@@ -17,17 +16,17 @@ interface flowerProps {
 function FlowerObject({
   flower,
   validCount,
-  totalCount,
   handleTotal,
   handleError,
 }: flowerProps) {
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [totalCount, setTotalCount] = useRecoilState(totalCountState);
   const [count, setCount] = useState<number>(0);
   const onIncrease = () => {
-    if (totalCount < 12) {
+    if (totalCount < 10) {
       setCount(count + 1);
       handleTotal(+1);
-    } else if (totalCount == 12) {
+    } else if (totalCount == 10) {
       handleError(1);
     }
   };
