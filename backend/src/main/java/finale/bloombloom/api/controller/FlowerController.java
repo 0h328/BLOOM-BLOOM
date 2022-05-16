@@ -170,7 +170,7 @@ public class FlowerController {
     @PostMapping
     public ResponseEntity<Result> saveBouquet(
             Authentication authentication,
-            @RequestPart(value = "request") @Valid BouquetSaveRequest request,
+            @RequestPart(value = "request") BouquetSaveRequest request,
             @RequestPart(value = "file") MultipartFile file
     ) {
         if (authentication == null)

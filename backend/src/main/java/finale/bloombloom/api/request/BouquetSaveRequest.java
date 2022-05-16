@@ -22,6 +22,5 @@ public class  BouquetSaveRequest {
     @Positive(message = "부속꽃 ID는 1 이상입니다.")
     private Long subFlowerSeq;
     @NotNull(message = "꽃 리스트는 null 일 수 없습니다.")
-    @Valid
     private List<FlowerRequest> mainFlower;
 }
