@@ -89,6 +89,7 @@ a {
   height: 10px !important;
   margin-top: -5px !important;
   margin-left: -5px !important;
+  border-color: rgb(250, 250, 250) !important;
 }
 
 .moveable-line {
@@ -117,12 +118,4 @@ a {
 
 .moveable-rotation-control {
   background: #bad7df !important;
-}
-
-.moveable-control.moveable-origin {
-  width: 12px;
-  height: 12px;
-  margin-top: -6px;
-  margin-left: -6px;
-  pointer-events: none;
 }
