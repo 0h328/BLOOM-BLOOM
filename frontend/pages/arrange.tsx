@@ -14,6 +14,7 @@ import {
   flowerState,
   mainFlowerState,
   presentBouquetState,
+  totalCountState,
 } from "../states/states";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
@@ -27,6 +28,7 @@ function Arrange() {
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [totalCount, setTotalCount] = useRecoilState(totalCountState);
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
   const [windowHeight, setWindowHeight] = useState<number>();

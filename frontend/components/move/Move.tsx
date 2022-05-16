@@ -168,8 +168,6 @@ function Move({ finish }: moveProps) {
           sx={{
             width: "100%",
             height: "100%",
-            // position: "relative",
-            // top: "100%",
           }}
         >
           <Moveable
@@ -250,25 +248,21 @@ function Move({ finish }: moveProps) {
             <Grid
               container
               // disableGutters
-              // spacing={1}
-              maxWidth="17%"
-              height="100%"
+              maxHeight="100%"
+              maxWidth="sm"
               justifyContent="center"
-              flexDirection="column"
-              sx={{ flexDirection: "column" }}
+              sx={{}}
             >
               {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"
                   item
-                  sm={6}
-                  xs={6}
+                  sm={2.3}
+                  xs={3}
                   key={index}
                   sx={{
                     display: "flex",
                     justifyContent: "center",
-                    width: "100%",
-                    height: "100%",
                     // padding: "2%",
                   }}
                 >
@@ -277,7 +271,7 @@ function Move({ finish }: moveProps) {
                     sx={{
                       width: "100%",
                       height: "100%",
-                      margin: "5px",
+                      // margin: "5px",
                     }}
                   >
                     <img

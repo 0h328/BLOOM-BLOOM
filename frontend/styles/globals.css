@@ -119,3 +119,8 @@ a {
 .moveable-rotation-control {
   background: #bad7df !important;
 }
+
+.moveable-control-box {
+  display: "flex" !important;
+  width: "100%" !important;
+}
