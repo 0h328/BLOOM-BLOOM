@@ -18,7 +18,7 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
         sx={{
           ...boxStyle,
           height: "30px",
-          backgroundColor: "#FFE0E0",
+          backgroundColor: "#EFDFBF",
           display: "flex",
         }}
       >
@@ -53,7 +53,7 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
             }}
           >
             <Grid item xs={4}>
-            {flowerInfo.flowerName}
+              {flowerInfo.flowerName}
             </Grid>
             <Grid item xs={4}>
               <Box>

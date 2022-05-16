@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Box, Grid, Typography } from "@mui/material";
 import { useRecoilState } from "recoil";
@@ -31,23 +31,26 @@ function FlowerImgList({
   ) => {
     handleBouquetInfo(bouquet);
   };
+  useEffect(() => {
+    console.log(bouquetList.length);
+  }, [bouquetList]);
   return (
-    <Box
-      sx={{
-        // position: "relative",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
+    <>
       {page == "madelist" ? (
-        <>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Grid
             container
             spacing={0}
+            display="flex"
             direction="row"
             alignItems="center"
             justifyItems="center"
-            sx={{ width: 410 }}
+            sx={{ width: "90%" }}
           >
             {bouquetList.map((bouquet, index) => {
               return (
@@ -55,7 +58,11 @@ function FlowerImgList({
                   item
                   xs={4}
                   key={index}
-                  sx={{ "&:hover": { cursor: "pointer" }, padding: "1.5%" }}
+                  sx={{
+                    display: "flex",
+                    "&:hover": { cursor: "pointer" },
+                    padding: "1.5%",
+                  }}
                 >
                   <img
                     src={bouquet.bouquetImage}
@@ -70,15 +77,15 @@ function FlowerImgList({
               );
             })}
           </Grid>
-        </>
+        </Box>
       ) : (
         <>
-          {!bouquetList.length ? (
+          {bouquetList.length === 0 ? (
             <Box
               sx={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
+                // position: "absolute",
+                // width: "100%",
+                // height: "100%",
                 justifyContent: "center",
                 alignItems: "center",
                 display: "flex",
@@ -98,15 +105,20 @@ function FlowerImgList({
               </Typography>
             </Box>
           ) : (
-            <Grid container sx={{ display: "flex", maxWidth: "100%" }}>
+            <Grid container sx={{}}>
               {bouquetList.map((bouquet, index) => {
                 return (
-                  <Grid item xs={4} key={index} sx={{}}>
+                  <Grid
+                    item
+                    xs={4}
+                    key={index}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
                     <img
                       src={bouquet.bouquetImage}
                       alt="꽃다발"
-                      width={"100%"}
-                      height={"100%"}
+                      width={"160px"}
+                      height={"160px"}
                     ></img>
                   </Grid>
                 );
@@ -115,7 +127,7 @@ function FlowerImgList({
           )}
         </>
       )}
-    </Box>
+    </>
   );
 }
 

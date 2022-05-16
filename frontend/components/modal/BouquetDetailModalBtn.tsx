@@ -8,7 +8,7 @@ function BouquetDetailModalBtn({ handleBtn }: btnProps) {
   const handleDelete = () => {};
   return (
     <Grid container>
-      <Grid item xs={4}>
+      <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
         <Button
           variant="contained"
           size="small"
@@ -18,14 +18,14 @@ function BouquetDetailModalBtn({ handleBtn }: btnProps) {
           <Typography sx={{ ...btnStyle1 }}>공유</Typography>
         </Button>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
         <Link href="/order" sx={{ textDecoration: "none" }}>
-          <Button variant="contained" size="small" sx={{ ...btnStyle }} >
+          <Button variant="contained" size="small" sx={{ ...btnStyle }}>
             <Typography sx={{ ...btnStyle1 }}> 주문</Typography>
           </Button>
         </Link>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
         <Link href="/madelist" sx={{ textDecoration: "none" }}>
           <Button
             variant="contained"
@@ -33,7 +33,7 @@ function BouquetDetailModalBtn({ handleBtn }: btnProps) {
             sx={{ ...btnStyle }}
             onClick={handleDelete}
           >
-            <Typography  sx={{ ...btnStyle1 }}>삭제</Typography>
+            <Typography sx={{ ...btnStyle1 }}>삭제</Typography>
           </Button>
         </Link>
       </Grid>
