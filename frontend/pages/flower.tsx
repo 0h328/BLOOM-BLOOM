@@ -29,7 +29,7 @@ function Flower() {
         console.log("0");
         break;
       case 1:
-        toast.error("📣꽃은 8개까지 선택할 수 있습니다");
+        toast.error("📣꽃은 12개까지 선택할 수 있습니다");
         console.log("1");
         break;
       case 2:

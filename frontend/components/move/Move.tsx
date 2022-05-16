@@ -5,12 +5,13 @@ import { Box, Grid, Button } from "@mui/material";
 import { mainFlowerState } from "../../states/states";
 import { useRecoilState } from "recoil";
 import { flowerList } from "../flower/FlowerData";
+import styles from "./global.module.css";
 interface moveProps {
   finish: boolean;
 }
 function Move({ finish }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
-  const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
+  const [targets, setTargets] = useState<Array<Element>>([]);
   const [target, setTarget] = useState([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
@@ -19,6 +20,7 @@ function Move({ finish }: moveProps) {
   const [elementGuidelines, setElementGuidelines] = useState(null);
   const [selectedFlower, setSelectedFlower] = useState([]);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [zindex, setZindex] = useState<number>(100);
   //test용
   const [flowers, setFlowers] = useState([
     "/img/carnationPink.png",
@@ -129,9 +131,11 @@ function Move({ finish }: moveProps) {
     });
   };
   useEffect(() => {
-    setOnLoad(true);
-    setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
-  }, []);
+    console.log("targets", targets[0]);
+  }, [targets]);
+  useEffect(() => {
+    console.log("target", target);
+  }, [target]);
   useEffect(() => {
     if (finish) {
       setTargets([]);
@@ -140,6 +144,8 @@ function Move({ finish }: moveProps) {
     }
   }, [finish]);
   useEffect(() => {
+    setOnLoad(true);
+    setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
     const temp1 = mainFlower.filter((flower) => flower.flowerSeq !== -1);
     const temp2 = [];
     temp1.map((flower, index) => {
@@ -167,6 +173,7 @@ function Move({ finish }: moveProps) {
           }}
         >
           <Moveable
+            className="moveable"
             ref={moveableRef}
             draggable={true}
             trigger={trigger}
@@ -213,6 +220,11 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
+              if (e.selected[0]) {
+                e.selected[0].parentElement.style.zIndex = String(zindex);
+              }
+              setZindex(zindex + 1);
+              console.log(e.selected);
             }}
             onSelectEnd={(e) => {
               const moveable = moveableRef.current;
@@ -226,7 +238,7 @@ function Move({ finish }: moveProps) {
             }}
           ></Selecto>
           <Box
-            className="elements selecto-area"
+            className="elements selecto-area moveable"
             sx={{
               display: "flex",
               width: "100%",
@@ -244,7 +256,6 @@ function Move({ finish }: moveProps) {
               alignItems="center"
               sx={{ padding: "1rem" }}
             >
-              {/* {flowers.map((item, index) => ( */}
               {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"

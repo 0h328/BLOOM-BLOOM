@@ -6,6 +6,8 @@ import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
+import Moveable from "react-moveable";
+import Selecto from "react-selecto";
 import {
   wrapState,
   decoState,
@@ -30,7 +32,9 @@ function Arrange() {
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
   const [bouquetImageData, setBouquetImageData] = useState<FormData>();
-
+  const [release, setRelease] = useState<boolean>(false);
+  const moveableRef = useRef(null);
+  const selectoRef = useRef(null);
   const handleSaveImg = () => {
     if (finish) {
       html2canvas(document.querySelector("#img"), {
@@ -79,7 +83,7 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
-    setWindowHeight(window.innerHeight * 0.48);
+    setWindowHeight(window.innerHeight * 0.45);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
@@ -113,7 +117,21 @@ function Arrange() {
       <Box sx={{ position: "relative", mt: "5%", width: "100%" }}>
         <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
       </Box>
+      <Selecto
+        ref={selectoRef}
+        dragContainer={".elements"}
+        selectableTargets={[".selecto-area .cube"]}
+        hitRate={0}
+        selectByClick={true}
+        selectFromInside={false}
+        toggleContinueSelect={["shift"]}
+        ratio={0}
+        onSelect={(e) => {
+          console.log(e.selected);
+        }}
+      ></Selecto>
       <Box
+        className="elements selecto-area"
         id="img"
         sx={{
           width: "100%",
