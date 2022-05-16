@@ -15,6 +15,7 @@ function Main() {
     Array<{ bouquetSeq: number; bouquetImage: string }>
   >([]);
   const [windowHeight, setWindowHeight] = useState<number>();
+  const [windowWidth, setWindowWidth] = useState<number>();
   const handleRecentList = async () => {
     const response = await getRecentBouquetList();
     console.log(response.data.data.orderBouquet.length);
@@ -23,6 +24,7 @@ function Main() {
   };
   useEffect(() => {
     setWindowHeight(window.innerHeight);
+    setWindowHeight(window.innerWidth);
     handleRecentList();
   }, []);
   useEffect(() => {
@@ -33,7 +35,7 @@ function Main() {
       <Box
         sx={{
           mx: "auto",
-          width: windowHeight > 480 ? 420 : "100%",
+          width: 430,
           position: "relative",
           backgroundColor: "#FFE0E0",
           height: "100vh",
