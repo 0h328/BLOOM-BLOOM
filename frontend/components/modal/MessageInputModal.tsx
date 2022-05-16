@@ -40,6 +40,7 @@ function MessageInputModal({
 }: meesageModalProps) {
   const router = useRouter();
   const [content, setContent] = useState<string>("");
+  const [textLength, setTextLength] = useState<number>();
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
   const [uuid, setUuid] = useState<string>("");
@@ -82,12 +83,13 @@ function MessageInputModal({
   );
   const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.target.value;
-    const textLength = text.length;
+    setTextLength(text.length);
     if (textLength > 150) {
-      toast.error("❌150자까지 입력가능합니다");
+      toast.error("⚠150자까지 입력가능합니다");
+    } else {
+      setContent(`${text}`);
     }
     console.log(textLength);
-    setContent(`${text}`);
   };
   const handleShare = async () => {
     const body = {
@@ -287,6 +289,7 @@ function MessageInputModal({
                   <TextareaAutosize
                     aria-label="minimum height"
                     id="content"
+                    // disabled={textLength > 150}
                     value={content}
                     minRows={3}
                     maxRows={10}
