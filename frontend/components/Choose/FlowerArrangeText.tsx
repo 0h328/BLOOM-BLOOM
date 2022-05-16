@@ -46,31 +46,17 @@ function FlowerArrangeText({
             onClick={() => handleArrange(true)}
           >
             <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
-            {/* <Typography>다음</Typography> */}
           </IconButton>
         </Typography>
       </Box>
-      {finish ? (
-        <Typography
-          variant="subtitle2"
-          gutterBottom
-          component="div"
-          style={{ textAlign: "center", whiteSpace: "pre-wrap" }}
-        >
-          {/* 배치완료
-          <br /> */}
-          다음단계로 넘어가주세요
-        </Typography>
-      ) : (
-        <Typography
-          variant="subtitle2"
-          gutterBottom
-          component="div"
-          style={{ textAlign: "center" }}
-        >
-          꽃을 꽃다발안에 배치해주세요
-        </Typography>
-      )}
+      <Typography
+        variant="subtitle2"
+        gutterBottom
+        component="div"
+        style={{ textAlign: "center" }}
+      >
+        꽃을 꽃다발안에 배치해주세요
+      </Typography>
     </>
   );
 }

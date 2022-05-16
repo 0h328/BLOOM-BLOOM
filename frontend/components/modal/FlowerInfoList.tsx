@@ -20,6 +20,8 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
           height: "30px",
           backgroundColor: "#EFDFBF",
           display: "flex",
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius: "10px",
         }}
       >
         <Grid container>
