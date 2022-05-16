@@ -24,7 +24,11 @@ function FlowerImgListTitle({ title, link }: listProps) {
             {title}
           </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid
+          item
+          xs={3}
+          sx={{ display: "flex", justifyContent: "space-evenly" }}
+        >
           <Link href={`${link}`} passHref>
             <Typography
               sx={{
