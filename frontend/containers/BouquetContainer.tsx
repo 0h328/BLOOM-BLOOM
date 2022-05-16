@@ -34,12 +34,6 @@ function BouquetContainer({ src }: containerProps) {
 
   const wrapList = [
     {
-      wrapSeq: 1,
-      wrapImage: "/img/wrapOrange.png",
-      wrapBackImage: "/img/wrapBackOrange.png",
-      wrapFrontImage: "/img/wrapFrontOrange.png",
-    },
-    {
       wrapSeq: 2,
       wrapImage: "/img/wrapIvory.png",
       wrapBackImage: "/img/wrapBackIvory.png",
@@ -81,23 +75,29 @@ function BouquetContainer({ src }: containerProps) {
       wrapBackImage: "/img/wrapBackYellow.png",
       wrapFrontImage: "/img/wrapFrontYellow.png",
     },
+    {
+      wrapSeq: 9,
+      wrapImage: "/img/wrapOrange.png",
+      wrapBackImage: "/img/wrapBackOrange.png",
+      wrapFrontImage: "/img/wrapFrontOrange.png",
+    },
   ];
 
   const flowerList = [
-    { flowerSeq: 1, flowerImage: "/img/flower1.png" },
     { flowerSeq: 2, flowerImage: "/img/flower2.png" },
     { flowerSeq: 3, flowerImage: "/img/flower3.png" },
+    { flowerSeq: 4, flowerImage: "/img/flower1.png" },
   ];
 
   const decoList = [
-    { decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" },
-    { decoSeq: 2, decoImage: "/img/ribbonDeepBrown.png" },
+    { decoSeq: 2, decoImage: "/img/ribbonMixYellow.png" },
     { decoSeq: 3, decoImage: "/img/ribbonPurple.png" },
     { decoSeq: 4, decoImage: "/img/ribbonNavy.png" },
     { decoSeq: 5, decoImage: "/img/ribbonMixBrown.png" },
     { decoSeq: 6, decoImage: "/img/ribbonMixPink.png" },
     { decoSeq: 7, decoImage: "/img/ribbonMixRed.png" },
-    { decoSeq: 8, decoImage: "/img/ribbonMixYellow.png" },
+    { decoSeq: 8, decoImage: "/img/ribbonDeepBrown.png" },
+    { decoSeq: 9, decoImage: "/img/ribbonDeepPink.png" },
   ];
 
   useEffect(() => {
@@ -106,13 +106,13 @@ function BouquetContainer({ src }: containerProps) {
 
   useEffect(() => {
     setWrapInfo({
-      wrapSeq: 1,
-      wrapImage: "/img/wrapOrange.png",
-      wrapBackImage: "/img/wrapBackOrange.png",
-      wrapFrontImage: "/img/wrapFrontOrange.png",
+      wrapSeq: 2,
+      wrapImage: "/img/wrapIvory.png",
+      wrapBackImage: "/img/wrapBackIvory.png",
+      wrapFrontImage: "/img/wrapFrontIvory.png",
     });
-    setDecoInfo({ decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" });
-    setFlowerInfo({ flowerSeq: 1, flowerImage: "/img/flower1.png" });
+    setDecoInfo({ decoSeq: 2, decoImage: "/img/ribbonMixYellow.png" });
+    setFlowerInfo({ flowerSeq: 2, flowerImage: "/img/flower2.png" });
   }, []);
 
   return (
