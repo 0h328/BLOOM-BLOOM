@@ -235,6 +235,7 @@ function BouquetContainer({ src }: containerProps) {
                 backgroundColor: "#FFE0E0",
                 color: "black",
                 width: "330px",
+                fontFamily:"OneMobileLight"
               }}
               variant="contained"
             >

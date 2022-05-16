@@ -29,7 +29,7 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         </Button>
       </Grid>
       <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
-        <Link href="/order" sx={{ textDecoration: "none" }}>
+        <Link href="/ordermap" sx={{ textDecoration: "none" }}>
           <Button variant="contained" size="small" sx={{ ...btnStyle }}>
             <Typography sx={{ ...btnStyle1 }}> 주문</Typography>
           </Button>
