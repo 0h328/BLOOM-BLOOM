@@ -133,7 +133,7 @@ function MessageInputModal({
             sx={{
               mt: "10%",
               width: "90%",
-              height: "90%",
+              height: "80%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -165,7 +165,7 @@ function MessageInputModal({
               sx={{
                 position: "relative",
                 mt: "5%",
-                width: "65%",
+                width: "80%",
                 mx: "auto",
               }}
             >
@@ -212,6 +212,7 @@ function MessageInputModal({
                       sx={{
                         alignItems: "center",
                         mt: "5%",
+                        mb: "5%",
                       }}
                       style={{
                         display: "flex",
@@ -250,12 +251,10 @@ function MessageInputModal({
                       </Typography>
                     </Button>
                   </CopyToClipboard>
-                  <Box sx={{ mt: "5%", width: "100%" }}>
-                    <KakaoBtn
-                      handleBtn={handleShare}
-                      title="카카오톡으로 공유하기"
-                    ></KakaoBtn>
-                  </Box>
+                  <KakaoBtn
+                    handleBtn={handleShare}
+                    title="카카오톡으로 공유하기"
+                  ></KakaoBtn>
                 </Box>
               ) : (
                 <>
