@@ -7,9 +7,10 @@ import { useRecoilState } from "recoil";
 import { flowerList } from "../flower/FlowerData";
 import styles from "./global.module.css";
 interface moveProps {
+  handleSaveImg: () => void;
   finish: boolean;
 }
-function Move({ finish }: moveProps) {
+function Move({ finish, handleSaveImg }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
   const [targets, setTargets] = useState<Array<Element>>([]);
   const [target, setTarget] = useState([]);
@@ -131,18 +132,29 @@ function Move({ finish }: moveProps) {
     });
   };
   useEffect(() => {
-    console.log("targets", targets[0]);
+    console.log("targets", targets);
+    console.log("targetslegnth", targets.length);
   }, [targets]);
   useEffect(() => {
     console.log("target", target);
+    console.log("targetlegnth", target.length);
   }, [target]);
+  useEffect(() => {
+    console.log("finish", finish);
+  }, [finish]);
   useEffect(() => {
     if (finish) {
       setTargets([]);
       setTarget([]);
-    } else {
     }
   }, [finish]);
+
+  useEffect(() => {
+    if (finish && targets.length === 0) {
+      console.log(finish);
+      handleSaveImg();
+    }
+  }, [targets]);
   useEffect(() => {
     setOnLoad(true);
     setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));

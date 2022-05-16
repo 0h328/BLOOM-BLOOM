@@ -31,6 +31,7 @@ function Arrange() {
   const [totalCount, setTotalCount] = useRecoilState(totalCountState);
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
+
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
   const [bouquetImageData, setBouquetImageData] = useState<FormData>();
@@ -46,7 +47,10 @@ function Arrange() {
         height: windowHeight,
       }).then((canvas) => {
         setBouquetImage(canvas.toDataURL("image/png"));
-        setPresentBouquet(canvas.toDataURL("image/png"));
+        // setPresentBouquet({
+        //   presentBouquetImage: canvas.toDataURL("image/png"),
+        //   presentBouquetSeq : ""
+        // });
 
         const imgBase64 = canvas.toDataURL("image/png");
         const decodImg = atob(imgBase64.split(",")[1]);
@@ -117,7 +121,11 @@ function Arrange() {
         handleComplete={handleComplete}
       ></BouquetCheckModal>
       <Box sx={{ position: "relative", mt: "5%", width: "100%" }}>
-        <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
+        <FlowerArrangeText
+          handleSaveImg={handleSaveImg}
+          finish={finish}
+          handleArrange={handleArrange}
+        ></FlowerArrangeText>
       </Box>
       <Selecto
         ref={selectoRef}
@@ -208,29 +216,8 @@ function Arrange() {
             WebkitAlignItems: "flex-start",
           }}
         >
-          <Move finish={finish}></Move>
+          <Move finish={finish} handleSaveImg={handleSaveImg}></Move>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          borderRadius: "5px",
-        }}
-      >
-        <Button
-          variant="contained"
-          size="small"
-          style={{
-            ...btnStyle,
-          }}
-          onClick={(e) => {
-            handleArrange(true);
-          }}
-        >
-          <Typography> 배치 완료</Typography>
-        </Button>
       </Box>
       <Toast />
     </Box>

@@ -5,8 +5,14 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box, Typography, IconButton } from "@mui/material";
 interface textProps {
   handleSaveImg: () => void;
+  handleArrange: (state: boolean) => void;
+  finish: boolean;
 }
-function FlowerArrangeText({ handleSaveImg }: textProps) {
+function FlowerArrangeText({
+  handleSaveImg,
+  finish,
+  handleArrange,
+}: textProps) {
   return (
     <>
       <Box sx={{ display: "flex", width: "100%" }}>
@@ -29,22 +35,42 @@ function FlowerArrangeText({ handleSaveImg }: textProps) {
           </IconButton>
           꽃을 배치해주세요
           <IconButton
+            className={finish ? "nextBtn" : null}
             component="div"
-            style={{ color: "black", marginBottom: "5px" }}
-            onClick={handleSaveImg}
+            style={{
+              color: "rgb(207 207 207)",
+              display: "flex",
+              flexDirection: "column",
+              marginBottom: "5px",
+            }}
+            onClick={() => handleArrange(true)}
           >
             <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
+            {/* <Typography>다음</Typography> */}
           </IconButton>
         </Typography>
       </Box>
-      <Typography
-        variant="subtitle2"
-        gutterBottom
-        component="div"
-        style={{ textAlign: "center" }}
-      >
-        꽃 배치 완료 후 다음으로 넘어가주세요
-      </Typography>
+      {finish ? (
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          component="div"
+          style={{ textAlign: "center", whiteSpace: "pre-wrap" }}
+        >
+          {/* 배치완료
+          <br /> */}
+          다음단계로 넘어가주세요
+        </Typography>
+      ) : (
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          component="div"
+          style={{ textAlign: "center" }}
+        >
+          꽃을 꽃다발안에 배치해주세요
+        </Typography>
+      )}
     </>
   );
 }

@@ -124,3 +124,16 @@ a {
   display: "flex" !important;
   width: "100%" !important;
 }
+
+.nextBtn {
+  color: #000 !important;
+  transition-property: color;
+  transition-duration: 1s;
+  animation: blink-effect 0.5s step-end infinite;
+}
+
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}

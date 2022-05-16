@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Grid, Button } from "@mui/material";
+import { Box, Typography, Grid, IconButton, Button } from "@mui/material";
 import MessageCard from "../../components/present/MessageCard";
 import Header from "../../components/common/Header";
 import ImgDownloadBtn from "../../components/present/ImgDownloadBtn";
@@ -7,6 +7,8 @@ import html2canvas from "html2canvas";
 import BouquetImg from "../../components/present/BouquetImg";
 import { useRouter } from "next/router";
 import { getPresent } from "../../components/apis/bouquetApi";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 
 function Present() {
   //   const presentData = {
@@ -52,6 +54,7 @@ function Present() {
   };
   const handlePresent = async (code: string) => {
     const response = await getPresent(code);
+    console.log(response.data);
     setPresentData({ ...response.data.data });
   };
   useEffect(() => {
@@ -116,22 +119,37 @@ function Present() {
           <Box
             sx={{ width: "100%", display: "flex", justifyContent: "center" }}
           >
-            <ImgDownloadBtn
+            {/* <ImgDownloadBtn
               data-html2canvas-ignore="true"
               onCapture={onCapture}
-            ></ImgDownloadBtn>
-            
+            ></ImgDownloadBtn> */}
+            <Box
+              sx={{ display: "flex", width: "90%", justifyContent: "center" }}
+            >
+              <IconButton component="div">
+                <FileDownloadOutlinedIcon
+                  sx={{ fontSize: "2.5rem" }}
+                ></FileDownloadOutlinedIcon>
+              </IconButton>
+              {/* <IconButton component="div">
+                <HomeRoundedIcon sx={{ fontSize: "2.5rem" }}></HomeRoundedIcon>
+              </IconButton> */}
+            </Box>
+
             <Button
               variant="contained"
               size="small"
               style={{
-              backgroundColor: "#FFE0E0",
-              color: "#000",
-              fontFamily: "OneMobileLight",
-              fontSize: "15px",
-              borderRadius: "5",
-              width: "60%"
-            }}>BloomBloom 이용하러가기</Button>
+                backgroundColor: "#FFE0E0",
+                color: "#000",
+                fontFamily: "OneMobileLight",
+                fontSize: "15px",
+                borderRadius: "5",
+                width: "60%",
+              }}
+            >
+              BloomBloom 이용하러가기
+            </Button>
           </Box>
         </Box>
       ) : null}

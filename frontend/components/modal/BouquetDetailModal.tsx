@@ -71,7 +71,10 @@ function BouquetDetailModal({
     Array<{ flowerName: string; flowerImage: string; flowerCount: number }>
   >([]);
   const closeBouquetDetailModal = () => {
-    setPresentBouquet("");
+    setPresentBouquet({
+      presentBouquetImage: "",
+      presentBouquetSeq: -1,
+    });
     handleDetailModal(false);
   };
   const handleBouquetDetail = async (bouquet: Bouquet) => {
@@ -94,7 +97,10 @@ function BouquetDetailModal({
   };
   const handleShare = () => {
     console.log(bouquet.bouquetImage);
-    setPresentBouquet(bouquet.bouquetImage);
+    setPresentBouquet({
+      presentBouquetImage: bouquet.bouquetImage,
+      presentBouquetSeq: bouquet.bouquetSeq,
+    });
     router.push("/share");
   };
   const handleOrder = () => {};
@@ -120,44 +126,39 @@ function BouquetDetailModal({
         >
           <Box
             sx={{
-              position: "absolute",
+              mt: "10%",
               width: "90%",
               height: "80%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "10%",
-              left: "4%",
+              mx: "auto",
+              boxShadow: "6px 6px 4px rgba(0, 0, 0, 0.25)",
             }}
           >
-            <CloseIcon
-              sx={{ position: "absolute", top: "2%", left: "90%", color: "" }}
-              onClick={closeBouquetDetailModal}
-            />
-            <Box sx={{ position: "absolute", top: "8%", left: "10%" }}>
+            <CloseIcon sx={{}} onClick={closeBouquetDetailModal} />
+            <Box sx={{}}>
               <img
                 src={bouquet.bouquetImage}
                 alt="꽃다발"
                 width={"100%"}
-                height={"100%"}
+                height={"337px"}
               ></img>
             </Box>
             <Box
               sx={{
-                position: "absolute",
-                top: "50%",
-                left: "2%",
                 width: "95%",
-                height: "40%",
+                height: "35%",
                 backgroundColor: "#ffff",
                 borderRadius: "10px",
                 border: "1px solid rgba(82, 82, 82, 0.29)",
                 overflow: "scroll",
+                mx: "auto",
               }}
             >
               <FlowerInfoList flowerInfoList={flowerInfo} />
             </Box>
-            <Box sx={{ position: "absolute", top: "91%", left: "15%" }}>
+            <Box sx={{ height: "20%" }}>
               <BouquetDetailModalBtn handleBtn={handleBtn} />
             </Box>
           </Box>
