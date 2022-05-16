@@ -117,7 +117,7 @@ export const flowerList: FlowerType[] = [
     flowerSeq: 20,
     flowerName: "작약",
     flowerColor: "red",
-    flowerImage: `/img/peonyRed.png`,
+    flowerImage: `/img/peonyPurple.png`,
     flowerDesc: "불타는 사랑",
   },
   {
