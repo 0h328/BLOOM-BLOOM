@@ -47,7 +47,6 @@ public class OAuthController {
             return ResponseEntity.status(200).body(
                     Result.builder()
                             .data(JwtTokenUtil.getToken(userService.createUser(profile).getUserId()))
-                            .status(200)
                             .message("로그인 성공")
                             .build()
             );
@@ -59,7 +58,6 @@ public class OAuthController {
             return ResponseEntity.status(200).body(
                     Result.builder()
                             .data(JwtTokenUtil.getToken(user.getUserId()))
-                            .status(200)
                             .message("로그인 성공")
                             .build()
             );

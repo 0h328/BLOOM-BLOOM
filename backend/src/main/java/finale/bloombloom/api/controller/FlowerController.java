@@ -36,17 +36,16 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
-                            .message("인증실패")
+                            .message("인증 실패")
                             .build()
             );
 
         Long userSeq = getUserSeq(authentication);
         List<BouquetResponse> bouquets = flowerService.findBouquet(userSeq);
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(bouquets)
                         .message("꽃다발 리스트 조회에 성공했습니다.")
+                        .data(bouquets)
                         .build()
         );
     }
@@ -63,16 +62,15 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
-                            .message("인증실패")
+                            .message("인증 실패")
                             .build()
             );
 
         BouquetDetailResponse response = flowerService.findBouquetDetail(bouquetSeq);
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(response)
                         .message("꽃다발 상세조회에 성공했습니다.")
+                        .data(response)
                         .build()
         );
     }
@@ -86,16 +84,15 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
-                            .message("인증실패")
+                            .message("인증 실패")
                             .build()
             );
 
         List<MainFlowerResponse> mainFlowers = flowerService.findAllMainFlower();
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(mainFlowers)
                         .message("꽃 조회에 성공했습니다.")
+                        .data(mainFlowers)
                         .build()
         );
     }
@@ -109,16 +106,15 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
-                            .message("인증실패")
+                            .message("인증 실패")
                             .build()
             );
 
         List<SubFlowerResponse> subFlowers = flowerService.findAllSubFlower();
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(subFlowers)
                         .message("부속꽃 조회에 성공했습니다.")
+                        .data(subFlowers)
                         .build()
         );
     }
@@ -132,16 +128,15 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
                             .message("인증실패")
                             .build()
             );
 
         List<WrapResponse> wraps = flowerService.findAllWrap();
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(wraps)
                         .message("포장지 조회에 성공했습니다.")
+                        .data(wraps)
                         .build()
         );
     }
@@ -155,16 +150,15 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
-                            .message("인증실패")
+                            .message("인증 실패")
                             .build()
             );
 
         List<DecoResponse> decos = flowerService.findAllDeco();
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(decos)
                         .message("장식 조회에 성공했습니다.")
+                        .data(decos)
                         .build()
         );
     }
@@ -182,17 +176,16 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
                             .message("인증실패")
                             .build()
             );
 
         Long userSeq = getUserSeq(authentication);
         BouquetSaveResponse response = flowerService.saveBouquet(userSeq, request, file);
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(response)
                         .message("꽃다발 저장에 성공했습니다.")
+                        .data(response)
                         .build()
         );
     }
@@ -209,14 +202,18 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
-                            .message("인증실패")
+                            .message("인증 실패")
                             .build()
             );
 
         Long userSeq = getUserSeq(authentication);
         UuidResponse response = presentService.savePresentBouquet(userSeq, request);
-        return ResponseEntity.ok(Result.builder().data(response).message("선물하기에 성공했습니다.").build());
+        return ResponseEntity.status(200).body(
+                Result.builder()
+                        .message("선물하기에 성공했습니다.")
+                        .data(response)
+                        .build()
+        );
     }
 
     /**
@@ -231,16 +228,15 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
                             .message("인증실패")
                             .build()
             );
 
         PresentBouquetResponse response = presentService.findPresentBouquet(uuid);
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(response)
                         .message("선물용 꽃다발 조회에 성공했습니다.")
+                        .data(response)
                         .build()
         );
     }
@@ -257,7 +253,6 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
                             .message("인증실패")
                             .build()
             );
@@ -266,10 +261,10 @@ public class FlowerController {
 
         Map<String, Long> response = new HashMap<>();
         response.put("bouquetSeq", bouquetSeq);
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(response)
                         .message("꽃다발 삭제에 성공했습니다.")
+                        .data(response)
                         .build()
         );
     }
@@ -283,17 +278,16 @@ public class FlowerController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
                             .message("인증 실패")
                             .build()
             );
 
         Long userSeq = getUserSeq(authentication);
         RecentBouquetResponse response = flowerService.findRecentBouquet(userSeq, PageRequest.of(0, 3));
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(response)
                         .message("최근 제작 및 주문한 꽃다발 조회에 성공했습니다.")
+                        .data(response)
                         .build()
         );
     }

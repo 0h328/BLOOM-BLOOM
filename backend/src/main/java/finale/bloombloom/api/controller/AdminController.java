@@ -29,9 +29,8 @@ public class AdminController {
         List<StoreListResponse> stores = adminService.findAllStore();
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(stores)
-                        .status(200)
                         .message("업장 리스트 조회에 성공하였습니다.")
+                        .data(stores)
                         .build()
         );
     }
@@ -48,9 +47,8 @@ public class AdminController {
         StoreDetailResponse store = adminService.findStore(storeSeq);
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(store)
-                        .status(200)
                         .message("업장 정보 조회에 성공하였습니다.")
+                        .data(store)
                         .build()
         );
     }
@@ -67,9 +65,8 @@ public class AdminController {
         List<StoreListResponse> stores = adminService.searchStore(storeName);
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(stores)
-                        .status(200)
                         .message("업장 검색에 성공하였습니다.")
+                        .data(stores)
                         .build()
         );
     }
@@ -86,7 +83,6 @@ public class AdminController {
         adminService.deleteStore(storeSeq);
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .status(200)
                         .message("업장 삭제에 성공하였습니다.")
                         .build()
         );
@@ -104,7 +100,6 @@ public class AdminController {
         adminService.saveStore(req);
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .status(200)
                         .message("업장 등록에 성공하였습니다.")
                         .build()
         );
@@ -122,7 +117,6 @@ public class AdminController {
         adminService.updateStore(req);
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .status(200)
                         .message("업장 수정에 성공하였습니다.")
                         .build()
         );

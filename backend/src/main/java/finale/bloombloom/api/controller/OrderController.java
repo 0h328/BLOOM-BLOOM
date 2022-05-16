@@ -38,8 +38,8 @@ public class OrderController {
         BloomUserDetails bloomUserDetails = (BloomUserDetails) authentication.getDetails();
         List<OrderListResponse> list = orderService.findOrderById(bloomUserDetails.getUsername());
         return ResponseEntity.status(200).body(Result.builder()
-                .data(list)
                 .message("주문 내역 리스트 조회에 성공하였습니다.")
+                .data(list)
                 .build()
         );
     }
@@ -61,8 +61,8 @@ public class OrderController {
         Order order = orderService.createOrder(orderBouquetRequest, bloomUserDetails.getUsername());
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(UuidResponse.from(order.getOrderUri()))
                         .message("주문 의뢰에 성공하였습니다.")
+                        .data(UuidResponse.from(order.getOrderUri()))
                         .build()
         );
     }
@@ -83,8 +83,8 @@ public class OrderController {
         OrderDetailResponse orderDetail = orderService.findOrderDetail(orderSeq);
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(orderDetail)
                         .message("주문내역 상세 조회에 성공하였습니다.")
+                        .data(orderDetail)
                         .build()
         );
     }
@@ -107,8 +107,8 @@ public class OrderController {
         List<StoreLocationResponse> store = orderService.findStore(storeLocationRequest);
         return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(store)
                         .message("근처 꽃집 조회에 성공하였습니다.")
+                        .data(store)
                         .build()
         );
     }
@@ -122,17 +122,16 @@ public class OrderController {
         if (authentication == null)
             return ResponseEntity.status(401).body(
                     Result.builder()
-                            .status(401)
                             .message("인증실패")
                             .build()
             );
 
         User user = ((BloomUserDetails) authentication.getDetails()).getUser();
         OrderResponse response = orderService.findOrderDetailByUUID(user, uuid);
-        return ResponseEntity.ok(
+        return ResponseEntity.status(200).body(
                 Result.builder()
-                        .data(response)
                         .message("주문내역 상세 조회(업체)에 성공하였습니다.")
+                        .data(response)
                         .build()
         );
     }
