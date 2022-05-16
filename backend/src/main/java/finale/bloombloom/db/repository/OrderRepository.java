@@ -1,6 +1,7 @@
 package finale.bloombloom.db.repository;
 
 import finale.bloombloom.db.entity.Order;
+import finale.bloombloom.db.entity.Store;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,4 +16,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByUser_UserSeqOrderByOrderSeqDesc(Long userSeq, Pageable pageable);
 
     Optional<Order> findByOrderUri(String uuid);
+
+    void deleteByStore_StoreSeq(Long storeSeq);
+
+
+
 }
