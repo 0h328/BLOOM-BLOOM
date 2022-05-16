@@ -128,7 +128,7 @@ function BouquetDetailModal({
             sx={{
               mt: "10%",
               width: "90%",
-              height: "80%",
+              height: "90%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -137,18 +137,18 @@ function BouquetDetailModal({
             }}
           >
             <CloseIcon sx={{}} onClick={closeBouquetDetailModal} />
-            <Box sx={{}}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
               <img
                 src={bouquet.bouquetImage}
                 alt="꽃다발"
-                width={"100%"}
-                height={"337px"}
+                width={"90%"}
+                height={"300px"}
               ></img>
             </Box>
             <Box
               sx={{
                 width: "95%",
-                height: "35%",
+                height: "30%",
                 backgroundColor: "#ffff",
                 borderRadius: "10px",
                 border: "1px solid rgba(82, 82, 82, 0.29)",
@@ -158,7 +158,7 @@ function BouquetDetailModal({
             >
               <FlowerInfoList flowerInfoList={flowerInfo} />
             </Box>
-            <Box sx={{ height: "20%" }}>
+            <Box sx={{ height: "5%", width: "70%", mx: "auto" }}>
               <BouquetDetailModalBtn handleBtn={handleBtn} />
             </Box>
           </Box>
