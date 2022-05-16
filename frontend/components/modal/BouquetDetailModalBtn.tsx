@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { Box, Typography, Grid, Button, Link } from "@mui/material";
-
+import { deleteBouquet } from "../apis/bouquetApi";
+import { toast } from "material-react-toastify";
+import Toast from "../../components/common/Toast";
 interface btnProps {
   handleBtn: (code: number) => void;
+  bouquetSeq: number;
 }
-function BouquetDetailModalBtn({ handleBtn }: btnProps) {
-  const handleDelete = () => {};
+function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
+  const handleDelete = async () => {
+    const response = await deleteBouquet(bouquetSeq);
+    if (response.status === 200) {
+      toast.success("🔔 성공적으로 삭제되었습니다");
+    }
+    console.log(response);
+  };
   return (
     <Grid container>
+      <Toast />
       <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
         <Button
           variant="contained"

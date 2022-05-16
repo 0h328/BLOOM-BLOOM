@@ -26,7 +26,7 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
       <Typography
         component="div"
         sx={{
-          width: "25%",
+          width: "20%",
           fontWeight: "600",
           fontSize: "15px",
           fontFamily: "OneMobileLight",
@@ -37,7 +37,7 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
       <Typography
         component="div"
         sx={{
-          width: "75%",
+          width: "85%",
           fontWeight: "600",
           fontSize: "15px",
           fontFamily: "OneMobileLight",

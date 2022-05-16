@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { getPresent } from "../../components/apis/bouquetApi";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-
+import Link from "next/link";
 function Present() {
   //   const presentData = {
   //     bouquetImage: "/img/bouquet1.png",
@@ -123,33 +123,30 @@ function Present() {
               data-html2canvas-ignore="true"
               onCapture={onCapture}
             ></ImgDownloadBtn> */}
-            <Box
-              sx={{ display: "flex", width: "90%", justifyContent: "center" }}
-            >
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
               <IconButton component="div">
                 <FileDownloadOutlinedIcon
                   sx={{ fontSize: "2.5rem" }}
+                  onClick={onCapture}
                 ></FileDownloadOutlinedIcon>
               </IconButton>
-              {/* <IconButton component="div">
-                <HomeRoundedIcon sx={{ fontSize: "2.5rem" }}></HomeRoundedIcon>
-              </IconButton> */}
             </Box>
-
-            <Button
-              variant="contained"
-              size="small"
-              style={{
-                backgroundColor: "#FFE0E0",
-                color: "#000",
-                fontFamily: "OneMobileLight",
-                fontSize: "15px",
-                borderRadius: "5",
-                width: "60%",
-              }}
-            >
-              BloomBloom 이용하러가기
-            </Button>
+            <Link href="/" passHref>
+              <Button
+                variant="contained"
+                size="small"
+                style={{
+                  backgroundColor: "#FFE0E0",
+                  color: "#000",
+                  fontFamily: "OneMobileLight",
+                  fontSize: "15px",
+                  borderRadius: "5",
+                  width: "60%",
+                }}
+              >
+                BloomBloom 이용하기
+              </Button>
+            </Link>
           </Box>
         </Box>
       ) : null}

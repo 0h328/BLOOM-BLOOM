@@ -95,7 +95,8 @@ function MadeList() {
           overflowX: "hidden",
           overflowY: "scroll",
           justifyContent: "center",
-          mt: "2rem",
+          mt: "3rem",
+          pt: "1rem",
         }}
       >
         <FlowerImgList
