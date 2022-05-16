@@ -42,7 +42,7 @@ function Storecard({ storeInfo }) {
               }}
             >
               <img
-                src="/img/insta.PNG"
+                src="/img/insta.png"
                 alt="insta"
                 width={15}
                 height={15}></img>
