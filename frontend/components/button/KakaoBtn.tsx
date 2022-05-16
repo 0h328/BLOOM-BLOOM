@@ -14,9 +14,9 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
       style={{
         backgroundColor: "#FEE500",
         color: "#3A1D1D",
-        fontFamily: "JuliusSansOne",
+        fontFamily: "OneMobileLight",
         borderRadius: "5",
-        width: 280,
+        width: 260,
         height: 45,
       }}
       onClick={handleBtn}
@@ -51,7 +51,7 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
           <Typography
             style={{
               fontWeight: "600",
-              fontFamily: "JuliusSansOne",
+              fontFamily: "OneMobileLight",
               fontSize: "15px",
               color: "#3A1D1D",
             }}

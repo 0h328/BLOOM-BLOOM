@@ -14,8 +14,8 @@ function BouquetImg({ bouquetImage, modal }: bouquetImgProps) {
           id="img"
           src={bouquetImage}
           alt="꽃다발"
-          width={"200px"}
-          height={"200px"}
+          width={"100%"}
+          height={"100%"}
         ></img>
       ) : (
         <img
