@@ -119,10 +119,6 @@ function Present() {
           <Box
             sx={{ width: "100%", display: "flex", justifyContent: "center" }}
           >
-            {/* <ImgDownloadBtn
-              data-html2canvas-ignore="true"
-              onCapture={onCapture}
-            ></ImgDownloadBtn> */}
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <IconButton component="div">
                 <FileDownloadOutlinedIcon

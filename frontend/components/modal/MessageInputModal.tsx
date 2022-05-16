@@ -9,6 +9,8 @@ import { presentBouquetState } from "../../states/states";
 import { savePresent } from "../apis/bouquetApi";
 import KakaoMessage from "../kakaoApi/KakaoMessage";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "material-react-toastify";
+import Toast from "../../components/common/Toast";
 import {
   Button,
   Snackbar,
@@ -80,6 +82,11 @@ function MessageInputModal({
   );
   const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.target.value;
+    const textLength = text.length;
+    if (textLength > 150) {
+      toast.error("❌150자까지 입력가능합니다");
+    }
+    console.log(textLength);
     setContent(`${text}`);
   };
   const handleShare = async () => {
@@ -129,6 +136,7 @@ function MessageInputModal({
             zIndex: 900,
           }}
         >
+          <Toast />
           <Box
             sx={{
               mt: "15%",
