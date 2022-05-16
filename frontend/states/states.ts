@@ -11,9 +11,16 @@ const mainFlowerState = atom({
   default: [{ flowerSeq: -1, flowerCount: 0 }],
 });
 
+//메시지 전달할때 사용하는 꽃다발 정보가 저장
 const presentBouquetState = atom({
   key: "presentBouquet",
   default: { presentBouquetImage: "", presentBouquetSeq: -1 },
+});
+
+//confirm 페이지 확인용 꽃다발
+const confirmBouquetState = atom({
+  key: "confirmBouquet",
+  default: "",
 });
 
 // 포장지
@@ -68,4 +75,5 @@ export {
   adminState,
   storeImageState,
   totalCountState,
+  confirmBouquetState,
 };
