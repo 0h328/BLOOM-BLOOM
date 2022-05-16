@@ -250,7 +250,7 @@ function MessageInputModal({
                       </Typography>
                     </Button>
                   </CopyToClipboard>
-                  <Box sx={{ mt: "5%", width: "80%" }}>
+                  <Box sx={{ mt: "5%", width: "100%" }}>
                     <KakaoBtn
                       handleBtn={handleShare}
                       title="카카오톡으로 공유하기"
