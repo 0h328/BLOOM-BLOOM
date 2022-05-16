@@ -10,16 +10,18 @@ function MessageCard({ message }: messageProps) {
       sx={{
         backgroundColor: "#EFDFBF",
         width: "100%",
-        height: "100%",
-        borderRadius: "10px",
-        overflow: "scroll",
         minHeight: "180px",
+        overflow: "scroll",
+        height: "100%",
+        border: "1px solid #e8e8e8",
       }}
     >
       <Typography
         sx={{
+          height: "100%",
+          overflow: "scroll",
           marginTop: "15px",
-          fontFamily: "JuliusSansOne",
+          fontFamily: "OneMobileLight",
           fontSize: "14px",
           textAlign: "center",
           whiteSpace: "pre-line",

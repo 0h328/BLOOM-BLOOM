@@ -101,7 +101,7 @@ function Present() {
                 sx={{
                   fontFamily: "ONEMobileLight",
                   fontSize: "18px",
-                  margin: "1rem 0rem 1rem 0rem",
+                  margin: "0rem 0rem 1rem 0rem",
                 }}
               >
                 from . {presentData.presentSender}
@@ -119,34 +119,107 @@ function Present() {
           <Box
             sx={{ width: "100%", display: "flex", justifyContent: "center" }}
           >
-            {/* <ImgDownloadBtn
-              data-html2canvas-ignore="true"
-              onCapture={onCapture}
-            ></ImgDownloadBtn> */}
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <IconButton component="div">
-                <FileDownloadOutlinedIcon
-                  sx={{ fontSize: "2.5rem" }}
-                  onClick={onCapture}
-                ></FileDownloadOutlinedIcon>
-              </IconButton>
-            </Box>
-            <Link href="/" passHref>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <Button
                 variant="contained"
                 size="small"
+                sx={{
+                  alignItems: "center",
+                  mt: "1%",
+                }}
                 style={{
-                  backgroundColor: "#FFE0E0",
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  backgroundColor: "#BAD7DF",
                   color: "#000",
                   fontFamily: "OneMobileLight",
-                  fontSize: "15px",
                   borderRadius: "5",
-                  width: "60%",
+                  width: 260,
+                  height: 43,
                 }}
+                onClick={onCapture}
               >
-                BloomBloom 이용하기
-              </Button>
-            </Link>
+                <Typography
+                  component="div"
+                  sx={{
+                    width: "20%",
+                    fontWeight: "600",
+                    fontSize: "15px",
+                    fontFamily: "OneMobileLight",
+                    color: "#000",
+                    textAlign: "center",
+                  }}
+                >
+                  📷
+                </Typography>
+                <Typography
+                  component="div"
+                  sx={{
+                    width: "80%",
+                    fontWeight: "600",
+                    fontSize: "15px",
+                    fontFamily: "OneMobileLight",
+                    color: "#000",
+                    textAlign: "center",
+                  }}
+                >
+                  이미지 저장하기
+                </Typography>
+              </Button>{" "}
+              <Link href="/" passHref>
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    alignItems: "center",
+                    mt: "5%",
+                  }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    backgroundColor: "#FFE0E0",
+                    color: "#000",
+                    fontFamily: "OneMobileLight",
+                    borderRadius: "5",
+                    width: 260,
+                    height: 43,
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography
+                    component="div"
+                    sx={{
+                      width: "20%",
+                      fontWeight: "600",
+                      fontSize: "15px",
+                      fontFamily: "OneMobileLight",
+                      color: "#000",
+                      textAlign: "center",
+                    }}
+                  >
+                    🌸
+                  </Typography>
+                  <Typography
+                    component="div"
+                    sx={{
+                      width: "80%",
+                      fontWeight: "600",
+                      fontSize: "15px",
+                      fontFamily: "OneMobileLight",
+                      color: "#000",
+                    }}
+                  >
+                    BloomBloom 이용하기
+                  </Typography>
+                </Button>
+              </Link>
+            </Box>
           </Box>
         </Box>
       ) : null}
