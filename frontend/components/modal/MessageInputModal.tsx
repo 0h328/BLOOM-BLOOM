@@ -131,9 +131,9 @@ function MessageInputModal({
         >
           <Box
             sx={{
-              mt: "10%",
+              mt: "15%",
               width: "90%",
-              height: "80%",
+              height: "75%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -142,25 +142,43 @@ function MessageInputModal({
               mx: "auto",
             }}
           >
-            <CloseIcon
-              sx={{
-                color: "",
-                "&:hover": { cursor: "pointer" },
-              }}
-              onClick={share ? handleRoute : closeMessageModal}
-            />
-            <Typography
-              sx={{
-                height: "5%",
-                fontSize: "15px",
-                fontFamily: "OneMobileLight",
-                fontWeight: "bold",
-                mx: "auto",
-                textAlign: "center",
-              }}
-            >
-              메세지 내용을 입력해주세요
-            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <CloseIcon
+                sx={{
+                  margin: "1rem 1rem 0rem 1rem",
+                  color: "",
+                  "&:hover": { cursor: "pointer" },
+                }}
+                onClick={share ? handleRoute : closeMessageModal}
+              />
+            </Box>
+            {isStored ? (
+              <Typography
+                sx={{
+                  height: "5%",
+                  fontSize: "15px",
+                  fontFamily: "OneMobileLight",
+                  fontWeight: "bold",
+                  mx: "auto",
+                  textAlign: "center",
+                }}
+              >
+                성공적으로 저장했습니다
+              </Typography>
+            ) : (
+              <Typography
+                sx={{
+                  height: "5%",
+                  fontSize: "15px",
+                  fontFamily: "OneMobileLight",
+                  fontWeight: "bold",
+                  mx: "auto",
+                  textAlign: "center",
+                }}
+              >
+                메세지 내용을 입력해주세요
+              </Typography>
+            )}
             <Box
               sx={{
                 position: "relative",

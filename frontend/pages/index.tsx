@@ -8,8 +8,8 @@ import { maxWidth } from "@mui/system";
 import { setScreenSize } from "../components/common/Size";
 function Login() {
   const [windowHeight, setWindowHeight] = useState<number>();
-  // const BASE_URI = "http://localhost:3000/kakaoLogin";
-  const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
+  const BASE_URI = "http://localhost:3000/kakaoLogin";
+  // const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
   const router = useRouter();
   const handleLogin = () => {
     kakaoLogin();

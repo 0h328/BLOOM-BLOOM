@@ -126,9 +126,9 @@ function BouquetDetailModal({
         >
           <Box
             sx={{
-              mt: "10%",
+              mt: "15%",
               width: "90%",
-              height: "90%",
+              height: "85%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -136,7 +136,12 @@ function BouquetDetailModal({
               boxShadow: "6px 6px 4px rgba(0, 0, 0, 0.25)",
             }}
           >
-            <CloseIcon sx={{}} onClick={closeBouquetDetailModal} />
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <CloseIcon
+                sx={{ margin: "1rem 1rem 0rem 1rem" }}
+                onClick={closeBouquetDetailModal}
+              />
+            </Box>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <img
                 src={bouquet.bouquetImage}
@@ -148,18 +153,20 @@ function BouquetDetailModal({
             <Box
               sx={{
                 width: "95%",
-                height: "30%",
+                height: "35%",
                 backgroundColor: "#ffff",
                 borderRadius: "10px",
                 border: "1px solid rgba(82, 82, 82, 0.29)",
-                overflow: "scroll",
                 mx: "auto",
               }}
             >
               <FlowerInfoList flowerInfoList={flowerInfo} />
             </Box>
             <Box sx={{ height: "5%", width: "70%", mx: "auto" }}>
-              <BouquetDetailModalBtn handleBtn={handleBtn} />
+              <BouquetDetailModalBtn
+                handleBtn={handleBtn}
+                bouquetSeq={bouquet.bouquetSeq}
+              />
             </Box>
           </Box>
         </Box>

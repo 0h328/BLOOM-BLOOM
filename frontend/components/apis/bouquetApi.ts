@@ -53,3 +53,7 @@ export const saveBouquet = async (data: any) => {
     },
   });
 };
+
+export const deleteBouquet = async (bouquetSeq: number) => {
+  return await bouquetApi.delete(`/${bouquetSeq}`);
+};
