@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box } from "@mui/material";
 import Image from "next/image";
 
 interface bouquetImgProps {
   bouquetImage: string;
   modal?: boolean;
+  imageRef?: any;
 }
-function BouquetImg({ bouquetImage, modal }: bouquetImgProps) {
+function BouquetImg({ bouquetImage, modal, imageRef }: bouquetImgProps) {
   return (
     <>
       {modal ? (
@@ -19,6 +20,7 @@ function BouquetImg({ bouquetImage, modal }: bouquetImgProps) {
         ></img>
       ) : (
         <img
+          ref={imageRef}
           id="img"
           src={bouquetImage}
           alt="꽃다발"
