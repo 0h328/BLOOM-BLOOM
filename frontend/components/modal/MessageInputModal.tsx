@@ -362,7 +362,7 @@ function MessageInputModal({
                         offsetHeight > 250 ? `${offsetHeight - 270}px` : null,
                       marginTop: offsetHeight > 250 ? null : "10px",
                     }}
-                    onClick={handleStoreButtonClick}
+                    onClick={() => handleStoreButtonClick}
                   >
                     <Typography
                       component="div"
