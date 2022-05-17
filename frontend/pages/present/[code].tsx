@@ -10,7 +10,12 @@ import { getPresent } from "../../components/apis/bouquetApi";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import Link from "next/link";
+import Swal from "sweetalert2";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { BASE_URL } from "../../components/apis/config";
+
 function Present() {
+  
   //   const presentData = {
   //     bouquetImage: "/img/bouquet1.png",
   //     presentSender: "김정혁",
@@ -35,6 +40,45 @@ function Present() {
     presentSender: "",
     presentDesc: "",
   });
+
+ 
+  const gotoOtherBrowser = () => { 
+    Swal.fire({
+      title:"<style>.swal2-popup{font-family: OneMobileLight}  .cursor_{cursor: pointer} </style>카카오에서 바로 들어오셨나요?",
+      html: '<b>다른 브라우저</b>를 이용하시면 저희 <strong style="color:#f1bfbf;">bloombloom</strong>을 보다 편하게 이용하실 수 있습니다.' 
+        + '<p><b><div id="clipboard"><div class="cursor_">'
+        +'📬링크 복사'
+        +'</div></div></b></p> ',
+      icon: 'question',
+      showConfirmButton:false,
+      confirmButtonText: '📬링크 복사',
+    }).then(() =>{
+      Swal.close()
+    })
+    document.getElementById('clipboard').onclick = function () {
+      navigator.clipboard.writeText("https://bloombloom.kro.kr/");
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: '링크가 복사되었습니다. 🎉'
+      })
+    };
+  }
+  const doCopy = () => {
+    console.log("안녕")
+    navigator.clipboard.writeText(BASE_URL)
+  }
   const onCapture = () => {
     console.log("capture");
     html2canvas(document.getElementById("img"), {
@@ -176,7 +220,7 @@ function Present() {
                   이미지 저장하기
                 </Typography>
               </Button>{" "}{
-                !isKakaoBrower?
+                isKakaoBrower?
                 <Link href="/" passHref>
                   <Button
                     variant="contained"
@@ -224,10 +268,11 @@ function Present() {
                     </Typography>
                   </Button>
                   </Link> :
-                   <Link href="/main" passHref>
+                  
                    <Button
                      variant="contained"
-                     size="small"
+                    size="small"
+                    onClick={gotoOtherBrowser}
                      sx={{
                        alignItems: "center",
                        mt: "5%",
@@ -270,8 +315,6 @@ function Present() {
                        BloomBloom 이용하기
                      </Typography>
                    </Button>
-                   </Link>
-
               }
             </Box>
           </Box>
