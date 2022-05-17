@@ -72,7 +72,13 @@ function Present() {
         icon: 'success',
         title: '링크가 복사되었습니다. 🎉'
       }).then(() => {
-        location.href = "kakaotalk://inappbrowser/close";
+                
+        var _ua = window.navigator.userAgent
+          //alert(_ua.toLocaleLowerCase().indexOf("kakaotalk"))
+          if (_ua.toLocaleLowerCase().indexOf("kakaotalk") > -1) {
+            //alert("!")
+            window.location.href = (/iPad|iPhone|iPod/.test(_ua)) ? "kakaoweb://closeBrowser" : "kakaotalk://inappbrowser/close";
+          }
       })
     };
   }
