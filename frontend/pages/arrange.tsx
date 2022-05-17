@@ -9,6 +9,7 @@ import html2canvas from "html2canvas";
 import Moveable from "react-moveable";
 import Selecto from "react-selecto";
 import { presentBouquetState } from "../states/states";
+import { useRouter } from "next/router";
 import {
   wrapState,
   decoState,
@@ -22,6 +23,7 @@ import { toast } from "material-react-toastify";
 import { useRecoilState } from "recoil";
 import { saveBouquet } from "../components/apis/bouquetApi";
 function Arrange() {
+  const router = useRouter();
   const [finish, setFinish] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>();
   const [checkModal, setCheckModal] = useState<boolean>();
@@ -93,7 +95,7 @@ function Arrange() {
       presentBouquetImage: response.data.data.bouquetImage,
       presentBouquetSeq: response.data.data.bouquetSeq,
     });
-    console.log("hey", response);
+    router.push("/confirm");
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);

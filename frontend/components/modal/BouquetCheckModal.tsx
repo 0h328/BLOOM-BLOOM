@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
 import BouquetImg from "../../components/present/BouquetImg";
 import CommonButton from "../common/CommonButton";
-
+import { useRouter } from "next/router";
 interface modalProps {
   bouquetImage: string;
   handleCheckModal: (state: boolean) => void;
@@ -22,6 +22,7 @@ function BouquetCheckModal({
   const [curWidth, setCurWidth] = useState<number>();
   const [imgHeight, setImgHeight] = useState<number>();
   const [imgWidth, setImgWidth] = useState<number>();
+  const router = useRouter();
   const closeBouquetDetailModal = () => {
     handleCheckModal(false);
   };
@@ -32,6 +33,9 @@ function BouquetCheckModal({
     // console.log(
     //   `화면 사이즈 x : ${window.innerWidth}, y : ${window.innerHeight}`
     // );
+  };
+  const handleConfirm = () => {
+    router.push("/confirm");
   };
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -108,14 +112,13 @@ function BouquetCheckModal({
                 handleBtn={closeBouquetDetailModal}
                 backgroundColor="#EFDFBF"
               ></CommonButton>
-              <Link href="/confirm" passHref>
-                <CommonButton
-                  icon={"👍"}
-                  text={"꽃다발 꾸미기 완성"}
-                  handleBtn={handleComplete}
-                  backgroundColor="#FFE0E0"
-                ></CommonButton>
-              </Link>
+
+              <CommonButton
+                icon={"👍"}
+                text={"꽃다발 꾸미기 완성"}
+                handleBtn={handleComplete}
+                backgroundColor="#FFE0E0"
+              ></CommonButton>
             </Box>
           </Box>
         </Box>
