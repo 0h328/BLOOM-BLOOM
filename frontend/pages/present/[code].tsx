@@ -25,6 +25,7 @@ function Present() {
   const [windowHeight, setWindowHeight] = useState<number>();
   const [image, setImage] = useState<string>("");
   const [code, setCode] = useState<any>([]);
+  const [isKakaoBrower, setKakaoBrower] = useState(false);
   const [presentData, setPresentData] = useState<{
     bouquetImage: string;
     presentSender: string;
@@ -58,6 +59,9 @@ function Present() {
     setPresentData({ ...response.data.data });
   };
   useEffect(() => {
+    const isKakao = navigator.userAgent.match("KAKAOTALK")
+    console.log(navigator.userAgent)
+    setKakaoBrower(Boolean(isKakao))
     if (!router.isReady) return;
     setCode(router.query.code);
   }, [router.isReady]);
@@ -171,54 +175,104 @@ function Present() {
                 >
                   이미지 저장하기
                 </Typography>
-              </Button>{" "}
-              <Link href="/" passHref>
-                <Button
-                  variant="contained"
-                  size="small"
-                  sx={{
-                    alignItems: "center",
-                    mt: "5%",
-                  }}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    backgroundColor: "#FFE0E0",
-                    color: "#000",
-                    fontFamily: "OneMobileLight",
-                    borderRadius: "5",
-                    width: 260,
-                    height: 43,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography
-                    component="div"
+              </Button>{" "}{
+                !isKakaoBrower?
+                <Link href="/" passHref>
+                  <Button
+                    variant="contained"
+                    size="small"
                     sx={{
-                      width: "20%",
-                      fontWeight: "600",
-                      fontSize: "15px",
-                      fontFamily: "OneMobileLight",
+                      alignItems: "center",
+                      mt: "5%",
+                    }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      backgroundColor: "#FFE0E0",
                       color: "#000",
+                      fontFamily: "OneMobileLight",
+                      borderRadius: "5",
+                      width: 260,
+                      height: 43,
                       textAlign: "center",
                     }}
                   >
-                    🌸
-                  </Typography>
-                  <Typography
-                    component="div"
-                    sx={{
-                      width: "80%",
-                      fontWeight: "600",
-                      fontSize: "15px",
-                      fontFamily: "OneMobileLight",
-                      color: "#000",
-                    }}
-                  >
-                    BloomBloom 이용하기
-                  </Typography>
-                </Button>
-              </Link>
+                    <Typography
+                      component="div"
+                      sx={{
+                        width: "20%",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        fontFamily: "OneMobileLight",
+                        color: "#000",
+                        textAlign: "center",
+                      }}
+                    >
+                      🌸
+                    </Typography>
+                    <Typography
+                      component="div"
+                      sx={{
+                        width: "80%",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        fontFamily: "OneMobileLight",
+                        color: "#000",
+                      }}
+                    >
+                      BloomBloom 이용하기
+                    </Typography>
+                  </Button>
+                  </Link> :
+                   <Link href="/main" passHref>
+                   <Button
+                     variant="contained"
+                     size="small"
+                     sx={{
+                       alignItems: "center",
+                       mt: "5%",
+                     }}
+                     style={{
+                       display: "flex",
+                       justifyContent: "flex-start",
+                       backgroundColor: "#FFE0E0",
+                       color: "#000",
+                       fontFamily: "OneMobileLight",
+                       borderRadius: "5",
+                       width: 260,
+                       height: 43,
+                       textAlign: "center",
+                     }}
+                   >
+                     <Typography
+                       component="div"
+                       sx={{
+                         width: "20%",
+                         fontWeight: "600",
+                         fontSize: "15px",
+                         fontFamily: "OneMobileLight",
+                         color: "#000",
+                         textAlign: "center",
+                       }}
+                     >
+                       🌸
+                     </Typography>
+                     <Typography
+                       component="div"
+                       sx={{
+                         width: "80%",
+                         fontWeight: "600",
+                         fontSize: "15px",
+                         fontFamily: "OneMobileLight",
+                         color: "#000",
+                       }}
+                     >
+                       BloomBloom 이용하기
+                     </Typography>
+                   </Button>
+                   </Link>
+
+              }
             </Box>
           </Box>
         </Box>
