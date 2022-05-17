@@ -224,7 +224,7 @@ function Present() {
                   이미지 저장하기
                 </Typography>
               </Button>{" "}{
-                isKakaoBrowser?
+                !isKakaoBrowser?
                 <Link href="/" passHref>
                   <Button
                     variant="contained"
