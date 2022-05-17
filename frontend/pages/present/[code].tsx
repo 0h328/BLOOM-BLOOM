@@ -30,7 +30,7 @@ function Present() {
   const [windowHeight, setWindowHeight] = useState<number>();
   const [image, setImage] = useState<string>("");
   const [code, setCode] = useState<any>([]);
-  const [isKakaoBrower, setKakaoBrower] = useState(false);
+  const [isKakaoBrowser, setKakaoBrowser] = useState(false);
   const [presentData, setPresentData] = useState<{
     bouquetImage: string;
     presentSender: string;
@@ -105,7 +105,7 @@ function Present() {
   useEffect(() => {
     const isKakao = navigator.userAgent.match("KAKAOTALK")
     console.log(navigator.userAgent)
-    setKakaoBrower(Boolean(isKakao))
+    setKakaoBrowser(Boolean(isKakao))
     if (!router.isReady) return;
     setCode(router.query.code);
   }, [router.isReady]);
@@ -220,7 +220,7 @@ function Present() {
                   이미지 저장하기
                 </Typography>
               </Button>{" "}{
-                isKakaoBrower?
+                !isKakaoBrowser?
                 <Link href="/" passHref>
                   <Button
                     variant="contained"
