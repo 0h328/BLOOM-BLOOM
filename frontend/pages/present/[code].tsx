@@ -56,7 +56,10 @@ function Present() {
       Swal.close()
     })
     document.getElementById('clipboard').onclick = function () {
-      navigator.clipboard.writeText("https://bloombloom.kro.kr");
+      navigator.clipboard.writeText("https://bloombloom.kro.kr").then(() => {
+      })
+      .catch(() => {
+      });
       const Toast = Swal.mixin({
         toast: true,
         position: 'top',
