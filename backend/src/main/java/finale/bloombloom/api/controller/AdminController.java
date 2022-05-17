@@ -41,17 +41,6 @@ public class AdminController {
                             .build()
             );
 
-        String role = null;
-        for (GrantedAuthority authority : authentication.getAuthorities())
-            role = authority.getAuthority();
-
-        if (!role.equals("ROLE_ADMIN"))
-            return ResponseEntity.status(403).body(
-                    Result.builder()
-                            .message("권한 없음")
-                            .build()
-            );
-
         List<StoreListResponse> stores = adminService.findAllStore();
         return ResponseEntity.status(200).body(
                 Result.builder()
@@ -74,14 +63,6 @@ public class AdminController {
             return ResponseEntity.status(401).body(
                     Result.builder()
                             .message("인증 실패")
-                            .build()
-            );
-
-        String role = ((GrantedAuthority) authentication.getAuthorities()).getAuthority();
-        if (!role.equals("ROLE_ADMIN"))
-            return ResponseEntity.status(403).body(
-                    Result.builder()
-                            .message("권한 없음")
                             .build()
             );
 
@@ -110,14 +91,6 @@ public class AdminController {
                             .build()
             );
 
-        String role = ((GrantedAuthority) authentication.getAuthorities()).getAuthority();
-        if (!role.equals("ROLE_ADMIN"))
-            return ResponseEntity.status(403).body(
-                    Result.builder()
-                            .message("권한 없음")
-                            .build()
-            );
-
         List<StoreListResponse> stores = adminService.searchStore(storeName);
         return ResponseEntity.status(200).body(
                 Result.builder()
@@ -140,14 +113,6 @@ public class AdminController {
             return ResponseEntity.status(401).body(
                     Result.builder()
                             .message("인증 실패")
-                            .build()
-            );
-
-        String role = ((GrantedAuthority) authentication.getAuthorities()).getAuthority();
-        if (!role.equals("ROLE_ADMIN"))
-            return ResponseEntity.status(403).body(
-                    Result.builder()
-                            .message("권한 없음")
                             .build()
             );
 
@@ -176,14 +141,6 @@ public class AdminController {
                             .build()
             );
 
-        String role = ((GrantedAuthority) authentication.getAuthorities()).getAuthority();
-        if (!role.equals("ROLE_ADMIN"))
-            return ResponseEntity.status(403).body(
-                    Result.builder()
-                            .message("권한 없음")
-                            .build()
-            );
-
         String storeImageLink = adminService.saveStore(req, file);
         Map<String, String> response = new HashMap<>();
         response.put("storeImageLink", storeImageLink);
@@ -209,14 +166,6 @@ public class AdminController {
             return ResponseEntity.status(401).body(
                     Result.builder()
                             .message("인증 실패")
-                            .build()
-            );
-
-        String role = ((GrantedAuthority) authentication.getAuthorities()).getAuthority();
-        if (!role.equals("ROLE_ADMIN"))
-            return ResponseEntity.status(403).body(
-                    Result.builder()
-                            .message("권한 없음")
                             .build()
             );
 
