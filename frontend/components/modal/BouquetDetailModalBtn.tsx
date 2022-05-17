@@ -4,13 +4,8 @@ import { deleteBouquet } from "../apis/bouquetApi";
 interface btnProps {
   handleBtn: (code: number) => void;
   bouquetSeq: number;
-  handleDelete: () => void;
 }
-function BouquetDetailModalBtn({
-  handleBtn,
-  bouquetSeq,
-  handleDelete,
-}: btnProps) {
+function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
   return (
     <Box
       sx={{
@@ -25,7 +20,6 @@ function BouquetDetailModalBtn({
         size="small"
         sx={{
           alignItems: "center",
-          mt: "5%",
         }}
         style={{
           display: "flex",
@@ -65,7 +59,7 @@ function BouquetDetailModalBtn({
           size="small"
           sx={{
             alignItems: "center",
-            mt: "5%",
+            mt: "8%",
           }}
           style={{
             display: "flex",
@@ -112,7 +106,7 @@ export const btnStyle = {
 };
 export const btnStyle1 = {
   fontWeight: "600",
-  fontSize: "15px",
+  fontSize: "14px",
   fontFamily: "OneMobileLight",
   color: "#000",
 };

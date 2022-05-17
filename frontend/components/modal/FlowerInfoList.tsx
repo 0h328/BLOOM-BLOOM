@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import Image from "next/image";
 import { textStyle } from "../main/FlowerImgListTitle";
@@ -89,6 +89,7 @@ export const boxStyle = {
 export const titleStyle = {
   fontWeight: "bold",
   fontFamily: "OneMobileLight",
+  fontSize: "14px",
 };
 
 export default FlowerInfoList;

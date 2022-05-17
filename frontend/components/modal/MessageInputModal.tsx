@@ -11,6 +11,7 @@ import KakaoMessage from "../kakaoApi/KakaoMessage";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "material-react-toastify";
 import Toast from "../../components/common/Toast";
+import { useBeforeunload } from "react-beforeunload";
 import {
   Button,
   Snackbar,
@@ -20,7 +21,6 @@ import {
   SlideProps,
 } from "@mui/material";
 import { BASE_URL } from "../apis/config";
-
 type TransitionProps = Omit<SlideProps, "direction">;
 
 function TransitionDown(props: TransitionProps) {
@@ -47,7 +47,6 @@ function MessageInputModal({
   const [isStored, setIsStored] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>("");
-
   const handleStoreButtonClick = async () => {
     // 1. requeset를 만든다.
     const body = {
@@ -69,6 +68,11 @@ function MessageInputModal({
   const handleCloseButton = () => {
     setOpen(false);
   };
+  useBeforeunload((e: any) => {
+    e.preventDefault;
+    console.log("새로고침?");
+    router.push("/madelist");
+  });
 
   const action = (
     <React.Fragment>
@@ -138,7 +142,7 @@ function MessageInputModal({
             position: "absolute",
             width: "420px",
             height: "100%",
-            backgroundColor: "rgba(255, 250, 250, 75%)",
+            backgroundColor: "rgb(31 31 31 / 33%)",
             zIndex: 900,
           }}
         >
@@ -325,6 +329,7 @@ function MessageInputModal({
                       width: 260,
                       height: 43,
                     }}
+                    onClick={handleStoreButtonClick}
                   >
                     <Typography
                       component="div"
