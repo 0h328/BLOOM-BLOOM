@@ -6,6 +6,7 @@ class MyDocument extends Document{
             <Html>
                 <Head>
                     <script defer src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
                     <meta property="og:title" content="test"/>
                     <meta property="og:type" content="article"/>
                     <meta property="og:description" content="This is a description."/>
