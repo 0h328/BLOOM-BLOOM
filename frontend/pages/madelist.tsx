@@ -15,6 +15,7 @@ function MadeList() {
   const [bouquet, setBouquet] = useState<Bouquet>();
   const [detailModal, setDetailModal] = useState<boolean>(false);
   const [messageModal, setMessageModal] = useState<boolean>(false);
+  const [isStored, setIsStored] = useState<boolean>(false);
   const handleBouquetList = async () => {
     const response = await getBouquetList();
     console.log(response);
@@ -31,7 +32,12 @@ function MadeList() {
   };
 
   const handleMessageModal = (state: boolean) => {
+    if (state) setIsStored(false);
     setMessageModal(state);
+  };
+
+  const handleIsStored = (state: boolean) => {
+    setIsStored(state);
   };
 
   useEffect(() => {
@@ -65,6 +71,8 @@ function MadeList() {
       <MessageInputModal
         messageModal={messageModal}
         handleMessageModal={handleMessageModal}
+        isStored={isStored}
+        handleIsStored={handleIsStored}
       ></MessageInputModal>
       <Box sx={{ mt: "2rem", width: "93%" }}>
         <Typography

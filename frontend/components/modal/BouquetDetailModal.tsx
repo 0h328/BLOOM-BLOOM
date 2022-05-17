@@ -121,7 +121,7 @@ function BouquetDetailModal({
             sx={{
               mt: "15%",
               width: "90%",
-              height: "85%",
+              height: "90%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -171,7 +171,7 @@ function BouquetDetailModal({
                     border: "1px solid rgba(82, 82, 82, 0.29)",
                     mx: "auto",
                     position: offsetHeight > 227 ? "absolute" : null,
-                    top: offsetHeight ? `${offsetHeight - 10}px` : null,
+                    top: offsetHeight ? `${offsetHeight - 30}px` : null,
                   }}
                 >
                   <FlowerInfoList flowerInfoList={flowerInfo} />
@@ -185,7 +185,7 @@ function BouquetDetailModal({
                     justifyContent: "center",
                     top:
                       offsetHeight > 227
-                        ? `${offsetHeight + 200 - 10}px`
+                        ? `${offsetHeight + 170 - 10}px`
                         : "null",
                     pt: "1rem",
                   }}

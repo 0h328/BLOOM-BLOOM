@@ -3,6 +3,7 @@ import { Box, Typography, Button, Grid } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
 import BouquetImg from "../../components/present/BouquetImg";
+import CommonButton from "../common/CommonButton";
 
 interface modalProps {
   bouquetImage: string;
@@ -94,25 +95,26 @@ function BouquetCheckModal({
             <Box
               sx={{
                 width: "100%",
+                height: "15%",
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
               }}
             >
-              <Button
-                variant="contained"
-                size="small"
-                sx={{ ...btnStyle }}
-                onClick={closeBouquetDetailModal}
-              >
-                더 꾸미기
-              </Button>
+              <CommonButton
+                icon={"🌼"}
+                text={"더 꾸미러 가기"}
+                handleBtn={closeBouquetDetailModal}
+                backgroundColor="#EFDFBF"
+              ></CommonButton>
               <Link href="/confirm" passHref>
-                <Button
-                  variant="contained"
-                  size="small"
-                  sx={{ ...btnStyle }}
-                  onClick={handleComplete}
-                >
-                  완성하기
-                </Button>
+                <CommonButton
+                  icon={"👍"}
+                  text={"꽃다발 꾸미기 완성"}
+                  handleBtn={handleComplete}
+                  backgroundColor="#FFE0E0"
+                ></CommonButton>
               </Link>
             </Box>
           </Box>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
@@ -31,22 +31,28 @@ interface meesageModalProps {
   closeMessageModal?: () => void;
   handleMessageModal?: (state: boolean) => void;
   messageModal?: boolean;
+  isStored?: boolean;
+  handleIsStored?: (state: boolean) => void;
 }
 function MessageInputModal({
   openMessageModal,
   closeMessageModal,
   handleMessageModal,
   messageModal,
+  isStored,
+  handleIsStored,
 }: meesageModalProps) {
   const router = useRouter();
+  const imageRef = useRef(null);
   const [content, setContent] = useState<string>("");
   const [textLength, setTextLength] = useState<number>();
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
   const [uuid, setUuid] = useState<string>("");
-  const [isStored, setIsStored] = useState<boolean>(false);
+  // const [isStored, setIsStored] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>("");
+  const [offsetHeight, setOffsetHeight] = useState<number>();
   const handleStoreButtonClick = async () => {
     // 1. requeset를 만든다.
     const body = {
@@ -58,7 +64,8 @@ function MessageInputModal({
     // 3. 반환된 값을 받아서 uuid에 저장한다.
     setUuid(response.data.data.uuid);
     // 4. 저장이 되었다면 isStored도 true로 상태 변경을 진행한다.
-    setIsStored(true);
+    // setIsStored(true);
+    handleIsStored(true);
   };
 
   const handleCopyButton = () => {
@@ -66,6 +73,8 @@ function MessageInputModal({
   };
 
   const handleCloseButton = () => {
+    // setIsStored(false);
+    handleIsStored(false);
     setOpen(false);
   };
   useBeforeunload((e: any) => {
@@ -131,6 +140,20 @@ function MessageInputModal({
   const handleRoute = () => {
     router.back();
   };
+  useEffect(() => {
+    if (imageRef !== null && imageRef !== undefined) {
+      if (imageRef.current !== null) {
+        console.log(imageRef.current.offsetHeight);
+        setOffsetHeight(imageRef.current.offsetHeight);
+      }
+    }
+  });
+  useEffect(() => {
+    console.log(offsetHeight);
+  }, [offsetHeight]);
+  useEffect(() => {
+    if (messageModal) setContent("");
+  }, [messageModal]);
   return (
     <>
       {messageModal ? (
@@ -148,7 +171,7 @@ function MessageInputModal({
             sx={{
               mt: "15%",
               width: "90%",
-              height: "75%",
+              height: "80%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -197,18 +220,25 @@ function MessageInputModal({
             )}
             <Box
               sx={{
-                mt: "5%",
+                mt: offsetHeight > 250 ? null : "5%",
                 width: "80%",
                 mx: "auto",
               }}
             >
-              <BouquetImg
-                bouquetImage={presentBouquet.presentBouquetImage}
-              ></BouquetImg>
+              <Box sx={{}}>
+                <img
+                  ref={imageRef}
+                  id="img"
+                  src={presentBouquet.presentBouquetImage}
+                  alt="꽃다발"
+                  width={"100%"}
+                  height={"100%"}
+                ></img>
+              </Box>
             </Box>
             <Box
               sx={{
-                height: "35%",
+                height: "34%",
                 display: "flex",
                 justifyContent: "center",
                 flexDirection: "column",
@@ -291,33 +321,32 @@ function MessageInputModal({
                 </Box>
               ) : (
                 <>
-                  <TextareaAutosize
+                  <textarea
                     aria-label="minimum height"
                     id="content"
                     // disabled={textLength > 150}
                     value={content}
-                    minRows={3}
-                    maxRows={10}
+                    // minRows={}
+                    // maxRows={10}
                     placeholder="이야기를 전달하세요"
                     style={{
                       width: "90%",
-                      height: "100%",
+                      height: offsetHeight > 250 ? "460%" : "90%",
                       fontSize: "0.85rem",
                       fontFamily: "OneMobileLight",
                       border: "1px solid rgba(109, 107, 107, 0.4)",
                       resize: "none",
                       padding: "1rem",
                       backgroundColor: "#EFDFBF",
+                      position: offsetHeight > 250 ? "relative" : null,
+                      top:
+                        offsetHeight > 250 ? `${260 - offsetHeight}px` : null,
                     }}
                     onChange={(event) => handleInput(event)}
                   />
                   <Button
                     variant="contained"
                     size="small"
-                    sx={{
-                      alignItems: "center",
-                      mt: "5%",
-                    }}
                     style={{
                       display: "flex",
                       justifyContent: "flex-start",
@@ -327,6 +356,11 @@ function MessageInputModal({
                       borderRadius: "5",
                       width: 260,
                       height: 43,
+                      alignItems: "center",
+                      position: offsetHeight > 250 ? "relative" : null,
+                      bottom:
+                        offsetHeight > 250 ? `${offsetHeight - 270}px` : null,
+                      marginTop: offsetHeight > 250 ? null : "10px",
                     }}
                     onClick={handleStoreButtonClick}
                   >
