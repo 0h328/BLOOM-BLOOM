@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Box, Typography, Grid, Button, Link } from "@mui/material";
 import { deleteBouquet } from "../apis/bouquetApi";
+import CommonButton from "../common/CommonButton";
 interface btnProps {
-  handleBtn: (code: number) => void;
+  handleBtn?: (code: number) => void;
   bouquetSeq: number;
 }
 function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
@@ -20,6 +21,7 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         size="small"
         sx={{
           alignItems: "center",
+          mb: "10px",
         }}
         style={{
           display: "flex",
@@ -54,44 +56,11 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         </Typography>
       </Button>
       <Link href="/ordermap" sx={{ textDecoration: "none" }}>
-        <Button
-          variant="contained"
-          size="small"
-          sx={{
-            alignItems: "center",
-            mt: "8%",
-          }}
-          style={{
-            display: "flex",
-            justifyContent: "flex-start",
-            backgroundColor: "#FFE0E0",
-            color: "#000",
-            fontFamily: "OneMobileLight",
-            borderRadius: "5",
-            width: 260,
-            height: 43,
-            maxHeight: "50%",
-          }}
-        >
-          <Typography
-            component="div"
-            sx={{
-              width: "25%",
-              ...btnStyle1,
-            }}
-          >
-            📱
-          </Typography>
-          <Typography
-            component="div"
-            sx={{
-              width: "50%",
-              ...btnStyle1,
-            }}
-          >
-            꽃다발 주문하기
-          </Typography>
-        </Button>
+        <CommonButton
+          icon={"📱"}
+          text={"꽃다발 주문하기"}
+          backgroundColor={"#FFE0E0"}
+        ></CommonButton>
       </Link>
     </Box>
   );
