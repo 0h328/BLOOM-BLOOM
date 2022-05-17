@@ -87,12 +87,13 @@ function Arrange() {
     }
   };
   const handleComplete = async () => {
+    console.log("여기");
     const response = await saveBouquet(bouquetImageData);
     setPresentBouquet({
       presentBouquetImage: response.data.data.bouquetImage,
       presentBouquetSeq: response.data.data.bouquetSeq,
     });
-    console.log(response);
+    console.log("hey", response);
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);

@@ -6,15 +6,17 @@ import BouquetImg from "../components/present/BouquetImg";
 import ConfirmBtn from "../components/button/ConfirmPageBtn";
 import MessageInputModal from "../components/modal/MessageInputModal";
 import { useRecoilState } from "recoil";
-import { confirmBouquetState } from "../states/states";
+import { confirmBouquetState, presentBouquetState } from "../states/states";
 function Confirm() {
   const router = useRouter();
   const [confirmBouquet, setConfirmBouquet] =
     useRecoilState(confirmBouquetState);
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   const [messageModal, setMessageModal] = useState<boolean>(false);
   const bouquetImage = "/img/wrapIvory.png";
   const handleMessageModal = (state: boolean) => {
-    setMessageModal(true);
+    setMessageModal(state);
   };
   const openMessageModal = () => {
     setMessageModal(true);
@@ -26,7 +28,7 @@ function Confirm() {
     e.preventDefault();
     router.push("/order");
   };
-  console.log(confirmBouquet);
+  console.log(presentBouquet);
   return (
     <Box
       sx={{
@@ -44,9 +46,8 @@ function Confirm() {
         <Header></Header>
       </Box>
       <MessageInputModal
-        openMessageModal={openMessageModal}
-        closeMessageModal={closeMessageModal}
         messageModal={messageModal}
+        handleMessageModal={handleMessageModal}
       ></MessageInputModal>
       <Box
         sx={{
