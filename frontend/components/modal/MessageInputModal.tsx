@@ -53,11 +53,8 @@ function MessageInputModal({
   const [open, setOpen] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>("");
   const [offsetHeight, setOffsetHeight] = useState<number>();
-  const handleStore = () => {
-    handleStoreButtonClick();
-  };
   const handleStoreButtonClick = async () => {
-    console.log("이야기담기");
+    console.log("요청전");
     // 1. requeset를 만든다.
     const body = {
       bouquetSeq: presentBouquet.presentBouquetSeq,
@@ -65,6 +62,7 @@ function MessageInputModal({
     };
     // 2. 서버로 요청을 보낸다.
     const response = await savePresent(body);
+    console.log("요청후");
     // 3. 반환된 값을 받아서 uuid에 저장한다.
     setUuid(response.data.data.uuid);
     // 4. 저장이 되었다면 isStored도 true로 상태 변경을 진행한다.
@@ -366,7 +364,7 @@ function MessageInputModal({
                         offsetHeight > 250 ? `${offsetHeight - 270}px` : null,
                       marginTop: offsetHeight > 250 ? null : "10px",
                     }}
-                    onClick={handleStore}
+                    onClick={handleStoreButtonClick}
                   >
                     <Typography
                       component="div"

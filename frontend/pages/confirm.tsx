@@ -73,7 +73,7 @@ function Confirm() {
           icon={"📜"}
           text={"메세지와 함께 공유하기"}
           backgroundColor={"#EFDFBF"}
-          handleBtn={openMessageModal}
+          handleBtn={() => openMessageModal()}
         ></CommonButton>
         <Typography
           sx={{
