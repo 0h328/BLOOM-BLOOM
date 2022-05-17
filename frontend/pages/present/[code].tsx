@@ -30,7 +30,7 @@ function Present() {
   const [windowHeight, setWindowHeight] = useState<number>();
   const [image, setImage] = useState<string>("");
   const [code, setCode] = useState<any>([]);
-  const [isKakaoBrower, setKakaoBrower] = useState(false);
+  const [isKakaoBrowser, setKakaoBrowser] = useState(false);
   const [presentData, setPresentData] = useState<{
     bouquetImage: string;
     presentSender: string;
@@ -41,14 +41,25 @@ function Present() {
     presentDesc: "",
   });
 
+  const copylink = async() => {
+    var tmpTextarea = document.createElement('textarea');
+    tmpTextarea.value = "https://bloombloom.kro.kr";
+ 
+    document.body.appendChild(tmpTextarea);
+    tmpTextarea.select();
+    tmpTextarea.setSelectionRange(0, 9999);  // 셀렉트 범위 설정
+ 
+    document.execCommand('copy');
+    document.body.removeChild(tmpTextarea);
+  }
  
   const gotoOtherBrowser = () => { 
     Swal.fire({
-      title:"<style>.swal2-popup{font-family: OneMobileLight}  .cursor_{cursor: pointer} </style>카카오에서 바로 들어오셨나요?",
+      title: '<style>.swal2-popup{font-family: OneMobileLight}  .cursor_{cursor: pointer} </style><span style="color: #FEE500;" >카카오</span>에서 <br/>바로 들어오셨나요?',
       html: '<b>다른 브라우저</b>를 이용하시면 저희 <strong style="color:#f1bfbf;">bloombloom</strong>을 보다 편하게 이용하실 수 있습니다.' 
-        + '<p><b><div id="clipboard"><div class="cursor_">'
+        + '<p><b><div id="clipboard" class="cursor_">'
         +'📬링크 복사'
-        +'</div></div></b></p> ',
+        +'</div></b></p> ',
       icon: 'question',
       showConfirmButton:false,
       confirmButtonText: '📬링크 복사',
@@ -56,7 +67,7 @@ function Present() {
       Swal.close()
     })
     document.getElementById('clipboard').onclick = function () {
-      navigator.clipboard.writeText("https://bloombloom.kro.kr/");
+      copylink();
       const Toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -68,17 +79,22 @@ function Present() {
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
       })
-      
       Toast.fire({
         icon: 'success',
         title: '링크가 복사되었습니다. 🎉'
-      })
-    };
+      }).then(() => {
+                
+        var _ua = window.navigator.userAgent
+          //alert(_ua.toLocaleLowerCase().indexOf("kakaotalk"))
+          if (_ua.toLocaleLowerCase().indexOf("kakaotalk") > -1) {
+            //alert("!")
+            window.location.href = (/iPad|iPhone|iPod/.test(_ua)) ? "kakaoweb://closeBrowser" : "kakaotalk://inappbrowser/close";
+          }
+      }) 
+    }
+   
   }
-  const doCopy = () => {
-    console.log("안녕")
-    navigator.clipboard.writeText(BASE_URL)
-  }
+
   const onCapture = () => {
     console.log("capture");
     html2canvas(document.getElementById("img"), {
@@ -105,7 +121,7 @@ function Present() {
   useEffect(() => {
     const isKakao = navigator.userAgent.match("KAKAOTALK")
     console.log(navigator.userAgent)
-    setKakaoBrower(Boolean(isKakao))
+    setKakaoBrowser(Boolean(isKakao))
     if (!router.isReady) return;
     setCode(router.query.code);
   }, [router.isReady]);
@@ -220,7 +236,7 @@ function Present() {
                   이미지 저장하기
                 </Typography>
               </Button>{" "}{
-                isKakaoBrower?
+                !isKakaoBrowser?
                 <Link href="/" passHref>
                   <Button
                     variant="contained"
