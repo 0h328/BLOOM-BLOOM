@@ -8,6 +8,7 @@ import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
 import Moveable from "react-moveable";
 import Selecto from "react-selecto";
+import { presentBouquetState } from "../states/states";
 import {
   wrapState,
   decoState,
@@ -31,7 +32,8 @@ function Arrange() {
   const [totalCount, setTotalCount] = useRecoilState(totalCountState);
   const [confirmBouquet, setConfirmBouquet] =
     useRecoilState(confirmBouquetState);
-
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
   const [bouquetImageData, setBouquetImageData] = useState<FormData>();
@@ -86,6 +88,10 @@ function Arrange() {
   };
   const handleComplete = async () => {
     const response = await saveBouquet(bouquetImageData);
+    setPresentBouquet({
+      presentBouquetImage: response.data.data.bouquetImage,
+      presentBouquetSeq: response.data.data.bouquetSeq,
+    });
     console.log(response);
   };
   const handleArrange = (state: boolean) => {
