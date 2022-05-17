@@ -29,14 +29,14 @@ function TransitionDown(props: TransitionProps) {
 interface meesageModalProps {
   openMessageModal?: () => void;
   closeMessageModal?: () => void;
+  handleMessageModal?: (state: boolean) => void;
   messageModal?: boolean;
-  share?: boolean;
 }
 function MessageInputModal({
   openMessageModal,
   closeMessageModal,
+  handleMessageModal,
   messageModal,
-  share,
 }: meesageModalProps) {
   const router = useRouter();
   const [content, setContent] = useState<string>("");
@@ -131,9 +131,6 @@ function MessageInputModal({
   const handleRoute = () => {
     router.back();
   };
-  useEffect(() => {
-    setBouquetImage(localStorage.getItem("bouquetImage"));
-  }, []);
   return (
     <>
       {messageModal ? (
@@ -167,7 +164,7 @@ function MessageInputModal({
                   color: "",
                   "&:hover": { cursor: "pointer" },
                 }}
-                onClick={share ? handleRoute : closeMessageModal}
+                onClick={() => handleMessageModal(false)}
               />
             </Box>
             {isStored ? (
@@ -205,7 +202,9 @@ function MessageInputModal({
                 mx: "auto",
               }}
             >
-              <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
+              <BouquetImg
+                bouquetImage={presentBouquet.presentBouquetImage}
+              ></BouquetImg>
             </Box>
             <Box
               sx={{
