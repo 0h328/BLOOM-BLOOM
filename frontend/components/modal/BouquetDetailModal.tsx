@@ -82,7 +82,7 @@ function BouquetDetailModal({
       let n: ReturnType<typeof setTimeout>;
       n = setTimeout(() => {
         location.reload();
-      }, 400);
+      }, 200);
       toast.success("🔔 성공적으로 삭제되었습니다");
     }
     console.log(response);
