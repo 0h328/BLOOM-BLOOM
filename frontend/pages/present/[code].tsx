@@ -56,7 +56,7 @@ function Present() {
       Swal.close()
     })
     document.getElementById('clipboard').onclick = function () {
-      navigator.clipboard.writeText("https://bloombloom.kro.kr/");
+      navigator.clipboard.writeText("https://bloombloom.kro.kr");
       const Toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -82,10 +82,7 @@ function Present() {
       })
     };
   }
-  const doCopy = () => {
-    console.log("안녕")
-    navigator.clipboard.writeText(BASE_URL)
-  }
+
   const onCapture = () => {
     console.log("capture");
     html2canvas(document.getElementById("img"), {
@@ -227,7 +224,7 @@ function Present() {
                   이미지 저장하기
                 </Typography>
               </Button>{" "}{
-                !isKakaoBrowser?
+                isKakaoBrowser?
                 <Link href="/" passHref>
                   <Button
                     variant="contained"
