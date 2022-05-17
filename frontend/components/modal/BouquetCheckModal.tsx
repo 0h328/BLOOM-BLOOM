@@ -50,7 +50,7 @@ function BouquetCheckModal({
             position: "absolute",
             width: "420px",
             height: "100%",
-            backgroundColor: "rgb(229 225 225 / 72%);",
+            backgroundColor: "rgb(31 31 31 / 33%)",
             zIndex: 900,
           }}
         >
