@@ -13,8 +13,8 @@ function Confirm() {
     useRecoilState(confirmBouquetState);
   const [messageModal, setMessageModal] = useState<boolean>(false);
   const bouquetImage = "/img/wrapIvory.png";
-  const handleMessageModal = (e: any) => {
-    openMessageModal();
+  const handleMessageModal = (state: boolean) => {
+    setMessageModal(true);
   };
   const openMessageModal = () => {
     setMessageModal(true);
