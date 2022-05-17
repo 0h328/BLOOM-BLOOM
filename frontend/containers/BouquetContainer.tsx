@@ -9,6 +9,9 @@ import Ribbon from "../components/Bouquet/Ribbon";
 import Stalk from "../components/Bouquet/Stalk";
 import { useRecoilState } from "recoil";
 import { wrapState, decoState, flowerState } from "../states/states";
+import CommonButton from "../components/common/CommonButton";
+import { Router } from "react-router-dom";
+import { useRouter } from "next/router";
 
 interface containerProps {
   src?: any;
@@ -16,6 +19,7 @@ interface containerProps {
 function BouquetContainer({ src }: containerProps) {
   // const { src } = props;
   const [imgSrc, setImgSrc] = useState(src);
+  const router = useRouter();
   const [wrapInfo, setWrapInfo] = useRecoilState(wrapState);
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
@@ -30,6 +34,9 @@ function BouquetContainer({ src }: containerProps) {
   };
   const handleError = () => {
     setImgSrc("/img/bouquet0.png");
+  };
+  const handleRoute = () => {
+    router.push("/flower");
   };
 
   const wrapList = [
@@ -121,6 +128,7 @@ function BouquetContainer({ src }: containerProps) {
       {alignment === "2" && <RibbonChooseText></RibbonChooseText>}
       {alignment === "3" && <StalkChooseText></StalkChooseText>}
 
+      <Button>꽃고르러 가기</Button>
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
       <Box sx={{ ...BouquetLayout }}>
         <Box
@@ -167,21 +175,21 @@ function BouquetContainer({ src }: containerProps) {
         <Box
           sx={{
             position: "absolute",
-            top: "180px",
+            top: "160px",
             // zIndex: "tooltip",
           }}
         >
           <img
             src={decoInfo.decoImage}
             alt="리본"
-            style={{ width: "100px", height: "100px" }}
+            style={{ width: "140px", height: "140px" }}
           ></img>
         </Box>
       </Box>
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
 
       {/* 포장지, 리본, 꽃줄기 버튼 */}
-      <Box sx={{ mt: "20rem" }}>
+      <Box sx={{ mt: "19rem" }}>
         <ToggleButtonGroup
           value={alignment}
           exclusive
@@ -195,7 +203,7 @@ function BouquetContainer({ src }: containerProps) {
             value="1"
             style={{
               ...btnStyle,
-              backgroundColor: alignment === "1" ? "#EFDFBF" : "#FFE0E0",
+              backgroundColor: alignment === "1" ? "#FFFAFA" : "##EFDFBF",
             }}
           >
             포장지
@@ -204,7 +212,7 @@ function BouquetContainer({ src }: containerProps) {
             value="2"
             style={{
               ...btnStyle,
-              backgroundColor: alignment === "2" ? "#EFDFBF" : "#FFE0E0",
+              backgroundColor: alignment === "2" ? "#FFFAFA" : "##FFE0E0",
             }}
           >
             리본
@@ -213,7 +221,7 @@ function BouquetContainer({ src }: containerProps) {
             value="3"
             style={{
               ...btnStyle,
-              backgroundColor: alignment === "3" ? "#EFDFBF" : "#FFE0E0",
+              backgroundColor: alignment === "3" ? "#FFFAFA" : "##FFE0E0",
             }}
           >
             부속꽃
@@ -221,28 +229,30 @@ function BouquetContainer({ src }: containerProps) {
         </ToggleButtonGroup>
         {/* 포장지, 리본, 꽃줄기 버튼 */}
 
-        {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
-        {alignment === "1" && <Wrapper wrapList={wrapList}></Wrapper>}
-        {alignment === "2" && <Ribbon decoList={decoList}></Ribbon>}
-        {alignment === "3" && <Stalk flowerList={flowerList}></Stalk>}
-        {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
+        <Box>
+          {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
+          {alignment === "1" && <Wrapper wrapList={wrapList}></Wrapper>}
+          {alignment === "2" && <Ribbon decoList={decoList}></Ribbon>}
+          {alignment === "3" && <Stalk flowerList={flowerList}></Stalk>}
+          {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
+        </Box>
 
         {/* 꽃을 선택하러갈 수 있는 버튼 */}
-        <Box textAlign="center">
-          <Link href="/flower" passHref>
-            <Button
-              style={{
-                backgroundColor: "#FFE0E0",
-                color: "black",
-                width: "330px",
-                fontFamily:"OneMobileLight"
-              }}
-              variant="contained"
-            >
-              꽃 선택하기
-            </Button>
-          </Link>
-        </Box>
+        {/* <Box
+          sx={{
+            textAlign: "center",
+            mx: "auto",
+            mt: "5%",
+            width: "fit-Content",
+          }}
+        >
+          <CommonButton
+            icon={"🌺"}
+            text={"꽃 고르러가기"}
+            backgroundColor={"#FFC0D0"}
+            handleBtn={handleRoute}
+          ></CommonButton>
+        </Box> */}
         {/* 꽃을 선택하러갈 수 있는 버튼 */}
       </Box>
     </Box>
@@ -262,11 +272,10 @@ export const BouquetLayout = {
 
 export const btnStyle = {
   color: "black",
-  width: "70px",
+  width: "30%",
   height: "40px",
   border: "1px solid #FFE0E0",
   fontSize: "0.8rem",
-  borderRadius: "1rem",
 };
 
 export default BouquetContainer;
