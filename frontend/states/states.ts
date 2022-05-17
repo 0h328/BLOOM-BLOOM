@@ -1,7 +1,5 @@
 import { atom } from "recoil";
-import { recoilPersist } from "recoil-persist";
 
-const { persistAtom } = recoilPersist();
 const decoModalState = atom({
   key: "decoModal",
   default: false,
@@ -17,7 +15,6 @@ const mainFlowerState = atom({
 const presentBouquetState = atom({
   key: "presentBouquet",
   default: { presentBouquetImage: "", presentBouquetSeq: -1 },
-  effects_UNSTABLE: [persistAtom],
 });
 
 //confirm 페이지 확인용 꽃다발
