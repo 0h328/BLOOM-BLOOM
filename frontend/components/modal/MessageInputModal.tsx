@@ -53,7 +53,11 @@ function MessageInputModal({
   const [open, setOpen] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>("");
   const [offsetHeight, setOffsetHeight] = useState<number>();
+  const handleStore = () => {
+    handleStoreButtonClick();
+  };
   const handleStoreButtonClick = async () => {
+    console.log("이야기담기");
     // 1. requeset를 만든다.
     const body = {
       bouquetSeq: presentBouquet.presentBouquetSeq,
@@ -362,7 +366,7 @@ function MessageInputModal({
                         offsetHeight > 250 ? `${offsetHeight - 270}px` : null,
                       marginTop: offsetHeight > 250 ? null : "10px",
                     }}
-                    onClick={() => handleStoreButtonClick}
+                    onClick={handleStore}
                   >
                     <Typography
                       component="div"
