@@ -77,13 +77,22 @@ function MadeList() {
         handleDetailModal={handleDetailModal}
         detailModal={detailModal}
       ></BouquetDetailModal>
-      <Box sx={{ mt: "2rem" }}>
+      <Box sx={{ mt: "2rem", width: "93%" }}>
         <Typography
           sx={{
             ...textStyle,
           }}
         >
-          최근 제작한 꽃다발
+          내가 만든 꽃다발
+        </Typography>
+        <Typography
+          sx={{
+            ...textStyle,
+            fontSize: "0.8rem",
+            mt: "0.5rem",
+          }}
+        >
+          꽃다발을 클릭하여 꽃다발을 공유하거나 꽃집에 주문해보세요
         </Typography>
       </Box>
       <Box
@@ -95,7 +104,7 @@ function MadeList() {
           overflowX: "hidden",
           overflowY: "scroll",
           justifyContent: "center",
-          mt: "3rem",
+          mt: "1rem",
           pt: "1rem",
         }}
       >
@@ -110,13 +119,11 @@ function MadeList() {
 }
 
 export const textStyle = {
-  position: "absolute",
   fontFamily: "OneMobileLight",
   fontStyle: "normal",
   fontWeight: "bold",
-  fontSize: "15px",
   lineHeight: "17px",
-  left: "18px",
+  fontSize: "1rem",
   color: "rgba(0, 0, 0, 0.8)",
 };
 export default MadeList;

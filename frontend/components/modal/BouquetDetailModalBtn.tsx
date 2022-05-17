@@ -1,53 +1,105 @@
 import React, { useState } from "react";
 import { Box, Typography, Grid, Button, Link } from "@mui/material";
 import { deleteBouquet } from "../apis/bouquetApi";
-import { toast } from "material-react-toastify";
-import Toast from "../../components/common/Toast";
 interface btnProps {
   handleBtn: (code: number) => void;
   bouquetSeq: number;
+  handleDelete: () => void;
 }
-function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
-  const handleDelete = async () => {
-    const response = await deleteBouquet(bouquetSeq);
-    if (response.status === 200) {
-      toast.success("🔔 성공적으로 삭제되었습니다");
-    }
-    console.log(response);
-  };
+function BouquetDetailModalBtn({
+  handleBtn,
+  bouquetSeq,
+  handleDelete,
+}: btnProps) {
   return (
-    <Grid container>
-      <Toast />
-      <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
+      <Button
+        variant="contained"
+        size="small"
+        sx={{
+          alignItems: "center",
+          mt: "5%",
+        }}
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          backgroundColor: "#EFDFBF",
+          color: "#000",
+          fontFamily: "OneMobileLight",
+          borderRadius: "5",
+          width: 260,
+          height: 43,
+          maxHeight: "50%",
+        }}
+        onClick={() => handleBtn(0)}
+      >
+        <Typography
+          component="div"
+          sx={{
+            width: "25%",
+            ...btnStyle1,
+          }}
+        >
+          📜
+        </Typography>
+        <Typography
+          component="div"
+          sx={{
+            width: "70%",
+            ...btnStyle1,
+          }}
+        >
+          메세지와 함께 공유하기
+        </Typography>
+      </Button>
+      <Link href="/ordermap" sx={{ textDecoration: "none" }}>
         <Button
           variant="contained"
           size="small"
-          sx={{ ...btnStyle }}
-          onClick={() => handleBtn(0)}
+          sx={{
+            alignItems: "center",
+            mt: "5%",
+          }}
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            backgroundColor: "#FFE0E0",
+            color: "#000",
+            fontFamily: "OneMobileLight",
+            borderRadius: "5",
+            width: 260,
+            height: 43,
+            maxHeight: "50%",
+          }}
         >
-          <Typography sx={{ ...btnStyle1 }}>공유</Typography>
-        </Button>
-      </Grid>
-      <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
-        <Link href="/ordermap" sx={{ textDecoration: "none" }}>
-          <Button variant="contained" size="small" sx={{ ...btnStyle }}>
-            <Typography sx={{ ...btnStyle1 }}> 주문</Typography>
-          </Button>
-        </Link>
-      </Grid>
-      <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
-        <Link href="/madelist" sx={{ textDecoration: "none" }}>
-          <Button
-            variant="contained"
-            size="small"
-            sx={{ ...btnStyle }}
-            onClick={handleDelete}
+          <Typography
+            component="div"
+            sx={{
+              width: "25%",
+              ...btnStyle1,
+            }}
           >
-            <Typography sx={{ ...btnStyle1 }}>삭제</Typography>
-          </Button>
-        </Link>
-      </Grid>
-    </Grid>
+            📱
+          </Typography>
+          <Typography
+            component="div"
+            sx={{
+              width: "50%",
+              ...btnStyle1,
+            }}
+          >
+            꽃다발 주문하기
+          </Typography>
+        </Button>
+      </Link>
+    </Box>
   );
 }
 
@@ -59,7 +111,10 @@ export const btnStyle = {
   "&:hover": { backgroundColor: "#BAD7DF" },
 };
 export const btnStyle1 = {
+  fontWeight: "600",
+  fontSize: "15px",
   fontFamily: "OneMobileLight",
+  color: "#000",
 };
 
 export default BouquetDetailModalBtn;

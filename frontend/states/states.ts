@@ -1,5 +1,4 @@
 import { atom } from "recoil";
-
 const decoModalState = atom({
   key: "decoModal",
   default: false,

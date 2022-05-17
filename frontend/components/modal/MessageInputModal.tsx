@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
@@ -46,6 +46,7 @@ function MessageInputModal({
   const [uuid, setUuid] = useState<string>("");
   const [isStored, setIsStored] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
+  const [bouquetImage, setBouquetImage] = useState<string>("");
 
   const handleStoreButtonClick = async () => {
     // 1. requeset를 만든다.
@@ -126,6 +127,9 @@ function MessageInputModal({
   const handleRoute = () => {
     router.back();
   };
+  useEffect(() => {
+    setBouquetImage(localStorage.getItem("bouquetImage"));
+  }, []);
   return (
     <>
       {messageModal ? (
@@ -173,7 +177,7 @@ function MessageInputModal({
                   textAlign: "center",
                 }}
               >
-                성공적으로 저장했습니다
+                꽃다발을 공유해보세요
               </Typography>
             ) : (
               <Typography
@@ -186,20 +190,18 @@ function MessageInputModal({
                   textAlign: "center",
                 }}
               >
-                메세지 내용을 입력해주세요
+                꽃다발과 함께 <br />
+                전달하고 싶은 이야기를 적어주세요
               </Typography>
             )}
             <Box
               sx={{
-                position: "relative",
                 mt: "5%",
                 width: "80%",
                 mx: "auto",
               }}
             >
-              <BouquetImg
-                bouquetImage={presentBouquet.presentBouquetImage}
-              ></BouquetImg>
+              <BouquetImg bouquetImage={bouquetImage}></BouquetImg>
             </Box>
             <Box
               sx={{
@@ -226,7 +228,7 @@ function MessageInputModal({
                       textAlign: "center",
                     }}
                   >
-                    꽃다발과 이야기를 저장했습니다
+                    꽃다발과 이야기를 성공적으로 담았습니다
                     <br />
                     링크공유 또는 카카오톡 공유로 마음을 전달해주세요
                   </Typography>
@@ -306,27 +308,49 @@ function MessageInputModal({
                     }}
                     onChange={(event) => handleInput(event)}
                   />
-                  <Box
+                  <Button
+                    variant="contained"
+                    size="small"
                     sx={{
-                      height: "5%",
+                      alignItems: "center",
+                      mt: "5%",
+                    }}
+                    style={{
                       display: "flex",
-                      justifyContent: "center",
-                      mt: "2%",
+                      justifyContent: "flex-start",
+                      backgroundColor: "#FFE0E0",
+                      color: "#000",
+                      fontFamily: "OneMobileLight",
+                      borderRadius: "5",
+                      width: 260,
+                      height: 43,
                     }}
                   >
-                    <Button
+                    <Typography
+                      component="div"
                       sx={{
-                        width: 156,
-                        height: 36,
-                        backgroundColor: "#FFE0E0",
-                        color: "#000000",
+                        width: "25%",
+                        fontWeight: "600",
+                        fontSize: "15px",
                         fontFamily: "OneMobileLight",
+                        color: "#000",
                       }}
-                      onClick={handleStoreButtonClick}
                     >
-                      저장하기
-                    </Button>
-                  </Box>
+                      📫
+                    </Typography>
+                    <Typography
+                      component="div"
+                      sx={{
+                        width: "65%",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        fontFamily: "OneMobileLight",
+                        color: "#000",
+                      }}
+                    >
+                      이야기 담아 보내기
+                    </Typography>
+                  </Button>
                 </>
               )}
             </Box>

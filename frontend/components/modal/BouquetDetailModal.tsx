@@ -5,11 +5,16 @@ import Image from "next/image";
 import CloseIcon from "@mui/icons-material/Close";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
 import BouquetDetailModalBtn from "../modal/BouquetDetailModalBtn";
+import BouquetImg from "../present/BouquetImg";
 import { Bouquet } from "../common/Bouquet";
 import { getBouquetDetail } from "../apis/bouquetApi";
 import { presentBouquetState } from "../../states/states";
 import { useRouter } from "next/router";
-
+import { deleteBouquet } from "../apis/bouquetApi";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { toast } from "material-react-toastify";
+import Toast from "../../components/common/Toast";
 interface modalProps {
   bouquet: Bouquet;
   handleDetailModal: (state: boolean) => void;
@@ -101,10 +106,17 @@ function BouquetDetailModal({
       presentBouquetImage: bouquet.bouquetImage,
       presentBouquetSeq: bouquet.bouquetSeq,
     });
+    localStorage.setItem("bouquetImage", bouquet.bouquetImage);
     router.push("/share");
   };
   const handleOrder = () => {};
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    const response = await deleteBouquet(bouquet.bouquetSeq);
+    if (response.status === 200) {
+      toast.success("🔔 성공적으로 삭제되었습니다");
+    }
+    console.log(response);
+  };
 
   useEffect(() => {
     if (bouquet !== undefined) {
@@ -124,6 +136,7 @@ function BouquetDetailModal({
             zIndex: 900,
           }}
         >
+          <Toast />
           <Box
             sx={{
               mt: "15%",
@@ -136,36 +149,48 @@ function BouquetDetailModal({
               boxShadow: "6px 6px 4px rgba(0, 0, 0, 0.25)",
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <CloseIcon
-                sx={{ margin: "1rem 1rem 0rem 1rem" }}
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <ArrowBackOutlinedIcon
+                sx={{
+                  margin: "1rem 1rem 0rem 1rem",
+                  "&:hover": { cursor: "pointer" },
+                }}
+                onClick={closeBouquetDetailModal}
+              />
+              <DeleteOutlineOutlinedIcon
+                sx={{
+                  margin: "1rem 1rem 0rem 1rem",
+                  "&:hover": { cursor: "pointer" },
+                }}
                 onClick={closeBouquetDetailModal}
               />
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <img
-                src={bouquet.bouquetImage}
-                alt="꽃다발"
-                width={"90%"}
-                height={"300px"}
-              ></img>
+            <Box
+              sx={{
+                width: "75%",
+                mx: "auto",
+              }}
+            >
+              <BouquetImg bouquetImage={bouquet.bouquetImage}></BouquetImg>
             </Box>
             <Box
               sx={{
                 width: "95%",
-                height: "35%",
+                height: "30%",
                 backgroundColor: "#ffff",
                 borderRadius: "10px",
                 border: "1px solid rgba(82, 82, 82, 0.29)",
                 mx: "auto",
+                top: "10%",
               }}
             >
               <FlowerInfoList flowerInfoList={flowerInfo} />
             </Box>
-            <Box sx={{ height: "5%", width: "70%", mx: "auto" }}>
+            <Box sx={{ height: "10%", width: "70%", mx: "auto" }}>
               <BouquetDetailModalBtn
                 handleBtn={handleBtn}
                 bouquetSeq={bouquet.bouquetSeq}
+                handleDelete={handleDelete}
               />
             </Box>
           </Box>
