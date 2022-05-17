@@ -44,7 +44,7 @@ function Present() {
  
   const gotoOtherBrowser = () => { 
     Swal.fire({
-      title:"<style>.swal2-popup{font-family: OneMobileLight}  .cursor_{cursor: pointer} </style>카카오에서 바로 들어오셨나요?",
+      title: '<style>.swal2-popup{font-family: OneMobileLight}  .cursor_{cursor: pointer} </style><span style="color: #FEE500;" >카카오</span>에서 <br/>바로 들어오셨나요?',
       html: '<b>다른 브라우저</b>를 이용하시면 저희 <strong style="color:#f1bfbf;">bloombloom</strong>을 보다 편하게 이용하실 수 있습니다.' 
         + '<p><b><div id="clipboard"><div class="cursor_">'
         +'📬링크 복사'
@@ -68,10 +68,11 @@ function Present() {
           toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
       })
-      
       Toast.fire({
         icon: 'success',
         title: '링크가 복사되었습니다. 🎉'
+      }).then(() => {
+        location.href = "kakaotalk://inappbrowser/close";
       })
     };
   }
