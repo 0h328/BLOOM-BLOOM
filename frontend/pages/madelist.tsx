@@ -5,6 +5,7 @@ import FlowerImgList from "../components/main/FlowerImgList";
 import BouquetDetailModal from "../components/modal/BouquetDetailModal";
 import { getBouquetList } from "../components/apis/bouquetApi";
 import { Bouquet } from "../components/common/Bouquet";
+import MessageInputModal from "../components/modal/MessageInputModal";
 
 function MadeList() {
   // test용 dummy data
@@ -35,6 +36,7 @@ function MadeList() {
   >([]);
   const [bouquet, setBouquet] = useState<Bouquet>();
   const [detailModal, setDetailModal] = useState<boolean>(false);
+  const [messageModal, setMessageModal] = useState<boolean>(false);
   const handleBouquetList = async () => {
     const response = await getBouquetList();
     console.log(response);
@@ -48,6 +50,10 @@ function MadeList() {
 
   const handleDetailModal = (state: boolean) => {
     setDetailModal(state);
+  };
+
+  const handleMessageModal = (state: boolean) => {
+    setMessageModal(state);
   };
 
   useEffect(() => {
@@ -76,7 +82,12 @@ function MadeList() {
         bouquet={bouquet}
         handleDetailModal={handleDetailModal}
         detailModal={detailModal}
+        handleMessageModal={handleMessageModal}
       ></BouquetDetailModal>
+      <MessageInputModal
+        messageModal={messageModal}
+        handleMessageModal={handleMessageModal}
+      ></MessageInputModal>
       <Box sx={{ mt: "2rem", width: "93%" }}>
         <Typography
           sx={{

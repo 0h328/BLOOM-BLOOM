@@ -19,6 +19,7 @@ interface modalProps {
   bouquet: Bouquet;
   handleDetailModal: (state: boolean) => void;
   detailModal: boolean;
+  handleMessageModal: (state: boolean) => void;
 }
 declare var imageType: typeof Image;
 interface Window {
@@ -28,6 +29,7 @@ function BouquetDetailModal({
   bouquet,
   handleDetailModal,
   detailModal,
+  handleMessageModal,
 }: modalProps) {
   const router = useRouter();
   const imageRef = useRef(null);
@@ -70,10 +72,8 @@ function BouquetDetailModal({
       presentBouquetImage: bouquet.bouquetImage,
       presentBouquetSeq: bouquet.bouquetSeq,
     });
-    localStorage.setItem("bouquetImage", bouquet.bouquetImage);
-    localStorage.setItem("bouquetSeq", String(bouquet.bouquetSeq));
-
-    router.push("/share");
+    handleMessageModal(true);
+    handleDetailModal(false);
   };
   const handleOrder = () => {};
   const handleDelete = async () => {
