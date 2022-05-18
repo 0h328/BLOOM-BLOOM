@@ -5,7 +5,7 @@ import BouquetImg from "../present/BouquetImg";
 import KakaoBtn from "../button/KakaoBtn";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { presentBouquetState } from "../../states/states";
+import { messageStoredState, presentBouquetState } from "../../states/states";
 import { savePresent } from "../apis/bouquetApi";
 import KakaoMessage from "../kakaoApi/KakaoMessage";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -53,11 +53,14 @@ function MessageInputModal({
   const [open, setOpen] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>("");
   const [offsetHeight, setOffsetHeight] = useState<number>();
+  const [messageStored, setMessageStored] = useRecoilState(messageStoredState);
+
   const handleStoreButtonClick = async () => {
     console.log("요청전");
     // 1. requeset를 만든다.
     const body = {
-      bouquetSeq: presentBouquet.presentBouquetSeq,
+      // bouquetSeq: presentBouquet.presentBouquetSeq,
+      bouquetSeq: 103,
       presentDesc: content,
     };
     // 2. 서버로 요청을 보낸다.
@@ -76,7 +79,7 @@ function MessageInputModal({
 
   const handleCloseButton = () => {
     // setIsStored(false);
-    handleIsStored(false);
+    // setMessageStored(false);
     setOpen(false);
   };
   useBeforeunload((e: any) => {
@@ -192,7 +195,7 @@ function MessageInputModal({
                 onClick={() => handleMessageModal(false)}
               />
             </Box>
-            {isStored ? (
+            {messageStored ? (
               <Typography
                 sx={{
                   height: "5%",
@@ -247,7 +250,7 @@ function MessageInputModal({
                 alignItems: "center",
               }}
             >
-              {isStored ? (
+              {messageStored ? (
                 <Box
                   sx={{
                     display: "flex",
