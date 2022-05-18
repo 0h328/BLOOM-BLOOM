@@ -1,29 +1,30 @@
 import { useEffect, useState } from "react";
 import StoreCard from "./StoreCard"
 import { Box } from '@mui/system';
-import {getMap} from "../apis/map"
-;
+import {getMap} from "../apis/map";
+import { getBouquetDetail } from "../apis/bouquetApi";
 
 declare global {
   interface Window {
     kakao: any;
   }
 }
-
-function Map() {
-  const [forMarker,SetForMarker] = useState([])
+interface props {
+  bouquetSeq: number;
+}
+function Map({ bouquetSeq }: props) {
+  const [forMarker, SetForMarker] = useState([])
+  const [bouquet,setBouquet] =  useState()
   const [store,SetStore] = useState({ storeName: "처음이야", storeContact:'010-0000-0000', storeAddress:'서울특별시 역삼 어디에있어요', storeMapId:'www.naver.com', storeImage: "/test.png" })
   var storeArray = []
-
+  var bouquetInfo = null;
   const check = async (data: object) => {
     const res = await getMap(data);
     storeArray = res.data.data 
   }
 
-
   useEffect(() => {
     const mapScript = document.createElement("script");
-
     mapScript.async = true;
     //appkey 관리 필요
     mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=682d057f339c72447d6633e53e098d0c&autoload=false`;
@@ -199,12 +200,7 @@ function Map() {
       height: "497px"
     }}>
       </div>
-      {/* {
-        store.storeName === "처음이야" ?
-          <Box sx={{color:"black", mt : "6%",textAlign:"center",fontFamily : "OneMobileLight",fontWeight:"bold", fontSize:"1.2rem"}}>꽃집을 선택해 주세요~</Box> :
-        <StoreCard storeInfo={store}></StoreCard>
-      } */}
-       <StoreCard storeInfo={store}></StoreCard>
+      <StoreCard storeInfo={store} bouquetSeq={bouquetSeq}></StoreCard>
    </>)
 }
 

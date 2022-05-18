@@ -14,19 +14,19 @@ function StoreCardSmall({storeInfo}) {
       </Box>
       <Box sx={{width:215,height:120, mt:1, ml:1.5}}>
         <Box sx={{display:'flex',height:35, mt:1, alignItems:'baseline'}}>
-          <Typography sx={{fontFamily: "Julius Sans One", fontSize:'25px',fontWeight: "bold"}}>{storeInfo.storeName}</Typography>
+          <Typography sx={{fontFamily: "OneMobileLight", fontSize:'25px',fontWeight: "bold"}}>{storeInfo.storeName}</Typography>
           <Box sx={{display:'flex', width:35, justifyContent:'space-between', ml:0.5}}>
-            <Image src="/insta.png" alt="insta" width={15} height={15}></Image>
-            <Image src="/naver.png" alt="naver" width={15} height={15}></Image>
+            <img src="/img/insta.png" alt="insta" width={15} height={15}></img>
+            <img src="/img/blog.png" alt="naver" width={15} height={15}></img>
           </Box>
         </Box>
-        <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:2.5, display:'flex', alignItems:'center'}}>
+        <Typography sx={{fontFamily: "OneMobileLight", fontSize:'11px', mt:2.5, display:'flex', alignItems:'center'}}>
           <CallIcon sx={{ fontSize: '11px', mr:2 }}></CallIcon>{storeInfo.storeContact}
         </Typography>
-        <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5, display:'flex', alignItems:'center'}}>
+        <Typography sx={{fontFamily: "OneMobileLight", fontSize:'11px', mt:0.5, display:'flex', alignItems:'center'}}>
           <LocationOnIcon sx={{ fontSize: '11px', mr:2 }}></LocationOnIcon>{storeInfo.storeAddress}
         </Typography>
-        <Typography sx={{fontFamily: "Julius Sans One", fontSize:'11px', mt:0.5}}>
+        <Typography sx={{fontFamily: "OneMobileLight", fontSize:'11px', mt:0.5}}>
         <MapIcon sx={{ fontSize: '11px', mr:2 }}></MapIcon><Link href={`https://naver.me/${storeInfo.storeMapId}`} target="_blank">{storeInfo.storeMapId}</Link>
         </Typography>
       </Box>
