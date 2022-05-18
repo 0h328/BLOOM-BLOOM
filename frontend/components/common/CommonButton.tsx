@@ -21,7 +21,6 @@ function CommonButton({
       size="small"
       sx={{
         alignItems: "center",
-        mt: "5px",
       }}
       style={{
         display: "flex",
@@ -30,8 +29,8 @@ function CommonButton({
         color: "#000",
         fontFamily: "OneMobileLight",
         borderRadius: "5",
-        width: 260,
-        height: 43,
+        width: "100%",
+        height: "auto",
         maxHeight: "50%",
       }}
       onClick={handleBtn}
@@ -39,8 +38,7 @@ function CommonButton({
       <Typography
         component="div"
         sx={{
-          width: "25%",
-          ...btnStyle1,
+          ...btnStyleIcon,
         }}
       >
         {icon}
@@ -48,8 +46,7 @@ function CommonButton({
       <Typography
         component="div"
         sx={{
-          width: "70%",
-          ...btnStyle1,
+          ...btnStyleText,
         }}
       >
         {text}
@@ -58,10 +55,22 @@ function CommonButton({
   );
 }
 
-export const btnStyle1 = {
+export const btnStyleIcon = {
+  height: "auto",
+  width: "20%",
   fontWeight: "600",
   fontSize: "14px",
   fontFamily: "OneMobileLight",
   color: "#000",
+  padding: "2%",
+};
+export const btnStyleText = {
+  height: "auto",
+  // width: "fit-content",
+  fontWeight: "600",
+  fontSize: "14px",
+  fontFamily: "OneMobileLight",
+  color: "#000",
+  padding: "2%",
 };
 export default CommonButton;

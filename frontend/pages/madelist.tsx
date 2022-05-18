@@ -6,7 +6,7 @@ import BouquetDetailModal from "../components/modal/BouquetDetailModal";
 import { getBouquetList } from "../components/apis/bouquetApi";
 import { Bouquet } from "../components/common/Bouquet";
 import MessageInputModal from "../components/modal/MessageInputModal";
-import { messageStoredState } from "../states/states";
+import { messageStoredState, presentBouquetState } from "../states/states";
 import { useRecoilState } from "recoil";
 function MadeList() {
   //api 연동후 data set
@@ -17,6 +17,8 @@ function MadeList() {
   const [detailModal, setDetailModal] = useState<boolean>(false);
   const [messageModal, setMessageModal] = useState<boolean>(false);
   const [isStored, setIsStored] = useState<boolean>(false);
+  const [presentBouquet, setPresentBouquet] =
+    useRecoilState(presentBouquetState);
   const [messageStored, setMessageStored] = useRecoilState(messageStoredState);
   const handleBouquetList = async () => {
     const response = await getBouquetList();
@@ -26,6 +28,7 @@ function MadeList() {
 
   const handleBouquet = (bouquet: Bouquet) => {
     handleDetailModal(true);
+    console.log("열려라");
     setBouquet(bouquet);
   };
 

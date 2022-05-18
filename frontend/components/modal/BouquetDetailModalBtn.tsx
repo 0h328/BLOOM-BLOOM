@@ -21,6 +21,8 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         flexDirection: "column",
         alignItems: "center",
         height: "100%",
+        width: "60%",
+        justifyContent: "space-evenly",
       }}
     >
       <Button
@@ -28,7 +30,6 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         size="small"
         sx={{
           alignItems: "center",
-          mb: "10px",
         }}
         style={{
           display: "flex",
@@ -37,8 +38,8 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
           color: "#000",
           fontFamily: "OneMobileLight",
           borderRadius: "5",
-          width: 260,
-          height: 43,
+          width: "100%",
+          height: "auto",
           maxHeight: "50%",
         }}
         onClick={() => handleBtn(0)}
@@ -46,8 +47,7 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         <Typography
           component="div"
           sx={{
-            width: "25%",
-            ...btnStyle1,
+            ...btnStyleIcon,
           }}
         >
           📜
@@ -55,7 +55,6 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         <Typography
           component="div"
           sx={{
-            width: "70%",
             ...btnStyle1,
           }}
         >
@@ -78,13 +77,29 @@ export const btnStyle = {
   color: "#000000",
   fontFamily: "OneMobileLight",
   margin: "10px",
+  textAlign: "center",
+  width: "auto",
   "&:hover": { backgroundColor: "#BAD7DF" },
 };
 export const btnStyle1 = {
+  height: "auto",
+  width: "fit-content",
   fontWeight: "600",
   fontSize: "14px",
   fontFamily: "OneMobileLight",
   color: "#000",
+  margin: "2%",
+  textAlign: "center",
+};
+
+export const btnStyleIcon = {
+  height: "auto",
+  width: "20%",
+  fontWeight: "600",
+  fontSize: "14px",
+  fontFamily: "OneMobileLight",
+  color: "#000",
+  padding: "2%",
 };
 
 export default BouquetDetailModalBtn;

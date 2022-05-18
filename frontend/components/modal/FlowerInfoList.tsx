@@ -40,8 +40,8 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
         sx={{
           ...boxStyle,
           height: "85%",
-          overflow: "scroll",
-          padding: "0.5rem",
+          overflowX: "hidden",
+          overflowY: "scroll",
           backgroundColor: "#ffff",
           borderColor: "#fffa",
         }}
