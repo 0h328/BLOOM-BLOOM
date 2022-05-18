@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    List<Order> findByUserUserId(String userId);
+    List<Order> findByUserUserIdOrderByOrderSeqDesc(String userId);
 
     void deleteByBouquet_BouquetSeq(Long bouquetSeq);
 

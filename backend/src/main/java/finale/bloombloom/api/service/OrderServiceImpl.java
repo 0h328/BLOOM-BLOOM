@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderListResponse> findOrderById(String userId) {
 
-        return orderRepository.findByUserUserId(userId).stream().map(order -> {
+        return orderRepository.findByUserUserIdOrderByOrderSeqDesc(userId).stream().map(order -> {
                     Store store = order.getStore();
                     Bouquet bouquet = order.getBouquet();
                     return OrderListResponse.builder()
