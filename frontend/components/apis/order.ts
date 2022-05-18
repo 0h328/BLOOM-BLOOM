@@ -21,3 +21,7 @@ order.interceptors.request.use(
 export const getOrderList = async () => {
   return await order.get("api/v1/order");
 };
+
+export const OrderRequest = async (body: any) => {
+  return await order.post("api/v1/order/request",body);
+};
