@@ -8,14 +8,15 @@ import FlowerObject from "../components/flower/FlowerObject";
 import { FlowerType } from "../components/flower/Flower";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
-import { mainFlowerState } from "../states/states";
+import { mainFlowerState, totalCountState } from "../states/states";
 import { useRecoilState } from "recoil";
 import { getFlower } from "../components/apis/bouquetApi";
 
 function Flower() {
-  const [totalCount, setTotalCount] = useState<number>(0);
+  // const [totalCount, setTotalCount] = useState<number>(0);
   const [validCount, setValidCount] = useState<boolean>(true);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [totalCount, setTotalCount] = useRecoilState(totalCountState);
   const [flowerList, setFlowerList] = useState<Array<FlowerType>>([]);
   const handleTotal = (dif: number) => {
     setTotalCount(totalCount + dif);
@@ -29,7 +30,7 @@ function Flower() {
         console.log("0");
         break;
       case 1:
-        toast.error("📣꽃은 8개까지 선택할 수 있습니다");
+        toast.error("📣꽃은 10개까지 선택할 수 있습니다");
         console.log("1");
         break;
       case 2:
@@ -46,6 +47,7 @@ function Flower() {
     let temp = [];
     setMainFlower([...temp]);
     handleFlowerList();
+    setTotalCount(0);
   }, []);
   return (
     <Box

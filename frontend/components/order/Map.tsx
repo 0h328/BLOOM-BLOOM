@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import StoreCard from "./StoreCard"
+import { Box } from '@mui/system';
 import {getMap} from "../apis/map"
 ;
 
@@ -11,7 +12,7 @@ declare global {
 
 function Map() {
   const [forMarker,SetForMarker] = useState([])
-  const [store,SetStore] = useState({ storeName: '꽃집 이름', storeContact:'010-0000-0000', storeAddress:'서울특별시 역삼 어디에있어요', storeMapId:'www.naver.com', storeImage: "/test.png" })
+  const [store,SetStore] = useState({ storeName: "처음이야", storeContact:'010-0000-0000', storeAddress:'서울특별시 역삼 어디에있어요', storeMapId:'www.naver.com', storeImage: "/test.png" })
   var storeArray = []
 
   const check = async (data: object) => {
@@ -197,8 +198,13 @@ function Map() {
       width: "420px",
       height: "497px"
     }}>
-   </div>
-   <StoreCard storeInfo={store}></StoreCard>
+      </div>
+      {/* {
+        store.storeName === "처음이야" ?
+          <Box sx={{color:"black", mt : "6%",textAlign:"center",fontFamily : "OneMobileLight",fontWeight:"bold", fontSize:"1.2rem"}}>꽃집을 선택해 주세요~</Box> :
+        <StoreCard storeInfo={store}></StoreCard>
+      } */}
+       <StoreCard storeInfo={store}></StoreCard>
    </>)
 }
 

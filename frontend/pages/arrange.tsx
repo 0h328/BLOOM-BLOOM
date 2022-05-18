@@ -6,18 +6,24 @@ import FlowerArrangeText from "../components/Choose/FlowerArrangeText";
 import Test from "../components/move/Test";
 import BouquetCheckModal from "../components/modal/BouquetCheckModal";
 import html2canvas from "html2canvas";
+import Moveable from "react-moveable";
+import Selecto from "react-selecto";
+import { presentBouquetState } from "../states/states";
+import { useRouter } from "next/router";
 import {
   wrapState,
   decoState,
   flowerState,
   mainFlowerState,
-  presentBouquetState,
+  totalCountState,
+  confirmBouquetState,
 } from "../states/states";
 import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
 import { useRecoilState } from "recoil";
 import { saveBouquet } from "../components/apis/bouquetApi";
 function Arrange() {
+  const router = useRouter();
   const [finish, setFinish] = useState<boolean>(false);
   const [bouquetImage, setBouquetImage] = useState<string>();
   const [checkModal, setCheckModal] = useState<boolean>();
@@ -25,12 +31,17 @@ function Arrange() {
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [totalCount, setTotalCount] = useRecoilState(totalCountState);
+  const [confirmBouquet, setConfirmBouquet] =
+    useRecoilState(confirmBouquetState);
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
   const [windowHeight, setWindowHeight] = useState<number>();
   const [height, setHeight] = useState<number>();
   const [bouquetImageData, setBouquetImageData] = useState<FormData>();
-
+  const [release, setRelease] = useState<boolean>(false);
+  const moveableRef = useRef(null);
+  const selectoRef = useRef(null);
   const handleSaveImg = () => {
     if (finish) {
       html2canvas(document.querySelector("#img"), {
@@ -40,7 +51,11 @@ function Arrange() {
         height: windowHeight,
       }).then((canvas) => {
         setBouquetImage(canvas.toDataURL("image/png"));
-        setPresentBouquet(canvas.toDataURL("image/png"));
+        setConfirmBouquet(canvas.toDataURL("image/png"));
+        // setPresentBouquet({
+        //   presentBouquetImage: canvas.toDataURL("image/png"),
+        //   presentBouquetSeq : ""
+        // });
 
         const imgBase64 = canvas.toDataURL("image/png");
         const decodImg = atob(imgBase64.split(",")[1]);
@@ -74,12 +89,17 @@ function Arrange() {
     }
   };
   const handleComplete = async () => {
+    console.log("여기");
+    router.push("/confirm");
     const response = await saveBouquet(bouquetImageData);
-    console.log(response);
+    setPresentBouquet({
+      presentBouquetImage: response.data.data.bouquetImage,
+      presentBouquetSeq: response.data.data.bouquetSeq,
+    });
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
-    setWindowHeight(window.innerHeight * 0.48);
+    setWindowHeight(window.innerHeight * 0.45);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
@@ -111,11 +131,30 @@ function Arrange() {
         handleComplete={handleComplete}
       ></BouquetCheckModal>
       <Box sx={{ position: "relative", mt: "5%", width: "100%" }}>
-        <FlowerArrangeText handleSaveImg={handleSaveImg}></FlowerArrangeText>
+        <FlowerArrangeText
+          handleSaveImg={handleSaveImg}
+          finish={finish}
+          handleArrange={handleArrange}
+        ></FlowerArrangeText>
       </Box>
+      <Selecto
+        ref={selectoRef}
+        dragContainer={".elements"}
+        selectableTargets={[".selecto-area .cube"]}
+        hitRate={0}
+        selectByClick={true}
+        selectFromInside={false}
+        toggleContinueSelect={["shift"]}
+        ratio={0}
+        onSelect={(e) => {
+          console.log(e.selected);
+        }}
+      ></Selecto>
       <Box
+        className="elements selecto-area"
         id="img"
         sx={{
+          mt: "1rem",
           width: "100%",
           height: "70%",
           display: "flex",
@@ -186,31 +225,11 @@ function Arrange() {
             borderRadius: "5px",
             justifyContent: "center",
             WebkitAlignItems: "flex-start",
+            mt: "1rem",
           }}
         >
-          <Move finish={finish}></Move>
+          <Move finish={finish} handleSaveImg={handleSaveImg}></Move>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          borderRadius: "5px",
-        }}
-      >
-        <Button
-          variant="contained"
-          size="small"
-          style={{
-            ...btnStyle,
-          }}
-          onClick={(e) => {
-            handleArrange(true);
-          }}
-        >
-          <Typography> 배치 완료</Typography>
-        </Button>
       </Box>
       <Toast />
     </Box>

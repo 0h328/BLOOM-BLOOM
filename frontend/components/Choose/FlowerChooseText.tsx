@@ -2,10 +2,11 @@ import React from "react";
 import Link from "next/link";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { Typography, IconButton } from "@mui/material";
+import { Typography, IconButton, Box } from "@mui/material";
 import Toast from "../common/Toast";
 import { toast } from "material-react-toastify";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
 interface textProps {
   totalCount: number;
 }
@@ -28,17 +29,26 @@ function FlowerChooseText({ totalCount }: textProps) {
         textAlign="center"
         position="relative"
         top="80px"
+        display="flex"
+        justifyContent="space-between"
       >
-        <IconButton
-          style={{ color: "black", right: "60px", marginBottom: "5px" }}
-        >
+        <IconButton style={{ color: "black", marginBottom: "5px" }}>
           <Link href="/bouquet" passHref>
             <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
           </Link>
         </IconButton>
-        꽃을 선택해주세요
+        <Box sx={{ display: "flex" }}>
+          <Typography variant="h6">꽃을 선택해주세요</Typography>
+          <Typography
+            component="div"
+            display="flex"
+            sx={{ alignItems: "center", ml: "0.5rem" }}
+          >
+            ({totalCount}/10)
+          </Typography>
+        </Box>
         <IconButton
-          style={{ color: "black", left: "60px", marginBottom: "5px" }}
+          style={{ color: "black", marginBottom: "5px" }}
           onClick={handleBtn}
         >
           <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
@@ -52,7 +62,7 @@ function FlowerChooseText({ totalCount }: textProps) {
         top="68px"
         style={{ textAlign: "center" }}
       >
-        꽃은 최대 8개까지 선택 가능합니다.
+        꽃은 최대 10개까지 선택 가능합니다.
       </Typography>
     </>
   );

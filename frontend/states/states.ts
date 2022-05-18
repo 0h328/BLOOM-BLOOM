@@ -11,8 +11,15 @@ const mainFlowerState = atom({
   default: [{ flowerSeq: -1, flowerCount: 0 }],
 });
 
+//메시지 전달할때 사용하는 꽃다발 정보가 저장
 const presentBouquetState = atom({
   key: "presentBouquet",
+  default: { presentBouquetImage: "", presentBouquetSeq: -1 },
+});
+
+//confirm 페이지 확인용 꽃다발
+const confirmBouquetState = atom({
+  key: "confirmBouquet",
   default: "",
 });
 
@@ -20,28 +27,34 @@ const presentBouquetState = atom({
 const wrapState = atom({
   key: "wrapInfo",
   default: {
-    wrapSeq: 1,
-    wrapImage: "/img/wrapOrange.png",
-    wrapBackImage: "/img/wrapBackOrange.png",
-    wrapFrontImage: "/img/wrapFrontOrange.png",
+    wrapSeq: 2,
+    wrapImage: "/img/wrapIvory.png",
+    wrapBackImage: "/img/wrapBackIvory.png",
+    wrapFrontImage: "/img/wrapFrontIvory.png",
   },
 });
 
 // 리본
 const decoState = atom({
   key: "decoInfo",
-  default: { decoSeq: 1, decoImage: "/img/ribbonDeepPink.png" },
+  default: { decoSeq: 2, decoImage: "/img/ribbonMixYellow.png" },
 });
 
 // 부속꽃
 const flowerState = atom({
   key: "flowerInfo",
-  default: { flowerSeq: 1, flowerImage: "/img/flower1.png" },
+  default: { flowerSeq: 2, flowerImage: "/img/flower2.png" },
 });
+
 
 const saveBouquetState = atom({
   key: "saveFlower",
   default: "",
+});
+
+const totalCountState = atom({
+  key: "totalCount",
+  default: 0,
 });
 
 export {
@@ -51,4 +64,6 @@ export {
   decoState,
   flowerState,
   presentBouquetState,
+  totalCountState,
+  confirmBouquetState,
 };

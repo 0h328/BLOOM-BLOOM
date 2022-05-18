@@ -11,10 +11,10 @@ function ImgDownloadBtn({ onCapture = () => {} }: imgSaveProps) {
       style={{
         backgroundColor: "#FFE0E0",
         color: "#000",
-        fontFamily: "JuliusSansOne",
+        fontFamily: "OneMobileLight",
         fontSize: "15px",
         borderRadius: "5",
-        width: "50%",
+        width: "40%",
       }}
       onClick={onCapture}
     >

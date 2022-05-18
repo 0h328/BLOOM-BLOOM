@@ -5,12 +5,14 @@ import { Box, Grid, Button } from "@mui/material";
 import { mainFlowerState } from "../../states/states";
 import { useRecoilState } from "recoil";
 import { flowerList } from "../flower/FlowerData";
+import styles from "./global.module.css";
 interface moveProps {
+  handleSaveImg: () => void;
   finish: boolean;
 }
-function Move({ finish }: moveProps) {
+function Move({ finish, handleSaveImg }: moveProps) {
   const [onLoad, setOnLoad] = useState<boolean>(false);
-  const [targets, setTargets] = useState<Array<HTMLElement | SVGElement>>([]);
+  const [targets, setTargets] = useState<Array<Element>>([]);
   const [target, setTarget] = useState([]);
   const [frameMap] = useState(() => new Map());
   const moveableRef = useRef(null);
@@ -19,6 +21,7 @@ function Move({ finish }: moveProps) {
   const [elementGuidelines, setElementGuidelines] = useState(null);
   const [selectedFlower, setSelectedFlower] = useState([]);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
+  const [zindex, setZindex] = useState<number>(100);
   //test용
   const [flowers, setFlowers] = useState([
     "/img/carnationPink.png",
@@ -129,17 +132,32 @@ function Move({ finish }: moveProps) {
     });
   };
   useEffect(() => {
-    setOnLoad(true);
-    setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
-  }, []);
+    console.log("targets", targets);
+    console.log("targetslegnth", targets.length);
+  }, [targets]);
+  useEffect(() => {
+    console.log("target", target);
+    console.log("targetlegnth", target.length);
+  }, [target]);
+  useEffect(() => {
+    console.log("finish", finish);
+  }, [finish]);
   useEffect(() => {
     if (finish) {
       setTargets([]);
       setTarget([]);
-    } else {
     }
   }, [finish]);
+
   useEffect(() => {
+    if (finish && targets.length === 0) {
+      console.log(finish);
+      handleSaveImg();
+    }
+  }, [targets]);
+  useEffect(() => {
+    setOnLoad(true);
+    setElementGuidelines([].slice.call(document.querySelectorAll(".moveable")));
     const temp1 = mainFlower.filter((flower) => flower.flowerSeq !== -1);
     const temp2 = [];
     temp1.map((flower, index) => {
@@ -162,11 +180,10 @@ function Move({ finish }: moveProps) {
           sx={{
             width: "100%",
             height: "100%",
-            // position: "relative",
-            // top: "100%",
           }}
         >
           <Moveable
+            className="moveable"
             ref={moveableRef}
             draggable={true}
             trigger={trigger}
@@ -213,6 +230,11 @@ function Move({ finish }: moveProps) {
             onSelect={(e) => {
               setTargets(e.selected);
               setTarget(e.selected);
+              if (e.selected[0]) {
+                e.selected[0].parentElement.style.zIndex = String(zindex);
+              }
+              setZindex(zindex + 1);
+              console.log(e.selected);
             }}
             onSelectEnd={(e) => {
               const moveable = moveableRef.current;
@@ -226,7 +248,7 @@ function Move({ finish }: moveProps) {
             }}
           ></Selecto>
           <Box
-            className="elements selecto-area"
+            className="elements selecto-area moveable"
             sx={{
               display: "flex",
               width: "100%",
@@ -238,19 +260,17 @@ function Move({ finish }: moveProps) {
             <Grid
               container
               // disableGutters
-              // spacing={1}
+              maxHeight="100%"
               maxWidth="sm"
               justifyContent="center"
-              alignItems="center"
-              sx={{ padding: "1rem" }}
+              sx={{}}
             >
-              {/* {flowers.map((item, index) => ( */}
               {selectedFlower.map((item, index) => (
                 <Grid
                   className="element"
                   item
-                  sm={3}
-                  xs={3}
+                  sm={2.3}
+                  xs={2.3}
                   key={index}
                   sx={{
                     display: "flex",
@@ -263,7 +283,7 @@ function Move({ finish }: moveProps) {
                     sx={{
                       width: "100%",
                       height: "100%",
-                      margin: "5px",
+                      // margin: "5px",
                     }}
                   >
                     <img

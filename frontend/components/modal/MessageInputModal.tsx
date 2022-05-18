@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect, useRef } from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import BouquetImg from "../present/BouquetImg";
@@ -9,6 +9,9 @@ import { presentBouquetState } from "../../states/states";
 import { savePresent } from "../apis/bouquetApi";
 import KakaoMessage from "../kakaoApi/KakaoMessage";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "material-react-toastify";
+import Toast from "../../components/common/Toast";
+import { useBeforeunload } from "react-beforeunload";
 import {
   Button,
   Snackbar,
@@ -18,7 +21,6 @@ import {
   SlideProps,
 } from "@mui/material";
 import { BASE_URL } from "../apis/config";
-
 type TransitionProps = Omit<SlideProps, "direction">;
 
 function TransitionDown(props: TransitionProps) {
@@ -27,35 +29,45 @@ function TransitionDown(props: TransitionProps) {
 interface meesageModalProps {
   openMessageModal?: () => void;
   closeMessageModal?: () => void;
+  handleMessageModal?: (state: boolean) => void;
   messageModal?: boolean;
-  share?: boolean;
+  isStored?: boolean;
+  handleIsStored?: (state: boolean) => void;
 }
 function MessageInputModal({
   openMessageModal,
   closeMessageModal,
+  handleMessageModal,
   messageModal,
-  share,
+  isStored,
+  handleIsStored,
 }: meesageModalProps) {
   const router = useRouter();
+  const imageRef = useRef(null);
   const [content, setContent] = useState<string>("");
+  const [textLength, setTextLength] = useState<number>();
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
   const [uuid, setUuid] = useState<string>("");
-  const [isStored, setIsStored] = useState<boolean>(false);
+  // const [isStored, setIsStored] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
-
+  const [bouquetImage, setBouquetImage] = useState<string>("");
+  const [offsetHeight, setOffsetHeight] = useState<number>();
   const handleStoreButtonClick = async () => {
+    console.log("요청전");
     // 1. requeset를 만든다.
     const body = {
-      bouquetSeq: 7,
+      bouquetSeq: presentBouquet.presentBouquetSeq,
       presentDesc: content,
     };
     // 2. 서버로 요청을 보낸다.
     const response = await savePresent(body);
+    console.log("요청후");
     // 3. 반환된 값을 받아서 uuid에 저장한다.
     setUuid(response.data.data.uuid);
     // 4. 저장이 되었다면 isStored도 true로 상태 변경을 진행한다.
-    setIsStored(true);
+    // setIsStored(true);
+    handleIsStored(true);
   };
 
   const handleCopyButton = () => {
@@ -63,8 +75,15 @@ function MessageInputModal({
   };
 
   const handleCloseButton = () => {
+    // setIsStored(false);
+    handleIsStored(false);
     setOpen(false);
   };
+  useBeforeunload((e: any) => {
+    e.preventDefault;
+    console.log("새로고침?");
+    router.push("/madelist");
+  });
 
   const action = (
     <React.Fragment>
@@ -80,11 +99,17 @@ function MessageInputModal({
   );
   const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const text = event.target.value;
-    setContent(`${text}`);
+    setTextLength(text.length);
+    if (textLength > 150) {
+      toast.error("⚠150자까지 입력가능합니다");
+    } else {
+      setContent(`${text}`);
+    }
+    console.log(textLength);
   };
   const handleShare = async () => {
     const body = {
-      bouquetSeq: 7,
+      bouquetSeq: presentBouquet.presentBouquetSeq,
       presentDesc: content,
     };
 
@@ -117,6 +142,20 @@ function MessageInputModal({
   const handleRoute = () => {
     router.back();
   };
+  useEffect(() => {
+    if (imageRef !== null && imageRef !== undefined) {
+      if (imageRef.current !== null) {
+        console.log(imageRef.current.offsetHeight);
+        setOffsetHeight(imageRef.current.offsetHeight);
+      }
+    }
+  });
+  useEffect(() => {
+    console.log(offsetHeight);
+  }, [offsetHeight]);
+  useEffect(() => {
+    if (messageModal) setContent("");
+  }, [messageModal]);
   return (
     <>
       {messageModal ? (
@@ -125,131 +164,236 @@ function MessageInputModal({
             position: "absolute",
             width: "420px",
             height: "100%",
-            backgroundColor: "rgba(255, 250, 250, 75%)",
+            backgroundColor: "rgb(31 31 31 / 33%)",
             zIndex: 900,
           }}
         >
+          <Toast />
           <Box
             sx={{
-              position: "absolute",
-              width: "100%",
-              height: "45%",
+              mt: "15%",
+              width: "90%",
+              height: "80%",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
-              top: "20%",
-              display: "flex",
-              justifyContent: "center",
-              border: "1rem #ffff",
+              // border: "1px solid rgba(0, 0, 0, 0.25)",
+              boxShadow: "6px 6px 4px rgba(0, 0, 0, 0.25)",
+              mx: "auto",
             }}
           >
-            <Typography
-              sx={{
-                position: "absolute",
-                fontSize: "15px",
-                fontFamily: "OneMobileLight",
-                fontWeight: "bold",
-                top: "3%",
-              }}
-            >
-              메세지 내용을 입력해주세요
-            </Typography>
-            <CloseIcon
-              sx={{
-                position: "absolute",
-                top: "20px",
-                left: "90%",
-                color: "",
-                "&:hover": { cursor: "pointer" },
-              }}
-              onClick={share ? handleRoute : closeMessageModal}
-            />
-            <Box
-              sx={{
-                width: "100%",
-                height: "200px",
-                top: "15%",
-                position: "relative",
-                display: "flex",
-                margin: "0rem 0.5rem 0rem 0.5rem",
-              }}
-            >
-              <TextareaAutosize
-                aria-label="minimum height"
-                id="content"
-                value={content}
-                minRows={3}
-                maxRows={10}
-                placeholder="이야기를 전달하세요"
-                style={{
-                  fontSize: "0.85rem",
-                  fontFamily: "OneMobileLight",
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor: "#FFFAFA",
-                  border: "1px solid rgba(109, 107, 107, 0.4)",
-                  resize: "none",
-                  margin: "0rem 0.6rem 0rem 0rem",
-                  padding: "1rem",
-                  // borderRadius: "10px",
-                }}
-                onChange={(event) => handleInput(event)}
-              />
-              <Box
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <CloseIcon
                 sx={{
-                  width: "50%",
-                  height: "100%",
+                  margin: "1rem 1rem 0rem 1rem",
+                  color: "",
+                  "&:hover": { cursor: "pointer" },
                 }}
-              >
-                <BouquetImg
-                  bouquetImage={presentBouquet}
-                  modal={true}
-                ></BouquetImg>
-              </Box>
+                onClick={() => handleMessageModal(false)}
+              />
             </Box>
             {isStored ? (
-              <div>
-                <Typography
+              <Typography
+                sx={{
+                  height: "5%",
+                  fontSize: "15px",
+                  fontFamily: "OneMobileLight",
+                  fontWeight: "bold",
+                  mx: "auto",
+                  textAlign: "center",
+                }}
+              >
+                꽃다발을 공유해보세요
+              </Typography>
+            ) : (
+              <Typography
+                sx={{
+                  height: "5%",
+                  fontSize: "15px",
+                  fontFamily: "OneMobileLight",
+                  fontWeight: "bold",
+                  mx: "auto",
+                  textAlign: "center",
+                }}
+              >
+                꽃다발과 함께 <br />
+                전달하고 싶은 이야기를 적어주세요
+              </Typography>
+            )}
+            <Box
+              sx={{
+                mt: offsetHeight > 250 ? null : "5%",
+                width: "80%",
+                mx: "auto",
+              }}
+            >
+              <Box sx={{}}>
+                <img
+                  ref={imageRef}
+                  id="img"
+                  src={presentBouquet.presentBouquetImage}
+                  alt="꽃다발"
+                  width={"100%"}
+                  height={"100%"}
+                ></img>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                height: "34%",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {isStored ? (
+                <Box
                   sx={{
-                    position: "absolute",
-                    fontSize: "15px",
-                    fontWeight: "bold",
-                    fontFamily: "OneMobileLight",
-                    top: "70%",
-                    left: "15%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
-                  완성된 메시지 카드와 꽃다발을 전달해보세요
+                  <Typography
+                    sx={{
+                      fontSize: "15px",
+                      fontWeight: "bold",
+                      fontFamily: "OneMobileLight",
+                      textAlign: "center",
+                    }}
+                  >
+                    꽃다발과 이야기를 성공적으로 담았습니다
+                    <br />
+                    링크공유 또는 카카오톡 공유로 마음을 전달해주세요
+                  </Typography>
                   <CopyToClipboard
-                    text={BASE_URL + "/present/" + uuid}
+                    text={BASE_URL + "present/" + uuid}
                     onCopy={handleCopyButton}
                   >
-                    <Button>🔗링크복사</Button>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      sx={{
+                        alignItems: "center",
+                        mt: "5%",
+                        mb: "5%",
+                      }}
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        backgroundColor: "#BAD7DF",
+                        color: "#000",
+                        fontFamily: "OneMobileLight",
+                        borderRadius: "5",
+                        width: 260,
+                        height: 43,
+                      }}
+                    >
+                      <Typography
+                        component="div"
+                        sx={{
+                          width: "25%",
+                          fontWeight: "600",
+                          fontSize: "15px",
+                          fontFamily: "OneMobileLight",
+                          color: "#000",
+                        }}
+                      >
+                        🔗
+                      </Typography>
+                      <Typography
+                        component="div"
+                        sx={{
+                          width: "50%",
+                          fontWeight: "600",
+                          fontSize: "15px",
+                          fontFamily: "OneMobileLight",
+                          color: "#000",
+                        }}
+                      >
+                        링크복사
+                      </Typography>
+                    </Button>
                   </CopyToClipboard>
-                </Typography>
-                <Box sx={{ position: "absolute", top: "80%", left: "70px" }}>
                   <KakaoBtn
                     handleBtn={handleShare}
                     title="카카오톡으로 공유하기"
                   ></KakaoBtn>
                 </Box>
-              </div>
-            ) : (
-              <Box sx={{ position: "absolute", top: "80%"}}>
-                <Button
-                  sx={{
-                    width: 156,
-                    height: 36,
-                    backgroundColor: "#FFE0E0",
-                    color: "#000000",
-                    fontFamily: "OneMobileLight",
-                  }}
-                  onClick={handleStoreButtonClick}
-                >
-                  저장하기
-                </Button>
-              </Box>
-            )}
+              ) : (
+                <>
+                  <textarea
+                    aria-label="minimum height"
+                    id="content"
+                    // disabled={textLength > 150}
+                    value={content}
+                    // minRows={}
+                    // maxRows={10}
+                    placeholder="이야기를 전달하세요"
+                    style={{
+                      width: "90%",
+                      height: offsetHeight > 250 ? "460%" : "90%",
+                      fontSize: "0.85rem",
+                      fontFamily: "OneMobileLight",
+                      border: "1px solid rgba(109, 107, 107, 0.4)",
+                      resize: "none",
+                      padding: "1rem",
+                      backgroundColor: "#EFDFBF",
+                      position: offsetHeight > 250 ? "relative" : null,
+                      top:
+                        offsetHeight > 250 ? `${260 - offsetHeight}px` : null,
+                    }}
+                    onChange={(event) => handleInput(event)}
+                  />
+                  <Button
+                    variant="contained"
+                    size="small"
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      backgroundColor: "#FFE0E0",
+                      color: "#000",
+                      fontFamily: "OneMobileLight",
+                      borderRadius: "5",
+                      width: 260,
+                      height: 43,
+                      alignItems: "center",
+                      position: offsetHeight > 250 ? "relative" : null,
+                      bottom:
+                        offsetHeight > 250 ? `${offsetHeight - 270}px` : null,
+                      marginTop: offsetHeight > 250 ? null : "10px",
+                    }}
+                    onClick={handleStoreButtonClick}
+                  >
+                    <Typography
+                      component="div"
+                      sx={{
+                        width: "25%",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        fontFamily: "OneMobileLight",
+                        color: "#000",
+                      }}
+                    >
+                      📫
+                    </Typography>
+                    <Typography
+                      component="div"
+                      sx={{
+                        width: "65%",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        fontFamily: "OneMobileLight",
+                        color: "#000",
+                      }}
+                    >
+                      이야기 담아 보내기
+                    </Typography>
+                  </Button>
+                </>
+              )}
+            </Box>
           </Box>
           <Snackbar
             open={open}

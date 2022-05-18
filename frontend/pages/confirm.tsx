@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Header from "../components/common/Header";
 import { useRouter } from "next/router";
 import BouquetImg from "../components/present/BouquetImg";
 import ConfirmBtn from "../components/button/ConfirmPageBtn";
 import MessageInputModal from "../components/modal/MessageInputModal";
 import { useRecoilState } from "recoil";
-import { presentBouquetState } from "../states/states";
+import { confirmBouquetState, presentBouquetState } from "../states/states";
+import CommonButton from "../components/common/CommonButton";
 function Confirm() {
   const router = useRouter();
-  const [messageModal, setMessageModal] = useState<boolean>(false);
+  const [confirmBouquet, setConfirmBouquet] =
+    useRecoilState(confirmBouquetState);
   const [presentBouquet, setPresentBouquet] =
     useRecoilState(presentBouquetState);
+  const [messageModal, setMessageModal] = useState<boolean>(false);
   const bouquetImage = "/img/wrapIvory.png";
-  const handleMessageModal = (e: any) => {
-    openMessageModal();
+  const handleMessageModal = (state: boolean) => {
+    setMessageModal(state);
   };
   const openMessageModal = () => {
     setMessageModal(true);
@@ -22,10 +25,11 @@ function Confirm() {
   const closeMessageModal = () => {
     setMessageModal(false);
   };
-  const handleRoute = (e: any) => {
-    e.preventDefault();
+  const handleRoute = () => {
+    // e.preventDefault();
     router.push("/order");
   };
+  console.log(presentBouquet);
   return (
     <Box
       sx={{
@@ -43,9 +47,8 @@ function Confirm() {
         <Header></Header>
       </Box>
       <MessageInputModal
-        openMessageModal={openMessageModal}
-        closeMessageModal={closeMessageModal}
         messageModal={messageModal}
+        handleMessageModal={handleMessageModal}
       ></MessageInputModal>
       <Box
         sx={{
@@ -55,23 +58,61 @@ function Confirm() {
           height: "45%",
         }}
       >
-        <BouquetImg bouquetImage={presentBouquet}></BouquetImg>
+        <BouquetImg bouquetImage={confirmBouquet}></BouquetImg>
       </Box>
-      <Box sx={{ position: "absolute", top: "65%" }}>
-        <Box sx={{ margin: "5% 0% 8% 0%" }}>
-          <ConfirmBtn
-            click={(e: any) => handleMessageModal(e)}
-            title="메시지 카드 작성하기"
+      <Box
+        sx={{
+          position: "absolute",
+          top: "65%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <CommonButton
+          icon={"📜"}
+          text={"메세지와 함께 공유하기"}
+          backgroundColor={"#EFDFBF"}
+          handleBtn={() => openMessageModal()}
+        ></CommonButton>
+        <Typography
+          sx={{
+            fontFamily: "OneMobileLight",
+            fontSize: "0.8rem",
+            mb: "20px",
+            mt: "5px",
+            width: 260,
+          }}
+        >
+          * 메시지 카드 작성 후, 공유할 수 있습니다.
+        </Typography>
+        {/* <ConfirmBtn
+            click={() => handleMessageModal()}
+            title="메세지와 함께 공유하기"
             text=" * 메시지 카드 작성 후, 카카오톡으로 공유할 수 있습니다."
-          ></ConfirmBtn>
-        </Box>
-        <Box sx={{ margin: "5% 0% 8% 0%" }}>
-          <ConfirmBtn
-            click={(e: any) => handleRoute(e)}
+          ></ConfirmBtn> */}
+        <CommonButton
+          icon={"🌹"}
+          text={"꽃집에 주문하기"}
+          backgroundColor={"#FFE0E0"}
+          handleBtn={handleRoute}
+        ></CommonButton>
+        <Typography
+          sx={{
+            fontFamily: "OneMobileLight",
+            fontSize: "0.8rem",
+            mb: "20px",
+            mt: "5px",
+            width: 260,
+          }}
+        >
+          * 꽃집에 꽃다발을 주문할 수 있습니다.
+        </Typography>
+        {/* <ConfirmBtn
+            click={() => handleRoute()}
             title="주문하기"
             text="* 원하는 꽃집에 꽃다발을 주문할 수 있습니다."
-          ></ConfirmBtn>
-        </Box>
+          ></ConfirmBtn> */}
       </Box>
     </Box>
   );

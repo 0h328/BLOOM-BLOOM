@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import Image from "next/image";
 import { textStyle } from "../main/FlowerImgListTitle";
@@ -18,8 +18,10 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
         sx={{
           ...boxStyle,
           height: "30px",
-          backgroundColor: "#FFE0E0",
+          backgroundColor: "#EFDFBF",
           display: "flex",
+          borderTopLeftRadius: "10px",
+          borderTopRightRadius: "10px",
         }}
       >
         <Grid container>
@@ -37,6 +39,8 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
       <Box
         sx={{
           ...boxStyle,
+          height: "85%",
+          overflow: "scroll",
           padding: "0.5rem",
           backgroundColor: "#ffff",
           borderColor: "#fffa",
@@ -53,7 +57,7 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
             }}
           >
             <Grid item xs={4}>
-            {flowerInfo.flowerName}
+              {flowerInfo.flowerName}
             </Grid>
             <Grid item xs={4}>
               <Box>
@@ -85,6 +89,7 @@ export const boxStyle = {
 export const titleStyle = {
   fontWeight: "bold",
   fontFamily: "OneMobileLight",
+  fontSize: "14px",
 };
 
 export default FlowerInfoList;

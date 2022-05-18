@@ -18,7 +18,7 @@ function Share() {
       <Box sx={{ position: "absolute", top: "30px" }}>
         <Header></Header>
       </Box>
-      <MessageInputModal messageModal={true} share={true}></MessageInputModal>
+      {/* <MessageInputModal messageModal={true} share={true}></MessageInputModal> */}
     </Box>
   );
 }

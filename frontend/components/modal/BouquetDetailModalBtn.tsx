@@ -1,43 +1,68 @@
 import React, { useState } from "react";
 import { Box, Typography, Grid, Button, Link } from "@mui/material";
-
+import { deleteBouquet } from "../apis/bouquetApi";
+import CommonButton from "../common/CommonButton";
 interface btnProps {
-  handleBtn: (code: number) => void;
+  handleBtn?: (code: number) => void;
+  bouquetSeq: number;
 }
-function BouquetDetailModalBtn({ handleBtn }: btnProps) {
-  const handleDelete = () => {};
+function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
   return (
-    <Grid container>
-      <Grid item xs={4}>
-        <Button
-          variant="contained"
-          size="small"
-          sx={{ ...btnStyle }}
-          onClick={() => handleBtn(0)}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
+      <Button
+        variant="contained"
+        size="small"
+        sx={{
+          alignItems: "center",
+          mb: "10px",
+        }}
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          backgroundColor: "#EFDFBF",
+          color: "#000",
+          fontFamily: "OneMobileLight",
+          borderRadius: "5",
+          width: 260,
+          height: 43,
+          maxHeight: "50%",
+        }}
+        onClick={() => handleBtn(0)}
+      >
+        <Typography
+          component="div"
+          sx={{
+            width: "25%",
+            ...btnStyle1,
+          }}
         >
-          <Typography sx={{ ...btnStyle1 }}>공유</Typography>
-        </Button>
-      </Grid>
-      <Grid item xs={4}>
-        <Link href="/order" sx={{ textDecoration: "none" }}>
-          <Button variant="contained" size="small" sx={{ ...btnStyle }} >
-            <Typography sx={{ ...btnStyle1 }}> 주문</Typography>
-          </Button>
-        </Link>
-      </Grid>
-      <Grid item xs={4}>
-        <Link href="/madelist" sx={{ textDecoration: "none" }}>
-          <Button
-            variant="contained"
-            size="small"
-            sx={{ ...btnStyle }}
-            onClick={handleDelete}
-          >
-            <Typography  sx={{ ...btnStyle1 }}>삭제</Typography>
-          </Button>
-        </Link>
-      </Grid>
-    </Grid>
+          📜
+        </Typography>
+        <Typography
+          component="div"
+          sx={{
+            width: "70%",
+            ...btnStyle1,
+          }}
+        >
+          메세지와 함께 공유하기
+        </Typography>
+      </Button>
+      <Link href="/ordermap" sx={{ textDecoration: "none" }}>
+        <CommonButton
+          icon={"📱"}
+          text={"꽃다발 주문하기"}
+          backgroundColor={"#FFE0E0"}
+        ></CommonButton>
+      </Link>
+    </Box>
   );
 }
 
@@ -49,7 +74,10 @@ export const btnStyle = {
   "&:hover": { backgroundColor: "#BAD7DF" },
 };
 export const btnStyle1 = {
+  fontWeight: "600",
+  fontSize: "14px",
   fontFamily: "OneMobileLight",
+  color: "#000",
 };
 
 export default BouquetDetailModalBtn;

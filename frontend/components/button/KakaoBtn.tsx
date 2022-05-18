@@ -12,54 +12,40 @@ function KakaoBtn({ handleBtn, title }: btnProps) {
       variant="contained"
       size="small"
       style={{
+        display: "flex",
+        justifyContent: "flex-start",
         backgroundColor: "#FEE500",
         color: "#3A1D1D",
-        fontFamily: "JuliusSansOne",
+        fontFamily: "OneMobileLight",
         borderRadius: "5",
-        width: 280,
+        width: 260,
         height: 45,
       }}
       onClick={handleBtn}
     >
-      <Grid
-        container
-        spacing={0}
-        direction="row"
-        alignItems="center"
-        justifyItems="center"
+      <Typography
+        component="div"
+        sx={{
+          width: "20%",
+          fontWeight: "600",
+          fontSize: "15px",
+          fontFamily: "OneMobileLight",
+        }}
       >
-        <Grid item xs={2}>
-          {" "}
-          <Box
-            sx={{
-              position: "absolute",
-              alignItems: "center",
-              justifyItems: "center",
-              top: "8px",
-              left: "30px",
-            }}
-          >
-            <img
-              src="/img/kakaoLogo.png"
-              alt="KakaoLogo"
-              width={30}
-              height={33}
-            ></img>
-          </Box>
-        </Grid>
-        <Grid item xs={10}>
-          <Typography
-            style={{
-              fontWeight: "600",
-              fontFamily: "JuliusSansOne",
-              fontSize: "15px",
-              color: "#3A1D1D",
-            }}
-          >
-            {title}
-          </Typography>
-        </Grid>
-      </Grid>
+        🎁
+      </Typography>
+      <Typography
+        component="div"
+        sx={{
+          width: "85%",
+          fontWeight: "600",
+          fontSize: "15px",
+          fontFamily: "OneMobileLight",
+          color: "#3A1D1D",
+        }}
+      >
+        {title}
+      </Typography>
     </Button>
   );
 }
