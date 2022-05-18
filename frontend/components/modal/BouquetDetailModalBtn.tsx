@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { Box, Typography, Grid, Button, Link } from "@mui/material";
 import { deleteBouquet } from "../apis/bouquetApi";
 import CommonButton from "../common/CommonButton";
+import Router from 'next/router';
+
 interface btnProps {
   handleBtn?: (code: number) => void;
   bouquetSeq: number;
 }
 function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
+  const SendQuery = () => {
+    const param = bouquetSeq;
+    Router.push('/ordermap/?bouquetSeq='+param,'/ordermap');
+  };
+
   return (
     <Box
       sx={{
@@ -55,13 +62,13 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
           메세지와 함께 공유하기
         </Typography>
       </Button>
-      <Link href="/ordermap" sx={{ textDecoration: "none" }}>
-        <CommonButton
-          icon={"📱"}
-          text={"꽃다발 주문하기"}
-          backgroundColor={"#FFE0E0"}
-        ></CommonButton>
-      </Link>
+      <CommonButton
+        icon={"📱"}
+        text={"꽃다발 주문하기"}
+        backgroundColor={"#FFE0E0"}
+        handleBtn={SendQuery}
+      ></CommonButton>
+      
     </Box>
   );
 }

@@ -11,7 +11,7 @@ function Request() {
       <Box>
         <Box sx={{width:400, ml:1}}>
           <TextField
-              sx={{ mt: 1, width:400}}
+              style={{ mt: 1, width:400, fontFamily: "OneMobileLight"}}
               placeholder="내용 입력"
               multiline
               rows={4}

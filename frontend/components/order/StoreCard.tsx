@@ -4,8 +4,48 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MapIcon from "@mui/icons-material/Map";
 import Image from "next/image";
 import React from "react";
+import Router from 'next/router';
 
-function Storecard({ storeInfo }) {
+/*
+”flowerinfo”: [
+   {
+      ”flowerName” : String,
+      ”flowerImage” : String,
+      ”flowerCount” : INT
+   }
+],
+”bouquetImage” : String,
+
+"storeSeq": 1,
+"storeName": "플라워",
+"storeContact": "010-0000-1111",
+"storeAddress": "도로명",
+"storeRegNum": "4199238",
+"storeMapId": "abc",
+"storeBlogId": "abc",
+"storeInstagramId": "abc",
+"storeImageLink": "abc"
+*/
+interface Store {
+  storeName: String,
+  storeContact:String,
+  storeAddress:String,
+  storeMapId: String,
+  storeImage:String
+};
+
+
+function Storecard(props: Store) {
+  const storeInfo = props.storeInfo;
+  const bouquetSeq = props.bouquetSeq;
+  console.log(storeInfo)
+  const SendQuery = () => {
+    const param_2 = bouquetSeq;
+
+    console.log("bouquetInfo in Storecard",param_2)
+    Router.push('/order/?storeInfo='+JSON.stringify(storeInfo)+'&'+'bouquetSeq='+bouquetSeq,'/order');
+  };
+
   return (<>
     {
       storeInfo.storeName === "처음이야" ?
@@ -109,7 +149,6 @@ function Storecard({ storeInfo }) {
         </Box>
         <Box sx={{ width: 420, display: "flex" }}>
           {/* 여기에 이제 받아온 데이터를 넘겨서 옮겨주면 보내주면 될 것 같습니다 */}
-          <Link href="/order" sx={{ textDecoration: "none", mx: "auto" }}>
             <Button
               sx={{
                 width: 156,
@@ -118,12 +157,12 @@ function Storecard({ storeInfo }) {
                 color: "#000000",
                 fontFamily: "OneMobileLight",
                 mt: 4,
-              }}
+                }}
+                onClick={SendQuery}
             >
               {" "}
               주문하기{" "}
             </Button>
-          </Link>
         </Box>
       </Box>
           
