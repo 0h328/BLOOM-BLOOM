@@ -27,7 +27,7 @@ import Router from 'next/router';
 "storeImageLink": "abc"
 */
 
-function Storecard(props: Store) {
+function Storecard(props) {
   const storeInfo = props.storeInfo;
   const bouquetSeq = props.bouquetSeq;
   console.log(storeInfo)

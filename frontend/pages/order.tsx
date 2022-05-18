@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 
 export default function Order() {
   const router = useRouter();
-  const store = JSON.parse(router.query.storeInfo);
+  const store = JSON.parse(String(router.query.storeInfo));
   const bouquetSeq = router.query.bouquetSeq;
   console.log(bouquetSeq);
   return(
