@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Button, ToggleButton, ToggleButtonGroup, Box } from "@mui/material";
+import {
+  Button,
+  ToggleButton,
+  ToggleButtonGroup,
+  Box,
+  Typography,
+} from "@mui/material";
 import WrapperChooseText from "../components/Choose/WrapperChooseText";
 import RibbonChooseText from "../components/Choose/RibbonChooseText";
 import StalkChooseText from "../components/Choose/StalkChooseText";
@@ -24,6 +30,7 @@ function BouquetContainer({ src }: containerProps) {
   const [decoInfo, setDecoInfo] = useRecoilState(decoState);
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [alignment, setAlignment] = useState("1");
+  const [windowHeight, setWindowHeight] = useState<boolean>();
   const handleAlignment = (
     event: any,
     newAlignment: React.SetStateAction<string>
@@ -120,76 +127,167 @@ function BouquetContainer({ src }: containerProps) {
     });
     setDecoInfo({ decoSeq: 2, decoImage: "/img/ribbonMixYellow.png" });
     setFlowerInfo({ flowerSeq: 2, flowerImage: "/img/flower2.png" });
+    setWindowHeight(window.innerHeight > 810);
   }, []);
-
+  console.log(alignment);
   return (
     <Box sx={{ ...BouquetPage }}>
-      {alignment === "1" && <WrapperChooseText></WrapperChooseText>}
-      {alignment === "2" && <RibbonChooseText></RibbonChooseText>}
-      {alignment === "3" && <StalkChooseText></StalkChooseText>}
-
-      <Button>꽃고르러 가기</Button>
-      {/* 선택한 포장지를 확인할 수 있는 곳 */}
+      <Box sx={{ height: "5%", display: "flex", justifyContent: "flex-end" }}>
+        <Box sx={{ width: "100%" }}>
+          {alignment === "1" && <WrapperChooseText></WrapperChooseText>}
+          {alignment === "2" && <RibbonChooseText></RibbonChooseText>}
+          {alignment === "3" && <StalkChooseText></StalkChooseText>}
+          <Typography
+            sx={{
+              textAlign: "center",
+              fontFamily: "OneMobileLight",
+              fontWeight: "600",
+              fontSize: "12px",
+              color: "#6c6c6c",
+            }}
+          >
+            다골랐니? 다 골랐으면 꽃보러 가기 버튼 눌러
+          </Typography>
+        </Box>
+        {/* 선택한 포장지를 확인할 수 있는 곳 */}
+      </Box>
       <Box sx={{ ...BouquetLayout }}>
         <Box
           sx={{
             position: "absolute",
-            top: "5%",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
             // zIndex: "mobile stepper",
           }}
         >
           <img
             src={wrapInfo.wrapBackImage}
             alt="포장지 뒷 부분"
-            style={{ width: "300px", height: "300px" }}
+            // style={{ width: "290px", height: "290px" }}
+            style={{
+              width: windowHeight ? "330px" : "290px",
+              height: windowHeight ? "330px" : "290px",
+            }}
             onError={handleError}
           ></img>
         </Box>
         <Box
           sx={{
             position: "absolute",
-            top: "8%",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
             // zIndex: "drawer",
           }}
         >
           <img
             src={flowerInfo.flowerImage}
             alt="부속꽃"
-            style={{ width: "300px", height: "300px" }}
+            // style={{ width: "290px", height: "290px" }}
+            style={{
+              width: windowHeight ? "330px" : "290px",
+              height: windowHeight ? "330px" : "290px",
+            }}
           ></img>
         </Box>
         <Box
           sx={{
             position: "absolute",
-            top: "8%",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
             // zIndex: "snackbar",
           }}
         >
           <img
             src={wrapInfo.wrapFrontImage}
             alt="포장지 앞 부분"
-            style={{ width: "300px", height: "300px" }}
+            // style={{ width: "290px", height: "290px" }}
+            style={{
+              width: windowHeight ? "330px" : "290px",
+              height: windowHeight ? "330px" : "290px",
+            }}
             onError={handleError}
           ></img>
         </Box>
         <Box
           sx={{
             position: "absolute",
-            top: "160px",
+            top: windowHeight ? "170px" : "140px",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
             // zIndex: "tooltip",
           }}
         >
           <img
             src={decoInfo.decoImage}
             alt="리본"
-            style={{ width: "140px", height: "140px" }}
+            style={{
+              width: windowHeight ? "120px" : "120px",
+              height: windowHeight ? "160px" : "160px",
+            }}
           ></img>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+            width: "100%",
+            height: "100%",
+            mr: "4%",
+            mb: "2%",
+          }}
+        >
+          <Button
+            variant="contained"
+            size="small"
+            sx={
+              {
+                // alignItems: "center",
+              }
+            }
+            style={{
+              // display: "flex",
+              backgroundColor: "#FFE0E0",
+              color: "#000",
+              fontFamily: "OneMobileLight",
+              borderRadius: "100px",
+              width: 110,
+              height: 40,
+              // maxHeight: "50%",
+            }}
+            onClick={handleRoute}
+          >
+            <Typography
+              component="div"
+              sx={{
+                width: "100%",
+                ...btnStyle1,
+              }}
+            >
+              🌺 꽃 보러 가기
+            </Typography>
+          </Button>
         </Box>
       </Box>
       {/* 선택한 포장지를 확인할 수 있는 곳 */}
 
       {/* 포장지, 리본, 꽃줄기 버튼 */}
-      <Box sx={{ mt: "19rem" }}>
+      <Box
+        sx={{
+          mt: "5%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
         <ToggleButtonGroup
           value={alignment}
           exclusive
@@ -197,13 +295,14 @@ function BouquetContainer({ src }: containerProps) {
           sx={{
             display: "flex",
             justifyContent: "space-evenly",
+            backgroundColor: "#EFDFBF",
           }}
         >
           <ToggleButton
             value="1"
             style={{
               ...btnStyle,
-              backgroundColor: alignment === "1" ? "#FFFAFA" : "##EFDFBF",
+              backgroundColor: alignment === "1" ? "#FFFAFA" : "transparent",
             }}
           >
             포장지
@@ -212,7 +311,7 @@ function BouquetContainer({ src }: containerProps) {
             value="2"
             style={{
               ...btnStyle,
-              backgroundColor: alignment === "2" ? "#FFFAFA" : "##FFE0E0",
+              backgroundColor: alignment === "2" ? "#FFFAFA" : "transparent",
             }}
           >
             리본
@@ -221,61 +320,62 @@ function BouquetContainer({ src }: containerProps) {
             value="3"
             style={{
               ...btnStyle,
-              backgroundColor: alignment === "3" ? "#FFFAFA" : "##FFE0E0",
+              backgroundColor: alignment === "3" ? "#FFFAFA" : "transparent",
             }}
           >
             부속꽃
           </ToggleButton>
         </ToggleButtonGroup>
         {/* 포장지, 리본, 꽃줄기 버튼 */}
+      </Box>
+      <Box
+        sx={{
+          height: windowHeight ? "60%" : "45%",
+          overflow: "scroll",
+          // mt: "5%",
+        }}
+      >
+        {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
+        {alignment === "1" && <Wrapper wrapList={wrapList}></Wrapper>}
+        {alignment === "2" && <Ribbon decoList={decoList}></Ribbon>}
+        {alignment === "3" && <Stalk flowerList={flowerList}></Stalk>}
 
-        <Box>
-          {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
-          {alignment === "1" && <Wrapper wrapList={wrapList}></Wrapper>}
-          {alignment === "2" && <Ribbon decoList={decoList}></Ribbon>}
-          {alignment === "3" && <Stalk flowerList={flowerList}></Stalk>}
-          {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
-        </Box>
-
-        {/* 꽃을 선택하러갈 수 있는 버튼 */}
-        {/* <Box
-          sx={{
-            textAlign: "center",
-            mx: "auto",
-            mt: "5%",
-            width: "fit-Content",
-          }}
-        >
-          <CommonButton
-            icon={"🌺"}
-            text={"꽃 고르러가기"}
-            backgroundColor={"#FFC0D0"}
-            handleBtn={handleRoute}
-          ></CommonButton>
-        </Box> */}
-        {/* 꽃을 선택하러갈 수 있는 버튼 */}
+        {/* 버튼 클릭 시, 포장지/리본/꽃줄기를 종류별로 확인 가능*/}
       </Box>
     </Box>
   );
 }
 
 export const BouquetPage = {
-  position: "relative",
-  pt: "7rem",
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
 };
 
 export const BouquetLayout = {
   position: "relative",
   display: "flex",
   justifyContent: "center",
+  height: "55%",
+  mt: "5%",
 };
 
 export const btnStyle = {
-  color: "black",
-  width: "30%",
-  height: "40px",
-  border: "1px solid #FFE0E0",
+  width: "20%",
+  height: "20px",
+  border: "none",
   fontSize: "0.8rem",
+  fontFamily: "ONEMobileLight",
+  color: "#000",
+  fontWeight: "600",
+};
+
+export const btnStyle1 = {
+  fontWeight: "600",
+  fontSize: "13px",
+  fontFamily: "OneMobileLight",
+  color: "#000",
 };
 
 export default BouquetContainer;

@@ -28,16 +28,30 @@ export default function FlowerPage() {
       sx={{
         mx: "auto",
         width: 420,
-        position: "relative",
         backgroundColor: "#FFFAFA",
         height: windowHeight > 480 ? 420 : "85vh",
         minHeight: "100vh",
       }}
     >
-      <Box sx={{ position: "absolute", top: "30px" }}>
+      <Box
+        sx={{
+          height: "9%",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <Header page="bouquet"></Header>
       </Box>
-      <BouquetContainer></BouquetContainer>
+      <Box
+        sx={{
+          width: "100%",
+          height: "90%",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <BouquetContainer></BouquetContainer>
+      </Box>
     </Box>
   );
 }

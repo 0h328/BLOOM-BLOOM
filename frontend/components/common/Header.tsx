@@ -34,6 +34,7 @@ function Header({ page }: PageIdetifierProps) {
                       textAlign: "center",
                       fontFamily: "ONEMobileLight",
                       fontSize: 25,
+                      // fontWeight: "600",
                     }}
                   >
                     BLOOM BLOOM
