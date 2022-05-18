@@ -26,14 +26,6 @@ import Router from 'next/router';
 "storeInstagramId": "abc",
 "storeImageLink": "abc"
 */
-interface Store {
-  storeName: String,
-  storeContact:String,
-  storeAddress:String,
-  storeMapId: String,
-  storeImage:String
-};
-
 
 function Storecard(props: Store) {
   const storeInfo = props.storeInfo;
