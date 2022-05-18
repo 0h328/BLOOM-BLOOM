@@ -140,7 +140,7 @@ function BouquetDetailModal({
             >
               <ArrowBackOutlinedIcon
                 sx={{
-                  margin: "1rem 1rem 0rem 1rem",
+                  margin: "1rem 1rem 1.5rem 1rem",
                   "&:hover": { cursor: "pointer" },
                 }}
                 onClick={closeBouquetDetailModal}

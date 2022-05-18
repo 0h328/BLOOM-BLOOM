@@ -35,10 +35,9 @@ function FlowerArrangeText({
           </IconButton>
           꽃을 배치해주세요
           <IconButton
-            className={finish ? "nextBtn" : null}
             component="div"
             style={{
-              color: "rgb(207 207 207)",
+              color: "black",
               display: "flex",
               flexDirection: "column",
               marginBottom: "5px",

@@ -54,25 +54,32 @@ function Flower() {
       sx={{
         mx: "auto",
         width: 420,
-        position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "840px",
+        height: "100vh",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      {/* <Toast /> */}
-      <Box sx={{ position: "absolute", top: "30px" }}>
+      <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
         <Header page="flower"></Header>
       </Box>
-      <FlowerChooseText totalCount={totalCount}></FlowerChooseText>
       <Box
         sx={{
-          position: "absolute",
+          width: "100%",
+          height: "10vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <FlowerChooseText totalCount={totalCount}></FlowerChooseText>
+      </Box>
+      <Box
+        sx={{
           backgroundColor: "#FFE0E0",
           width: "410px",
           height: "730px",
-          top: "150px",
-          left: "5px",
           borderRadius: "10px",
           overflowX: "hidden",
           overflowY: "scroll",

@@ -21,7 +21,7 @@ function MakeButton() {
           <Typography
             sx={{
               fontSize: "18px",
-              fontWeight: "Regular",
+              fontWeight: "600",
               fontFamily: "ONEMobileLight",
             }}
           >
