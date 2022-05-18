@@ -22,62 +22,62 @@ function FlowerChooseText({ totalCount }: textProps) {
   return (
     <>
       <Toast></Toast>
-      <Typography
-        variant="h6"
-        gutterBottom
-        component="div"
-        textAlign="center"
-        position="relative"
-        top="80px"
-        display="flex"
-        justifyContent="space-between"
-      >
-        <IconButton style={{ color: "black", marginBottom: "5px" }}>
-          <Link href="/bouquet" passHref>
-            <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
-          </Link>
-        </IconButton>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography
-            sx={{
-              textAlign: "center",
-              fontWeight: "600",
-              fontSize: "18px",
-              fontFamily: "OneMobileLight",
-            }}
-          >
-            꽃을 선택해주세요
-          </Typography>
-          <Typography
-            component="div"
-            display="flex"
-            sx={{
-              fontWeight: "600",
-              alignItems: "center",
-              ml: "0.5rem",
-              fontFamily: "OneMobileLight",
-            }}
-          >
-            ({totalCount}/10)
-          </Typography>
-        </Box>
-        <IconButton
-          style={{ color: "black", marginBottom: "5px" }}
-          onClick={handleBtn}
+      <Box sx={{ display: "flex", width: "100%" }}>
+        <Typography
+          variant="h6"
+          gutterBottom
+          component="div"
+          textAlign="center"
+          display="flex"
+          justifyContent="space-around"
+          width="100%"
         >
-          <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
-        </IconButton>
-      </Typography>
-      <Typography
-        variant="subtitle2"
-        gutterBottom
-        component="div"
-        position="relative"
-        top="68px"
-        style={{ textAlign: "center", fontFamily: "OneMobileLight" }}
-      >
-        꽃은 최대 10개까지 선택 가능합니다.
-      </Typography>
+          <IconButton style={{ color: "black", marginBottom: "5px" }}>
+            <Link href="/bouquet" passHref>
+              <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
+            </Link>
+          </IconButton>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography
+              sx={{
+                textAlign: "center",
+                fontWeight: "600",
+                fontSize: "18px",
+                fontFamily: "OneMobileLight",
+              }}
+            >
+              꽃을 선택해주세요
+            </Typography>
+            <Typography
+              component="div"
+              display="flex"
+              sx={{
+                fontWeight: "600",
+                alignItems: "center",
+                ml: "0.5rem",
+                fontFamily: "OneMobileLight",
+              }}
+            >
+              ({totalCount}/10)
+            </Typography>
+          </Box>
+          <IconButton
+            style={{ color: "black", marginBottom: "5px" }}
+            onClick={handleBtn}
+          >
+            <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
+          </IconButton>
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          component="div"
+          top="68px"
+          style={{ textAlign: "center", fontFamily: "OneMobileLight" }}
+        >
+          꽃은 최대 10개까지 선택 가능합니다.
+        </Typography>
+      </Box>
     </>
   );
 }

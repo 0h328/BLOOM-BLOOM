@@ -29,13 +29,12 @@ export default function FlowerPage() {
         mx: "auto",
         width: 420,
         backgroundColor: "#FFFAFA",
-        height: windowHeight > 480 ? 420 : "85vh",
-        minHeight: "100vh",
+        height: "100vh",
       }}
     >
       <Box
         sx={{
-          height: "9%",
+          height: "10vh",
           display: "flex",
           alignItems: "center",
         }}
@@ -45,7 +44,7 @@ export default function FlowerPage() {
       <Box
         sx={{
           width: "100%",
-          height: "90%",
+          height: "90vh",
           display: "flex",
           alignItems: "center",
         }}

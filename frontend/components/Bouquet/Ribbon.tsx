@@ -38,11 +38,11 @@ function Ribbon({ decoList }: decoProps) {
     <Box sx={{ ...style }}>
       <Grid
         container
-        // spacing={3}
+        spacing={2}
         direction="row"
         alignItems="center"
         justifyItems="center"
-        sx={{ width: 320 }}
+        sx={{ width: "90%" }}
       >
         {decoList.map((deco, index) => {
           return (
@@ -50,12 +50,17 @@ function Ribbon({ decoList }: decoProps) {
               key={index}
               item
               xs={4}
-              sx={{ "&:hover": { cursor: "pointer" } }}
+              sx={{
+                "&:hover": { cursor: "pointer" },
+                width: "33%",
+                alignItems: "center",
+              }}
             >
               <img
                 src={deco.decoImage}
                 alt="리본"
-                style={{ width: "95px", height: "95px" }}
+                width={"100%"}
+                height={"auto"}
                 onClick={(event) => {
                   clickHandler(deco, event);
                 }}
@@ -72,7 +77,8 @@ export const style = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
-  margin: "10px auto",
+  margin: "1vh auto",
+  width: "100%",
 };
 
 export default Ribbon;

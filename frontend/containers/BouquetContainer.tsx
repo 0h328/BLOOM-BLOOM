@@ -132,7 +132,7 @@ function BouquetContainer({ src }: containerProps) {
   console.log(alignment);
   return (
     <Box sx={{ ...BouquetPage }}>
-      <Box sx={{ height: "5%", display: "flex", justifyContent: "flex-end" }}>
+      <Box sx={{ height: "9vh", display: "flex", justifyContent: "flex-end" }}>
         <Box sx={{ width: "100%" }}>
           {alignment === "1" && <WrapperChooseText></WrapperChooseText>}
           {alignment === "2" && <RibbonChooseText></RibbonChooseText>}
@@ -146,7 +146,7 @@ function BouquetContainer({ src }: containerProps) {
               color: "#6c6c6c",
             }}
           >
-            다 골랐니? 다 골랐으면 꽃 구경하러 갈래?
+            다 골랐으면 꽃 구경하러 가실래요? 진짜 이쁜데
           </Typography>
         </Box>
         {/* 선택한 포장지를 확인할 수 있는 곳 */}
@@ -154,82 +154,61 @@ function BouquetContainer({ src }: containerProps) {
       <Box sx={{ ...BouquetLayout }}>
         <Box
           sx={{
+            width: "40vh",
+            mx: "auto",
             position: "absolute",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            // zIndex: "mobile stepper",
           }}
         >
           <img
             src={wrapInfo.wrapBackImage}
             alt="포장지 뒷 부분"
-            // style={{ width: "290px", height: "290px" }}
-            style={{
-              width: windowHeight ? "330px" : "290px",
-              height: windowHeight ? "330px" : "290px",
-            }}
+            width={"100%"}
+            height={"auto"}
             onError={handleError}
           ></img>
         </Box>
         <Box
           sx={{
+            width: "40vh",
+            mx: "auto",
             position: "absolute",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            // zIndex: "drawer",
           }}
         >
           <img
             src={flowerInfo.flowerImage}
             alt="부속꽃"
-            // style={{ width: "290px", height: "290px" }}
-            style={{
-              width: windowHeight ? "330px" : "290px",
-              height: windowHeight ? "330px" : "290px",
-            }}
+            width={"100%"}
+            height={"auto"}
           ></img>
         </Box>
         <Box
           sx={{
+            width: "40vh",
+            mx: "auto",
             position: "absolute",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "center",
-            // zIndex: "snackbar",
           }}
         >
           <img
             src={wrapInfo.wrapFrontImage}
             alt="포장지 앞 부분"
-            // style={{ width: "290px", height: "290px" }}
-            style={{
-              width: windowHeight ? "330px" : "290px",
-              height: windowHeight ? "330px" : "290px",
-            }}
+            width={"100%"}
+            height={"auto"}
             onError={handleError}
           ></img>
         </Box>
         <Box
           sx={{
+            width: "20vh",
+            mx: "auto",
+            top: "20vh",
             position: "absolute",
-            top: windowHeight ? "170px" : "140px",
-            display: "flex",
-            justifyContent: "center",
-            // zIndex: "tooltip",
           }}
         >
           <img
             src={decoInfo.decoImage}
             alt="리본"
-            style={{
-              width: windowHeight ? "120px" : "120px",
-              height: windowHeight ? "160px" : "160px",
-            }}
+            width={"100%"}
+            height={"auto"}
           ></img>
         </Box>
         <Box
@@ -238,9 +217,8 @@ function BouquetContainer({ src }: containerProps) {
             justifyContent: "flex-end",
             alignItems: "flex-end",
             width: "100%",
-            height: "100%",
+            // height: "100%",
             mr: "4%",
-            mb: "2%",
           }}
         >
           <Button
@@ -257,9 +235,12 @@ function BouquetContainer({ src }: containerProps) {
               color: "#000",
               fontFamily: "OneMobileLight",
               borderRadius: "100px",
-              width: 130,
-              height: 40,
-              // maxHeight: "50%",
+              width: "17vh",
+              height: "6vh",
+              margin: "0vh 8px 3vh 0vh",
+              minWidth: "fit-content",
+              maxHeight: "40px",
+              maxWidth: " 130px",
             }}
             onClick={handleRoute}
           >
@@ -280,7 +261,6 @@ function BouquetContainer({ src }: containerProps) {
       {/* 포장지, 리본, 꽃줄기 버튼 */}
       <Box
         sx={{
-          mt: "5%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -328,8 +308,9 @@ function BouquetContainer({ src }: containerProps) {
       </Box>
       <Box
         sx={{
-          height: windowHeight ? "60%" : "45%",
-          overflow: "scroll",
+          height: "35vh",
+          overflowY: "scroll",
+          overflowX: "none",
           // mt: "5%",
         }}
       >
@@ -346,17 +327,16 @@ function BouquetContainer({ src }: containerProps) {
 
 export const BouquetPage = {
   width: "100%",
-  height: "100%",
+  height: "90vh",
   display: "flex",
   flexDirection: "column",
 };
 
 export const BouquetLayout = {
+  height: "50vh",
   position: "relative",
   display: "flex",
   justifyContent: "center",
-  height: "55%",
-  mt: "5%",
 };
 
 export const btnStyle = {

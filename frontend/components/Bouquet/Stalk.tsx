@@ -38,28 +38,39 @@ function Stalk({ flowerList }: flowerProps) {
 
   return (
     <Box sx={{ ...style }}>
-      {flowerList.map((flower, index) => {
-        return (
-          <Grid
-            item
-            key={index}
-            sx={{
-              "&:hover": { cursor: "pointer" },
-              width: "130px",
-              heigth: "130px",
-            }}
-          >
-            <img
-              src={flower.flowerImage}
-              alt="부속꽃"
-              style={{ width: "130px", height: "130px" }}
-              onClick={(event) => {
-                clickHandler(flower, event);
+      <Grid
+        container
+        spacing={1}
+        direction="row"
+        alignItems="center"
+        justifyItems="center"
+        sx={{ width: "90%" }}
+      >
+        {flowerList.map((flower, index) => {
+          return (
+            <Grid
+              item
+              key={index}
+              xs={6}
+              sx={{
+                "&:hover": { cursor: "pointer" },
+                width: "33%",
+                alignItems: "center",
               }}
-            ></img>
-          </Grid>
-        );
-      })}
+            >
+              <img
+                src={flower.flowerImage}
+                alt="부속꽃"
+                width={"100%"}
+                height={"auto"}
+                onClick={(event) => {
+                  clickHandler(flower, event);
+                }}
+              ></img>
+            </Grid>
+          );
+        })}
+      </Grid>
     </Box>
   );
 }
@@ -68,8 +79,8 @@ export const style = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
-  height: "100%",
-  margin: "10px auto",
+  margin: "1vh auto",
+  width: "100%",
 };
 
 export default Stalk;
