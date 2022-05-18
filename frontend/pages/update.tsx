@@ -1,5 +1,5 @@
 import React from 'react';
-import ShopUpdate from '../components/admin/shopUpdate';
+import ShopUpdate from '../components/admin/ShopUpdate';
 
 function Register() {
   return (
