@@ -22,10 +22,10 @@ function FlowerChooseText({ totalCount }: textProps) {
   return (
     <>
       <Toast></Toast>
-      <Box sx={{ display: "flex", width: "100%" }}>
+      <Box sx={{ display: "flex", width: "100%", flexDirection: "column" }}>
         <Typography
           variant="h6"
-          gutterBottom
+          // gutterBottom
           component="div"
           textAlign="center"
           display="flex"
@@ -69,11 +69,13 @@ function FlowerChooseText({ totalCount }: textProps) {
           </IconButton>
         </Typography>
         <Typography
-          variant="subtitle2"
-          gutterBottom
-          component="div"
-          top="68px"
-          style={{ textAlign: "center", fontFamily: "OneMobileLight" }}
+          sx={{
+            textAlign: "center",
+            fontFamily: "OneMobileLight",
+            fontWeight: "600",
+            fontSize: "13px",
+            color: "#6c6c6c",
+          }}
         >
           꽃은 최대 10개까지 선택 가능합니다.
         </Typography>

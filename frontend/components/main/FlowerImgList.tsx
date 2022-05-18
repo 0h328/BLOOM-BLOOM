@@ -50,7 +50,7 @@ function FlowerImgList({
             direction="row"
             alignItems="center"
             justifyItems="center"
-            sx={{ width: "90%" }}
+            sx={{ width: "100vh" }}
           >
             {bouquetList.map((bouquet, index) => {
               return (
@@ -58,17 +58,19 @@ function FlowerImgList({
                   item
                   xs={4}
                   key={index}
+                  style={{ width: "15vh" }}
                   sx={{
                     display: "flex",
                     justifyContent: "center",
                     "&:hover": { cursor: "pointer" },
+                    width: "15vh",
                   }}
                 >
                   <img
                     src={bouquet.bouquetImage}
                     alt="꽃다발"
-                    width={"120%"}
-                    height={"120%"}
+                    width={"100%"}
+                    height={"auto"}
                     onClick={(event) => {
                       clickHandler(bouquet, event);
                     }}
@@ -85,7 +87,7 @@ function FlowerImgList({
               sx={{
                 // position: "absolute",
                 // width: "100%",
-                // height: "100%",
+                height: "20%",
                 justifyContent: "center",
                 alignItems: "center",
                 display: "flex",
@@ -112,15 +114,17 @@ function FlowerImgList({
                     item
                     xs={4}
                     key={index}
-                    sx={{ display: "flex", justifyContent: "center" }}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "10vh",
+                    }}
                   >
                     <img
                       src={bouquet.bouquetImage}
                       alt="꽃다발"
-                      // width={"160px"}
-                      // height={"160px"}
-                      width={"160px"}
-                      height={"160px"}
+                      width={"150px"}
+                      height={"auto"}
                     ></img>
                   </Grid>
                 );
