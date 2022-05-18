@@ -146,7 +146,7 @@ function BouquetContainer({ src }: containerProps) {
               color: "#6c6c6c",
             }}
           >
-            다골랐니? 다 골랐으면 꽃보러 가기 버튼 눌러
+            다 골랐니? 다 골랐으면 꽃 구경하러 갈래?
           </Typography>
         </Box>
         {/* 선택한 포장지를 확인할 수 있는 곳 */}
@@ -218,8 +218,6 @@ function BouquetContainer({ src }: containerProps) {
           sx={{
             position: "absolute",
             top: windowHeight ? "170px" : "140px",
-            width: "100%",
-            height: "100%",
             display: "flex",
             justifyContent: "center",
             // zIndex: "tooltip",
@@ -259,7 +257,7 @@ function BouquetContainer({ src }: containerProps) {
               color: "#000",
               fontFamily: "OneMobileLight",
               borderRadius: "100px",
-              width: 110,
+              width: 130,
               height: 40,
               // maxHeight: "50%",
             }}

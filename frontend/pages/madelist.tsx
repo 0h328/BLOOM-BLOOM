@@ -80,6 +80,7 @@ function MadeList() {
       <Box sx={{ mt: "2rem", width: "93%" }}>
         <Typography
           sx={{
+            textAlign: "center",
             ...textStyle,
           }}
         >
@@ -87,8 +88,11 @@ function MadeList() {
         </Typography>
         <Typography
           sx={{
-            ...textStyle,
-            fontSize: "0.8rem",
+            textAlign: "center",
+            fontFamily: "OneMobileLight",
+            fontWeight: "600",
+            fontSize: "12px",
+            color: "#6c6c6c",
             mt: "0.5rem",
           }}
         >
@@ -123,7 +127,7 @@ export const textStyle = {
   fontStyle: "normal",
   fontWeight: "bold",
   lineHeight: "17px",
-  fontSize: "1rem",
+  fontSize: "1.2rem",
   color: "rgba(0, 0, 0, 0.8)",
 };
 export default MadeList;

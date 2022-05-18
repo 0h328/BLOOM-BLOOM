@@ -54,6 +54,7 @@ function MessageInputModal({
   const [bouquetImage, setBouquetImage] = useState<string>("");
   const [offsetHeight, setOffsetHeight] = useState<number>();
   const [messageStored, setMessageStored] = useRecoilState(messageStoredState);
+  const [windowHeight, setWindowHeight] = useState<boolean>();
 
   const handleStoreButtonClick = async () => {
     console.log("요청전");
@@ -159,6 +160,9 @@ function MessageInputModal({
   useEffect(() => {
     if (messageModal) setContent("");
   }, [messageModal]);
+  useEffect(() => {
+    setWindowHeight(window.innerHeight > 800);
+  });
   return (
     <>
       {messageModal ? (

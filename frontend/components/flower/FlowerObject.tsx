@@ -68,6 +68,7 @@ function FlowerObject({
           marginBottom: "0.2rem",
           fontSize: "12px",
           textAlign: "center",
+          fontFamily: "OneMobileLight",
         }}
       >
         {flower.flowerDesc}
