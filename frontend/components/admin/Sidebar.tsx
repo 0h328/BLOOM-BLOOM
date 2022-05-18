@@ -45,7 +45,7 @@ export const sidebarWrap = {
   position: "absolute",
   width: "288px",
   height: "700px",
-  backgroundColor : '#efefef',
+  backgroundColor : '#fafafa',
 }
 
 export const textStyle = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/admin/Navbar';
 import Sidebar from '../components/admin/Sidebar';
-import List from '../components/admin/List';
+import Board from '../components/admin/Board';
 import Footer from '../components/admin/Footer';
 import {
   Box,
@@ -13,7 +13,7 @@ function Admin() {
       <Navbar/>
       <Box sx={{ ...body }}>
         <Sidebar/>
-        <List/>     
+        <Board/>     
       </Box>
       <Footer/>
     </Box>
