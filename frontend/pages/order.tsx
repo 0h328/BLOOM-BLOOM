@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { OrderRequest } from "../components/apis/order"
 
 export default function Order() {
-  const [store, setStore] = useState();
+  const [store, setStore] = useState<any>();
   const [bouquetSeq, setBouquetSeq] = useState<number>();
   const [content, setContent] = useState<string>("");
   const router = useRouter();
@@ -26,13 +26,15 @@ export default function Order() {
 
   const sendOrderRequest = async () => {
     console.log("들어오나요");
-    const body = {
-      bouquetSeq: bouquetSeq,
-      storeSeq: store.storeSeq,
-      orderDesc: content
-    };
-    var response = await OrderRequest(body);
-    console.log(response.data.data)
+    if (store) {
+      const body = {
+        bouquetSeq: bouquetSeq,
+        storeSeq: store.storeSeq,
+        orderDesc: content
+      };
+      var response = await OrderRequest(body);
+      console.log(response.data.data)
+    }
   }
   return (
     <Box
