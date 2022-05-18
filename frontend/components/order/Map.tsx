@@ -204,5 +204,4 @@ function Map({ bouquetSeq }: props) {
    </>)
 }
 
-
 export default Map;
