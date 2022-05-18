@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link';
 import {
   Box,
@@ -7,7 +7,7 @@ import {
   Button,
 } from '@mui/material';
 import DaumPostcode from "react-daum-postcode";
-import MapContainer from './MapContainer';
+// import MapContainer from './MapContainer';
 
 const ShopRegister = (props) => {
   const [state, setState] = useState({
@@ -87,6 +87,18 @@ const ShopRegister = (props) => {
       extraAddr: extraAddress      
     })
   }
+
+  const postCodeStyle = {
+    display: "block",
+    position: "absolute",
+    top: "20%",
+    left: "20%",
+    width: "600px",
+    height: "600px",
+    padding: "7px",
+    backgroundColor: "rgba(255, 250, 250, 75%)",
+    zIndex: 900,
+  };
 
   // const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
@@ -276,7 +288,20 @@ const ShopRegister = (props) => {
                 </Button>
                 { 
                   isPopupOpen ?
-                    <DaumPostcode style={postCodeStyle} autoClose onComplete={handlePostCode}/>
+                    <DaumPostcode 
+                      style={{
+                        display: "block",
+                        position: "absolute",
+                        top: "20%",
+                        left: "20%",
+                        width: "600px",
+                        height: "600px",
+                        padding: "7px",
+                        backgroundColor: "rgba(255, 250, 250, 75%)",
+                        zIndex: 900,
+                      }}
+                      autoClose
+                      onComplete={handlePostCode}/>
                   : null
                 }
               </Box>
@@ -299,86 +324,9 @@ const ShopRegister = (props) => {
                 value={state.extraAddr}
               /> 
             </Box> */}
-            <MapContainer/>
-            {/* <Box
-              sx={{
-                display: "flex",
-                marginTop: "2rem",
-                alignItems: "center",
-              }}
-            >
-              <Typography 
-                variant="subtitle1"
-                style={{ 
-                  fontSize: "1.2rem",
-                  width: "10rem",
-                }}
-              >
-                네이버 지도
-              </Typography>
-              <TextField          
-                // placeholder=""
-                size="small"
-                style={{ 
-                  width: "30rem",
-                }}
-              />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                marginTop: "2rem",
-                alignItems: "center",
-              }}
-            >
-              <Typography 
-                variant="subtitle1"
-                style={{ 
-                  fontSize: "1.2rem",
-                  width: "10rem",
-                }}
-              >
-                네이버 블로그
-              </Typography>
-              <TextField          
-                // placeholder=""
-                size="small"
-                style={{ 
-                  width: "30rem",
-                }}
-              />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                marginTop: "2rem",
-                alignItems: "center",
-              }}
-            >
-              <Typography 
-                variant="subtitle1"
-                style={{ 
-                  fontSize: "1.2rem",
-                  width: "10rem",
-                }}
-              >
-                인스타그램
-              </Typography>
-              <TextField          
-                // placeholder=""
-                size="small"
-                style={{ 
-                  width: "30rem",
-                }}
-              />
-            </Box> */}
+            {/* <MapContainer/> */}
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              margin: "2rem 2rem",
-            }}
-          >
+          <Box sx={{ display: "flex", margin: "2rem 2rem" }}>
             <Typography 
               variant="subtitle1"
               style={{
@@ -452,13 +400,7 @@ const ShopRegister = (props) => {
           </Box>
         </Box>
       </Box>
-      <Box
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          margin: "4rem 12em 0rem 0rem"
-        }}      
-      >
+      <Box style={{ display: "flex", justifyContent: "flex-end", margin: "4rem 12em 0rem 0rem" }}>
         <Button
           variant="contained"
           type="submit"
@@ -496,17 +438,5 @@ export const textInput = {
   display: "flex",
   marginTop: "30px",
 }
-
-export const postCodeStyle = {
-  display: "block",
-  position: "absolute",
-  top: "20%",
-  left: "20%",
-  width: "600px",
-  height: "600px",
-  padding: "7px",
-  backgroundColor: "rgba(255, 250, 250, 75%)",
-  zIndex: 900,
-};
 
 export default ShopRegister;
