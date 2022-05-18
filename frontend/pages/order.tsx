@@ -6,18 +6,34 @@ import Request from "../components/order/Request";
 import Header from "../components/common/Header";
 import MakeButton from "../components/main/MakeButton";
 import { useRouter } from "next/router";
+import { OrderRequest } from "../components/apis/order"
 
 export default function Order() {
   const [store, setStore] = useState();
+  const [bouquetSeq, setBouquetSeq] = useState<number>();
+  const [content, setContent] = useState<string>("");
   const router = useRouter();
-  // const store = JSON.parse(String(router.query.storeInfo));
-  const bouquetSeq = router.query.bouquetSeq;
-  console.log(bouquetSeq);
+
+  const handleContent = (data:string) => {
+    setContent(data);
+  }
+
   useEffect(() => {
     setStore(JSON.parse(String(router.query.storeInfo)));
+    setBouquetSeq(Number(router.query.bouquetSeq));
     console.log(store);
   }, []);
 
+  const sendOrderRequest = async () => {
+    console.log("들어오나요");
+    const body = {
+      bouquetSeq: bouquetSeq,
+      storeSeq: store.storeSeq,
+      orderDesc: content
+    };
+    var response = await OrderRequest(body);
+    console.log(response.data.data)
+  }
   return (
     <Box
       style={{
@@ -32,7 +48,7 @@ export default function Order() {
           <Header page="order"></Header>
           <StoreCardSmall storeInfo={store}></StoreCardSmall>
           <OrderFlower bouquetSeq={Number(bouquetSeq)}></OrderFlower>
-          <Request></Request>
+          <Request handleContent={ handleContent}></Request>
           <Box sx={{ width: 156, mx: "auto" }}>
             <Button
               sx={{
@@ -43,6 +59,7 @@ export default function Order() {
                 fontFamily: "OneMobileLight",
                 fontWeight: "bold",
               }}
+              onClick={sendOrderRequest}
             >
               {" "}
               주문의뢰하기{" "}
