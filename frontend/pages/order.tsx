@@ -19,9 +19,11 @@ export default function Order() {
   }
 
   useEffect(() => {
-    setStore(JSON.parse(String(router.query.storeInfo)));
-    setBouquetSeq(Number(router.query.bouquetSeq));
-    console.log(store);
+    if (router.query.storeInfo) {
+      setStore(JSON.parse(String(router.query.storeInfo)));
+      setBouquetSeq(Number(router.query.bouquetSeq));
+      console.log(store);
+    }
   }, []);
 
   const sendOrderRequest = async () => {

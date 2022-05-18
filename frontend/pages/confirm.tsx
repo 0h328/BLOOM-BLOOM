@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import { confirmBouquetState, presentBouquetState } from "../states/states";
 import CommonButton from "../components/common/CommonButton";
 import { messageStoredState } from "../states/states";
+
 function Confirm() {
   const router = useRouter();
   const [confirmBouquet, setConfirmBouquet] =
@@ -30,7 +31,8 @@ function Confirm() {
   };
   const handleRoute = () => {
     // e.preventDefault();
-    router.push("/order");
+    var bouquetSeq = presentBouquet.presentBouquetSeq;
+    router.push('/ordermap/?bouquetSeq='+bouquetSeq,'/ordermap');
   };
   const handleIsStored = (state: boolean) => {
     // setIsStored(state);
