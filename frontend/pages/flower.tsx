@@ -137,8 +137,9 @@ export const textStyle = {
   margin: "10px 0px 10px 0px",
   width: "30%",
   minWidth: "fitContent",
-  backgroundColor: "white",
+  // backgroundColor: "white",
+  fontWeight: "600",
   borderRadius: "5px",
-  fontFamily: "JuliusSansOne",
+  fontFamily: "OneMobileLight",
 };
 export default Flower;
