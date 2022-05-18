@@ -40,11 +40,12 @@ function BouquetDetailModal({
     Array<{ flowerName: string; flowerImage: string; flowerCount: number }>
   >([]);
   const [offsetHeight, setOffsetHeight] = useState<number>();
+  const [windowHeight, setWindowHeight] = useState<boolean>();
   const closeBouquetDetailModal = () => {
-    setPresentBouquet({
-      presentBouquetImage: "",
-      presentBouquetSeq: -1,
-    });
+    // setPresentBouquet({
+    //   presentBouquetImage: "",
+    //   presentBouquetSeq: -1,
+    // });
     handleDetailModal(false);
   };
   const handleBouquetDetail = async (bouquet: Bouquet) => {
@@ -100,6 +101,7 @@ function BouquetDetailModal({
         setOffsetHeight(imageRef.current.offsetHeight);
       }
     }
+    setWindowHeight(window.innerHeight < 500);
   });
   useEffect(() => {
     console.log(offsetHeight);
@@ -111,7 +113,7 @@ function BouquetDetailModal({
           sx={{
             position: "absolute",
             width: "420px",
-            height: "100%",
+            height: "100vh",
             backgroundColor: "rgb(31 31 31 / 33%)",
             zIndex: 900,
           }}
@@ -119,9 +121,9 @@ function BouquetDetailModal({
           <Toast />
           <Box
             sx={{
-              mt: "15%",
+              mt: "10%",
               width: "90%",
-              height: "90%",
+              height: "90vh",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -129,7 +131,13 @@ function BouquetDetailModal({
               boxShadow: "6px 6px 4px rgb(161 161 161 / 75%)",
             }}
           >
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                height: "3vh",
+              }}
+            >
               <ArrowBackOutlinedIcon
                 sx={{
                   margin: "1rem 1rem 0rem 1rem",
@@ -147,54 +155,59 @@ function BouquetDetailModal({
             </Box>
             <Box
               sx={{
-                width: "75%",
+                width: "100%",
+                height: "87vh",
                 mx: "auto",
-                position: offsetHeight > 227 ? "relative" : null,
-                top: offsetHeight > 227 ? "-5%" : null,
+                // position: offsetHeight > 227 ? "relative" : null,
+                // top: offsetHeight > 227 ? "-5%" : null,
               }}
             >
-              <Box sx={{}}>
+              <Box
+                sx={{
+                  width: "40vh",
+                  // mt: "10%",
+                  mx: "auto",
+                }}
+              >
                 <img
                   ref={imageRef}
                   id="img"
                   src={bouquet.bouquetImage}
                   alt="꽃다발"
                   width={"100%"}
-                  height={"100%"}
+                  height={"auto"}
                 ></img>
+              </Box>
+              <Box sx={{ width: "90%", height: "30vh", mx: "auto" }}>
                 <Box
                   sx={{
                     width: "100%",
-                    height: "200px",
+                    height: "100%",
                     backgroundColor: "#ffff",
                     borderRadius: "10px",
                     border: "1px solid rgba(82, 82, 82, 0.29)",
                     mx: "auto",
-                    position: offsetHeight > 227 ? "absolute" : null,
-                    top: offsetHeight ? `${offsetHeight - 30}px` : null,
+                    // position: offsetHeight > 227 ? "absolute" : null,
+                    // top: offsetHeight ? `${offsetHeight - 30}px` : null,
                   }}
                 >
                   <FlowerInfoList flowerInfoList={flowerInfo} />
                 </Box>
-                <Box
-                  sx={{
-                    width: offsetHeight > 227 ? "100%" : "70%",
-                    mx: "auto",
-                    display: "flex",
-                    position: offsetHeight > 227 ? "absolute" : "relative",
-                    justifyContent: "center",
-                    top:
-                      offsetHeight > 227
-                        ? `${offsetHeight + 170 - 10}px`
-                        : "null",
-                    pt: "1rem",
-                  }}
-                >
-                  <BouquetDetailModalBtn
-                    handleBtn={handleBtn}
-                    bouquetSeq={bouquet.bouquetSeq}
-                  />
-                </Box>
+              </Box>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "15vh",
+                  mx: "auto",
+                  display: "flex",
+                  justifyContent: "center",
+                  mt: "1vh",
+                }}
+              >
+                <BouquetDetailModalBtn
+                  handleBtn={handleBtn}
+                  bouquetSeq={bouquet.bouquetSeq}
+                />
               </Box>
             </Box>
           </Box>
