@@ -51,6 +51,7 @@ function BouquetCheckModal({
     <>
       {checkModal ? (
         <Box
+          className="modal"
           sx={{
             position: "absolute",
             width: "420px",
