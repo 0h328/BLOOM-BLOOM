@@ -198,9 +198,9 @@ function BouquetContainer({ src }: containerProps) {
         </Box>
         <Box
           sx={{
-            width: "20vh",
+            width: "23vh",
             mx: "auto",
-            top: "20vh",
+            top: "19vh",
             position: "absolute",
           }}
         >
@@ -235,7 +235,7 @@ function BouquetContainer({ src }: containerProps) {
               color: "#000",
               fontFamily: "OneMobileLight",
               borderRadius: "100px",
-              width: "17vh",
+              width: "12vh",
               height: "6vh",
               margin: "0vh 8px 3vh 0vh",
               minWidth: "fit-content",
@@ -333,7 +333,7 @@ export const BouquetPage = {
 };
 
 export const BouquetLayout = {
-  height: "50vh",
+  height: "42vh",
   position: "relative",
   display: "flex",
   justifyContent: "center",

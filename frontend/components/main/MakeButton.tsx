@@ -3,36 +3,38 @@ import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
-function MakeButton() {
+interface btnProps {
+  handleMake: () => void;
+}
+function MakeButton({ handleMake }: btnProps) {
   return (
-    <Link href="/bouquet" passHref>
-      <Box sx={{}}>
-        <Button
-          variant="contained"
-          size="small"
-          style={{
-            backgroundColor: "#FFFFFF",
-            color: "#000000",
-            borderRadius: "16px",
-            width: 266,
-            height: 52,
+    <Box sx={{}}>
+      <Button
+        variant="contained"
+        size="small"
+        style={{
+          backgroundColor: "#FFFFFF",
+          color: "#000000",
+          borderRadius: "16px",
+          width: 266,
+          height: 52,
+        }}
+        onClick={handleMake}
+      >
+        <Typography
+          sx={{
+            fontSize: "18px",
+            fontWeight: "600",
+            fontFamily: "ONEMobileLight",
           }}
         >
-          <Typography
-            sx={{
-              fontSize: "18px",
-              fontWeight: "600",
-              fontFamily: "ONEMobileLight",
-            }}
-          >
-            꽃다발 만들기
-          </Typography>
-          <ArrowRightAltIcon
-            sx={{ position: "absolute", left: "220px", color: "#FFC0D0" }}
-          />
-        </Button>
-      </Box>
-    </Link>
+          꽃다발 만들기
+        </Typography>
+        <ArrowRightAltIcon
+          sx={{ position: "absolute", right: "10%", color: "#FFC0D0" }}
+        />
+      </Button>
+    </Box>
   );
 }
 export default MakeButton;

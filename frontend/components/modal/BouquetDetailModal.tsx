@@ -15,6 +15,7 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { toast } from "material-react-toastify";
 import Toast from "../../components/common/Toast";
+import Swal from "sweetalert2";
 interface modalProps {
   bouquet: Bouquet;
   handleDetailModal: (state: boolean) => void;
@@ -68,7 +69,6 @@ function BouquetDetailModal({
     }
   };
   const handleShare = () => {
-    console.log(bouquet.bouquetImage);
     setPresentBouquet({
       presentBouquetImage: bouquet.bouquetImage,
       presentBouquetSeq: bouquet.bouquetSeq,
@@ -79,13 +79,27 @@ function BouquetDetailModal({
   const handleOrder = () => {};
   const handleDelete = async () => {
     const response = await deleteBouquet(bouquet.bouquetSeq);
-    if (response.status === 200) {
-      let n: ReturnType<typeof setTimeout>;
-      n = setTimeout(() => {
+    Swal.fire({
+      title: "정말 삭제하시겠습니까??",
+      text: "삭제한 꽃다발은 복구할 수 없어요",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제하기",
+    }).then((result) => {
+      if (result.isConfirmed && response.status === 200) {
+        Swal.fire("삭제완료", "꽃다발이 삭제되었습니다");
         location.reload();
-      }, 200);
-      toast.success("🔔 성공적으로 삭제되었습니다");
-    }
+      }
+    });
+    // if (response.status === 200) {
+    //   let n: ReturnType<typeof setTimeout>;
+    //   n = setTimeout(() => {
+    //     location.reload();
+    //   }, 200);
+    //   toast.success("🔔 성공적으로 삭제되었습니다");
+    // }
     console.log(response);
   };
 
@@ -110,12 +124,15 @@ function BouquetDetailModal({
     <>
       {detailModal ? (
         <Box
+          className="modal"
           sx={{
             position: "absolute",
             width: "420px",
             height: "100vh",
             backgroundColor: "rgb(31 31 31 / 33%)",
+            transition: "all 0.3s ease-out",
             zIndex: 900,
+            animation: "FadeIn .3s ease-in",
           }}
         >
           <Toast />
@@ -142,6 +159,7 @@ function BouquetDetailModal({
                 sx={{
                   margin: "1rem 1rem 1.5rem 1rem",
                   "&:hover": { cursor: "pointer" },
+                  zIndex: "1000",
                 }}
                 onClick={closeBouquetDetailModal}
               />
@@ -149,6 +167,7 @@ function BouquetDetailModal({
                 sx={{
                   margin: "1rem 1rem 0rem 1rem",
                   "&:hover": { cursor: "pointer" },
+                  zIndex: "1000",
                 }}
                 onClick={handleDelete}
               />
