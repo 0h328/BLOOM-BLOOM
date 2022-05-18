@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
      * 기능 : 꽃다발 주문 의뢰
      * 작성자 : 김정혁
      * 최근수정일자 : 2022.05.11 (문준호)
-     * 수정내용 : 문자 발신 로직 추가
+     * 수정내용 : 문자 발신 로직 추가 + 연락처 파라미터 추가
      */
     @Override
     @Transactional
@@ -85,7 +85,7 @@ public class OrderServiceImpl implements OrderService {
                 .orderUri(uuid)
                 .build();
 
-        sendMessage(uuid, store.get(), user.get());
+        sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
 
         return orderRepository.save(order);
     }
@@ -157,7 +157,7 @@ public class OrderServiceImpl implements OrderService {
         )).collect(Collectors.toList());
     }
 
-    private void sendMessage(String uuid, Store store, User user) {
+    private void sendMessage(String uuid, Store store, User user,String contact) {
         String apiKey = coolSMSConfig.getApiKey();
         String apiSecret = coolSMSConfig.getApiSecret();
 
@@ -165,8 +165,9 @@ public class OrderServiceImpl implements OrderService {
 
         String messageSender = MESSAGE_SENDER;
         String messageReceiver = "01079007514";
-        String url = "https://bloombloom.kro.kr/" + uuid;
-        String messageContent = String.format("[BloomBloom] 주문 요청이 들어왔습니다. \n%s", url);
+        String url = "https://bloombloom.kro.kr/store" + uuid;
+        String messageContent = String.format(
+                "[BloomBloom] 주문 요청이 들어왔습니다. \n %s \n\n 의뢰인 : %s",url,contact);
 
         HashMap<String, String> request = new HashMap<>();
         request.put("from", messageSender);
