@@ -65,6 +65,8 @@ const totalCountState = atom({
   default: 0,
 });
 
+const messageStoredState = atom({ key: "messageStored", default: false });
+
 export {
   decoModalState,
   mainFlowerState,
@@ -76,4 +78,5 @@ export {
   storeImageState,
   totalCountState,
   confirmBouquetState,
+  messageStoredState,
 };
