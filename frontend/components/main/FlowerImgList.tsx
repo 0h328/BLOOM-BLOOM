@@ -123,7 +123,7 @@ function FlowerImgList({
                     <img
                       src={bouquet.bouquetImage}
                       alt="꽃다발"
-                      width={"180px"}
+                      width={"150px"}
                       height={"auto"}
                     ></img>
                   </Grid>
