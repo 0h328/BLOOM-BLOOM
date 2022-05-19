@@ -406,6 +406,28 @@ function Login() {
                   ></img>
                 </motion.div>
               </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "-3vh",
+                  left: "-2vh",
+                }}
+              >
+                {" "}
+                <motion.div
+                  animate={{ scale: 1.1 }}
+                  transition={{ yoyo: Infinity }}
+                >
+                  <img
+                    src={"/img/ranunculusYellow.png"}
+                    alt="리본"
+                    width={"100%"}
+                    height={"auto%"}
+                  ></img>
+                </motion.div>
+              </Box>
             </Box>
             <Box
               sx={{

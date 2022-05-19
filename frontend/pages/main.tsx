@@ -113,7 +113,7 @@ function Main() {
             </Box>
           </Box>
           <Box
-            sx={{ height: "5vh", display: "flex", justifyContent: "center" }}
+            sx={{ height: "10vh", display: "flex", justifyContent: "center" }}
           ></Box>
         </Box>
       ) : (

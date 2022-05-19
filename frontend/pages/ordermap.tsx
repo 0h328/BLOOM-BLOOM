@@ -28,7 +28,7 @@ function OrderMap() {
       >
         <Box
           sx={{
-            height: "15vh",
+            height: "10vh",
             justifyContent: "center",
             display: "flex",
             alignItems: "center",
@@ -36,13 +36,25 @@ function OrderMap() {
           }}
         >
           <Header></Header>
+        </Box>
+
+        <Box
+          sx={{
+            height: "3vh",
+            justifyContent: "center",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
           <Typography
             sx={{
               textAlign: "center",
               fontFamily: "OneMobileLight",
               fontWeight: "600",
-              fontSize: "12px",
+              fontSize: "15px",
               color: "#6c6c6c",
+              // pt: 2,
             }}
           >
             원하시는 꽃집을 선택해 꽃다발 주문 의뢰를 해보세요
@@ -50,7 +62,7 @@ function OrderMap() {
         </Box>
         <Box
           sx={{
-            height: "85vh",
+            height: "90vh",
             justifyContent: "center",
             display: "flex",
             alignItems: "center",
