@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Typography, Grid, Button, Link } from "@mui/material";
 import { deleteBouquet } from "../apis/bouquetApi";
 import CommonButton from "../common/CommonButton";
-import Router from 'next/router';
+import Router from "next/router";
 
 interface btnProps {
   handleBtn?: (code: number) => void;
@@ -11,7 +11,7 @@ interface btnProps {
 function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
   const SendQuery = () => {
     const param = bouquetSeq;
-    Router.push('/ordermap/?bouquetSeq='+param,'/ordermap');
+    Router.push("/ordermap/?bouquetSeq=" + param, "/ordermap");
   };
 
   return (
@@ -67,7 +67,6 @@ function BouquetDetailModalBtn({ handleBtn, bouquetSeq }: btnProps) {
         backgroundColor={"#FFE0E0"}
         handleBtn={SendQuery}
       ></CommonButton>
-      
     </Box>
   );
 }

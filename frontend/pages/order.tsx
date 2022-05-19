@@ -39,6 +39,7 @@ export default function Order() {
         contact:contact
       };
       var response = await OrderRequest(body);
+      console.log(response);
     }
   };
   const sendOrderRequest = async () => {
