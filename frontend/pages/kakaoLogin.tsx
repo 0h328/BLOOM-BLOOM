@@ -72,6 +72,6 @@ function KakaoLogin() {
     }
   }, [token]);
 
-  return <Loading text={"로그인중"}></Loading>;
+  return <Loading text={"입장하는중"}></Loading>;
 }
 export default KakaoLogin;

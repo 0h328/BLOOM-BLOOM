@@ -22,6 +22,9 @@ function App({ Component, pageProps }: AppProps) {
     setLoading(false);
     setIsAdmin(url.includes("admin"));
   }, []);
+  useEffect(() => {
+    console.log(isMobile);
+  }, []);
   return (
     <>
       <Head>

@@ -5,6 +5,7 @@ import BouquetImg from "../../components/present/BouquetImg";
 import { useRouter } from "next/router";
 import { getOrderInfo } from "../../components/apis/orderApi";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
+import Loading from "../../components/common/Loading";
 function Shop() {
   const router = useRouter();
   const [orderData, setOrderData] = useState<{
@@ -35,6 +36,7 @@ function Shop() {
     if (code !== "" && code !== undefined && code.length) {
       handleOrder(code);
       console.log(code);
+      setCodeLoading(true);
     }
   }, [code]);
 
@@ -54,7 +56,15 @@ function Shop() {
         >
           <Box sx={{ width: 420, backgroundColor: "#FFFAFA" }}>
             <Box sx={{ pt: "1.5rem" }}>
-              <Header></Header>
+              <Typography
+                sx={{
+                  textAlign: "center",
+                  fontFamily: "ONEMobileLight",
+                  fontSize: 25,
+                }}
+              >
+                BLOOM BLOOM
+              </Typography>
             </Box>
             <Box
               sx={{
@@ -129,7 +139,9 @@ function Shop() {
             </Box>
           </Box>
         </Box>
-      ) : null}
+      ) : (
+        <Loading text={"로딩중"} />
+      )}
     </>
   );
 }
