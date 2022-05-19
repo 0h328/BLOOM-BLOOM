@@ -7,12 +7,14 @@ import { getBouquetDetail } from "../apis/bouquetApi";
 
 interface orderFlowerProps {
   bouquetSeq?: number;
+  orderFlowerInfo?: any;
 }
 
-function OrderFlower({ bouquetSeq }: orderFlowerProps) {
-  const [flowerInfo, setFlowerInfo] = useState<
-    Array<{ flowerName: string; flowerImage: string; flowerCount: number }>
-  >([]);
+function OrderFlower({ bouquetSeq, orderFlowerInfo }: orderFlowerProps) {
+  // const [flowerInfo, setFlowerInfo] = useState<
+  //   Array<{ flowerName: string; flowerImage: string; flowerCount: number }>
+  // >([]);
+  const [flowerInfo, setFlowerInfo] = useState<any>(undefined);
   const [bouquetImage, setBouquetImage] = useState("");
   var bouquetInfo = null;
   const getBouquetInfo = async () => {
@@ -24,84 +26,55 @@ function OrderFlower({ bouquetSeq }: orderFlowerProps) {
   };
 
   useEffect(() => {
-    getBouquetInfo();
+    if (bouquetSeq !== undefined) getBouquetInfo();
+    if (orderFlowerInfo !== undefined) {
+      setFlowerInfo(orderFlowerInfo.flowerInfo);
+      setBouquetImage(orderFlowerInfo.bouquetImage);
+    }
   }, []);
-
-  // const flowerinfoList = [
-  //   {
-  //     flowerName: "수국",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  //   {
-  //     flowerName: "장미",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  //   {
-  //     flowerName: "장미",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  //   {
-  //     flowerName: "장미",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  //   {
-  //     flowerName: "장미",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  //   {
-  //     flowerName: "장미",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  //   {
-  //     flowerName: "장미",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  //   {
-  //     flowerName: "장미",
-  //     flowerImage: "/img/hydrangeaPink.png",
-  //     flowerCount: 1,
-  //   },
-  // ];
-
+  useEffect(() => {
+    console.log(flowerInfo);
+  }, [flowerInfo]);
   return (
-    <Box sx={{ width: 400, height: 234, mt: 2, mx: "auto" }}>
-      <Box sx={{ pt: 1, pb: 1, pl: 3 }}>
-        <Typography
-          sx={{
-            fontFamily: "OneMobileLight",
-            fontSize: "17px",
-            fontWeight: "bold",
-          }}
-        >
-          의뢰내역
-        </Typography>
-      </Box>
-      <Box sx={{ height: 193.5, display: "flex" }}>
-        <Box sx={{ width: 150, ml: 1 }}>
-          <img src={bouquetImage} alt="insta" width={150} height={193.5}></img>
+    <>
+      {flowerInfo !== undefined ? (
+        <Box sx={{ width: "100%", height: "100%", mx: "auto" }}>
+          <Box sx={{ pl: 3 }}>
+            <Typography
+              sx={{
+                fontFamily: "OneMobileLight",
+                fontSize: "17px",
+                fontWeight: "bold",
+              }}
+            >
+              의뢰내역
+            </Typography>
+          </Box>
+          <Box sx={{ height: "85%", display: "flex", alignItems: "center" }}>
+            <Box sx={{ width: "40%" }}>
+              <img
+                src={bouquetImage}
+                alt="꽃다발이미지"
+                width={"100%"}
+                height={"auto"}
+              ></img>
+            </Box>
+            <Box
+              sx={{
+                mr: 1,
+                width: "60%",
+                height: "100%",
+                // backgroundColor: "#ffff",
+                borderRadius: "10px",
+                border: "1px solid rgba(82, 82, 82, 0.29)",
+              }}
+            >
+              <FlowerInfoList flowerInfoList={flowerInfo} />
+            </Box>
+          </Box>
         </Box>
-        <Box
-          sx={{
-            ml: 1,
-            width: 230,
-            height: 193.5,
-            backgroundColor: "#ffff",
-            borderRadius: "10px",
-            border: "1px solid rgba(82, 82, 82, 0.29)",
-            overflow: "scroll",
-          }}
-        >
-          <FlowerInfoList flowerInfoList={flowerInfo} />
-        </Box>
-      </Box>
-    </Box>
+      ) : null}
+    </>
   );
 }
 

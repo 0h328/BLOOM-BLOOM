@@ -17,14 +17,14 @@ export default function OrderlistPage() {
       }
     ]
   >();
-  const value = async () => {
+  const getList = async () => {
     const res = await getOrderList();
     setOrderInfoList(res.data.data);
     console.log(res.data.data);
   };
 
   useEffect(() => {
-    value();
+    getList();
   }, []);
 
   const OrderinfoList = [
