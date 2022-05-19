@@ -85,7 +85,7 @@ public class OrderServiceImpl implements OrderService {
                 .orderUri(uuid)
                 .build();
 
-        sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
+//        sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
         
         return orderRepository.save(order);
     }
