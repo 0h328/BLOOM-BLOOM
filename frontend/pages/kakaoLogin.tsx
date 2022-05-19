@@ -51,6 +51,7 @@ const bounceTransition = {
 
 function KakaoLogin() {
   const [code, setCode] = useState<string>();
+  const [token, setToken] = useState<string>("");
   //   const [isLogin, setIsLogin] = useState<boolean>(false);
   const router = useRouter();
   const clientId = "df2b93fe31185203897eca6511064994";
@@ -95,15 +96,20 @@ function KakaoLogin() {
 
   const login = async (accessToken: string) => {
     try {
-      const response = getLogin(accessToken);
-      response.then((result) =>
-        localStorage.setItem("accessToken", result.data.data)
-      );
-      router.push("/main");
+      const response = getLogin(accessToken).then((result) => {
+        localStorage.setItem("accessToken", result.data.data);
+        setToken(result.data.data);
+      });
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (token !== null && token !== "") {
+      router.push("/main");
+    }
+  }, [token]);
 
   return (
     <Box

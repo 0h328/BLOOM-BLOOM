@@ -32,7 +32,6 @@ export default function Order() {
 
   const sendOrder = async (contact) => {
     if (store) {
-      console.log(contact);
       const body = {
         bouquetSeq: bouquetSeq,
         storeSeq: store.storeSeq,
@@ -40,7 +39,6 @@ export default function Order() {
         contact: contact,
       };
       var response = await OrderRequest(body);
-      console.log(response);
     }
   };
   const sendOrderRequest = async () => {
