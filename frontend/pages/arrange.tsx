@@ -99,7 +99,7 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
-    setWindowHeight(window.innerHeight * 0.45);
+    setWindowHeight(window.innerHeight * 0.5);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
@@ -164,7 +164,7 @@ function Arrange() {
         <Box
           // id="img"
           sx={{
-            height: "45vh",
+            height: "50vh",
             width: "100%",
             display: "flex",
             alignItems: "center",
@@ -211,7 +211,7 @@ function Arrange() {
         </Box>
         <Box
           sx={{
-            height: "30vh",
+            height: "20vh",
             width: "85%",
             backgroundColor: "#EFDFBF",
             display: "flex",

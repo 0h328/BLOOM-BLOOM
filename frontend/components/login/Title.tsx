@@ -2,21 +2,33 @@ import React from "react";
 import { Box, Button, Typography, Grid } from "@mui/material";
 function Title() {
   return (
-    <Box sx={{ height: "30%", width: "100%" }}>
-      <Typography sx={{ ...titleStyle }} style={{ top: "8%", left: "18%" }}>
-        BLOOM
+    <Box
+      sx={{
+        height: "50vh",
+        width: "100%",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Typography
+        sx={{ ...titleStyle, fontSize: "15px", width: "100%", mb: "5px" }}
+      >
+        당신만을 위한 꽃다발
       </Typography>
-      <Typography sx={{ ...titleStyle }} style={{ top: "15%", left: "40%" }}>
-        BLOOM
-      </Typography>
+      <Typography sx={{ ...titleStyle, width: "100%" }}>BLOOM BLOOM</Typography>
     </Box>
   );
 }
 
 export const titleStyle = {
-  position: "absolute",
-  fontSize: "3rem",
-  fontFamily: "JuliusSansOne",
+  textAlign: "center",
+  fontFamily: "OneMobileLight",
+  fontWeight: "600",
+  fontSize: "40px",
+  color: "black",
+  zIndex: "10000",
 };
 
 export default Title;
