@@ -93,14 +93,23 @@ export default function OrderlistPage() {
       <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
         <Header></Header>
       </Box>
-      <Box sx={{ height: "5vh", display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{
+          height: "5vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Typography
           sx={{
             fontFamily: "OneMobileLight",
             fontSize: "17px",
             fontWeight: "bold",
-            ml: 4,
-            mt: 3,
+            height: "100%",
+            width: "30%",
+            textAlign: "center",
+            display: "flex",
           }}
         >
           주문내역
