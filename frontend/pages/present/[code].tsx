@@ -173,7 +173,6 @@ function Present() {
                   textAlign: "center",
                   fontFamily: "ONEMobileLight",
                   fontSize: 25,
-                  fontWeight: "600",
                 }}
               >
                 BLOOM BLOOM
@@ -214,7 +213,7 @@ function Present() {
               flexDirection: "column",
               alignItems: "center",
               height: "20vh",
-              justifyContent: "flex-start",
+              justifyContent: "space-evenly",
             }}
           >
             <Button

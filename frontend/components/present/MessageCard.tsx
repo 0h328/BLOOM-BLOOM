@@ -11,7 +11,7 @@ function MessageCard({ message }: messageProps) {
         backgroundColor: "#EFDFBF",
         width: "100%",
         // minHeight: "180px",
-        height: "100%",
+        height: "90%",
         border: "1px solid #e8e8e8",
       }}
     >
@@ -19,10 +19,11 @@ function MessageCard({ message }: messageProps) {
         sx={{
           height: "100%",
           fontFamily: "OneMobileLight",
-          fontSize: "14px",
+          fontSize: "18px",
           textAlign: "center",
           whiteSpace: "pre-line",
           lineHeight: "25px",
+          mt: "10px",
         }}
       >
         {message}
