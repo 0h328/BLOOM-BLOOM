@@ -24,6 +24,7 @@ function FlowerArrangeText({
           display="flex"
           width="100%"
           justifyContent="space-around"
+          sx={{ fontFamily: "OneMobileLight", fontWeight: 600 }}
         >
           <IconButton
             component="div"
@@ -49,10 +50,13 @@ function FlowerArrangeText({
         </Typography>
       </Box>
       <Typography
-        variant="subtitle2"
-        gutterBottom
-        component="div"
-        style={{ textAlign: "center" }}
+        sx={{
+          textAlign: "center",
+          fontFamily: "OneMobileLight",
+          fontWeight: "600",
+          fontSize: "12px",
+          color: "#6c6c6c",
+        }}
       >
         꽃을 꽃다발 안에 배치해주세요
       </Typography>
