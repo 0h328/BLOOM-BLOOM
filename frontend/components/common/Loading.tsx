@@ -1,76 +1,44 @@
 import React from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
-function Inform() {
-  console.log("inform이야");
+import { motion } from "framer-motion";
+
+interface loagingProps {
+  text: string;
+}
+function Loading({ text }: loagingProps) {
   return (
     <Box
+      style={{}}
       sx={{
         mx: "auto",
+        width: 420,
         position: "relative",
-        backgroundColor: "#FFFAFA",
         height: "100vh",
-        justifyContent: "center",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        minHeight: "100vh",
+        overflow: "hidden",
       }}
     >
       <Box
         sx={{
-          height: "10vh",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
+          backgroundColor: "#FFFAFA",
+          minHeight: "100vh",
+          position: "relative",
         }}
       >
-        <Typography
+        <Box
           sx={{
-            textAlign: "center",
-            fontFamily: "ONEMobileLight",
-            fontSize: 30,
-            fontWeight: 600,
-            mb: "1rem",
-            zIndex: "10000",
+            position: "absolute",
+            mx: "auto",
+            width: "30vh",
+            top: "36vh",
+            left: "24vh",
           }}
         >
-          BLOOM BLOOM
-        </Typography>
-        <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
-          <Typography
-            sx={{
-              textAlign: "center",
-              fontFamily: "ONEMobileLight",
-              fontSize: 25,
-              fontWeight: 600,
-              zIndex: "10000",
-            }}
-          >
-            BLOOM BLOOM은 모바일 이용을 권장드립니다
-          </Typography>
-        </Box>
-        {/* <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
-          <Typography
-            sx={{
-              textAlign: "center",
-              fontFamily: "ONEMobileLight",
-              fontSize: 25,
-              fontWeight: 600,
-            }}
-          ></Typography>
-        </Box> */}
-        <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
-          <Typography
-            sx={{
-              textAlign: "center",
-              fontFamily: "OneMobileLight",
-              fontWeight: "600",
-              fontSize: "12px",
-              color: "#6c6c6c",
-              zIndex: "10000",
-            }}
-          >
-            화면에 보이는 예쁜 꽃들로 꽃다발 만들고 가세요 진짜 예쁜데..
-          </Typography>
+          <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
+            <Typography sx={{ fontSize: 30, fontFamily: "OneMobileLight" }}>
+              {text}
+            </Typography>
+          </motion.div>
         </Box>
         <Box
           sx={{
@@ -94,25 +62,34 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            top: "10vh",
-            right: "12vh",
+            top: "22vh",
+            left: "20vh",
           }}
         >
           {" "}
-          <img
-            src={"/img/hydrangeaBlue.png"}
-            alt="리본"
-            width={"100%"}
-            height={"auto%"}
-          ></img>
+          <motion.div
+            animate={{ scale: 1.1 }}
+            transition={{ yoyo: Infinity }}
+            // animate={{ y: 3 }}
+            // transition={{
+            //   yoyo: Infinity,
+            // }}
+          >
+            <img
+              src={"/img/hydrangeaBlue.png"}
+              alt="리본"
+              width={"100%"}
+              height={"auto%"}
+            ></img>
+          </motion.div>
         </Box>
         <Box
           sx={{
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            top: "20vh",
-            right: "40vh",
+            top: "50vh",
+            right: "5vh",
           }}
         >
           {" "}
@@ -128,25 +105,27 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            top: "40vh",
-            right: "62vh",
+            top: "20vh",
+            right: "1vh",
           }}
         >
           {" "}
-          <img
-            src={"/img/lilyYellow.png"}
-            alt="리본"
-            width={"100%"}
-            height={"auto%"}
-          ></img>
+          <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
+            <img
+              src={"/img/lilyYellow.png"}
+              alt="리본"
+              width={"100%"}
+              height={"auto%"}
+            ></img>
+          </motion.div>
         </Box>
         <Box
           sx={{
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "55vh",
-            left: "22vh",
+            bottom: "3vh",
+            left: "16vh",
           }}
         >
           {" "}
@@ -162,8 +141,8 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "26vh",
-            left: "12vh",
+            bottom: "8vh",
+            right: "5vh",
           }}
         >
           {" "}
@@ -179,7 +158,7 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "26vh",
+            top: "1vh",
             right: "18vh",
           }}
         >
@@ -196,8 +175,8 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            top: "26vh",
-            left: "68vh",
+            top: "36vh",
+            left: "38vh",
           }}
         >
           {" "}
@@ -213,25 +192,27 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            top: "10vh",
-            right: "100vh",
+            bottom: "10vh",
+            left: "4vh",
           }}
         >
           {" "}
-          <img
-            src={"/img/tulipPurple.png"}
-            alt="리본"
-            width={"100%"}
-            height={"auto%"}
-          ></img>
+          <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
+            <img
+              alt="리본"
+              src={"/img/tulipPurple.png"}
+              width={"100%"}
+              height={"auto%"}
+            ></img>
+          </motion.div>
         </Box>
         <Box
           sx={{
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "12vh",
-            right: "44vh",
+            top: "30vh",
+            left: "4vh",
           }}
         >
           {" "}
@@ -248,24 +229,26 @@ function Inform() {
             mx: "auto",
             width: "10vh",
             bottom: "22vh",
-            right: "66vh",
+            right: "2vh",
           }}
         >
           {" "}
-          <img
-            src={"/img/peonyWhite.png"}
-            alt="리본"
-            width={"100%"}
-            height={"auto%"}
-          ></img>
+          <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
+            <img
+              src={"/img/peonyWhite.png"}
+              alt="리본"
+              width={"100%"}
+              height={"auto%"}
+            ></img>
+          </motion.div>
         </Box>
         <Box
           sx={{
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "77vh",
-            left: "44vh",
+            bottom: "22vh",
+            left: "24vh",
           }}
         >
           {" "}
@@ -281,13 +264,13 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            top: "66vh",
-            left: "88vh",
+            top: "5vh",
+            right: "5vh",
           }}
         >
           {" "}
           <img
-            src={"/img/gerberaPink.png"}
+            src={"/img/tulipRed.png"}
             alt="리본"
             width={"100%"}
             height={"auto%"}
@@ -298,25 +281,8 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "53vh",
-            right: "26vh",
-          }}
-        >
-          {" "}
-          <img
-            src={"/img/gerberaYellow.png"}
-            alt="리본"
-            width={"100%"}
-            height={"auto%"}
-          ></img>
-        </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            mx: "auto",
-            width: "10vh",
-            top: "52vh",
-            left: "44vh",
+            bottom: "42vh",
+            left: "15vh",
           }}
         >
           {" "}
@@ -332,13 +298,13 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "88vh",
-            right: "44vh",
+            bottom: "22vh",
+            left: "0vh",
           }}
         >
           {" "}
           <img
-            src={"/img/lilyPink.png"}
+            src={"/img/freesiaPink.png"}
             alt="리본"
             width={"100%"}
             height={"auto%"}
@@ -349,37 +315,33 @@ function Inform() {
             position: "absolute",
             mx: "auto",
             width: "10vh",
-            bottom: "12vh",
-            left: "44vh",
+            top: "-3vh",
+            left: "-2vh",
           }}
         >
           {" "}
-          <img
-            src={"/img/peonyPink.png"}
-            alt="리본"
-            width={"100%"}
-            height={"auto%"}
-          ></img>
-        </Box>
-        <Box
-          sx={{
-            position: "absolute",
-            mx: "auto",
-            width: "10vh",
-            top: "23vh",
-            right: "80vh",
-          }}
-        >
-          {" "}
-          <img
-            src={"/img/sunflowerYellow.png"}
-            alt="리본"
-            width={"100%"}
-            height={"auto%"}
-          ></img>
+          <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
+            <img
+              src={"/img/ranunculusYellow.png"}
+              alt="리본"
+              width={"100%"}
+              height={"auto%"}
+            ></img>
+          </motion.div>
         </Box>
       </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          mx: "auto",
+          top: "59vh",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      ></Box>
     </Box>
   );
 }
-export default Inform;
+
+export default Loading;

@@ -12,9 +12,18 @@ declare global {
   }
 }
 function App({ Component, pageProps }: AppProps) {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(true);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
+    const url = window.location.href;
     setIsMobile(detectMobileDevice(window.navigator.userAgent));
+    setLoading(false);
+    setIsAdmin(url.includes("admin"));
+  }, []);
+  useEffect(() => {
+    console.log(isMobile);
   }, []);
   return (
     <>
@@ -23,7 +32,15 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
       </Head>
       <RecoilRoot>
-        {isMobile ? <Component {...pageProps} /> : <Inform />}{" "}
+        {isMobile ? (
+          <Component {...pageProps} />
+        ) : loading ? (
+          <div></div>
+        ) : isAdmin ? (
+          <Component {...pageProps} />
+        ) : (
+          <Inform />
+        )}
       </RecoilRoot>
     </>
   );

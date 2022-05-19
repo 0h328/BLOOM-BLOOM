@@ -10,6 +10,7 @@ import Moveable from "react-moveable";
 import Selecto from "react-selecto";
 import { presentBouquetState } from "../states/states";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 import {
   wrapState,
   decoState,
@@ -22,6 +23,7 @@ import Toast from "../components/common/Toast";
 import { toast } from "material-react-toastify";
 import { useRecoilState } from "recoil";
 import { saveBouquet } from "../components/apis/bouquetApi";
+import Loading from "../components/common/Loading";
 function Arrange() {
   const router = useRouter();
   const [finish, setFinish] = useState<boolean>(false);
@@ -32,6 +34,8 @@ function Arrange() {
   const [flowerInfo, setFlowerInfo] = useRecoilState(flowerState);
   const [mainFlower, setMainFlower] = useRecoilState(mainFlowerState);
   const [totalCount, setTotalCount] = useRecoilState(totalCountState);
+  const [correct, setCorrect] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [confirmBouquet, setConfirmBouquet] =
     useRecoilState(confirmBouquetState);
   const [presentBouquet, setPresentBouquet] =
@@ -105,127 +109,157 @@ function Arrange() {
     setCheckModal(state);
     setFinish(state);
   };
-  useEffect(() => {
-    setHeight(window.innerHeight);
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: false,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
   });
+  useEffect(() => {
+    if (mainFlower[0].flowerSeq === -1) {
+      setCorrect(false);
+      setLoading(false);
+      Toast.fire({
+        icon: "error",
+        title:
+          "<strong>❌잘못된 접근입니다❌</strong><br/>로그인 페이지로 이동합니다",
+      }).then(() => {
+        router.push("/");
+      });
+    } else {
+      setCorrect(true);
+    }
+  }, []);
   return (
-    <Box
-      sx={{
-        mx: "auto",
-        width: 420,
-        backgroundColor: "#FFFAFA",
-        height: "100vh",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
-        <Header page="main"></Header>
-      </Box>
-      <BouquetCheckModal
-        bouquetImage={bouquetImage}
-        handleCheckModal={handleCheckModal}
-        checkModal={checkModal}
-        handleComplete={handleComplete}
-      ></BouquetCheckModal>
-      <Box sx={{ position: "relative", width: "100%", height: "10vh" }}>
-        <FlowerArrangeText
-          handleSaveImg={handleSaveImg}
-          finish={finish}
-          handleArrange={handleArrange}
-        ></FlowerArrangeText>
-      </Box>
-      <Selecto
-        ref={selectoRef}
-        dragContainer={".elements"}
-        selectableTargets={[".selecto-area .cube"]}
-        hitRate={0}
-        selectByClick={true}
-        selectFromInside={false}
-        toggleContinueSelect={["shift"]}
-        ratio={0}
-        onSelect={(e) => {
-          console.log(e.selected);
-        }}
-      ></Selecto>
-      <Box
-        className="elements selecto-area"
-        id="img"
-        sx={{
-          width: "100%",
-          height: "80vh",
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+    <>
+      {correct ? (
         <Box
-          // id="img"
           sx={{
-            height: "50vh",
-            width: "100%",
+            mx: "auto",
+            width: 420,
+            backgroundColor: "#FFFAFA",
+            height: "100vh",
+            minHeight: "100vh",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            position: "relative",
-            justifyContent: "center",
           }}
         >
+          <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
+            <Header page="main"></Header>
+          </Box>
+          <BouquetCheckModal
+            bouquetImage={bouquetImage}
+            handleCheckModal={handleCheckModal}
+            checkModal={checkModal}
+            handleComplete={handleComplete}
+          ></BouquetCheckModal>
+          <Box sx={{ position: "relative", width: "100%", height: "10vh" }}>
+            <FlowerArrangeText
+              handleSaveImg={handleSaveImg}
+              finish={finish}
+              handleArrange={handleArrange}
+            ></FlowerArrangeText>
+          </Box>
+          <Selecto
+            ref={selectoRef}
+            dragContainer={".elements"}
+            selectableTargets={[".selecto-area .cube"]}
+            hitRate={0}
+            selectByClick={true}
+            selectFromInside={false}
+            toggleContinueSelect={["shift"]}
+            ratio={0}
+            onSelect={(e) => {
+              console.log(e.selected);
+            }}
+          ></Selecto>
           <Box
+            className="elements selecto-area"
+            id="img"
             sx={{
-              ...imgBox,
+              width: "100%",
+              height: "80vh",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
             }}
           >
-            <img
-              src={wrapInfo.wrapBackImage}
-              width={"100%"}
-              height={"auto"}
-            ></img>
-          </Box>
-          <Box sx={{ ...imgBox }}>
-            <img
-              src={flowerInfo.flowerImage}
-              width={"100%"}
-              height={"auto"}
-            ></img>
-          </Box>
-          <Box sx={{ ...imgBox }}>
-            <img
-              src={wrapInfo.wrapFrontImage}
-              width={"100%"}
-              height={"auto"}
-            ></img>
-          </Box>
-          <Box sx={{ ...imgBox }}>
-            <img
-              src={decoInfo.decoImage}
-              style={{
-                position: "absolute",
-                top: "186px",
-                height: "130px",
-                width: "130px",
+            <Box
+              // id="img"
+              sx={{
+                height: "50vh",
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+                justifyContent: "center",
               }}
-            ></img>
+            >
+              <Box
+                sx={{
+                  ...imgBox,
+                }}
+              >
+                <img
+                  src={wrapInfo.wrapBackImage}
+                  width={"100%"}
+                  height={"auto"}
+                ></img>
+              </Box>
+              <Box sx={{ ...imgBox }}>
+                <img
+                  src={flowerInfo.flowerImage}
+                  width={"100%"}
+                  height={"auto"}
+                ></img>
+              </Box>
+              <Box sx={{ ...imgBox }}>
+                <img
+                  src={wrapInfo.wrapFrontImage}
+                  width={"100%"}
+                  height={"auto"}
+                ></img>
+              </Box>
+              <Box sx={{ ...imgBox }}>
+                <img
+                  src={decoInfo.decoImage}
+                  style={{
+                    position: "absolute",
+                    top: "162px",
+                    height: "180px",
+                    width: "180px",
+                  }}
+                ></img>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                height: "20vh",
+                width: "87%",
+                backgroundColor: "#EFDFBF",
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "5px",
+                justifyContent: "center",
+                WebkitAlignItems: "flex-start",
+              }}
+            >
+              <Move finish={finish} handleSaveImg={handleSaveImg}></Move>
+            </Box>
           </Box>
         </Box>
-        <Box
-          sx={{
-            height: "20vh",
-            width: "85%",
-            backgroundColor: "#EFDFBF",
-            display: "flex",
-            alignItems: "center",
-            borderRadius: "5px",
-            justifyContent: "center",
-            WebkitAlignItems: "flex-start",
-          }}
-        >
-          <Move finish={finish} handleSaveImg={handleSaveImg}></Move>
-        </Box>
-      </Box>
-      <Toast />
-    </Box>
+      ) : loading ? (
+        <Box></Box>
+      ) : (
+        <Loading text={"404"}></Loading>
+      )}
+    </>
   );
 }
 

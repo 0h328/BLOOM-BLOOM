@@ -25,3 +25,7 @@ export const getOrderList = async () => {
 export const getOrderInfo = async (code: string) => {
   return await orderApi.get(`/store/${code}`);
 };
+
+export const getOrderDetail = async (orderSeq: number) => {
+  return await orderApi.get(`/${orderSeq}`);
+};

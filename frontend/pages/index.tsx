@@ -31,31 +31,10 @@ function Login() {
   };
 
   const setScreenSize = () => {
-    let vh = window.innerHeight * 0.01;
+    let vh = window.innerHeight * 1;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
-  const Ball = styled(motion.div)`
-    width: 2em;
-    height: 2em;
-    border-radius: 50%;
-    background-color: #00cec9;
-    //   border: 2px solid #252525;
-    margin: 0.5em;
-  `;
-  const bounceTransition = {
-    y: {
-      duration: 1,
-      yoyo: Infinity,
-      ease: "easeIn",
-      velocity: 30,
-    },
-    backgroundColor: {
-      duration: 0,
-      yoyo: Infinity,
-      ease: "easeOut",
-      repeatDelay: 1,
-    },
-  };
+
   useEffect(() => {
     setScreenSize();
     setWindowHeight(window.innerHeight);
@@ -103,17 +82,12 @@ function Login() {
                 }}
               >
                 {" "}
-                <motion.div
-                  animate={{ scale: 1.1 }}
-                  transition={{ yoyo: Infinity }}
-                >
-                  <img
-                    src={"/img/peonyPurple.png"}
-                    alt="리본"
-                    width={"100%"}
-                    height={"auto%"}
-                  ></img>
-                </motion.div>
+                <img
+                  src={"/img/peonyPurple.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
               </Box>
               <Box
                 sx={{
@@ -128,6 +102,10 @@ function Login() {
                 <motion.div
                   animate={{ scale: 1.1 }}
                   transition={{ yoyo: Infinity }}
+                  // animate={{ y: 3 }}
+                  // transition={{
+                  //   yoyo: Infinity,
+                  // }}
                 >
                   <img
                     src={"/img/hydrangeaBlue.png"}
@@ -164,12 +142,17 @@ function Login() {
                 }}
               >
                 {" "}
-                <img
-                  src={"/img/lilyYellow.png"}
-                  alt="리본"
-                  width={"100%"}
-                  height={"auto%"}
-                ></img>
+                <motion.div
+                  animate={{ scale: 1.1 }}
+                  transition={{ yoyo: Infinity }}
+                >
+                  <img
+                    src={"/img/lilyYellow.png"}
+                    alt="리본"
+                    width={"100%"}
+                    height={"auto%"}
+                  ></img>
+                </motion.div>
               </Box>
               <Box
                 sx={{
@@ -177,7 +160,7 @@ function Login() {
                   mx: "auto",
                   width: "10vh",
                   bottom: "3vh",
-                  left: "22vh",
+                  left: "16vh",
                 }}
               >
                 {" "}
@@ -249,12 +232,17 @@ function Login() {
                 }}
               >
                 {" "}
-                <img
-                  src={"/img/tulipPurple.png"}
-                  alt="리본"
-                  width={"100%"}
-                  height={"auto%"}
-                ></img>
+                <motion.div
+                  animate={{ scale: 1.1 }}
+                  transition={{ yoyo: Infinity }}
+                >
+                  <img
+                    alt="리본"
+                    src={"/img/tulipPurple.png"}
+                    width={"100%"}
+                    height={"auto%"}
+                  ></img>
+                </motion.div>
               </Box>
               <Box
                 sx={{
@@ -283,12 +271,17 @@ function Login() {
                 }}
               >
                 {" "}
-                <img
-                  src={"/img/peonyWhite.png"}
-                  alt="리본"
-                  width={"100%"}
-                  height={"auto%"}
-                ></img>
+                <motion.div
+                  animate={{ scale: 1.1 }}
+                  transition={{ yoyo: Infinity }}
+                >
+                  <img
+                    src={"/img/peonyWhite.png"}
+                    alt="리본"
+                    width={"100%"}
+                    height={"auto%"}
+                  ></img>
+                </motion.div>
               </Box>
               <Box
                 sx={{
@@ -312,6 +305,23 @@ function Login() {
                   position: "absolute",
                   mx: "auto",
                   width: "10vh",
+                  top: "5vh",
+                  right: "5vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/tulipRed.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
                   bottom: "42vh",
                   left: "15vh",
                 }}
@@ -323,6 +333,45 @@ function Login() {
                   width={"100%"}
                   height={"auto%"}
                 ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  bottom: "22vh",
+                  left: "0vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/freesiaPink.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "-3vh",
+                  left: "-2vh",
+                }}
+              >
+                {" "}
+                <motion.div
+                  animate={{ scale: 1.1 }}
+                  transition={{ yoyo: Infinity }}
+                >
+                  <img
+                    src={"/img/ranunculusYellow.png"}
+                    alt="리본"
+                    width={"100%"}
+                    height={"auto%"}
+                  ></img>
+                </motion.div>
               </Box>
             </Box>
             <Box

@@ -79,27 +79,15 @@ function BouquetDetailModal({
   const handleOrder = () => {};
   const handleDelete = async () => {
     const response = await deleteBouquet(bouquet.bouquetSeq);
-    Swal.fire({
-      title: "정말 삭제하시겠습니까??",
-      text: "삭제한 꽃다발은 복구할 수 없어요",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "삭제하기",
-    }).then((result) => {
-      if (result.isConfirmed && response.status === 200) {
-        Swal.fire("삭제완료", "꽃다발이 삭제되었습니다");
+    if (response.status === 200) {
+      let n: ReturnType<typeof setTimeout>;
+      n = setTimeout(() => {
         location.reload();
-      }
-    });
-    // if (response.status === 200) {
-    //   let n: ReturnType<typeof setTimeout>;
-    //   n = setTimeout(() => {
-    //     location.reload();
-    //   }, 200);
-    //   toast.success("🔔 성공적으로 삭제되었습니다");
-    // }
+      }, 400);
+      toast.success("🔔 성공적으로 삭제되었습니다");
+    } else {
+      toast.error("❌ 삭제에 실패했습니다");
+    }
     console.log(response);
   };
 

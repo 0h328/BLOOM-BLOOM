@@ -15,12 +15,15 @@ interface props {
 function Map({ bouquetSeq }: props) {
   const [forMarker, SetForMarker] = useState([]);
   const [bouquet, setBouquet] = useState();
+  const [currentLat, setCurrentLat] = useState();
+  const [currentLng, setCurrentLng] = useState();
   const [store, SetStore] = useState({
     storeName: "처음이야",
     storeContact: "010-0000-0000",
     storeAddress: "서울특별시 역삼 어디에있어요",
     storeMapId: "www.naver.com",
     storeImage: "/test.png",
+    storeImageLink: "",
   });
   var storeArray = [];
   var bouquetInfo = null;
@@ -61,27 +64,21 @@ function Map({ bouquetSeq }: props) {
           neLng: neLatLng.La,
         };
         test(data);
-        // 현재 내 위치 찾기
-        // if (navigator.geolocation) {
+        if (navigator.geolocation) {
+          // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+          navigator.geolocation.getCurrentPosition(function(position) {
 
-        //   // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        //   navigator.geolocation.getCurrentPosition(function(position) {
+              var lat = position.coords.latitude, // 위도
+                  lon = position.coords.longitude; // 경도
+              var locPosition = new window.kakao.maps.LatLng(lat, lon) // geolocation으로 얻어온 좌표
+              var presentPosition=locPosition;
+              map.setCenter(locPosition);
+            });
 
-        //       var lat = position.coords.latitude, // 위도
-        //           lon = position.coords.longitude; // 경도
-
-        //       var locPosition = new window.kakao.maps.LatLng(lat, lon) // geolocation으로 얻어온 좌표
-        //       var presentPosition=locPosition;
-
-        //       map.setCenter(locPosition);
-
-        //     });
-
-        // } else { // HTML5의 GeoLocation을 사용할 수 없을때
-
-        //       var locPosition = new window.kakao.maps.LatLng(37.4408907421696 , 127.147431848755)
-        //       alert('현재 위치를 찾을 수 없습니다!');
-        //   }
+        } else { // HTML5의 GeoLocation을 사용할 수 없을때
+              var locPosition = new window.kakao.maps.LatLng(37.4408907421696 , 127.147431848755)
+              alert('현재 위치를 찾을 수 없습니다!');
+          }
         var selectedMarker = null;
         function setMarker() {
           const imageSrc = "/img/markerImg1.png";
@@ -118,6 +115,7 @@ function Map({ bouquetSeq }: props) {
             // 마커를 클릭할 시 일어난 이벤트 > 상점 저장 어떻게할지
             window.kakao.maps.event.addListener(marker, "click", function () {
               SetStore(storeArray[idx]);
+              console.log(storeArray[idx]);
             });
             // 마커에 mouseover 이벤트를 등록합니다
             window.kakao.maps.event.addListener(
@@ -128,7 +126,6 @@ function Map({ bouquetSeq }: props) {
                 // 마커의 이미지를 오버 이미지로 변경합니다
                 console.log(i);
                 if (!selectedMarker || selectedMarker !== marker) {
-                  marker.setImage(_markerImage);
                 }
               }
             );

@@ -76,7 +76,7 @@ function Flower() {
       </Box>
       <Box
         sx={{
-          backgroundColor: "#FFE0E0",
+          backgroundColor: "rgb(255 224 224 / 44%)",
           width: "90%",
           height: "75vh",
           borderRadius: "10px",
