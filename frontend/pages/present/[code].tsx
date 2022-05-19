@@ -13,6 +13,8 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { BASE_URL } from "../../components/apis/config";
+import { motion } from "framer-motion";
+import Loading from "../../components/common/Loading";
 
 function Present() {
   //   const presentData = {
@@ -30,6 +32,8 @@ function Present() {
   const [image, setImage] = useState<string>("");
   const [code, setCode] = useState<any>([]);
   const [isKakaoBrowser, setKakaoBrowser] = useState(false);
+  const [codeLoading, setCodeLoading] = useState<boolean>(false);
+  const [dataLoading, setDataLoading] = useState<boolean>(false);
   const [presentData, setPresentData] = useState<{
     bouquetImage: string;
     presentSender: string;
@@ -115,8 +119,22 @@ function Present() {
     document.body.removeChild(link);
   };
   const handlePresent = async (code: string) => {
-    const response = await getPresent(code);
-    setPresentData({ ...response.data.data });
+    try {
+      setTimeout(() => {
+        const response = getPresent(code).then((result) => {
+          setPresentData({ ...result.data.data });
+          setDataLoading(true);
+          console.log("data");
+        });
+      }, 1000000);
+      // const response = getPresent(code).then((result) => {
+      //   setPresentData({ ...result.data.data });
+      //   setDataLoading(true);
+      //   console.log("data");
+      // });
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     const isKakao = navigator.userAgent.match("KAKAOTALK");
@@ -129,14 +147,13 @@ function Present() {
   useEffect(() => {
     if (code !== "" && code !== undefined && code.length) {
       handlePresent(code);
+      setCodeLoading(true);
+      console.log("code");
     }
   }, [code]);
-  useEffect(() => {
-    setWindowHeight(window.innerHeight);
-  }, []);
   return (
     <>
-      {code ? (
+      {codeLoading && dataLoading ? (
         <Box
           sx={{
             mx: "auto",
@@ -196,17 +213,11 @@ function Present() {
                   from . {presentData.presentSender}
                 </Typography>
               </Box>
-              {presentData.bouquetImage === "" ? (
-                <Box sx={{ height: "40vh" }}>
-                  <Box>이미지 열심히 받아오는중</Box>
-                </Box>
-              ) : (
-                <Box sx={{ height: "40vh" }}>
-                  <BouquetImg
-                    bouquetImage={presentData.bouquetImage}
-                  ></BouquetImg>
-                </Box>
-              )}
+              <Box sx={{ height: "40vh" }}>
+                <BouquetImg
+                  bouquetImage={presentData.bouquetImage}
+                ></BouquetImg>
+              </Box>
               <Box sx={{ height: "25vh", width: "80%" }}>
                 <MessageCard message={presentData.presentDesc}></MessageCard>
               </Box>
@@ -366,7 +377,7 @@ function Present() {
           </Box>
         </Box>
       ) : (
-        <Box>받아오는중</Box>
+        <Loading />
       )}
     </>
   );

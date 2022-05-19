@@ -110,6 +110,7 @@ export default function OrderlistPage() {
             width: "30%",
             textAlign: "center",
             display: "flex",
+            justifyContent: "center",
           }}
         >
           주문내역

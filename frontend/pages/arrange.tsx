@@ -212,7 +212,7 @@ function Arrange() {
         <Box
           sx={{
             height: "20vh",
-            width: "85%",
+            width: "87%",
             backgroundColor: "#EFDFBF",
             display: "flex",
             alignItems: "center",

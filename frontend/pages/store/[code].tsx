@@ -18,10 +18,12 @@ function Shop() {
     customerName: string;
   }>();
   const [code, setCode] = useState<any>();
+  const [codeLoading, setCodeLoading] = useState<boolean>(false);
+  const [dataLoading, setDataLoading] = useState<boolean>(false);
   const handleOrder = async (code: string) => {
     const response = await getOrderInfo(code);
+    setDataLoading(true);
     setOrderData(response.data.data);
-    console.log(response.data.data);
   };
 
   useEffect(() => {
@@ -38,7 +40,7 @@ function Shop() {
 
   return (
     <>
-      {code && orderData ? (
+      {codeLoading && dataLoading ? (
         <Box
           id="img"
           sx={{
