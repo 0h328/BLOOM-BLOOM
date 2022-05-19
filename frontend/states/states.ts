@@ -58,8 +58,7 @@ const storeState = atom({
     storeBlogId: '',
     storeInstagramId: '',
   }
-})
-
+});
 
 const saveBouquetState = atom({
   key: "saveFlower",
