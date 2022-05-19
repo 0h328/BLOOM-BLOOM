@@ -80,7 +80,7 @@ function MadeList() {
         isStored={isStored}
         handleIsStored={handleIsStored}
       ></MessageInputModal>
-      <Box sx={{ mt: "2rem", width: "93%" }}>
+      <Box sx={{ mt: "2rem", width: "95%" }}>
         <Typography
           sx={{
             textAlign: "center",

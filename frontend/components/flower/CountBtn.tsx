@@ -44,6 +44,7 @@ function CountBtn({ onDecrease, onIncrease, count }: countProps) {
             minWidth: "40px",
             backgroundColor: "white",
             justifyContent: "center",
+            fontFamily: "OneMobileLight",
           }}
         >
           {count}

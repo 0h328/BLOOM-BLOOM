@@ -99,7 +99,7 @@ function Arrange() {
   };
   const handleArrange = (state: boolean) => {
     setFinish(state);
-    setWindowHeight(window.innerHeight * 0.45);
+    setWindowHeight(window.innerHeight * 0.5);
   };
   const handleCheckModal = (state: boolean) => {
     setCheckModal(state);
@@ -114,14 +114,14 @@ function Arrange() {
         mx: "auto",
         width: 420,
         backgroundColor: "#FFFAFA",
-        height: height,
+        height: "100vh",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
-      <Box sx={{ position: "relative", mt: "5%" }}>
+      <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
         <Header page="main"></Header>
       </Box>
       <BouquetCheckModal
@@ -130,7 +130,7 @@ function Arrange() {
         checkModal={checkModal}
         handleComplete={handleComplete}
       ></BouquetCheckModal>
-      <Box sx={{ position: "relative", mt: "5%", width: "100%" }}>
+      <Box sx={{ position: "relative", width: "100%", height: "10vh" }}>
         <FlowerArrangeText
           handleSaveImg={handleSaveImg}
           finish={finish}
@@ -154,9 +154,8 @@ function Arrange() {
         className="elements selecto-area"
         id="img"
         sx={{
-          mt: "1rem",
           width: "100%",
-          height: "70%",
+          height: "80vh",
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
@@ -165,11 +164,12 @@ function Arrange() {
         <Box
           // id="img"
           sx={{
-            height: "65%",
+            height: "50vh",
             width: "100%",
             display: "flex",
             alignItems: "center",
             position: "relative",
+            justifyContent: "center",
           }}
         >
           <Box
@@ -179,28 +179,22 @@ function Arrange() {
           >
             <img
               src={wrapInfo.wrapBackImage}
-              style={{
-                height: "330px",
-                width: "330px",
-              }}
+              width={"100%"}
+              height={"auto"}
             ></img>
           </Box>
           <Box sx={{ ...imgBox }}>
             <img
               src={flowerInfo.flowerImage}
-              style={{
-                height: "330px",
-                width: "330px",
-              }}
+              width={"100%"}
+              height={"auto"}
             ></img>
           </Box>
           <Box sx={{ ...imgBox }}>
             <img
               src={wrapInfo.wrapFrontImage}
-              style={{
-                height: "330px",
-                width: "330px",
-              }}
+              width={"100%"}
+              height={"auto"}
             ></img>
           </Box>
           <Box sx={{ ...imgBox }}>
@@ -217,7 +211,7 @@ function Arrange() {
         </Box>
         <Box
           sx={{
-            height: "30%",
+            height: "20vh",
             width: "85%",
             backgroundColor: "#EFDFBF",
             display: "flex",
@@ -225,7 +219,6 @@ function Arrange() {
             borderRadius: "5px",
             justifyContent: "center",
             WebkitAlignItems: "flex-start",
-            mt: "1rem",
           }}
         >
           <Move finish={finish} handleSaveImg={handleSaveImg}></Move>
@@ -247,7 +240,7 @@ export const btnStyle = {
 
 export const imgBox = {
   position: "absolute",
-  width: "100%",
+  width: "40vh",
   display: "flex",
   justifyContent: "center",
   height: "50%",

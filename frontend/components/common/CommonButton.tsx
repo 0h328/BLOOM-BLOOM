@@ -57,7 +57,7 @@ function CommonButton({
 
 export const btnStyleIcon = {
   height: "auto",
-  width: "20%",
+  width: "30%",
   fontWeight: "600",
   fontSize: "14px",
   fontFamily: "OneMobileLight",
@@ -66,11 +66,12 @@ export const btnStyleIcon = {
 };
 export const btnStyleText = {
   height: "auto",
-  // width: "fit-content",
   fontWeight: "600",
   fontSize: "14px",
   fontFamily: "OneMobileLight",
   color: "#000",
   padding: "2%",
+  textAlign: "start",
+  width: "100%",
 };
 export default CommonButton;

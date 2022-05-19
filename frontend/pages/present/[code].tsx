@@ -15,7 +15,6 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { BASE_URL } from "../../components/apis/config";
 
 function Present() {
-  
   //   const presentData = {
   //     bouquetImage: "/img/bouquet1.png",
   //     presentSender: "김정혁",
@@ -41,59 +40,61 @@ function Present() {
     presentDesc: "",
   });
 
-  const copylink = async() => {
-    var tmpTextarea = document.createElement('textarea');
+  const copylink = async () => {
+    var tmpTextarea = document.createElement("textarea");
     tmpTextarea.value = "https://bloombloom.kro.kr";
- 
+
     document.body.appendChild(tmpTextarea);
     tmpTextarea.select();
-    tmpTextarea.setSelectionRange(0, 9999);  // 셀렉트 범위 설정
- 
-    document.execCommand('copy');
+    tmpTextarea.setSelectionRange(0, 9999); // 셀렉트 범위 설정
+
+    document.execCommand("copy");
     document.body.removeChild(tmpTextarea);
-  }
- 
-  const gotoOtherBrowser = () => { 
+  };
+
+  const gotoOtherBrowser = () => {
     Swal.fire({
-      title: '<style>.swal2-popup{font-family: OneMobileLight}  .cursor_{cursor: pointer} </style><span style="color: #FEE500;" >카카오</span>에서 <br/>바로 들어오셨나요?',
-      html: '<b>다른 브라우저</b>를 이용하시면 저희 <strong style="color:#f1bfbf;">bloombloom</strong>을 보다 편하게 이용하실 수 있습니다.' 
-        + '<p><b><div id="clipboard" class="cursor_">'
-        +'📬링크 복사'
-        +'</div></b></p> ',
-      icon: 'question',
-      showConfirmButton:false,
-      confirmButtonText: '📬링크 복사',
-    }).then(() =>{
-      Swal.close()
-    })
-    document.getElementById('clipboard').onclick = function () {
+      title:
+        '<style>.swal2-popup{font-family: OneMobileLight}  .cursor_{cursor: pointer} </style><span style="color: #FEE500;" >카카오</span>에서 <br/>바로 들어오셨나요?',
+      html:
+        '<b>다른 브라우저</b>를 이용하시면 저희 <strong style="color:#f1bfbf;">bloombloom</strong>을 보다 편하게 이용하실 수 있습니다.' +
+        '<p><b><div id="clipboard" class="cursor_">' +
+        "📬링크 복사" +
+        "</div></b></p> ",
+      icon: "question",
+      showConfirmButton: false,
+      confirmButtonText: "📬링크 복사",
+    }).then(() => {
+      Swal.close();
+    });
+    document.getElementById("clipboard").onclick = function () {
       copylink();
       const Toast = Swal.mixin({
         toast: true,
-        position: 'top',
+        position: "top",
         showConfirmButton: false,
         timer: 1500,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
       Toast.fire({
-        icon: 'success',
-        title: '링크가 복사되었습니다. 🎉'
+        icon: "success",
+        title: "링크가 복사되었습니다. 🎉",
       }).then(() => {
-                
-        var _ua = window.navigator.userAgent
-          //alert(_ua.toLocaleLowerCase().indexOf("kakaotalk"))
-          if (_ua.toLocaleLowerCase().indexOf("kakaotalk") > -1) {
-            //alert("!")
-            window.location.href = (/iPad|iPhone|iPod/.test(_ua)) ? "kakaoweb://closeBrowser" : "kakaotalk://inappbrowser/close";
-          }
-      }) 
-    }
-   
-  }
+        var _ua = window.navigator.userAgent;
+        //alert(_ua.toLocaleLowerCase().indexOf("kakaotalk"))
+        if (_ua.toLocaleLowerCase().indexOf("kakaotalk") > -1) {
+          //alert("!")
+          window.location.href = /iPad|iPhone|iPod/.test(_ua)
+            ? "kakaoweb://closeBrowser"
+            : "kakaotalk://inappbrowser/close";
+        }
+      });
+    };
+  };
 
   const onCapture = () => {
     console.log("capture");
@@ -115,13 +116,12 @@ function Present() {
   };
   const handlePresent = async (code: string) => {
     const response = await getPresent(code);
-    console.log(response.data);
     setPresentData({ ...response.data.data });
   };
   useEffect(() => {
-    const isKakao = navigator.userAgent.match("KAKAOTALK")
-    console.log(navigator.userAgent)
-    setKakaoBrowser(Boolean(isKakao))
+    const isKakao = navigator.userAgent.match("KAKAOTALK");
+    console.log(navigator.userAgent);
+    setKakaoBrowser(Boolean(isKakao));
     if (!router.isReady) return;
     setCode(router.query.code);
   }, [router.isReady]);
@@ -140,74 +140,201 @@ function Present() {
         <Box
           sx={{
             mx: "auto",
-            width: windowHeight > 480 ? 420 : "100vw",
+            width: 420,
             position: "relative",
-            height: windowHeight > 480 ? 840 : "100vh",
-            minHeight: "100vh",
+            height: "100vh",
             overflow: "hidden",
             backgroundColor: "#FFFAFA",
+            justifyContent: "center",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <Box id="img">
-            <Box sx={{ pt: "2rem" }}>
-              <Header></Header>
-            </Box>
+          <Box
+            id="img"
+            sx={{
+              height: "80vh",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
             <Box
               sx={{
-                pt: "1rem",
+                height: "10vh",
                 display: "flex",
                 justifyContent: "center",
-                flexDirection: "column",
                 alignItems: "center",
               }}
             >
               <Typography
                 sx={{
+                  textAlign: "center",
                   fontFamily: "ONEMobileLight",
-                  fontSize: "18px",
-                  margin: "0rem 0rem 1rem 0rem",
+                  fontSize: 25,
                 }}
               >
-                from . {presentData.presentSender}
+                BLOOM BLOOM
               </Typography>
-              <Box sx={{ width: "80%" }}>
-                <BouquetImg
-                  bouquetImage={presentData.bouquetImage}
-                ></BouquetImg>
-              </Box>
-              <Box sx={{ width: "80%", height: "30%", mb: "1rem" }}>
-                <MessageCard message={presentData.presentDesc}></MessageCard>
-              </Box>
             </Box>
-          </Box>
-          <Box
-            sx={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
             <Box
               sx={{
+                height: "65vh",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
               }}
             >
+              <Box sx={{ height: "5vh" }}>
+                <Typography
+                  sx={{
+                    fontFamily: "ONEMobileLight",
+                    fontSize: "18px",
+                    margin: "0rem 0rem 1rem 0rem",
+                  }}
+                >
+                  from . {presentData.presentSender}
+                </Typography>
+              </Box>
+              {presentData.bouquetImage === "" ? (
+                <Box sx={{ height: "40vh" }}>
+                  <Box>이미지 열심히 받아오는중</Box>
+                </Box>
+              ) : (
+                <Box sx={{ height: "40vh" }}>
+                  <BouquetImg
+                    bouquetImage={presentData.bouquetImage}
+                  ></BouquetImg>
+                </Box>
+              )}
+              <Box sx={{ height: "25vh", width: "80%" }}>
+                <MessageCard message={presentData.presentDesc}></MessageCard>
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "20vh",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <Button
+              variant="contained"
+              size="small"
+              sx={{
+                alignItems: "center",
+                mt: "1%",
+              }}
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                backgroundColor: "#BAD7DF",
+                color: "#000",
+                fontFamily: "OneMobileLight",
+                borderRadius: "5",
+                width: 260,
+                height: 43,
+              }}
+              onClick={onCapture}
+            >
+              <Typography
+                component="div"
+                sx={{
+                  width: "20%",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  fontFamily: "OneMobileLight",
+                  color: "#000",
+                  textAlign: "center",
+                }}
+              >
+                📷
+              </Typography>
+              <Typography
+                component="div"
+                sx={{
+                  width: "50%",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  fontFamily: "OneMobileLight",
+                  color: "#000",
+                  textAlign: "center",
+                }}
+              >
+                이미지 저장하기
+              </Typography>
+            </Button>{" "}
+            {!isKakaoBrowser ? (
+              <Link href="/" passHref>
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    alignItems: "center",
+                    mt: "3%",
+                  }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    backgroundColor: "#FFE0E0",
+                    color: "#000",
+                    fontFamily: "OneMobileLight",
+                    borderRadius: "5",
+                    width: 260,
+                    height: 43,
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography
+                    component="div"
+                    sx={{
+                      width: "20%",
+                      fontWeight: "600",
+                      fontSize: "15px",
+                      fontFamily: "OneMobileLight",
+                      color: "#000",
+                      textAlign: "center",
+                    }}
+                  >
+                    🌸
+                  </Typography>
+                  <Typography
+                    component="div"
+                    sx={{
+                      width: "80%",
+                      fontWeight: "600",
+                      fontSize: "15px",
+                      fontFamily: "OneMobileLight",
+                      color: "#000",
+                    }}
+                  >
+                    BloomBloom 이용하기
+                  </Typography>
+                </Button>
+              </Link>
+            ) : (
               <Button
                 variant="contained"
                 size="small"
+                onClick={gotoOtherBrowser}
                 sx={{
                   alignItems: "center",
-                  mt: "1%",
+                  mt: "3%",
                 }}
                 style={{
                   display: "flex",
                   justifyContent: "flex-start",
-                  backgroundColor: "#BAD7DF",
+                  backgroundColor: "#FFE0E0",
                   color: "#000",
                   fontFamily: "OneMobileLight",
                   borderRadius: "5",
                   width: 260,
                   height: 43,
+                  textAlign: "center",
                 }}
-                onClick={onCapture}
               >
                 <Typography
                   component="div"
@@ -220,122 +347,27 @@ function Present() {
                     textAlign: "center",
                   }}
                 >
-                  📷
+                  🌸
                 </Typography>
                 <Typography
                   component="div"
                   sx={{
-                    width: "50%",
+                    width: "80%",
                     fontWeight: "600",
                     fontSize: "15px",
                     fontFamily: "OneMobileLight",
                     color: "#000",
-                    textAlign: "center",
                   }}
                 >
-                  이미지 저장하기
+                  BloomBloom 이용하기
                 </Typography>
-              </Button>{" "}{
-                !isKakaoBrowser?
-                <Link href="/" passHref>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    sx={{
-                      alignItems: "center",
-                      mt: "5%",
-                    }}
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      backgroundColor: "#FFE0E0",
-                      color: "#000",
-                      fontFamily: "OneMobileLight",
-                      borderRadius: "5",
-                      width: 260,
-                      height: 43,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography
-                      component="div"
-                      sx={{
-                        width: "20%",
-                        fontWeight: "600",
-                        fontSize: "15px",
-                        fontFamily: "OneMobileLight",
-                        color: "#000",
-                        textAlign: "center",
-                      }}
-                    >
-                      🌸
-                    </Typography>
-                    <Typography
-                      component="div"
-                      sx={{
-                        width: "80%",
-                        fontWeight: "600",
-                        fontSize: "15px",
-                        fontFamily: "OneMobileLight",
-                        color: "#000",
-                      }}
-                    >
-                      BloomBloom 이용하기
-                    </Typography>
-                  </Button>
-                  </Link> :
-                  
-                   <Button
-                     variant="contained"
-                    size="small"
-                    onClick={gotoOtherBrowser}
-                     sx={{
-                       alignItems: "center",
-                       mt: "5%",
-                     }}
-                     style={{
-                       display: "flex",
-                       justifyContent: "flex-start",
-                       backgroundColor: "#FFE0E0",
-                       color: "#000",
-                       fontFamily: "OneMobileLight",
-                       borderRadius: "5",
-                       width: 260,
-                       height: 43,
-                       textAlign: "center",
-                     }}
-                   >
-                     <Typography
-                       component="div"
-                       sx={{
-                         width: "20%",
-                         fontWeight: "600",
-                         fontSize: "15px",
-                         fontFamily: "OneMobileLight",
-                         color: "#000",
-                         textAlign: "center",
-                       }}
-                     >
-                       🌸
-                     </Typography>
-                     <Typography
-                       component="div"
-                       sx={{
-                         width: "80%",
-                         fontWeight: "600",
-                         fontSize: "15px",
-                         fontFamily: "OneMobileLight",
-                         color: "#000",
-                       }}
-                     >
-                       BloomBloom 이용하기
-                     </Typography>
-                   </Button>
-              }
-            </Box>
+              </Button>
+            )}
           </Box>
         </Box>
-      ) : null}
+      ) : (
+        <Box>받아오는중</Box>
+      )}
     </>
   );
 }

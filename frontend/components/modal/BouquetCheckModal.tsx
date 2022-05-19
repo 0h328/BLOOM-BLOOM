@@ -51,19 +51,20 @@ function BouquetCheckModal({
     <>
       {checkModal ? (
         <Box
+          className="modal"
           sx={{
             position: "absolute",
             width: "420px",
-            height: "100%",
+            height: "100vh",
             backgroundColor: "rgb(31 31 31 / 33%)",
             zIndex: 900,
           }}
         >
           <Box
             sx={{
-              mt: "10%",
+              mt: "10vh",
               width: "90%",
-              height: "90%",
+              height: "80vh",
               backgroundColor: "#FFFAFA",
               zIndex: 1300,
               borderRadius: "10px",
@@ -74,51 +75,58 @@ function BouquetCheckModal({
               mx: "auto",
             }}
           >
-            <Box sx={{ height: "10%", mx: "auto" }}>
+            <Box sx={{ height: "10vh", mx: "auto" }}>
               <Typography
                 sx={{
                   // backgroundColor: "#FFE0E0",
                   color: "#000000",
                   fontFamily: "ONEMobileLight",
                   fontSize: "1.1em",
+                  fontWeight: 600,
                 }}
               >
                 완성된 꽃다발이 마음에 드시나요?
               </Typography>
             </Box>
-            <Box
-              sx={{ display: "flex", justifyContent: "center", height: "60%" }}
-            >
+            <Box sx={{ mx: "auto", width: "40vh" }}>
               <img
                 src={bouquetImage}
                 alt="꽃다발"
                 width={"100%"}
-                height={"100%"}
+                height={"auto%"}
               ></img>
             </Box>
             <Box
               sx={{
                 width: "100%",
-                height: "15%",
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "space-evenly",
+                height: "20vh",
               }}
             >
-              <CommonButton
-                icon={"🌼"}
-                text={"더 꾸미러 가기"}
-                handleBtn={closeBouquetDetailModal}
-                backgroundColor="#EFDFBF"
-              ></CommonButton>
+              <Box
+                sx={{
+                  width: "70%",
+                  height: "20vh",
+                  display: "flex",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  mx: "auto",
+                }}
+              >
+                <CommonButton
+                  icon={"🌼"}
+                  text={"더 꾸미러 가기"}
+                  handleBtn={closeBouquetDetailModal}
+                  backgroundColor="#EFDFBF"
+                ></CommonButton>
 
-              <CommonButton
-                icon={"👍"}
-                text={"꽃다발 꾸미기 완성"}
-                handleBtn={handleComplete}
-                backgroundColor="#FFE0E0"
-              ></CommonButton>
+                <CommonButton
+                  icon={"👍"}
+                  text={"꽃다발 꾸미기 완성"}
+                  handleBtn={handleComplete}
+                  backgroundColor="#FFE0E0"
+                ></CommonButton>
+              </Box>
             </Box>
           </Box>
         </Box>

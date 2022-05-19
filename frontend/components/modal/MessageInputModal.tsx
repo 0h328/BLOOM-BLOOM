@@ -60,8 +60,7 @@ function MessageInputModal({
     console.log("요청전");
     // 1. requeset를 만든다.
     const body = {
-      // bouquetSeq: presentBouquet.presentBouquetSeq,
-      bouquetSeq: 103,
+      bouquetSeq: presentBouquet.presentBouquetSeq,
       presentDesc: content,
     };
     // 2. 서버로 요청을 보낸다.
@@ -167,6 +166,7 @@ function MessageInputModal({
     <>
       {messageModal ? (
         <Box
+          className="modal"
           sx={{
             position: "absolute",
             width: "420px",

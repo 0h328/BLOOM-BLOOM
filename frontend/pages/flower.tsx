@@ -54,28 +54,35 @@ function Flower() {
       sx={{
         mx: "auto",
         width: 420,
-        position: "relative",
         backgroundColor: "#FFFAFA",
-        height: "840px",
+        height: "100vh",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      {/* <Toast /> */}
-      <Box sx={{ position: "absolute", top: "30px" }}>
+      <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
         <Header page="flower"></Header>
       </Box>
-      <FlowerChooseText totalCount={totalCount}></FlowerChooseText>
       <Box
         sx={{
-          position: "absolute",
+          width: "100%",
+          height: "10vh",
+          display: "flex",
+        }}
+      >
+        <FlowerChooseText totalCount={totalCount}></FlowerChooseText>
+      </Box>
+      <Box
+        sx={{
           backgroundColor: "#FFE0E0",
-          width: "410px",
-          height: "730px",
-          top: "150px",
-          left: "5px",
+          width: "90%",
+          height: "75vh",
           borderRadius: "10px",
           overflowX: "hidden",
           overflowY: "scroll",
+          boxShadow: "4px 0px 9px 2px #dadce0",
         }}
       >
         {flowerListByName.map((item, index) => {
@@ -97,12 +104,12 @@ function Flower() {
                   {item[0]}
                 </Typography>
               </Box>
-              <Grid container>
+              <Grid container spacing={1}>
                 {item[1].map((flowerItem, index) => {
                   return (
                     <React.Fragment key={index}>
                       <Grid key={index} item xs={12 / item[1].length}>
-                        <Box sx={{ margin: "5%" }}>
+                        <Box sx={{}}>
                           <FlowerObject
                             flower={flowerItem}
                             handleTotal={handleTotal}

@@ -56,10 +56,10 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
               alignItems: "center",
             }}
           >
-            <Grid item xs={4}>
+            <Grid item xs={4} sx={{fontFamily:"OneMobileLight"}}>
               {flowerInfo.flowerName}
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} sx={{fontFamily:"OneMobileLight"}}>
               <Box>
                 <img
                   src={flowerInfo.flowerImage}
@@ -69,7 +69,7 @@ function FlowerInfoList({ flowerInfoList }: flowerInfoProps) {
                 ></img>
               </Box>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} sx={{fontFamily:"OneMobileLight"}}>
               &nbsp;&nbsp;
               {flowerInfo.flowerCount} 개
             </Grid>

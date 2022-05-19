@@ -46,25 +46,29 @@ function Wrapper({ wrapList }: wrapProps) {
     <Box sx={{ ...style }}>
       <Grid
         container
-        spacing={3}
+        spacing={2}
         direction="row"
         alignItems="center"
         justifyItems="center"
-        sx={{ width: 320 }}
+        sx={{ width: "90%" }}
       >
         {wrapList.map((wrap, index) => {
           return (
             <Grid
               item
-              spacing={1}
               xs={4}
               key={index}
-              sx={{ "&:hover": { cursor: "pointer" } }}
+              sx={{
+                "&:hover": { cursor: "pointer" },
+                width: "10vh",
+                alignItems: "center",
+              }}
             >
               <img
                 src={wrap.wrapImage}
                 alt="포장지"
-                style={{ width: "90px", height: "90px" }}
+                width={"100%"}
+                height={"auto"}
                 onClick={(event) => {
                   clickHandler(wrap, event);
                 }}
@@ -81,8 +85,8 @@ export const style = {
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
-  margin: "10px auto",
-  // overflow: "scroll",
+  margin: "1vh auto",
+  width: "100%",
 };
 
 export default Wrapper;
