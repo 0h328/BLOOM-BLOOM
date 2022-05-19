@@ -14,11 +14,12 @@ declare global {
 function App({ Component, pageProps }: AppProps) {
   const [isMobile, setIsMobile] = useState<boolean>(true);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const [loading, isLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const url = window.location.href;
     setIsMobile(detectMobileDevice(window.navigator.userAgent));
+    setLoading(false);
     setIsAdmin(url.includes("admin"));
   }, []);
   return (
@@ -29,7 +30,11 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <RecoilRoot>
         {isMobile ? (
-          <Component {...pageProps} />
+          loading ? (
+            <div></div>
+          ) : (
+            <Component {...pageProps} />
+          )
         ) : isAdmin ? (
           <Component {...pageProps} />
         ) : (
