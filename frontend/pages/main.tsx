@@ -58,6 +58,7 @@ function Main() {
             justifyContent: "center",
             display: "flex",
             flexDirection: "column",
+            overflow: "hidden",
           }}
         >
           <ExplainModal

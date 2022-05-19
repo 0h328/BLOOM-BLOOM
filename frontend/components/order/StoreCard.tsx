@@ -30,11 +30,11 @@ import Router from "next/router";
 function Storecard(props) {
   const storeInfo = props.storeInfo;
   const bouquetSeq = props.bouquetSeq;
-  console.log(storeInfo);
   const SendQuery = () => {
     const param_2 = bouquetSeq;
 
     console.log("bouquetInfo in Storecard", param_2);
+    console.log("storeInfo", storeInfo);
     Router.push(
       "/order/?storeInfo=" +
         JSON.stringify(storeInfo) +

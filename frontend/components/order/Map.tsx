@@ -21,6 +21,7 @@ function Map({ bouquetSeq }: props) {
     storeAddress: "서울특별시 역삼 어디에있어요",
     storeMapId: "www.naver.com",
     storeImage: "/test.png",
+    storeImageLink: "",
   });
   var storeArray = [];
   var bouquetInfo = null;
@@ -118,6 +119,7 @@ function Map({ bouquetSeq }: props) {
             // 마커를 클릭할 시 일어난 이벤트 > 상점 저장 어떻게할지
             window.kakao.maps.event.addListener(marker, "click", function () {
               SetStore(storeArray[idx]);
+              console.log(storeArray[idx]);
             });
             // 마커에 mouseover 이벤트를 등록합니다
             window.kakao.maps.event.addListener(
@@ -128,7 +130,6 @@ function Map({ bouquetSeq }: props) {
                 // 마커의 이미지를 오버 이미지로 변경합니다
                 console.log(i);
                 if (!selectedMarker || selectedMarker !== marker) {
-                  marker.setImage(_markerImage);
                 }
               }
             );

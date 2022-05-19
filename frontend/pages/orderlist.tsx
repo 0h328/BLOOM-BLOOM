@@ -93,43 +93,54 @@ export default function OrderlistPage() {
       <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
         <Header></Header>
       </Box>
-      <Typography
+      <Box sx={{ height: "5vh", display: "flex", alignItems: "center" }}>
+        <Typography
+          sx={{
+            fontFamily: "OneMobileLight",
+            fontSize: "17px",
+            fontWeight: "bold",
+            ml: 4,
+            mt: 3,
+          }}
+        >
+          주문내역
+        </Typography>
+      </Box>
+      <Box
         sx={{
-          fontFamily: "Julius Sans One",
-          fontSize: "17px",
-          fontWeight: "bold",
-          ml: 4,
-          mt: 3,
+          height: "85vh",
+          display: "flex",
+          overflowY: "scroll",
+          justifyContent: "center",
         }}
       >
-        주문내역
-      </Typography>
-      <Box sx={{ height: 720, overflowY: "scroll" }}>
-        {orderInfoList !== undefined ? (
-          <Box>
-            {!orderInfoList.length && orderInfoList !== undefined ? (
-              <Box
-                sx={{
-                  mt: "2rem",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <Typography sx={{ fontFamily: "JuliusSansOne" }}>
-                  주문내역이 없습니다
-                </Typography>
-              </Box>
-            ) : (
-              <Box>
-                {orderInfoList.map((data, index) => {
-                  return <OrderlIst OrderInfo={data} key={index}></OrderlIst>;
-                })}
-              </Box>
-            )}
-          </Box>
-        ) : null}
+        <Box sx={{}}>
+          {orderInfoList !== undefined ? (
+            <Box>
+              {!orderInfoList.length && orderInfoList !== undefined ? (
+                <Box
+                  sx={{
+                    mt: "2rem",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography sx={{ fontFamily: "OneMobileLight" }}>
+                    주문내역이 없습니다
+                  </Typography>
+                </Box>
+              ) : (
+                <Box>
+                  {orderInfoList.map((data, index) => {
+                    return <OrderlIst OrderInfo={data} key={index}></OrderlIst>;
+                  })}
+                </Box>
+              )}
+            </Box>
+          ) : null}
+        </Box>
       </Box>
     </Box>
   );

@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 
 function StoreCardSmall({ storeInfo }) {
+  console.log("small", storeInfo.storeImageLink);
   return (
     <Box
       sx={{
@@ -19,18 +20,16 @@ function StoreCardSmall({ storeInfo }) {
       <Box
         sx={{ width: "100%", height: "100%", mt: 1, mb: 1, display: "flex" }}
       >
-        <Box sx={{ width: "35%", height: 120, m: 2 }}>
-          <Image
+        <Box sx={{ width: "35%", height: 120, m: 2, overflow: "hidden" }}>
+          <img
             src={storeInfo.storeImageLink}
             alt="대표이미지"
-            width={171.86}
-            height={120}
-          ></Image>
+            width={"100%"}
+            height={"auto"}
+          ></img>
         </Box>
         <Box sx={{ width: "65%", height: "100%" }}>
-          <Box
-            sx={{ display: "flex", height: 35, mt: 1, alignItems: "baseline" }}
-          >
+          <Box sx={{ display: "flex", height: 35, alignItems: "baseline" }}>
             <Typography
               sx={{
                 fontFamily: "OneMobileLight",
