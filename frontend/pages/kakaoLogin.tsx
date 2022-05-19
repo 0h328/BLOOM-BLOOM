@@ -66,10 +66,12 @@ function KakaoLogin() {
 
   useEffect(() => {
     if (token !== null && token !== "") {
-      router.push("/main");
+      setTimeout(() => {
+        router.push("/main");
+      }, 1000);
     }
   }, [token]);
 
-  return <Loading text={""}></Loading>;
+  return <Loading text={"로그인중"}></Loading>;
 }
 export default KakaoLogin;

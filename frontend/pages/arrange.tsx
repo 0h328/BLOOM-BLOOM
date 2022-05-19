@@ -231,9 +231,9 @@ function Arrange() {
                   src={decoInfo.decoImage}
                   style={{
                     position: "absolute",
-                    top: "186px",
-                    height: "130px",
-                    width: "130px",
+                    top: "162px",
+                    height: "180px",
+                    width: "180px",
                   }}
                 ></img>
               </Box>
