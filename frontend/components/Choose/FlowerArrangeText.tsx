@@ -54,7 +54,7 @@ function FlowerArrangeText({
         component="div"
         style={{ textAlign: "center" }}
       >
-        꽃을 꽃다발안에 배치해주세요
+        꽃을 꽃다발 안에 배치해주세요
       </Typography>
     </>
   );
