@@ -6,6 +6,7 @@ import finale.bloombloom.api.response.StoreDetailResponse;
 import finale.bloombloom.api.response.StoreListResponse;
 import finale.bloombloom.common.model.FileFolder;
 import finale.bloombloom.common.util.S3ImageUrlConverter;
+import finale.bloombloom.db.repository.OrderRepository;
 import finale.bloombloom.db.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
     private final StoreRepository storeRepository;
+    private final OrderRepository orderRepository;
     private final EntityManager em;
     private final FileProcessService fileProcessService;
     private final S3ImageUrlConverter urlConverter;
@@ -66,6 +68,7 @@ public class AdminServiceImpl implements AdminService {
      */
     @Override
     public void deleteStore(Long storeReq) {
+        orderRepository.deleteByStore_StoreSeq(storeReq);
         storeRepository.deleteById(storeReq);
     }
 

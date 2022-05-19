@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BouquetRepository extends JpaRepository<Bouquet, Long> {
-    List<Bouquet> findAllByUser_UserSeq(Long userSeq);
+    List<Bouquet> findByUser_UserSeqOrderByBouquetSeqDesc(Long userSeq);
 
     Optional<Bouquet> findByBouquetSeq(Long bouquetSeq);
 

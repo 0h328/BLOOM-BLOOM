@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderListResponse> findOrderById(String userId) {
 
-        return orderRepository.findByUserUserId(userId).stream().map(order -> {
+        return orderRepository.findByUserUserIdOrderByOrderSeqDesc(userId).stream().map(order -> {
                     Store store = order.getStore();
                     Bouquet bouquet = order.getBouquet();
                     return OrderListResponse.builder()
@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
      * 기능 : 꽃다발 주문 의뢰
      * 작성자 : 김정혁
      * 최근수정일자 : 2022.05.11 (문준호)
-     * 수정내용 : 문자 발신 로직 추가
+     * 수정내용 : 문자 발신 로직 추가 + 연락처 파라미터 추가
      */
     @Override
     @Transactional
@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
         if (bouquet.isEmpty() || store.isEmpty() || user.isEmpty())
             throw new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다.");
 
-        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String uuid = UUID.randomUUID().toString().replace("-", "").substring(0,7);
         Order order = Order.builder()
                 .bouquet(bouquet.get())
                 .user(user.get())
@@ -85,8 +85,8 @@ public class OrderServiceImpl implements OrderService {
                 .orderUri(uuid)
                 .build();
 
-        sendMessage(uuid, store.get(), user.get());
-
+//        sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
+        
         return orderRepository.save(order);
     }
 
@@ -157,22 +157,24 @@ public class OrderServiceImpl implements OrderService {
         )).collect(Collectors.toList());
     }
 
-    private void sendMessage(String uuid, Store store, User user) {
+    private void sendMessage(String uuid, Store store, User user,String contact) {
         String apiKey = coolSMSConfig.getApiKey();
         String apiSecret = coolSMSConfig.getApiSecret();
 
         Message message = new Message(apiKey, apiSecret);
 
         String messageSender = MESSAGE_SENDER;
-        String messageReceiver = "01079007514";
-        String url = "https://bloombloom.kro.kr/" + uuid;
-        String messageContent = String.format("[BloomBloom] 주문 요청이 들어왔습니다. \n%s", url);
+        String messageReceiver = "01023507965";
+        String url = "https://bloombloom.kro.kr/store/" + uuid;
+        String messageContent = String.format(
+                "[BloomBloom] %s로부터 주문이 왔어요.\n%s",contact,url);
 
         HashMap<String, String> request = new HashMap<>();
         request.put("from", messageSender);
         request.put("to", messageReceiver);
         request.put("text", messageContent);
 
+        System.out.println("메세지 :" + messageContent);
         try {
             JSONObject obj = (JSONObject) message.send(request);
             System.out.println(obj.toString());

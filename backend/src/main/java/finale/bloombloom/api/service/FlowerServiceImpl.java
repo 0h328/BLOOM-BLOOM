@@ -73,7 +73,7 @@ public class FlowerServiceImpl implements FlowerService{
 
     @Override
     public List<BouquetResponse> findBouquet(Long userSeq) {
-        return bouquetRepository.findAllByUser_UserSeq(userSeq).stream()
+        return bouquetRepository.findByUser_UserSeqOrderByBouquetSeqDesc(userSeq).stream()
                 .map(bouquet -> BouquetResponse.from(bouquet, urlConverter))
                 .collect(Collectors.toList());
     }
