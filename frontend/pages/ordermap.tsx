@@ -49,7 +49,7 @@ function OrderMap() {
         </Box>
         <Box
           sx={{
-            height: "90vh",
+            height: "85vh",
             justifyContent: "center",
             display: "flex",
             alignItems: "center",
