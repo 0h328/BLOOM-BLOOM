@@ -6,6 +6,7 @@ import qs from "qs";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import Loading from "../components/common/Loading";
 
 function KakaoLogin() {
   const [code, setCode] = useState<string>();
@@ -65,25 +66,12 @@ function KakaoLogin() {
 
   useEffect(() => {
     if (token !== null && token !== "") {
-      router.push("/main");
+      setTimeout(() => {
+        router.push("/main");
+      }, 1000);
     }
   }, [token]);
 
-  return (
-    <Box
-      sx={{
-        mx: "auto",
-        width: 420,
-        position: "relative",
-        display: "flex",
-        backgroundColor: "#FFFAFA",
-        height: "840px",
-        minHeight: "100vh",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    ></Box>
-  );
+  return <Loading text={"로그인중"}></Loading>;
 }
 export default KakaoLogin;

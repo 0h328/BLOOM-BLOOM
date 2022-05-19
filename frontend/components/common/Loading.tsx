@@ -2,7 +2,10 @@ import React from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
-function Loading() {
+interface loagingProps {
+  text: string;
+}
+function Loading({ text }: loagingProps) {
   return (
     <Box
       style={{}}
@@ -33,7 +36,7 @@ function Loading() {
         >
           <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
             <Typography sx={{ fontSize: 30, fontFamily: "OneMobileLight" }}>
-              로딩중..
+              {text}
             </Typography>
           </motion.div>
         </Box>

@@ -126,7 +126,7 @@ function Present() {
           setDataLoading(true);
           console.log("data");
         });
-      }, 1000000);
+      }, 600);
       // const response = getPresent(code).then((result) => {
       //   setPresentData({ ...result.data.data });
       //   setDataLoading(true);
@@ -377,7 +377,7 @@ function Present() {
           </Box>
         </Box>
       ) : (
-        <Loading />
+        <Loading text={"로딩중..."} />
       )}
     </>
   );
