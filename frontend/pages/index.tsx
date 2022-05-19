@@ -160,7 +160,7 @@ function Login() {
                   mx: "auto",
                   width: "10vh",
                   bottom: "8vh",
-                  right: "12vh",
+                  right: "5vh",
                 }}
               >
                 {" "}
@@ -262,7 +262,7 @@ function Login() {
                   mx: "auto",
                   width: "10vh",
                   bottom: "22vh",
-                  left: "14vh",
+                  left: "24vh",
                 }}
               >
                 {" "}
@@ -279,7 +279,7 @@ function Login() {
                   mx: "auto",
                   width: "10vh",
                   bottom: "42vh",
-                  right: "20vh",
+                  left: "15vh",
                 }}
               >
                 {" "}
