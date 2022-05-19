@@ -103,7 +103,7 @@ public class OrderServiceImpl implements OrderService {
         Bouquet bouquet = order.getBouquet();
         Store store = order.getStore();
         List<FlowerInfo> flowerInfos = flowerInfoRepository.findByBouquet_BouquetSeq(bouquet.getBouquetSeq());
-        return OrderDetailResponse.from(bouquet, store, flowerInfos, urlConverter);
+        return OrderDetailResponse.from(order,bouquet, store, flowerInfos, urlConverter);
     }
 
     /**
@@ -156,6 +156,7 @@ public class OrderServiceImpl implements OrderService {
                 (String) item[10]
         )).collect(Collectors.toList());
         response.forEach(item->{
+            System.out.println(item.getStoreImageLink());
           item.ConvertLink(urlConverter.urlConvert(item.getStoreImageLink()));
         });
 
