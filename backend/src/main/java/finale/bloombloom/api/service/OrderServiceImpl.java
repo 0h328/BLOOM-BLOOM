@@ -84,7 +84,8 @@ public class OrderServiceImpl implements OrderService {
                 .orderDesc(orderBouquetRequest.getOrderDesc())
                 .orderUri(uuid)
                 .build();
-
+        
+        System.out.println("orderBouquetRequest.getContact() : "+orderBouquetRequest.getContact());
         sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
         
         return orderRepository.save(order);
