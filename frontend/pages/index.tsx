@@ -31,7 +31,7 @@ function Login() {
   };
 
   const setScreenSize = () => {
-    let vh = window.innerHeight * 0.01;
+    let vh = window.innerHeight * 1;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
