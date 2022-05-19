@@ -6,8 +6,12 @@ import FlowerImg from "../components/login/FlowerImg";
 import { useRouter } from "next/router";
 import { maxWidth } from "@mui/system";
 import { setScreenSize } from "../components/common/Size";
+import { detectMobileDevice } from "../components/common/DetectMobileDevice";
+import Inform from "../components/common/Inform";
+
 function Login() {
   const [windowHeight, setWindowHeight] = useState<number>();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   // const BASE_URI = "http://localhost:3000/kakaoLogin";
   const BASE_URI = "https://bloombloom.kro.kr/kakaoLogin";
   const router = useRouter();
@@ -31,45 +35,282 @@ function Login() {
   useEffect(() => {
     setScreenSize();
     setWindowHeight(window.innerHeight);
+    setIsMobile(detectMobileDevice(window.navigator.userAgent));
   }, []);
   return (
     <>
-      <Box
-        style={{}}
-        sx={{
-          mx: "auto",
-          width: windowHeight > 480 ? 420 : "100vw",
-          position: "relative",
-          height: windowHeight > 480 ? 420 : "85vh",
-          minHeight: "100vh",
-          overflow: "hidden",
-        }}
-      >
-        <Box
-          sx={{
-            backgroundColor: "#FFFAFA",
-            minHeight: "100vh",
-            position: "relative",
-          }}
-        >
-          <Title />
-          <FlowerImg />
+      {isMobile ? (
+        <>
           <Box
+            style={{}}
             sx={{
-              position: "absolute",
-              width: "100%",
-              top: "80%",
-              display: "flex",
-              justifyContent: "center",
+              mx: "auto",
+              width: 420,
+              position: "relative",
+              height: "100vh",
+              minHeight: "100vh",
+              overflow: "hidden",
             }}
           >
-            <KakaoBtn
-              handleBtn={handleLogin}
-              title="카카오톡으로 시작하기"
-            ></KakaoBtn>
+            <Box
+              sx={{
+                backgroundColor: "#FFFAFA",
+                minHeight: "100vh",
+                position: "relative",
+              }}
+            >
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  top: "15vh",
+                  width: "100%",
+                }}
+              >
+                <Title />
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "10vh",
+                  left: "10vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/peonyPurple.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "22vh",
+                  left: "20vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/hydrangeaBlue.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "50vh",
+                  right: "5vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/carnationPink.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "20vh",
+                  right: "1vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/lilyYellow.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  bottom: "3vh",
+                  left: "22vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/ranunculusPink.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  bottom: "8vh",
+                  right: "5vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/gerberaOrange.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "1vh",
+                  right: "18vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/rosePink.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "36vh",
+                  left: "38vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/lisianthusWhite.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  bottom: "10vh",
+                  left: "4vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/tulipPurple.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  top: "30vh",
+                  left: "4vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/carnationOrange.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  bottom: "22vh",
+                  right: "2vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/peonyWhite.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  bottom: "22vh",
+                  left: "24vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/hyacinthPink.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  mx: "auto",
+                  width: "10vh",
+                  bottom: "42vh",
+                  left: "15vh",
+                }}
+              >
+                {" "}
+                <img
+                  src={"/img/hydrangeaPurple.png"}
+                  alt="리본"
+                  width={"100%"}
+                  height={"auto%"}
+                ></img>
+              </Box>
+            </Box>
+            <Box
+              sx={{
+                position: "absolute",
+                mx: "auto",
+                top: "55vh",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <KakaoBtn
+                handleBtn={handleLogin}
+                title="카카오톡으로 시작하기"
+              ></KakaoBtn>
+            </Box>
           </Box>
-        </Box>
-      </Box>
+        </>
+      ) : (
+        <Inform />
+      )}
     </>
   );
 }

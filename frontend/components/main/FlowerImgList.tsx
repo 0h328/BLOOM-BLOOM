@@ -58,12 +58,12 @@ function FlowerImgList({
                   item
                   xs={4}
                   key={index}
-                  style={{ width: "15vh" }}
+                  style={{ width: "20vh" }}
                   sx={{
                     display: "flex",
                     justifyContent: "center",
                     "&:hover": { cursor: "pointer" },
-                    width: "15vh",
+                    width: "20vh",
                   }}
                 >
                   <img
@@ -107,7 +107,7 @@ function FlowerImgList({
               </Typography>
             </Box>
           ) : (
-            <Grid container sx={{}}>
+            <Grid container sx={{ display: "flex", alignItems: "center" }}>
               {bouquetList.map((bouquet, index) => {
                 return (
                   <Grid
@@ -123,7 +123,8 @@ function FlowerImgList({
                     <img
                       src={bouquet.bouquetImage}
                       alt="꽃다발"
-                      width={"150px"}
+                      width={"173px"}
+                      // width={"170px"}
                       height={"auto"}
                     ></img>
                   </Grid>

@@ -7,6 +7,9 @@ import FlowerImgList from "../components/main/FlowerImgList";
 import { getRecentBouquetList } from "../components/apis/bouquetApi";
 import { getOrderList } from "../components/apis/orderApi";
 import ExplainModal from "../components/modal/ExplainModal";
+import Inform from "../components/common/Inform";
+import { detectMobileDevice } from "../components/common/DetectMobileDevice";
+
 function Main() {
   const [madeBouquetList, setMadeBouquetList] =
     useState<[{ bouquetSeq: number; bouquetImage: string }]>();
@@ -29,17 +32,6 @@ function Main() {
   const handleMake = () => {
     handleExplainModal(true);
   };
-  const detectMobileDevice = (agent) => {
-    const mobileRegex = [
-      /Android/i,
-      /iPhone/i,
-      /iPad/i,
-      /iPod/i,
-      /BlackBerry/i,
-      /Windows Phone/i,
-    ];
-    return mobileRegex.some((mobile) => agent.match(mobile));
-  };
   useEffect(() => {
     setWindowHeight(window.innerHeight);
     setWindowHeight(window.innerWidth);
@@ -54,73 +46,79 @@ function Main() {
   }, []);
   return (
     <>
-      <Box
-        sx={{
-          mx: "auto",
-          width: 430,
-          position: "relative",
-          backgroundColor: "#FFE0E0",
-          height: "100vh",
-          minHeight: "100vh",
-          justifyContent: "center",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <ExplainModal
-          explainModal={explainModal}
-          handleExplainModal={handleExplainModal}
-        ></ExplainModal>
-        <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
-          <Header page="main"></Header>
-        </Box>
-        <Box sx={{ height: "10vh", display: "flex", justifyContent: "center" }}>
-          <MakeButton handleMake={handleMake} />
-        </Box>
+      {isMobile ? (
         <Box
           sx={{
-            backgroundColor: "#FFFFFF",
-            width: "95%",
-            height: "70vh",
-            borderRadius: "40px",
-            justifyContent: "center",
             mx: "auto",
-            boxShadow: "2px -2px 5px 1px #dadce0",
+            width: 430,
+            position: "relative",
+            backgroundColor: "#FFE0E0",
+            height: "100vh",
+            minHeight: "100vh",
+            justifyContent: "center",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <Box sx={{ height: "10vh" }}>
-            <FlowerImgListTitle
-              title="최근 제작한 꽃다발"
-              link="/madelist"
-            ></FlowerImgListTitle>
+          <ExplainModal
+            explainModal={explainModal}
+            handleExplainModal={handleExplainModal}
+          ></ExplainModal>
+          <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
+            <Header page="main"></Header>
           </Box>
-          <Box sx={{ height: "25vh", width: "100%" }}>
-            {madeBouquetList !== undefined ? (
-              <FlowerImgList
-                bouquetList={madeBouquetList}
-                infoText="제작한 꽃다발이 없습니다"
-              ></FlowerImgList>
-            ) : null}
+          <Box
+            sx={{ height: "10vh", display: "flex", justifyContent: "center" }}
+          >
+            <MakeButton handleMake={handleMake} />
           </Box>
-          <Box sx={{ height: "10vh" }}>
-            <FlowerImgListTitle
-              title="최근 주문한 꽃다발"
-              link="/orderlist"
-            ></FlowerImgListTitle>
+          <Box
+            sx={{
+              backgroundColor: "#FFFFFF",
+              width: "95%",
+              height: "70vh",
+              borderRadius: "40px",
+              justifyContent: "center",
+              mx: "auto",
+              boxShadow: "2px -2px 5px 1px #dadce0",
+            }}
+          >
+            <Box sx={{ height: "10vh" }}>
+              <FlowerImgListTitle
+                title="최근 제작한 꽃다발"
+                link="/madelist"
+              ></FlowerImgListTitle>
+            </Box>
+            <Box sx={{ height: "25vh", overflow: "hidden" }}>
+              {madeBouquetList !== undefined ? (
+                <FlowerImgList
+                  bouquetList={madeBouquetList}
+                  infoText="제작한 꽃다발이 없습니다"
+                ></FlowerImgList>
+              ) : null}
+            </Box>
+            <Box sx={{ height: "10vh" }}>
+              <FlowerImgListTitle
+                title="최근 주문한 꽃다발"
+                link="/orderlist"
+              ></FlowerImgListTitle>
+            </Box>
+            <Box sx={{ height: "25vh" }}>
+              {orderBouquetList !== undefined ? (
+                <FlowerImgList
+                  bouquetList={orderBouquetList}
+                  infoText="주문한 꽃다발이 없습니다"
+                ></FlowerImgList>
+              ) : null}
+            </Box>
           </Box>
-          <Box sx={{ height: "25vh" }}>
-            {orderBouquetList !== undefined ? (
-              <FlowerImgList
-                bouquetList={orderBouquetList}
-                infoText="주문한 꽃다발이 없습니다"
-              ></FlowerImgList>
-            ) : null}
-          </Box>
+          <Box
+            sx={{ height: "5vh", display: "flex", justifyContent: "center" }}
+          ></Box>
         </Box>
-        <Box
-          sx={{ height: "5vh", display: "flex", justifyContent: "center" }}
-        ></Box>
-      </Box>
+      ) : (
+        <Inform></Inform>
+      )}
     </>
   );
 }
