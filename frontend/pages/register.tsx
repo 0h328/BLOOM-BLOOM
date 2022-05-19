@@ -1,10 +1,10 @@
 import React from 'react';
-import ShopRegister from '../components/admin/ShopRegister';
+import StoreRegister from '../components/admin/StoreRegister';
 
 function Register() {
   return (
     <>
-      <ShopRegister></ShopRegister>
+      <StoreRegister></StoreRegister>
     </>
   )
 }
