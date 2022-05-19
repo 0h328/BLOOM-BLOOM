@@ -47,6 +47,20 @@ const flowerState = atom({
 });
 
 
+const storeState = atom({
+  key: "storeInfo",
+  default: {
+    storeName: '',
+    storeContact: '',
+    storeAddress: '',
+    storeRegNum: '',
+    storeMapId: '',
+    storeBlogId: '',
+    storeInstagramId: '',
+  }
+})
+
+
 const saveBouquetState = atom({
   key: "saveFlower",
   default: "",
@@ -69,4 +83,5 @@ export {
   totalCountState,
   confirmBouquetState,
   messageStoredState,
+  storeState,
 };
