@@ -30,11 +30,9 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <RecoilRoot>
         {isMobile ? (
-          loading ? (
-            <div></div>
-          ) : (
-            <Component {...pageProps} />
-          )
+          <Component {...pageProps} />
+        ) : loading ? (
+          <div></div>
         ) : isAdmin ? (
           <Component {...pageProps} />
         ) : (
