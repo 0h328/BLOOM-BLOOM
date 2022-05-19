@@ -58,12 +58,12 @@ function FlowerImgList({
                   item
                   xs={4}
                   key={index}
-                  style={{ width: "15vh" }}
+                  style={{ width: "20vh" }}
                   sx={{
                     display: "flex",
                     justifyContent: "center",
                     "&:hover": { cursor: "pointer" },
-                    width: "15vh",
+                    width: "20vh",
                   }}
                 >
                   <img
