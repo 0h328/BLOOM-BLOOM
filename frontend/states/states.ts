@@ -54,9 +54,11 @@ const storeState = atom({
     storeContact: '',
     storeAddress: '',
     storeRegNum: '',
+    storeLat: 37.513272317072,
+    storeLng: 127.09431687965,
     storeMapId: '',
     storeBlogId: '',
-    storeInstagramId: '',
+    storeInstagramId: '', 	
   }
 });
 

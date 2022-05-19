@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import {
   AppBar,
   Box,
@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
+import RegisterModal from './RegisterModal';
 
 
 export default function Navbar() {
@@ -22,8 +23,8 @@ export default function Navbar() {
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{}}>
+      <AppBar position="static" style={{ backgroundColor: "#FFE0E0" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -38,8 +39,10 @@ export default function Navbar() {
                 <Typography
                   sx={{
                     textAlign: "center",
-                    fontFamily: "JuliusSansOne",
+                    fontWeight: "600",
+                    fontFamily: "ONEMobileLight",
                     fontSize: "1rem",
+                    color: "black",
                   }}
                 >
                   BLOOM BLOOM
@@ -50,21 +53,23 @@ export default function Navbar() {
           </IconButton>
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon style={{ color: "black" }}/>
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="검색..."
               inputProps={{ 'aria-label': 'search' }}
+              style={{ color: "black" }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <RegisterModal/>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>            
             <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
-              color="inherit"
+              color="default"
             >
               <LogoutIcon />
             </IconButton>
@@ -75,19 +80,10 @@ export default function Navbar() {
   );
 }
 
-export const titleStyle = {
-  fontSize: "1rem",
-  fontFamily: "JuliusSansOne",
-};
-
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
+  backgroundColor: "#FFFAFA",
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: '100%',
@@ -111,7 +107,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
