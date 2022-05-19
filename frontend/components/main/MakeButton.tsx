@@ -30,9 +30,9 @@ function MakeButton({ handleMake }: btnProps) {
         >
           꽃다발 만들기
         </Typography>
-        <ArrowRightAltIcon
+        {/* <ArrowRightAltIcon
           sx={{ position: "absolute", right: "10%", color: "#FFC0D0" }}
-        />
+        /> */}
       </Button>
     </Box>
   );

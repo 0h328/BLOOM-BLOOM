@@ -89,7 +89,7 @@ function Main() {
                 link="/madelist"
               ></FlowerImgListTitle>
             </Box>
-            <Box sx={{ height: "25vh", width: "100%" }}>
+            <Box sx={{ height: "25vh", overflow: "hidden" }}>
               {madeBouquetList !== undefined ? (
                 <FlowerImgList
                   bouquetList={madeBouquetList}
