@@ -4,7 +4,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MapIcon from "@mui/icons-material/Map";
 import Image from "next/image";
 import React from "react";
-import Router from 'next/router';
+import Router from "next/router";
 
 /*
 ”flowerinfo”: [
@@ -30,48 +30,112 @@ import Router from 'next/router';
 function Storecard(props) {
   const storeInfo = props.storeInfo;
   const bouquetSeq = props.bouquetSeq;
-  console.log(storeInfo)
+  console.log(storeInfo);
   const SendQuery = () => {
     const param_2 = bouquetSeq;
 
-    console.log("bouquetInfo in Storecard",param_2)
-    Router.push('/order/?storeInfo='+JSON.stringify(storeInfo)+'&'+'bouquetSeq='+bouquetSeq,'/order');
+    console.log("bouquetInfo in Storecard", param_2);
+    Router.push(
+      "/order/?storeInfo=" +
+        JSON.stringify(storeInfo) +
+        "&" +
+        "bouquetSeq=" +
+        bouquetSeq,
+      "/order"
+    );
   };
 
-  return (<>
-    {
-      storeInfo.storeName === "처음이야" ?
+  return (
+    <>
+      {storeInfo.storeName === "처음이야" ? (
         <Box
           sx={{
-            width: 400,
+            width: "100%",
             height: 210,
             mt: 3,
-            mb:3,
+            mb: 3,
             mx: "auto",
             backgroundColor: "#FFE0E0",
             textAlign: "center",
-            fontWeight:"bold",
+            fontWeight: "bold",
             fontFamily: "OneMobileLight",
           }}
-        > 원하시는 꽃집을 선택해주세요~!
+        >
+          <Typography
+            sx={{
+              fontFamily: "OneMobileLight",
+              fontSize: "13px",
+              fontWeight: "bold",
+              lineHeight: "20px",
+              marginBottom: "10px",
+            }}
+          >
+            지도에서 마커를 클릭해 꽃집을 선택하면 <br />
+            자세한 정보를 확인하실 수 있습니다
+          </Typography>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              margin: "auto",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <Box sx={{ ...explainStyle, backgroundColor: "#EFDFBF" }}>
+              <img src="/img/blog.png" alt="insta" width={20} height={20}></img>
+              <Typography sx={{ ...textStyle }}>
+                {" "}
+                블로그에서 <br />더 많은 정보를 <br />
+                얻어보세요
+              </Typography>
+            </Box>
+            <Box sx={{ ...explainStyle, backgroundColor: "#EFDFBF" }}>
+              <img
+                src="/img/insta.png"
+                alt="insta"
+                width={20}
+                height={20}
+              ></img>{" "}
+              <Typography sx={{ ...textStyle }}>
+                {" "}
+                꽃집 인스타그램을
+                <br /> 구경해보세요
+              </Typography>
+            </Box>
+            <Box sx={{ ...explainStyle, backgroundColor: "#EFDFBF" }}>
+              <img
+                src="/img/naverIcon.png"
+                alt="insta"
+                width={20}
+                height={20}
+              ></img>
+              <Typography sx={{ ...textStyle }}>
+                네이버 지도에서 <br /> 더 자세한 정보를 <br /> 확인할 수 있어요
+              </Typography>
+            </Box>
+          </Box>
         </Box>
-        :
+      ) : (
         <Box
-        sx={{
-          width: 400,
-          height: 210,
-          mt: 3,
-          backgroundColor: "#FFE0E0",
-          mx: "auto",
-        }}
-      >
-        <Box sx={{ width: 400, height: 120, mt: 1, mb: 1, display: "flex" }}>
-          <Box sx={{ width: 171.86, height: 120, m: 2 }}>
+          sx={{
+            width: "100%",
+            backgroundColor: "#FFE0E0",
+            textAlign: "center",
+            fontWeight: "bold",
+            fontFamily: "OneMobileLight",
+          }}
+        >
+          <Box sx={{ width: 171.86, height: 120 }}>
             <img src="/test.png" alt="test" width={171.86} height={120}></img>
           </Box>
-          <Box sx={{ width: 215, height: 120, mt: 1, ml: 1.5 }}>
+          <Box sx={{ width: 215, height: 120 }}>
             <Box
-              sx={{ display: "flex", height: 35, mt: 1, alignItems: "baseline" }}
+              sx={{
+                display: "flex",
+                height: 35,
+                mt: 1,
+                alignItems: "baseline",
+              }}
             >
               <Typography
                 sx={{
@@ -80,7 +144,9 @@ function Storecard(props) {
                   fontWeight: "bold",
                 }}
               >
-                {storeInfo.storeName.length > 6 ? storeInfo.storeName.slice(0, 5) + "..." : storeInfo.storeName}
+                {storeInfo.storeName.length > 6
+                  ? storeInfo.storeName.slice(0, 5) + "..."
+                  : storeInfo.storeName}
               </Typography>
               <Box
                 sx={{
@@ -94,12 +160,14 @@ function Storecard(props) {
                   src="/img/insta.png"
                   alt="insta"
                   width={15}
-                  height={15}></img>
+                  height={15}
+                ></img>
                 <img
                   src="/img/blog.png"
                   alt="insta"
                   width={15}
-                  height={15}></img>
+                  height={15}
+                ></img>
               </Box>
             </Box>
             <Typography
@@ -111,7 +179,7 @@ function Storecard(props) {
                 alignItems: "center",
               }}
             >
-              <CallIcon sx={{ fontSize: "11px", mr: 2 }}></CallIcon>
+              <CallIcon sx={{ fontSize: "11px" }}></CallIcon>
               {storeInfo.storeContact}
             </Typography>
             <Typography
@@ -123,7 +191,7 @@ function Storecard(props) {
                 alignItems: "center",
               }}
             >
-              <LocationOnIcon sx={{ fontSize: "11px", mr: 2 }}></LocationOnIcon>
+              <LocationOnIcon sx={{ fontSize: "11px" }}></LocationOnIcon>
               {storeInfo.storeAddress}
             </Typography>
             <Typography
@@ -138,9 +206,8 @@ function Storecard(props) {
               </Link>
             </Typography>
           </Box>
-        </Box>
-        <Box sx={{ width: 420, display: "flex" }}>
-          {/* 여기에 이제 받아온 데이터를 넘겨서 옮겨주면 보내주면 될 것 같습니다 */}
+          <Box sx={{ width: 420, display: "flex" }}>
+            {/* 여기에 이제 받아온 데이터를 넘겨서 옮겨주면 보내주면 될 것 같습니다 */}
             <Button
               sx={{
                 width: 156,
@@ -149,18 +216,32 @@ function Storecard(props) {
                 color: "#000000",
                 fontFamily: "OneMobileLight",
                 mt: 4,
-                }}
-                onClick={SendQuery}
+              }}
+              onClick={SendQuery}
             >
               {" "}
               주문하기{" "}
             </Button>
+          </Box>
         </Box>
-      </Box>
-          
-    }</>
+      )}
+    </>
   );
-      
 }
 
 export default Storecard;
+
+export const explainStyle = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  borderRadius: "15px",
+  justifyContent: "space-evenly",
+  width: "30%",
+};
+
+export const textStyle = {
+  fontFamily: "OneMobileLight",
+  fontSize: "0.7rem",
+  fontWeight: "bold",
+};
