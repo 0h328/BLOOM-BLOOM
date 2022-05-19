@@ -12,7 +12,7 @@ declare global {
   }
 }
 function App({ Component, pageProps }: AppProps) {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(true);
   useEffect(() => {
     setIsMobile(detectMobileDevice(window.navigator.userAgent));
   }, []);
@@ -23,7 +23,7 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
       </Head>
       <RecoilRoot>
-        {isMobile ? <Component {...pageProps} /> : <Inform />}{" "}
+        {isMobile ? <Component {...pageProps} /> : <Inform />}
       </RecoilRoot>
     </>
   );
