@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "./config";
 
 export const storeRegister = axios.create({
-  baseURL: `${BASE_URL}`,
+  baseURL: `${BASE_URL}api/v1/admin`,
 });
 
 storeRegister.interceptors.request.use(
@@ -18,10 +18,10 @@ storeRegister.interceptors.request.use(
   }
 );
 
-export const getOrderList = async (data: any) => {
-  return await storeRegister.post("api/v1/admin", data, {
+export const saveStore = async (data: any) => {
+  return await storeRegister.post("", data, {
     headers: {
-      "Content-type": "multipart/form-data"
-    }
+      Authorization: localStorage.getItem("accessToken"),
+    },
   });
 };

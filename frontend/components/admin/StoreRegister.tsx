@@ -8,7 +8,7 @@ import {
   Button,
 } from '@mui/material';
 import DaumPostcode from "react-daum-postcode";
-import { storeRegister } from '../apis/storeRegister';
+import { saveStore } from '../apis/storeRegister';
 import MapContainer from './MapContainer';
 import { storeState } from '../../states/states';
 import { useRecoilState } from 'recoil';
@@ -25,26 +25,17 @@ const StoreRegister: React.FC = () => {
     addr: '',     // 주소
     extraAddr: '' // 상세주소
   });
+  const [lat, setLat] = useState<number>();
+  const [lng, setLng] = useState<number>();
   const [mapId, setMapId] = useState<string>('');
   const [blogId, setBlogId] = useState<string>('');
   const [instagramId, setInstagramId] = useState<string>('');
   const [mainImage, setMainImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // 에러 경고
-  const [nameWarning, setNameWarning] = useState<string>('');
-  const [contactWarning, setContactWarning] = useState<string>('');
-  const [regNumWarning, setRegNumWarning] = useState<string>('');
-  const [telWarning, setTelWarning] = useState<string>('');
-
-  // 유효성 검사
-  const [isName, setIsName] = useState<boolean>(false);
-  const [isContact, setIsContact] = useState<boolean>(false);
-  const [isRegNum, setIsRegNum] = useState<boolean>(false);
-
   const [isPopupOpen, setIsPopupOpen] = useState(false)
-
   const [storeInfo, setStoreInfo] = useRecoilState(storeState);
+  const [imageData, setImageData] = useState<FormData>();
 
 
 
@@ -58,68 +49,81 @@ const StoreRegister: React.FC = () => {
         setIsPopupOpen(false)
     }
 
-  // const handleChange = (e: any) => {
-  //   const { name, value } = e.target;
-  //   setState({
-  //     ...state,
-  //     [name]: value
-  //   })
-  // };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const body ={
-      storeName: name,
-      storeContact: contact,
-      storeAddress: address.addr,
-      storeRegNum: regNum,
-    };
-    // storeRegister(body)
-  }  
-
 
   useEffect(() => {
-    console.log('hello')
+    console.log('test')
     if (selectedImage) {
       setMainImage(URL.createObjectURL(selectedImage));
     }
   }, [selectedImage]);
 
-  const handlePost = async (e: any) => {
-      e.preventDefault();
-      console.log(selectedImage)
-      console.log(mainImage)
-      console.log(e.target)
-      const formData = new FormData()
-      formData.append('image', selectedImage);
-      try {
-        const res = await axios.post('/admin', formData, {
-          headers: { "Content-type": "multipart/form-data" }
-        })
-        console.log(res)
-        alert('성공')
-      }
-      catch (e) {
-        alert('실패')
-        console.log(e);
-      }
+  const handlePost = async () => {
+    // e.preventDefault();
+    console.log(selectedImage)
 
-      // await storeRegister(selectedImage);
-      // alert('good')
-      // setSelectedImage(null)
+    const file = new Blob([selectedImage], { type: "image/png" })
+    const fileName = "canvas_img_" + new Date().getMilliseconds() + ".png"
+    const formData = new FormData();
+    formData.append('file', file, fileName);
+    // key, 보낼 파일, 파일이름
 
+    // formData.get('file');      
+    // console.log(window.URL.createObjectURL(file))
+    // console.log(formData.get('file'))
+
+    const data = {
+      // storeName: storeInfo.storeName,
+      // storeContact: storeInfo.storeContact,
+      // storeAddress: storeInfo.storeAddress,
+      // storeRegNum: storeInfo.storeRegNum,
+      // storeMapId: storeInfo.storeMapId,
+      // storeBlogId: storeInfo.storeBlogId,
+      // storeInstagramId: storeInfo.storeInstagramId,
+      storeName:'ㅁ',
+      storeContact: 'ㅁ',
+      storeAddress: 'ㅁ',
+      storeRegNum: 'ㅁ',
+      storeMapId: 'ㅁ',
+      storeBlogId: 'ㅁ',
+      storeInstagramId: 'ㅁ',
+    };
+    console.log(data);
+    formData.append(
+      "request",
+      new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
+    console.log(formData.get('request'))
+    setImageData(formData);
+    const res = await saveStore(imageData)
+    console.log(res)
+
+    // try {
+    //   const res = await axios.post('/admin', formData, {
+    //     headers: { 
+    //       Authorization: localStorage.getItem("accessToken"),
+    //     },
+    //   });
+    //   console.log(res)
+    //   alert('성공')
+    // }
+    // catch (e) {
+    //   alert('실패')
+    //   console.log(e);
+    // }
+    // saveStore(formData)
+    // .then(res => {
+    //   console.log(res)
+    //   alert('성공')
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    //   alert('실패')
+    // })
   }
 
   // 사업자명
   const onChangeName = (e: any) => {
     setName(e.target.value)
-    // if (e.target.value.length < 1 || e.target.value.length > 12) {
-    //   setNameWarning('1글자 이상 12글자 이하로 입력해주세요')
-    //   setIsName(false)
-    // } else {
-    //   setNameWarning('올바른 형식입니다.')
-    //   setIsName(true)
-    // }
   }
 
   // 연락처 
@@ -194,7 +198,6 @@ const StoreRegister: React.FC = () => {
     <Box 
       sx={{ ...pageWrapper }}
       component="form"
-      onSubmit={handleSubmit}
     >
       <Box>
         <Link href="/admin" passHref>
@@ -250,16 +253,6 @@ const StoreRegister: React.FC = () => {
                 value={name}
                 onChange={onChangeName}
               />
-            </Box>
-            <Box style={{ margin: "0.3rem 0rem 0rem 10rem" }}>
-              {name.length > 0 && isName ? 
-                <Typography style={{ color: "blue" }}>
-                  {nameWarning}
-                </Typography> 
-              : 
-                <Typography style={{ color: "red" }}>
-                  {nameWarning}
-                </Typography>}
             </Box>
             {/* 사업자명 */}
             {/* 연락처 */}
@@ -374,8 +367,8 @@ const StoreRegister: React.FC = () => {
                 name="email"
                 size="small"
                 style={{ width: "30rem" }}
-                value={regNum}
-                onChange={onChangeRegNum}
+                value={mapId}
+                onChange={onChangeMapId}
               />
             </Box>
             {/* 네이버 지도 */}
@@ -389,8 +382,8 @@ const StoreRegister: React.FC = () => {
                 name="email"
                 size="small"
                 style={{ width: "30rem" }}
-                value={regNum}
-                onChange={onChangeRegNum}
+                value={blogId}
+                onChange={onChangeBlogId}
               />
             </Box>
             {/* 네이버 블로그 */}
@@ -404,8 +397,8 @@ const StoreRegister: React.FC = () => {
                 name="email"
                 size="small"
                 style={{ width: "30rem" }}
-                value={regNum}
-                onChange={onChangeRegNum}
+                value={instagramId}
+                onChange={onChangeInstagramId}
               />
             </Box>
             {/* 인스타그램 */}
