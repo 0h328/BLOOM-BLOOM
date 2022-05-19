@@ -20,6 +20,7 @@ function Main() {
   const [windowWidth, setWindowWidth] = useState<number>();
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [explainModal, setExplainModal] = useState<boolean>(false);
+  const [token, setToken] = useState<string>();
   const handleExplainModal = (state: boolean) => {
     setExplainModal(state);
   };
@@ -43,10 +44,11 @@ function Main() {
   useEffect(() => {
     setIsMobile(detectMobileDevice(window.navigator.userAgent));
     console.log(detectMobileDevice(window.navigator.userAgent));
+    setToken(localStorage.getItem("accessToken"));
   }, []);
   return (
     <>
-      {isMobile ? (
+      {isMobile && token !== null ? (
         <Box
           sx={{
             mx: "auto",
