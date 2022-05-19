@@ -15,6 +15,8 @@ interface props {
 function Map({ bouquetSeq }: props) {
   const [forMarker, SetForMarker] = useState([]);
   const [bouquet, setBouquet] = useState();
+  const [currentLat, setCurrentLat] = useState();
+  const [currentLng, setCurrentLng] = useState();
   const [store, SetStore] = useState({
     storeName: "처음이야",
     storeContact: "010-0000-0000",
@@ -62,27 +64,21 @@ function Map({ bouquetSeq }: props) {
           neLng: neLatLng.La,
         };
         test(data);
-        // 현재 내 위치 찾기
-        // if (navigator.geolocation) {
+        if (navigator.geolocation) {
+          // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+          navigator.geolocation.getCurrentPosition(function(position) {
 
-        //   // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        //   navigator.geolocation.getCurrentPosition(function(position) {
+              var lat = position.coords.latitude, // 위도
+                  lon = position.coords.longitude; // 경도
+              var locPosition = new window.kakao.maps.LatLng(lat, lon) // geolocation으로 얻어온 좌표
+              var presentPosition=locPosition;
+              map.setCenter(locPosition);
+            });
 
-        //       var lat = position.coords.latitude, // 위도
-        //           lon = position.coords.longitude; // 경도
-
-        //       var locPosition = new window.kakao.maps.LatLng(lat, lon) // geolocation으로 얻어온 좌표
-        //       var presentPosition=locPosition;
-
-        //       map.setCenter(locPosition);
-
-        //     });
-
-        // } else { // HTML5의 GeoLocation을 사용할 수 없을때
-
-        //       var locPosition = new window.kakao.maps.LatLng(37.4408907421696 , 127.147431848755)
-        //       alert('현재 위치를 찾을 수 없습니다!');
-        //   }
+        } else { // HTML5의 GeoLocation을 사용할 수 없을때
+              var locPosition = new window.kakao.maps.LatLng(37.4408907421696 , 127.147431848755)
+              alert('현재 위치를 찾을 수 없습니다!');
+          }
         var selectedMarker = null;
         function setMarker() {
           const imageSrc = "/img/markerImg1.png";
