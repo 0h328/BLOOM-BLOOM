@@ -8,7 +8,7 @@ import { getRecentBouquetList } from "../components/apis/bouquetApi";
 import { getOrderList } from "../components/apis/orderApi";
 import ExplainModal from "../components/modal/ExplainModal";
 import Inform from "../components/common/Inform";
-import { detectMobileDevice } from "../components/common/detectMobileDevice";
+import { detectMobileDevice } from "../components/common/DetectMobileDevice";
 
 function Main() {
   const [madeBouquetList, setMadeBouquetList] =

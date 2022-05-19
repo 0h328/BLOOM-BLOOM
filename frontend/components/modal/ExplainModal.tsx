@@ -18,7 +18,7 @@ function ExplainModal({ explainModal, handleExplainModal }: modalProps) {
           className="modal"
           sx={{
             position: "absolute",
-            width: "420px",
+            width: "430px",
             height: "100vh",
             backgroundColor: "rgb(31 31 31 / 33%)",
             zIndex: 900,
