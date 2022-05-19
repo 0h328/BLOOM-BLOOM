@@ -12,8 +12,8 @@ function Request({ handleContent }) {
     handleContent(content);
   }, [content]);
   return (
-    <Box sx={{ width: "100%", height: "100%", mt: 2, mx: "auto" }}>
-      <Box sx={{ pl: 3, pt: 2 }}>
+    <Box sx={{ width: "100%", height: "100%", mx: "auto" }}>
+      <Box sx={{ pl: 3 }}>
         <Typography
           sx={{
             fontFamily: "OneMobileLight",

@@ -53,7 +53,7 @@ export default function OrderDetail() {
       {orderInfo !== undefined && orderDetail !== undefined ? (
         <Box
           style={{
-            width: "420px",
+            width: 420,
             height: "100vh",
             margin: "auto",
             minHeight: "100vh",
