@@ -164,10 +164,10 @@ public class OrderServiceImpl implements OrderService {
         Message message = new Message(apiKey, apiSecret);
 
         String messageSender = MESSAGE_SENDER;
-        String messageReceiver = "01079007514";
+        String messageReceiver = "01023507965";
         String url = "https://bloombloom.kro.kr/store" + uuid;
         String messageContent = String.format(
-                "[BloomBloom] 주문 요청이 들어왔습니다. \n %s \n\n 의뢰인 : %s",url,contact);
+                "[BloomBloom] 주문 요청이 들어왔습니다.\n%s\n의뢰인 : %s",url,contact);
 
         HashMap<String, String> request = new HashMap<>();
         request.put("from", messageSender);
