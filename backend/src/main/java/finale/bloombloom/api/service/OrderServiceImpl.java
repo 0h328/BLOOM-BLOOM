@@ -153,7 +153,7 @@ public class OrderServiceImpl implements OrderService {
                 (String) item[7],
                 (String) item[8],
                 (String) item[9],
-                (String) item[10]
+                urlConverter.urlConvert((String) item[10])
         )).collect(Collectors.toList());
     }
 
@@ -176,8 +176,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             JSONObject obj = (JSONObject) message.send(request);
             System.out.println(obj.toString());
-        }
-        catch (CoolsmsException e) {
+        } catch (CoolsmsException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
