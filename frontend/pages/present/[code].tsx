@@ -274,6 +274,7 @@ function Present() {
                   size="small"
                   sx={{
                     alignItems: "center",
+                    mt: "3%",
                   }}
                   style={{
                     display: "flex",
@@ -321,6 +322,7 @@ function Present() {
                 onClick={gotoOtherBrowser}
                 sx={{
                   alignItems: "center",
+                  mt: "3%",
                 }}
                 style={{
                   display: "flex",

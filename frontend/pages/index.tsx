@@ -8,6 +8,8 @@ import { maxWidth } from "@mui/system";
 import { setScreenSize } from "../components/common/Size";
 import { detectMobileDevice } from "../components/common/DetectMobileDevice";
 import Inform from "../components/common/Inform";
+import { motion } from "framer-motion";
+import styled from "styled-components";
 
 function Login() {
   const [windowHeight, setWindowHeight] = useState<number>();
@@ -31,6 +33,28 @@ function Login() {
   const setScreenSize = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+  const Ball = styled(motion.div)`
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background-color: #00cec9;
+    //   border: 2px solid #252525;
+    margin: 0.5em;
+  `;
+  const bounceTransition = {
+    y: {
+      duration: 1,
+      yoyo: Infinity,
+      ease: "easeIn",
+      velocity: 30,
+    },
+    backgroundColor: {
+      duration: 0,
+      yoyo: Infinity,
+      ease: "easeOut",
+      repeatDelay: 1,
+    },
   };
   useEffect(() => {
     setScreenSize();
@@ -79,12 +103,17 @@ function Login() {
                 }}
               >
                 {" "}
-                <img
-                  src={"/img/peonyPurple.png"}
-                  alt="리본"
-                  width={"100%"}
-                  height={"auto%"}
-                ></img>
+                <motion.div
+                  animate={{ scale: 1.1 }}
+                  transition={{ yoyo: Infinity }}
+                >
+                  <img
+                    src={"/img/peonyPurple.png"}
+                    alt="리본"
+                    width={"100%"}
+                    height={"auto%"}
+                  ></img>
+                </motion.div>
               </Box>
               <Box
                 sx={{
@@ -96,12 +125,17 @@ function Login() {
                 }}
               >
                 {" "}
-                <img
-                  src={"/img/hydrangeaBlue.png"}
-                  alt="리본"
-                  width={"100%"}
-                  height={"auto%"}
-                ></img>
+                <motion.div
+                  animate={{ scale: 1.1 }}
+                  transition={{ yoyo: Infinity }}
+                >
+                  <img
+                    src={"/img/hydrangeaBlue.png"}
+                    alt="리본"
+                    width={"100%"}
+                    height={"auto%"}
+                  ></img>
+                </motion.div>
               </Box>
               <Box
                 sx={{
@@ -295,7 +329,7 @@ function Login() {
               sx={{
                 position: "absolute",
                 mx: "auto",
-                top: "55vh",
+                top: "59vh",
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
