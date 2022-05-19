@@ -142,7 +142,7 @@ public class OrderServiceImpl implements OrderService {
         );
         List<Object[]> list = query.getResultList();
 
-        return list.stream().map(item -> new StoreLocationResponse(
+        List<StoreLocationResponse> response =   list.stream().map(item -> new StoreLocationResponse(
                 ((BigInteger) item[0]).longValue(),
                 (String) item[1],
                 (String) item[2],
@@ -153,8 +153,13 @@ public class OrderServiceImpl implements OrderService {
                 (String) item[7],
                 (String) item[8],
                 (String) item[9],
-                urlConverter.urlConvert((String) item[10])
+                (String) item[10]
         )).collect(Collectors.toList());
+        response.forEach(item->{
+          item.ConvertLink(urlConverter.urlConvert(item.getStoreImageLink()));
+        });
+
+        return response;
     }
 
     private void sendMessage(String uuid, Store store, User user,String contact) {

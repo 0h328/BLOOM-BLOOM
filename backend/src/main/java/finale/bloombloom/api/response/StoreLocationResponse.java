@@ -21,4 +21,8 @@ public class StoreLocationResponse {
     private String storeBlogId;
     private String storeInstagramId;
     private String storeImageLink;
+
+    public void ConvertLink(String link){
+        this.storeImageLink = link;
+    }
 }
