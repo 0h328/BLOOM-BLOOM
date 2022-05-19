@@ -120,7 +120,7 @@ function Storecard(props) {
           sx={{
             width: "100%",
             height: "100%",
-            mt: 3,
+            mt: 1,
             mb: 3,
             textAlign: "center",
             fontWeight: "bold",
