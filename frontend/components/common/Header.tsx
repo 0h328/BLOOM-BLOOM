@@ -2,6 +2,8 @@ import React from "react";
 import { Box, Typography, Grid, useRadioGroup } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import HomeBtn from "./HomeBtn";
+import BackBtn from "./BackBtn";
 
 type PageIdetifierProps = {
   page?: string;
@@ -24,7 +26,9 @@ function Header({ page }: PageIdetifierProps) {
           justifyItems="center"
           sx={{ width: 420 }}
         >
-          <Grid item xs={3}></Grid>
+          <Grid item xs={3}>
+            {page == "main" ? null : <BackBtn />}
+          </Grid>
           <Grid item xs={6}>
             <Box>
               <Link href="/main" passHref>
@@ -49,15 +53,17 @@ function Header({ page }: PageIdetifierProps) {
                 <Typography
                   sx={{
                     textAlign: "center",
-                    fontFamily: "JuliusSansOne",
+                    fontFamily: "ONEMobileLight",
                     fontSize: 13,
                   }}
                   onClick={handleLogout}
                 >
-                  Logout
+                  LOGOUT
                 </Typography>
               </Box>
-            ) : null}
+            ) : (
+              <HomeBtn />
+            )}
           </Grid>
         </Grid>
       </Box>

@@ -75,6 +75,9 @@ export default function OrderDetail() {
           <Box sx={{ height: "25vh", display: "flex", alignItems: "center" }}>
             <OrderContent orderDetail={orderDetail}></OrderContent>
           </Box>
+          <Box
+            sx={{ height: "10vh", display: "flex", alignItems: "center" }}
+          ></Box>
         </Box>
       ) : null}
     </>

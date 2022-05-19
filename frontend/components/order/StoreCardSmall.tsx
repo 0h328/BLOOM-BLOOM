@@ -46,7 +46,7 @@ function StoreCardSmall({ storeInfo }) {
             sx={{
               fontFamily: "OneMobileLight",
               fontSize: "13px",
-              mt: 2.5,
+              mt: 1,
               display: "flex",
               alignItems: "center",
               fontWeight: 600,
@@ -89,7 +89,7 @@ function StoreCardSmall({ storeInfo }) {
             sx={{
               display: "flex",
               width: "60%",
-              height: "20%",
+              height: "35%",
               justifyContent: "center",
               alignItems: "center",
             }}
