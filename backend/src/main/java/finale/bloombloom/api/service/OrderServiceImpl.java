@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
         if (bouquet.isEmpty() || store.isEmpty() || user.isEmpty())
             throw new BloomBloomNotFoundException("해당하는 정보를 찾을 수 없습니다.");
 
-        String uuid = UUID.randomUUID().toString().replace("-", "");
+        String uuid = UUID.randomUUID().toString().replace("-", "").substring(0,7);
         Order order = Order.builder()
                 .bouquet(bouquet.get())
                 .user(user.get())
@@ -86,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
-
+        
         return orderRepository.save(order);
     }
 
@@ -165,15 +165,16 @@ public class OrderServiceImpl implements OrderService {
 
         String messageSender = MESSAGE_SENDER;
         String messageReceiver = "01023507965";
-        String url = "https://bloombloom.kro.kr/store" + uuid;
+        String url = "https://bloombloom.kro.kr/store/" + uuid;
         String messageContent = String.format(
-                "[BloomBloom] 주문 요청이 들어왔습니다.\n%s\n의뢰인 : %s",url,contact);
+                "[BloomBloom] %s로부터 주문이 왔어요.\n%s",contact,url);
 
         HashMap<String, String> request = new HashMap<>();
         request.put("from", messageSender);
         request.put("to", messageReceiver);
         request.put("text", messageContent);
 
+        System.out.println("메세지 :" + messageContent);
         try {
             JSONObject obj = (JSONObject) message.send(request);
             System.out.println(obj.toString());
