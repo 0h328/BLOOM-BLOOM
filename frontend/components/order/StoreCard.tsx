@@ -135,11 +135,18 @@ function Storecard(props) {
               height: "60%",
               flexDirection: "row",
               justifyContent: "space-around",
+              overflow: "hidden",
             }}
           >
-            <Box sx={{ width: "40%", height: "auto" }}>
+            <Box
+              sx={{
+                width: "40%",
+                height: "auto",
+                maxHeight: "100%",
+              }}
+            >
               <img
-                src="/img/test.png"
+                src={storeInfo.storeImageLink}
                 alt="test"
                 width={"100%"}
                 height={"auto"}
@@ -239,24 +246,32 @@ function Storecard(props) {
               width: "100%",
               display: "flex",
               height: "20%",
-              justifyContent: "center",
+              justifyContent: "flex-end",
             }}
           >
             {/* 여기에 이제 받아온 데이터를 넘겨서 옮겨주면 보내주면 될 것 같습니다 */}
-            <Button
+            <Box
               sx={{
-                width: 156,
-                height: 36,
-                backgroundColor: "#FFFFFF",
-                color: "#000000",
-                fontFamily: "OneMobileLight",
-                fontWeight: 600,
-                boxShadow: "1px 1px 4px 1px #dadce0",
+                width: "50%",
+                display: "flex",
+                justifyContent: "center",
               }}
-              onClick={SendQuery}
             >
-              주문하기
-            </Button>
+              <Button
+                sx={{
+                  width: 130,
+                  height: 36,
+                  backgroundColor: "#FFFFFF",
+                  color: "#000000",
+                  fontFamily: "OneMobileLight",
+                  fontWeight: 600,
+                  boxShadow: "1px 1px 4px 1px #dadce0",
+                }}
+                onClick={SendQuery}
+              >
+                주문하기
+              </Button>
+            </Box>
           </Box>
         </Box>
       )}

@@ -15,6 +15,7 @@ export default function Order() {
   const router = useRouter();
 
   const handleContent = (data: string) => {
+    console.log(data);
     setContent(data);
   };
 

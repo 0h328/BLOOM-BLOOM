@@ -90,8 +90,9 @@ export default function OrderlistPage() {
         minHeight: "100vh",
       }}
     >
-      <Box sx={{ height: 30 }}></Box>
-      <Header></Header>
+      <Box sx={{ height: "10vh", display: "flex", alignItems: "center" }}>
+        <Header></Header>
+      </Box>
       <Typography
         sx={{
           fontFamily: "Julius Sans One",
