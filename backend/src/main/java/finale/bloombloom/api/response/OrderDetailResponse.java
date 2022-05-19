@@ -40,7 +40,7 @@ public class OrderDetailResponse {
                 .storeMapId(store.getStoreMapId())
                 .storeBlogId(store.getStoreBlogId())
                 .storeInstagramId(store.getStoreInstagramId())
-                .storeImageLink(store.getStoreImageLink())
+                .storeImageLink(urlConverter.urlConvert(store.getStoreImageLink()))
                 .bouquetImage(urlConverter.urlConvert(bouquet.getBouquetImage()))
                 .orderDesc(order.getOrderDesc())
                 .flowerInfo(flowerInfoResponses)
