@@ -22,9 +22,10 @@ function Shop() {
   const [codeLoading, setCodeLoading] = useState<boolean>(false);
   const [dataLoading, setDataLoading] = useState<boolean>(false);
   const handleOrder = async (code: string) => {
-    const response = await getOrderInfo(code);
-    setDataLoading(true);
-    setOrderData(response.data.data);
+    const response =  getOrderInfo(code).then((result) => {
+      setDataLoading(true);
+      setOrderData(result.data.data);
+    });
   };
 
   useEffect(() => {
