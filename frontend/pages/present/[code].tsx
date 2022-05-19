@@ -116,7 +116,6 @@ function Present() {
   };
   const handlePresent = async (code: string) => {
     const response = await getPresent(code);
-    console.log(response.data);
     setPresentData({ ...response.data.data });
   };
   useEffect(() => {
@@ -197,11 +196,17 @@ function Present() {
                   from . {presentData.presentSender}
                 </Typography>
               </Box>
-              <Box sx={{ height: "40vh" }}>
-                <BouquetImg
-                  bouquetImage={presentData.bouquetImage}
-                ></BouquetImg>
-              </Box>
+              {presentData.bouquetImage === "" ? (
+                <Box sx={{ height: "40vh" }}>
+                  <Box>이미지 열심히 받아오는중</Box>
+                </Box>
+              ) : (
+                <Box sx={{ height: "40vh" }}>
+                  <BouquetImg
+                    bouquetImage={presentData.bouquetImage}
+                  ></BouquetImg>
+                </Box>
+              )}
               <Box sx={{ height: "25vh", width: "80%" }}>
                 <MessageCard message={presentData.presentDesc}></MessageCard>
               </Box>
@@ -269,7 +274,6 @@ function Present() {
                   size="small"
                   sx={{
                     alignItems: "center",
-                    mt: "5%",
                   }}
                   style={{
                     display: "flex",
@@ -317,7 +321,6 @@ function Present() {
                 onClick={gotoOtherBrowser}
                 sx={{
                   alignItems: "center",
-                  mt: "5%",
                 }}
                 style={{
                   display: "flex",
@@ -360,7 +363,9 @@ function Present() {
             )}
           </Box>
         </Box>
-      ) : null}
+      ) : (
+        <Box>받아오는중</Box>
+      )}
     </>
   );
 }
