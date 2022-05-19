@@ -1,27 +1,33 @@
-import { Box, Button, Typography, Link } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MapIcon from "@mui/icons-material/Map";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import Link from "next/link";
 
 function StoreCardSmall({ storeInfo }) {
-  console.log(storeInfo);
   return (
     <Box
       sx={{
-        width: 400,
-        height: 163,
-        mt: 3,
+        width: "100%",
+        height: "100%",
         backgroundColor: "#FFE0E0",
         mx: "auto",
       }}
     >
-      <Box sx={{ width: 400, height: 120, mt: 1, mb: 1, display: "flex" }}>
-        <Box sx={{ width: 171.86, height: 120, m: 2 }}>
-          <Image src="/test.png" alt="test" width={171.86} height={120}></Image>
+      <Box
+        sx={{ width: "100%", height: "100%", mt: 1, mb: 1, display: "flex" }}
+      >
+        <Box sx={{ width: "35%", height: 120, m: 2 }}>
+          <Image
+            src={storeInfo.storeImageLink}
+            alt="대표이미지"
+            width={171.86}
+            height={120}
+          ></Image>
         </Box>
-        <Box sx={{ width: 215, height: 120, mt: 1, ml: 1.5 }}>
+        <Box sx={{ width: "65%", height: "100%" }}>
           <Box
             sx={{ display: "flex", height: 35, mt: 1, alignItems: "baseline" }}
           >
@@ -30,34 +36,20 @@ function StoreCardSmall({ storeInfo }) {
                 fontFamily: "OneMobileLight",
                 fontSize: "25px",
                 fontWeight: "bold",
+                minWidth: "fit-content",
               }}
             >
               {storeInfo.storeName}
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                width: 35,
-                justifyContent: "space-between",
-                ml: 0.5,
-              }}
-            >
-              <img
-                src="/img/insta.png"
-                alt="insta"
-                width={15}
-                height={15}
-              ></img>
-              <img src="/img/blog.png" alt="naver" width={15} height={15}></img>
-            </Box>
           </Box>
           <Typography
             sx={{
               fontFamily: "OneMobileLight",
-              fontSize: "11px",
+              fontSize: "13px",
               mt: 2.5,
               display: "flex",
               alignItems: "center",
+              fontWeight: 600,
             }}
           >
             <CallIcon sx={{ fontSize: "11px", mr: 2 }}></CallIcon>
@@ -66,26 +58,63 @@ function StoreCardSmall({ storeInfo }) {
           <Typography
             sx={{
               fontFamily: "OneMobileLight",
-              fontSize: "11px",
+              fontSize: "13px",
               mt: 0.5,
               display: "flex",
               alignItems: "center",
+              minWidth: "fit-content",
+              fontWeight: 600,
             }}
           >
-            <LocationOnIcon sx={{ fontSize: "11px", mr: 2 }}></LocationOnIcon>
+            <LocationOnIcon sx={{ fontSize: "13px", mr: 2 }}></LocationOnIcon>
             {storeInfo.storeAddress}
           </Typography>
           <Typography
-            sx={{ fontFamily: "OneMobileLight", fontSize: "11px", mt: 0.5 }}
+            sx={{
+              fontFamily: "OneMobileLight",
+              fontSize: "13px",
+              mt: 0.5,
+              fontWeight: 600,
+            }}
           >
             <MapIcon sx={{ fontSize: "11px", mr: 2 }}></MapIcon>
             <Link
               href={`https://naver.me/${storeInfo.storeMapId}`}
-              target="_blank"
+              // target="_blank"
             >
-              {storeInfo.storeMapId}
+              naver.me
             </Link>
           </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              width: "60%",
+              height: "20%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box sx={{ width: "25%", mx: 3 }}>
+              <Link href={storeInfo.storeInstagramId}>
+                <img
+                  src="/img/insta.png"
+                  alt="insta"
+                  width={"100%"}
+                  height={"auto"}
+                ></img>
+              </Link>
+            </Box>
+            <Box sx={{ width: "25%", mx: 3 }}>
+              <Link href={storeInfo.storeBlogId}>
+                <img
+                  src="/img/blog.png"
+                  alt="naver"
+                  width={"100%"}
+                  height={"auto"}
+                ></img>
+              </Link>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>

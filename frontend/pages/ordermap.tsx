@@ -9,6 +9,7 @@ function OrderMap() {
   const router = useRouter();
   const compare = -1;
   const seq = router.query.bouquetSeq;
+  console.log(seq);
   return (
     <>
       {/* 부캐를 선택해서 넘어온것이 아니면 그만 물러가!!!! */}
