@@ -46,7 +46,7 @@ function OrderList({ OrderInfo }) {
             <Typography
               sx={{
                 fontFamily: "OneMobileLight",
-                fontSize: "25px",
+                fontSize: "23px",
                 fontWeight: "bold",
               }}
             >

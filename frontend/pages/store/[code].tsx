@@ -71,7 +71,7 @@ function Shop() {
                   width: "100%",
                   backgroundColor: "#ffff",
                   border: "1px solid rgba(82, 82, 82, 0.29)",
-                  borderRadius: "5px",
+                  // borderRadius: "5px",
                   mt: "1rem",
                 }}
               >
@@ -81,8 +81,8 @@ function Shop() {
                     height: "30px",
                     textAlign: "center",
                     alignItems: "center",
-                    borderTopLeftRadius: "5px",
-                    borderTopRightRadius: "5px",
+                    // borderTopLeftRadius: "5px",
+                    // borderTopRightRadius: "5px",
                     backgroundColor: "#EFDFBF",
                   }}
                 >

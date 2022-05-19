@@ -29,11 +29,18 @@ function StoreCardSmall({ storeInfo }) {
           ></img>
         </Box>
         <Box sx={{ width: "65%", height: "100%" }}>
-          <Box sx={{ display: "flex", height: 35, alignItems: "baseline" }}>
+          <Box
+            sx={{
+              display: "flex",
+              height: 35,
+              alignItems: "baseline",
+              justifyContent: "center",
+            }}
+          >
             <Typography
               sx={{
                 fontFamily: "OneMobileLight",
-                fontSize: "25px",
+                fontSize: "22px",
                 fontWeight: "bold",
                 minWidth: "fit-content",
               }}
@@ -88,7 +95,7 @@ function StoreCardSmall({ storeInfo }) {
             sx={{
               display: "flex",
               width: "60%",
-              height: "35%",
+              height: "30%",
               justifyContent: "center",
               alignItems: "center",
             }}

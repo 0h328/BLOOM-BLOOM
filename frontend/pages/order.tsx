@@ -38,6 +38,7 @@ export default function Order() {
         orderDesc: content,
       };
       var response = await OrderRequest(body);
+      console.log(response);
     }
   };
   const sendOrderRequest = async () => {
