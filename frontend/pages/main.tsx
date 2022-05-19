@@ -45,10 +45,11 @@ function Main() {
     setIsMobile(detectMobileDevice(window.navigator.userAgent));
     console.log(detectMobileDevice(window.navigator.userAgent));
     setToken(localStorage.getItem("accessToken"));
+    console.log(localStorage.getItem("accessToken"));
   }, []);
   return (
     <>
-      {isMobile && token !== null ? (
+      {isMobile ? (
         <Box
           sx={{
             mx: "auto",
