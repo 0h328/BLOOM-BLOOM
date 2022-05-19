@@ -6,6 +6,7 @@ import Footer from '../components/admin/Footer';
 import { Box } from '@mui/material';
 
 function Admin() {
+  
   return (
     <Box sx={{ ...admin }}>
       <Navbar/>
