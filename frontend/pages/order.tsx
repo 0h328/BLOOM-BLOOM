@@ -26,12 +26,13 @@ export default function Order() {
     }
   }, []);
 
-  const sendOrder = async() => {
+  const sendOrder = async(contact) => {
     if (store) {
       const body = {
         bouquetSeq: bouquetSeq,
         storeSeq: store.storeSeq,
-        orderDesc: content
+        orderDesc: content,
+        contact:contact
       };
       var response = await OrderRequest(body);
     }
@@ -56,7 +57,7 @@ export default function Order() {
         console.log('핸드폰번호 유효성 검사 :: ', regExp2.test(e))
         if (regExp2.test(e)) {
           
-          sendOrder();
+          sendOrder(e);
           const Toast = Swal.mixin({
             toast: true,
             position: 'top',
