@@ -20,6 +20,9 @@ export default function Order() {
   };
 
   useEffect(() => {
+    console.log("store", store);
+  }, [store]);
+  useEffect(() => {
     if (router.query.storeInfo) {
       setStore(JSON.parse(String(router.query.storeInfo)));
       setBouquetSeq(Number(router.query.bouquetSeq));
@@ -153,10 +156,15 @@ export default function Order() {
                 onClick={sendOrderRequest}
               >
                 {" "}
-                주문의뢰하기{" "}
+                💸 주문의뢰하기{" "}
               </Button>
             </Box>
           </Box>
+          <Box
+            sx={{
+              height: "5vh",
+            }}
+          ></Box>
         </>
       ) : null}
     </Box>

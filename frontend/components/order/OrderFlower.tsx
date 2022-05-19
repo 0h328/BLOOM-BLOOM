@@ -39,7 +39,7 @@ function OrderFlower({ bouquetSeq, orderFlowerInfo }: orderFlowerProps) {
     <>
       {flowerInfo !== undefined ? (
         <Box sx={{ width: "100%", height: "100%", mx: "auto" }}>
-          <Box sx={{ pl: 3 }}>
+          <Box sx={{ pl: 3, pt: 2 }}>
             <Typography
               sx={{
                 fontFamily: "OneMobileLight",

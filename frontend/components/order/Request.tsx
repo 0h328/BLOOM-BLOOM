@@ -13,7 +13,7 @@ function Request({ handleContent }) {
   }, [content]);
   return (
     <Box sx={{ width: "100%", height: "100%", mt: 2, mx: "auto" }}>
-      <Box sx={{}}>
+      <Box sx={{ pl: 3, pt: 2 }}>
         <Typography
           sx={{
             fontFamily: "OneMobileLight",
@@ -24,9 +24,16 @@ function Request({ handleContent }) {
           요청 사항
         </Typography>
       </Box>
-      <Box sx={{ width: "100%", height: "100%" }}>
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <TextField
-          sx={{ mt: 1, width: "100%", fontFamily: "OneMobileLight" }}
+          sx={{ mt: 1, width: "90%", fontFamily: "OneMobileLight" }}
           placeholder="내용 입력"
           multiline
           rows={4}
