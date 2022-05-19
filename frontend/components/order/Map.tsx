@@ -216,23 +216,32 @@ function Map({ bouquetSeq }: props) {
     <Box
       sx={{
         mx: "auto",
+        height: "100%",
+        width: "90%",
         position: "relative",
         backgroundColor: "#FFE0E0",
         justifyContent: "center",
         display: "flex",
-        height: "100%",
         flexDirection: "column",
-        width: "90%",
       }}
     >
       <Box
         id="map"
         style={{
           width: "100%",
-          height: "100%",
+          height: "65%",
         }}
       ></Box>
-      <StoreCard storeInfo={store} bouquetSeq={bouquetSeq}></StoreCard>
+      <Box
+        sx={{
+          height: "35%",
+          width: "100%",
+          mx: "auto",
+          display: "flex",
+        }}
+      >
+        <StoreCard storeInfo={store} bouquetSeq={bouquetSeq}></StoreCard>
+      </Box>
     </Box>
   );
 }

@@ -51,7 +51,7 @@ function Storecard(props) {
         <Box
           sx={{
             width: "100%",
-            height: 210,
+            // height: "100%",
             mt: 3,
             mb: 3,
             mx: "auto",
@@ -64,10 +64,10 @@ function Storecard(props) {
           <Typography
             sx={{
               fontFamily: "OneMobileLight",
-              fontSize: "13px",
+              fontSize: "15px",
               fontWeight: "bold",
               lineHeight: "20px",
-              marginBottom: "10px",
+              height: "30%",
             }}
           >
             지도에서 마커를 클릭해 꽃집을 선택하면 <br />
@@ -119,94 +119,129 @@ function Storecard(props) {
         <Box
           sx={{
             width: "100%",
-            backgroundColor: "#FFE0E0",
+            height: "100%",
+            mt: 3,
+            mb: 3,
             textAlign: "center",
             fontWeight: "bold",
             fontFamily: "OneMobileLight",
+            flexDirection: "row",
           }}
         >
-          <Box sx={{ width: 171.86, height: 120 }}>
-            <img src="/test.png" alt="test" width={171.86} height={120}></img>
-          </Box>
-          <Box sx={{ width: 215, height: 120 }}>
-            <Box
-              sx={{
-                display: "flex",
-                height: 35,
-                mt: 1,
-                alignItems: "baseline",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "OneMobileLight",
-                  fontSize: "25px",
-                  fontWeight: "bold",
-                }}
-              >
-                {storeInfo.storeName.length > 6
-                  ? storeInfo.storeName.slice(0, 5) + "..."
-                  : storeInfo.storeName}
-              </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              height: "60%",
+              flexDirection: "row",
+              justifyContent: "space-around",
+            }}
+          >
+            <Box sx={{ width: "40%", height: "auto" }}>
+              <img
+                src="/img/test.png"
+                alt="test"
+                width={"100%"}
+                height={"auto"}
+              ></img>
+            </Box>
+            <Box sx={{ width: "50%", height: "100%" }}>
               <Box
                 sx={{
                   display: "flex",
-                  width: 35,
-                  justifyContent: "space-between",
-                  ml: 0.5,
+                  height: 35,
+                  alignItems: "baseline",
+                  justifyContent: "center",
                 }}
               >
-                <img
-                  src="/img/insta.png"
-                  alt="insta"
-                  width={15}
-                  height={15}
-                ></img>
-                <img
-                  src="/img/blog.png"
-                  alt="insta"
-                  width={15}
-                  height={15}
-                ></img>
+                <Typography
+                  sx={{
+                    fontFamily: "OneMobileLight",
+                    fontSize: "23px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {storeInfo.storeName.length > 6
+                    ? storeInfo.storeName.slice(0, 5) + "..."
+                    : storeInfo.storeName}
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    width: 35,
+                    justifyContent: "space-between",
+                    ml: 0.5,
+                  }}
+                >
+                  <img
+                    src="/img/insta.png"
+                    alt="insta"
+                    width={15}
+                    height={15}
+                  ></img>
+                  <img
+                    src="/img/blog.png"
+                    alt="insta"
+                    width={15}
+                    height={15}
+                  ></img>
+                </Box>
+              </Box>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography
+                  sx={{
+                    fontFamily: "OneMobileLight",
+                    fontSize: "11px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <CallIcon sx={{ fontSize: "11px", mx: "1rem" }}></CallIcon>
+                  {storeInfo.storeContact}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "OneMobileLight",
+                    fontSize: "11px",
+                    mt: 0.5,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <LocationOnIcon
+                    sx={{ fontSize: "11px", mx: "1rem" }}
+                  ></LocationOnIcon>
+                  {storeInfo.storeAddress}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "OneMobileLight",
+                    fontSize: "11px",
+                    mt: 0.5,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <MapIcon sx={{ fontSize: "11px", mx: "1rem" }}></MapIcon>
+                  <Link
+                    href={`https://naver.me/${storeInfo.storeMapId}`}
+                    target="_blank"
+                    sx={{ textDecoration: "none" }}
+                  >
+                    {storeInfo.storeMapId}
+                  </Link>
+                </Typography>
               </Box>
             </Box>
-            <Typography
-              sx={{
-                fontFamily: "OneMobileLight",
-                fontSize: "11px",
-                mt: 2.5,
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <CallIcon sx={{ fontSize: "11px" }}></CallIcon>
-              {storeInfo.storeContact}
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "OneMobileLight",
-                fontSize: "11px",
-                mt: 0.5,
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <LocationOnIcon sx={{ fontSize: "11px" }}></LocationOnIcon>
-              {storeInfo.storeAddress}
-            </Typography>
-            <Typography
-              sx={{ fontFamily: "OneMobileLight", fontSize: "11px", mt: 0.5 }}
-            >
-              <MapIcon sx={{ fontSize: "11px", mr: 2 }}></MapIcon>
-              <Link
-                href={`https://naver.me/${storeInfo.storeMapId}`}
-                target="_blank"
-              >
-                {storeInfo.storeMapId}
-              </Link>
-            </Typography>
           </Box>
-          <Box sx={{ width: 420, display: "flex" }}>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              height: "20%",
+              justifyContent: "center",
+            }}
+          >
             {/* 여기에 이제 받아온 데이터를 넘겨서 옮겨주면 보내주면 될 것 같습니다 */}
             <Button
               sx={{
@@ -215,12 +250,12 @@ function Storecard(props) {
                 backgroundColor: "#FFFFFF",
                 color: "#000000",
                 fontFamily: "OneMobileLight",
-                mt: 4,
+                fontWeight: 600,
+                boxShadow: "1px 1px 4px 1px #dadce0",
               }}
               onClick={SendQuery}
             >
-              {" "}
-              주문하기{" "}
+              주문하기
             </Button>
           </Box>
         </Box>

@@ -1,14 +1,21 @@
 import { AppProps } from "next/app";
+import React, { useState, useEffect } from "react";
 import { RecoilRoot } from "recoil";
 import "../styles/globals.css";
 import Script from "next/script";
 import Head from "next/head";
+import { detectMobileDevice } from "../components/common/DetectMobileDevice";
+import Inform from "../components/common/Inform";
 declare global {
   interface Window {
     Kakao: any;
   }
 }
 function App({ Component, pageProps }: AppProps) {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    setIsMobile(detectMobileDevice(window.navigator.userAgent));
+  }, []);
   return (
     <>
       <Head>
@@ -16,7 +23,7 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
       </Head>
       <RecoilRoot>
-        <Component {...pageProps} />
+        {isMobile ? <Component {...pageProps} /> : <Inform />}{" "}
       </RecoilRoot>
     </>
   );
