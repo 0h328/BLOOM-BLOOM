@@ -5,7 +5,6 @@ import BouquetImg from "../../components/present/BouquetImg";
 import { useRouter } from "next/router";
 import { getOrderInfo } from "../../components/apis/orderApi";
 import FlowerInfoList from "../../components/modal/FlowerInfoList";
-import Loading from "../../components/common/Loading";
 function Shop() {
   const router = useRouter();
   const [orderData, setOrderData] = useState<{
@@ -19,13 +18,10 @@ function Shop() {
     customerName: string;
   }>();
   const [code, setCode] = useState<any>();
-  const [codeLoading, setCodeLoading] = useState<boolean>(false);
-  const [dataLoading, setDataLoading] = useState<boolean>(false);
   const handleOrder = async (code: string) => {
-    const response =  getOrderInfo(code).then((result) => {
-      setDataLoading(true);
-      setOrderData(result.data.data);
-    });
+    const response = await getOrderInfo(code);
+    setOrderData(response.data.data);
+    console.log(response.data.data);
   };
 
   useEffect(() => {
@@ -37,13 +33,12 @@ function Shop() {
     if (code !== "" && code !== undefined && code.length) {
       handleOrder(code);
       console.log(code);
-      setCodeLoading(true);
     }
   }, [code]);
 
   return (
     <>
-      {codeLoading && dataLoading ? (
+      {code && orderData ? (
         <Box
           id="img"
           sx={{
@@ -57,15 +52,7 @@ function Shop() {
         >
           <Box sx={{ width: 420, backgroundColor: "#FFFAFA" }}>
             <Box sx={{ pt: "1.5rem" }}>
-              <Typography
-                sx={{
-                  textAlign: "center",
-                  fontFamily: "ONEMobileLight",
-                  fontSize: 25,
-                }}
-              >
-                BLOOM BLOOM
-              </Typography>
+              <Header></Header>
             </Box>
             <Box
               sx={{
@@ -140,9 +127,7 @@ function Shop() {
             </Box>
           </Box>
         </Box>
-      ) : (
-        <Loading text={"로딩중"} />
-      )}
+      ) : null}
     </>
   );
 }

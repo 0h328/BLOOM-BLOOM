@@ -49,10 +49,7 @@ const MapContainer: React.FC = () => {
 
     }, [/*표시할 주소 변수*/]);
     return (
-        <div id='map' style={{
-            width: '100%',
-            height: '300px'
-        }}></div>
+        <div id='map' style={{ width: '100%', height: '200px' }}></div>
     );
 }
 
