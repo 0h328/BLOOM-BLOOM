@@ -171,7 +171,7 @@ public class OrderServiceImpl implements OrderService {
         Message message = new Message(apiKey, apiSecret);
 
         String messageSender = MESSAGE_SENDER;
-        String messageReceiver = "01023507965";
+        String messageReceiver = "01099230896";
         String url = "https://bloombloom.kro.kr/store/" + uuid;
         String messageContent = String.format(
                 "[BloomBloom] %s로부터 주문이 왔어요.\n%s",contact,url);
