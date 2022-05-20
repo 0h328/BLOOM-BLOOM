@@ -9,7 +9,7 @@
 
 👉 당연히 있습니다. **BLOOM BLOOM** 서비스를 이용하시면 됩니다.
 
-
+&nbsp;
 
 ❔ **BLOOM BLOOM**은 무슨 뜻을 가지고 있을까요?
 
@@ -37,7 +37,7 @@
 
 #### Front-end
 
-![Generic badge](https://img.shields.io/badge/React-17.0.2-skyblue.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Recoil-0.6.1-yellow.svg)![Generic badge](https://img.shields.io/badge/Next.js-12.1.5-yellowgreen.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Material_UI-5.5.0-blue.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Typescript-4.6.3-%246f8ed1.svg)
+![Generic badge](https://img.shields.io/badge/React-17.0.2-skyblue.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Recoil-0.6.1-yellow.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Next.js-12.1.5-yellowgreen.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Material_UI-5.5.0-blue.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Typescript-4.6.3-%246f8ed1.svg)
 
 &nbsp;
 
