@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, TextareaAutosize, Typography } from "@mui/material";
 function Inform() {
-  console.log("inform이야");
   return (
     <Box
       sx={{

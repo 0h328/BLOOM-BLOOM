@@ -35,7 +35,7 @@ function Loading({ text }: loagingProps) {
           }}
         >
           <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
-            <Typography sx={{ fontSize: 30, fontFamily: "OneMobileLight" }}>
+            <Typography sx={{ fontSize: 30, fontFamily: "OneMobileLight", zIndex:10000 }}>
               {text}
             </Typography>
           </motion.div>
