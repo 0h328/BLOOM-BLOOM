@@ -135,7 +135,7 @@ function MessageInputModal({
       requestUrl: "https://bloombloom.kro.kr", // 페이지 url (선물 결과 페이지가 보여야한다.) path는 따로 설정해주면됨
       templateId: 76396, // 메시지템플릿 번호
       templateArgs: {
-        THUMB: "https://bloombloom.kro.kr/img/thumbnail.png",
+        THUMB: "https://bloombloom.kro.kr/img/thumbnail.PNG",
         RANDOM: response.data.data.uuid, // 썸네일 주소
       },
       callback: linkcallback,
