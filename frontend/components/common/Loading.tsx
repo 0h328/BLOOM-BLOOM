@@ -31,7 +31,7 @@ function Loading({ text }: loagingProps) {
             mx: "auto",
             width: "30vh",
             top: "36vh",
-            left: "24vh",
+            left: "20vh",
           }}
         >
           <motion.div animate={{ scale: 1.1 }} transition={{ yoyo: Infinity }}>
