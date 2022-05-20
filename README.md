@@ -43,7 +43,7 @@
 
 #### Server
 
-![Generic badge](https://img.shields.io/badge/Docker-20.10.12-%234d80f0.svg)&nbsp;![Generic badge](https://img.shields.io/badge/MySQL-8.0-%238aa1d4.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Nginx-1.21.6-%23299e29.svg)![Generic badge](https://img.shields.io/badge/Amazon S3-orange.svg)
+![Generic badge](https://img.shields.io/badge/Docker-20.10.12-%234d80f0.svg)&nbsp;![Generic badge](https://img.shields.io/badge/MySQL-8.0-%238aa1d4.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Nginx-1.21.6-%23299e29.svg)![Generic badge](https://img.shields.io/badge/AmazonS3-orange.svg)
 
 &nbsp;
 
