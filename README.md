@@ -37,13 +37,13 @@
 
 #### Front-end
 
-![Generic badge](https://img.shields.io/badge/React-17.0.2-skyblue.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Recoil-0.6.1-yellow.svg)![Generic badge](https://img.shields.io/badge/Next.js-12.1.5-yellowgreen.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Material_UI-5.5.0-#007FFF.svg)![Generic badge](https://img.shields.io/badge/Typescript-4.6.3-#3178C6.svg)
+![Generic badge](https://img.shields.io/badge/React-17.0.2-skyblue.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Recoil-0.6.1-yellow.svg)![Generic badge](https://img.shields.io/badge/Next.js-12.1.5-yellowgreen.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Material_UI-5.5.0-blue.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Typescript-4.6.3-%246f8ed1.svg)
 
 &nbsp;
 
 #### Server
 
-![Generic badge](https://img.shields.io/badge/Docker-20.10.12-%234d80f0.svg)&nbsp;![Generic badge](https://img.shields.io/badge/MySQL-8.0-%238aa1d4.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Nginx-1.21.6-%23299e29.svg)![Generic badge](https://img.shields.io/badge/AmazonS3-orange.svg)
+![Generic badge](https://img.shields.io/badge/Docker-20.10.12-%234d80f0.svg)&nbsp;![Generic badge](https://img.shields.io/badge/MySQL-8.0-%238aa1d4.svg)&nbsp;![Generic badge](https://img.shields.io/badge/Nginx-1.21.6-%23299e29.svg)&nbsp;![Generic badge](https://img.shields.io/badge/AmazonS3-orange.svg)
 
 &nbsp;
 
