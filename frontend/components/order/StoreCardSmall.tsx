@@ -65,7 +65,7 @@ function StoreCardSmall({ storeInfo }) {
             sx={{
               fontFamily: "OneMobileLight",
               fontSize: "13px",
-              mt: 0.5,
+              mt: 0.8,
               display: "flex",
               alignItems: "center",
               minWidth: "fit-content",
@@ -80,6 +80,8 @@ function StoreCardSmall({ storeInfo }) {
               fontFamily: "OneMobileLight",
               fontSize: "13px",
               mt: 0.5,
+              display: "flex",
+              alignItems: "center",
               fontWeight: 600,
             }}
           >
@@ -88,7 +90,14 @@ function StoreCardSmall({ storeInfo }) {
               href={`https://naver.me/${storeInfo.storeMapId}`}
               // target="_blank"
             >
-              naver.me
+              <Typography sx={{
+              fontFamily: "OneMobileLight",
+              fontSize: "13px",
+                color: "#007054",
+                textDecoration:"underline",
+              fontWeight: 600,
+            }} >네이버 지도</Typography>
+              
             </Link>
           </Typography>
           <Box
@@ -96,12 +105,13 @@ function StoreCardSmall({ storeInfo }) {
               display: "flex",
               width: "60%",
               height: "30%",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               alignItems: "center",
+
             }}
           >
-            <Box sx={{ width: "25%", mx: 3 }}>
-              <Link href={storeInfo.storeInstagramId}>
+            <Box sx={{ width: "15%" ,mx:1}}>
+              <Link href={`https://instagram.com/${storeInfo.storeInstagramId}`}>
                 <img
                   src="/img/insta.png"
                   alt="insta"
@@ -110,8 +120,8 @@ function StoreCardSmall({ storeInfo }) {
                 ></img>
               </Link>
             </Box>
-            <Box sx={{ width: "25%", mx: 3 }}>
-              <Link href={storeInfo.storeBlogId}>
+            <Box sx={{ width: "15%" ,mx:1 }}>
+              <Link href={`https://blog.naver.com/${storeInfo.storeBlogId}`}>
                 <img
                   src="/img/blog.png"
                   alt="naver"
