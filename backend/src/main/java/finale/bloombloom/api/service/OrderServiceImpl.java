@@ -8,6 +8,7 @@ import finale.bloombloom.api.response.OrderListResponse;
 import finale.bloombloom.api.response.OrderResponse;
 import finale.bloombloom.api.response.StoreLocationResponse;
 import finale.bloombloom.common.exception.BloomBloomNotFoundException;
+import finale.bloombloom.common.model.Role;
 import finale.bloombloom.common.util.S3ImageUrlConverter;
 import finale.bloombloom.config.CoolSMSConfig;
 import finale.bloombloom.db.entity.*;
@@ -86,7 +87,8 @@ public class OrderServiceImpl implements OrderService {
                 .build();
         
         System.out.println("orderBouquetRequest.getContact() : "+orderBouquetRequest.getContact());
-        sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
+        if(user.get().getUserRole()== Role.ROLE_ADMIN)
+            sendMessage(uuid, store.get(), user.get(),orderBouquetRequest.getContact());
         
         return orderRepository.save(order);
     }
