@@ -87,12 +87,9 @@
 
 ## 개발 과정 ⌨
 
-| 프로젝트 진행 기록 |
-|:---: |
-| ![](README.assets/record.png) |
-| API 명세서 |
-|:---: |
-| ![](README.assets/api.png) |
+| 프로젝트 진행 기록 | API 명세서 |
+|:---: |:---: |
+| ![](README.assets/record.png) | ![](README.assets/api.png) |
 
 &nbsp;
 
